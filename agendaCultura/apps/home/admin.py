@@ -20,3 +20,5 @@ class ActividadAdmin(admin.ModelAdmin):
 admin.site.register(Perfil, PerfilAdmin)
 admin.site.register(Categoria)
 admin.site.register(Actividad, ActividadAdmin)
+
+# Register your models here.

@@ -5,6 +5,7 @@ from django.http import HttpResponse
 
 from .models import Perfil, Actividad
 from .forms import PerfilForm, ActividadForm
+# Create your views here.
 
 def perfil_list(request):
     perfil = Perfil.public.all()
@@ -59,7 +60,3 @@ def actividad_create(request):
         form = ActividadForm()
     context = {'form': form, 'create': True}
     return reder(request, 'polls/form.html', context)
-
-
-
-# Create your views here.

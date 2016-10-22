@@ -35,7 +35,6 @@ ALLOWED_HOSTS = []
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'apps.home',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'agenda',
         'USER': 'root',
-        'PASSWORD': 'andy13',
+        'PASSWORD': '1234',
         'HOST':'localhost',
         'PORT':'3306',
     }
@@ -128,11 +128,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static')
-)
-
-#LOGIN_URL = 'agendaCultura_login'
-#LOGOUT_URL = 'agendaCultura_logout'
-#LOGIN_REDIRECT_URL = 'polls_perfil_list'
+STATICFILES_DIR = (os.path.join(BASE_DIR,'static'))

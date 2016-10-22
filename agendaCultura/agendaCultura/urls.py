@@ -33,4 +33,6 @@ urlpatterns = [
         name='polls_perfil_create'),
     #url(r'^edit/(?P<pk>\d+)/$', 'polls.views.perfil_edit',
     #    name='polls_perfil_edit'),
+    url(r'^admin/', admin.site.urls),
+    url(r'^home/', include('apps.home.urls',namespace='home')),
 ]
