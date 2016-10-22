@@ -1,0 +1,9 @@
+<a class="lead" href="{{ perfil.nombreArtista }}">{{ perfil.email }}</a>
+{% if perfil.descripcion %}
+  <br>{{ perfil.descripcion|linebreaksbr }}
+{% endif %}
+{% if perfil.categoria.count %}
+  {% for categoria in perfil.categoria.all %}
+    <span class="label label-primary">{{ categoria|lower }}</span>&nbsp;
+  {% endfor %}
+{% endif %}
