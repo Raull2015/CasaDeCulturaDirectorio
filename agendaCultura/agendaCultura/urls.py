@@ -15,8 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth import views
+from django.core.urlresolvers import reverse_lazy
+from apps.home import views
+from apps.home import urls
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^home/', include('apps.home.urls',namespace='home')),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^artistas/', views.perfil_list),
+    url(r'^actividades/', views.actividad_user),
+    url(r'^create/$', views.perfil_create, name='polls_perfil_create'),
+    url(r'^home/', include(urls, namespace='home')),
 ]

@@ -29,6 +29,10 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+#LOGIN_URL = 'agendaCultura_login'
+#LOGOUT_URL = 'agendaCultura_logout'
+#LOGIN_REDIRECT_URL = 'polls_perfil_list'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #'crispy_forms',
     'apps.home',
 ]
 
