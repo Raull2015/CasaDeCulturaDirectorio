@@ -10,11 +10,17 @@ from .forms import PerfilForm, ActividadForm
 def home(request):
 
     capsula = Capsulas.public.all()
+    capsula = capsula[0]
     context = {
         'capsula' : capsula
     }
-    return render(request, 'home/inicio.html', context)
+    return render(request, 'inicio.html', context)
 
+def eventos(request):
+    pass
+
+def artistas(request):
+    pass
 
 def perfil_list(request):
     perfil = Perfil.public.all()

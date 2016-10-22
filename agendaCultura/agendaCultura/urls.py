@@ -25,5 +25,8 @@ urlpatterns = [
     url(r'^artistas/', views.perfil_list),
     url(r'^actividades/', views.actividad_user),
     url(r'^create/$', views.perfil_create, name='polls_perfil_create'),
-    url(r'^home/', include(urls, namespace='home')),
+    url(r'^home/', views.home),
+    url(r'^home/listaArtistas', views.eventos),
+    url(r'^home/listaEventos', views.artistas),
+
 ]

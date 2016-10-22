@@ -1,0 +1,69 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+.encabezado{
+	width: 100%;
+	background: rgb(53,148,189);
+	overflow: hidden;
+}
+
+.encabezado h2{
+	color: white;
+	float: left;
+
+	padding-left: 10%;
+	padding-top: 0.6%;
+}
+.encabezado ul a{
+	padding: 1% 1%;
+	color: white;
+	text-decoration: none;
+	display: inline-block;
+
+	float: right;
+}
+
+.encabezado ul a:hover{
+	background: rgb(41,112,143);
+}
+
+.fondo img{
+	width: 100%;
+	opacity: 0.5;
+}
+
+
+.capsula p {
+	background: rgb(228,28,28);
+	color: white;
+}
+.menu{
+	background: rgb(53,148,189);
+	width: 100%;
+	height: auto;
+}
+
+.menus ul a{
+	color:white;
+	text-decoration: none;
+	font-size: 50px;
+	display: block;
+
+	position: relative;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	padding-left: 40%;
+}
+
+.menus ul a:hover{
+	background: rgb(41,112,143);
+}
+
+footer{
+	background: rgb(31,93,120);
+	color:white;
+	text-align: center;
+}

@@ -1,0 +1,63 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background:rgb(0,102,204);
+}
+.encabezado{
+	width: 100%;
+	background: rgb(53,148,189);
+	overflow: hidden;
+}
+
+.encabezado h2{
+	color: white;
+	float: left;
+
+	padding-left: 10%;
+	padding-top: 0.6%;
+}
+.encabezado ul a{
+	padding: 1% 1%;
+	color: white;
+	text-decoration: none;
+	display: inline-block;
+
+	float: right;
+}
+
+.encabezado ul a:hover{
+	background: rgb(41,112,143);
+}
+
+.subMenu{
+	width: 20%;
+	height:50%;
+	background:rgb(0,102,204);
+	float: left;
+}
+
+.subMenu ul{
+	padding: 1% 1%;
+	list-style: none;
+}
+.subMenu li{
+	width: 99%;
+	padding: 2% 2%;
+}
+.subMenu a{
+	color: white;
+	font-size: 25px;
+	padding: 5% 5%;
+	text-decoration: none;
+	display: block;
+
+}
+
+.subMenu a:hover{
+	background: rgb(41,112,143);
+}
+
+.imagen img{
+}
