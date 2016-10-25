@@ -14,7 +14,7 @@ def home(request):
     if len(capsula) is not 0:
          capsula =capsula[0]
     context = {
-        'capsula' : capsula
+        'capsula' : capsula,
     }
     return render(request, 'inicio.html', context)
 
