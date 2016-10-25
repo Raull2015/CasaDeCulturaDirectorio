@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+  <body>
+  {% if next %}
+  <form action="/login/?next={{next}}" method="post" >
+  {%else%}
+  <form action="/login/" method="post" >
+  {% endif %}
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Acceder" />
+  </form>
+  </body>
+</html>
