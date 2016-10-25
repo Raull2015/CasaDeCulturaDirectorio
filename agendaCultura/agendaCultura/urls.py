@@ -23,10 +23,16 @@ from apps.home import urls
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^artistas/', views.perfil_list),
-    url(r'^actividades/', views.actividad_user),
-    url(r'^create/$', views.perfil_create, name='polls_perfil_create'),
+    url(r'^perfil/actividades/', views.actividad_user),
+    url(r'^create/$', views.perfil_create),
+    url(r'^home/listaArtistas', views.perfil_list),
+    url(r'^home/listaEventos', views.actividad_list),
+    url(r'^home/perfil/crearActividad', views.actividad_create),
+    url(r'^home/perfil/capsulas', views.capsula_create),
     url(r'^home/', views.home),
-    url(r'^home/listaArtistas', views.eventos),
-    url(r'^home/listaEventos', views.artistas),
+    url(r'^login/', views.ingresar),
+
+
+
 
 ]

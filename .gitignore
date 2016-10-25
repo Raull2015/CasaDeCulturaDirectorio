@@ -7,12 +7,15 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+migrations/*
+static/*
 
 # Windows Installer files
 *.cab
 *.msi
 *.msm
 *.msp
+*.pyc
 
 # Windows shortcuts
 *.lnk

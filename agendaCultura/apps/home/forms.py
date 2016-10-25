@@ -1,5 +1,6 @@
 from django.forms import ModelForm
-from .models import Perfil, Actividad
+from django import forms
+from .models import Perfil, Actividad, Capsulas, Categoria
 
 class PerfilForm(ModelForm):
     class Meta:
@@ -9,4 +10,18 @@ class PerfilForm(ModelForm):
 class ActividadForm(ModelForm):
     class Meta:
         model = Actividad
-        exclude = ('puntuacion', 'visitas', 'autorizado')
+        exclude = ('fechaPublicacion','puntuacion', 'visitas', 'autorizado','perfil')
+        widgets = {
+            'fechaRealizacion': forms.SelectDateWidget(),
+            'hora': forms.TimeInput(),
+            'imagen' : forms.FileInput(),
+        }
+
+class CapsulaForm(ModelForm):
+    class Meta:
+        model = Capsulas
+        exclude = ('autorizado','usuario')
+
+class LoginForm(forms.Form):
+    username = forms.CharField(label = 'Usuario')
+    password = forms.CharField(widget = forms.PasswordInput , label = 'Contrasenia')

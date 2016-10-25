@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Perfil, Categoria, Actividad, Capsulas, Usuarios, Rol
+from models import *
 # Register your models here.
 
 class PerfilAdmin(admin.ModelAdmin):
@@ -21,7 +21,6 @@ admin.site.register(Perfil, PerfilAdmin)
 admin.site.register(Categoria)
 admin.site.register(Actividad, ActividadAdmin)
 admin.site.register(Capsulas)
-admin.site.register(Usuarios)
 admin.site.register(Rol)
 
 # Register your models here.

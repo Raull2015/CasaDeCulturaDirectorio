@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+LOGIN_URL = '/login/'
+APPEND_SLASH = True
 # Application definition
 #LOGIN_URL = 'agendaCultura_login'
 #LOGOUT_URL = 'agendaCultura_logout'
@@ -113,7 +114,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-gt'
+
+TIME_INPUT_FORMAT = [
+    '%H:%M',
+    ]
 
 TIME_ZONE = 'America/Guatemala'
 
