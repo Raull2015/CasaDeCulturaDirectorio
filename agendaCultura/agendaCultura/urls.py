@@ -23,14 +23,17 @@ from apps.home import urls
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^artistas/', views.perfil_list),
+    url(r'^administracion/', views.administracion),
     url(r'^perfil/actividades/', views.actividad_user),
     url(r'^create/$', views.perfil_create),
+    url(r'^logout/', views.cerrar_sesion),
     url(r'^home/listaArtistas', views.perfil_list),
     url(r'^home/listaEventos', views.actividad_list),
     url(r'^home/perfil/crearActividad', views.actividad_create),
     url(r'^home/perfil/capsulas', views.capsula_create),
     url(r'^home/', views.home),
     url(r'^login/', views.ingresar),
+    url(r'^error/', views.error),
 
 
 

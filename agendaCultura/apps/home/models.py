@@ -39,11 +39,11 @@ class Rol(models.Model):
         return self.nombreRol
 
     def is_admin(self):
-        if nombreRol == 'Administrador':
+        if self.nombreRol == 'Administrador':
             return True
 
     def is_artista(self):
-        if nombreRol == 'Artista':
+        if self.nombreRol == 'Artista':
             return True
 
     class Meta:

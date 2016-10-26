@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
@@ -9,12 +9,24 @@ from .forms import *
 # Create your views here.
 
 def home(request):
+    logeado = False
+    u = None
+    admin = False
+
+    if request.user.is_authenticated:
+        logeado = True
+        u = request.user.username
+        if request.user.perfil.rol.is_admin():
+            admin = True
 
     capsula = Capsulas.public.all()
     if len(capsula) is not 0:
          capsula =capsula[0]
     context = {
         'capsula' : capsula,
+        'logeado' : logeado,
+        'user' : u,
+        'admin' : admin,
     }
     return render(request, 'inicio.html', context)
 
@@ -80,7 +92,7 @@ def actividad_create(request):
 
 @login_required
 def capsula_create(request):
-    if request.user.perfil.rol.is_admin != True:
+    if request.user.perfil.rol.is_admin() != True:
         return HttpResponseRedirect('/error/')
 
     if request.method == 'POST':
@@ -96,8 +108,27 @@ def capsula_create(request):
     context = {'form': form, 'create': True}
     return render(request, 'capsulas.html', context)
 
+@login_required
+def administracion(request):
+
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect('/error/')
+
+    context = { }
+    return render(request, 'Admi.html', context)
+
+
+@login_required
+def cerrar_sesion(request):
+    if request.user.is_authenticated:
+        logout(request)
+
+    return HttpResponseRedirect('/home/')
+
+
 def ingresar(request):
     next = ""
+    error = False
 
     if request.user.is_authenticated:
         return HttpResponseRedirect('/home/perfil/')
@@ -106,6 +137,7 @@ def ingresar(request):
         next = request.GET['next']
 
     if request.method == 'POST':
+
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
@@ -120,9 +152,14 @@ def ingresar(request):
                 #el usuario no esta activo
                 pass
         else:
-            return HttpResponseRedirect('/login/')
+            error = True
+            form = LoginForm()
+        #    return HttpResponseRedirect('/login/')
     else:
         form = LoginForm()
 
-    context = {'form': form, 'create': True, 'next':next, }
+    context = {'form': form, 'create': True, 'next':next, 'error':error,}
     return render(request, 'login.html', context)
+
+def error(request):
+    return render(request, 'error.html')

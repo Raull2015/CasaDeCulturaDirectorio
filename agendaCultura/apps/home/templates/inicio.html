@@ -31,8 +31,16 @@
             <a href="#menu-toggle" id="menu-toggle">Desplegar</a>
         </ul>
         <ul>
-              <a href="#">Iniciar Sesión</a>
-              <a href="#">Registrarse</a>
+
+          {% if logeado == False %}
+              <a href="/login/">Iniciar Sesión</a>
+              <a href="/registro/">Registrarse</a>
+          {% else %}
+
+              <a href="/logout/">Cerrar Sesion</a>
+                <a >Bienvenido {{user}} </a>
+          {% endif %}
+
          </ul>
        </div>
 
@@ -46,8 +54,15 @@
                         Menu
                     </a>
                 </li>
+                    {% if admin == True %}
+                    <li><a href="/administracion/">Administracion</a>
+                    {%endif%}
+                    {% if logeado == True %}
+                    <li><a href="/home/perfil/">Perfil</a>
+                    {%endif%}
                     <li><a href="#">Artistas</a>
                     <li><a href="#">Eventos</a>
+
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->

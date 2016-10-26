@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load static %}
 <head>
 
     <meta charset="utf-8">
@@ -12,10 +12,10 @@
     <title>Simple Sidebar - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href= "{% static "css/simple-sidebar.css" %}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,8 +32,8 @@
             <a href="#menu-toggle" id="menu-toggle">Desplegar</a>
         </ul>
         <ul>
-              <a href="#">Iniciar Sesión</a>
-              <a href="#">Registrarse</a>
+            <a href="/logout/">Cerrar Sesion</a>
+            <a >Bienvenido {{user}} </a>
          </ul>
        </div>
 
@@ -52,6 +52,8 @@
                     <li><a href="#">Moderar Eventos</a>
                     <li><a href="#">Moderar Artistas</a>
                     <li><a href="#">Crear Evento</a>
+                    <li><a href="#"></a>
+                    <li><a href="/home/">Volver</a>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -72,10 +74,10 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="{% static "js/jquery.js" %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{% static "js/bootstrap.min.js" %}" ></script>
 
     <!-- Menu Toggle Script -->
     <script>
