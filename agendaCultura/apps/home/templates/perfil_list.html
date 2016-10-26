@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Perfiles{% endblock %}
+
+{% block heading %}
+  <h2>Perfiles</h2>
+{% endblock %}
+
+{% block content %}
+  <ul class="list-unstyled">
+  {% for perfil in perfil %}
+    <li class="well well-sm">{% include "perfil.html" %}</li>
+  {% empty %}
+    <li>No hay perfiles</li>
+  {% endfor %}
+  </ul>
+{% endblock %}

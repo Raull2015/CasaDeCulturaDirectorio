@@ -1,0 +1,9 @@
+{% extends "perfil_list.html" %}
+
+{% block title %}{{ perfil.user }}'s perfil{% endblock %}
+
+{% block heading %}
+  <h2>{{ perfil.user }}'s perfil<br>
+    <small>{{ actividad.count }} actividades en total</small>
+  </h2>
+{% endblock %}

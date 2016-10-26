@@ -56,12 +56,14 @@
                 </li>
                     {% if admin == True %}
                     <li><a href="/administracion/">Administracion</a>
+                    <li><a href="/home/perfil/crearActividad">Crear evento</a>
                     {%endif%}
                     {% if logeado == True %}
                     <li><a href="/home/perfil/">Perfil</a>
+                    <li><a href="/home/perfil/crearActividad">Crear evento</a>
                     {%endif%}
-                    <li><a href="#">Artistas</a>
-                    <li><a href="#">Eventos</a>
+                    <li><a href="/home/listaArtistas">Artistas</a>
+                    <li><a href="/home/listaEventos">Eventos</a>
 
             </ul>
         </div>
@@ -69,7 +71,7 @@
 
         <!-- Page Content -->
         <!--id="page-content-wrapper"-->
-        <div> 
+        <div>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12 col-lg-12">

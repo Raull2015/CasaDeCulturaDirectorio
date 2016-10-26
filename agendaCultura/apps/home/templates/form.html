@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if create %}Crear{% else %}Editar{% endif %} perfil
+{% endblock %}
+
+{% block heading %}
+  <h2>
+    {% if create %}
+      Crear perfil
+    {% else %}
+      Editar perfil
+    {% endif %}
+  </h2>
+{% endblock %}
+
+{% block content %}
+  {% if create %}
+    {% url "home_perfil_create" as action_url %}
+  {% else %}
+    {% url "home_perfil_edit" pk=form.instance.pk as action_url %}
+  {% endif %}
+  <form action="{{ action_url }}" method="post" accept-charset="utf-8">
+    {{ form }}
+    {% csrf_token %}
+    <p><input type="submit" class="btn btn-default" value="Save"></p>
+  </form>
+{% endblock %}

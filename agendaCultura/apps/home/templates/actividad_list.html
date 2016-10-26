@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Actividades{% endblock %}
+
+{% block heading %}
+  <h2>Actividad</h2>
+{% endblock %}
+
+{% block content %}
+  <ul class="list-unstyled">
+  {% for actividad in actividad %}
+    <li class="well well-sm">{% include "actividad.html" %}</li>
+  {% empty %}
+    <li>No hay actividades alv :'v</li>
+  {% endfor %}
+  </ul>
+{% endblock %}

@@ -33,22 +33,22 @@ def home(request):
 def perfil_list(request):
     perfil = Perfil.public.all()
     context = {'perfil': perfil}
-    return render(request, 'artistas.html', context)
+    return render(request, 'perfil_list.html', context)
 
 def actividad_list(request):
     actividad = Actividad.public.all()
     context = {'actividad': actividad}
-    return render(request, 'actividades.html', context)
+    return render(request, 'actividad_list.html', context)
 
 @login_required
 def actividad_user(request, username):
-    user = get_object_or_404(Perfil, username=nombreArtista)
+    user = get_object_or_404(User, username=username)
     if request.user == user:
-        actividad = user.perfil.all()
+        actividad = Actividad.public.all()
     else:
-        actividad = Perfil.public.filter(perfil__username=nombreArtista)
-    context = {'perfil': actividad, 'perfil': user}
-    return render(request, 'home/actividad_user.html', context)
+        actividad = Actividad.public.filter(user_username=username)
+    context = {'actividad': actividad, 'perfil': user}
+    return render(request, 'actividad_user.html', context)
 
 def perfil_create(request):
     if request.method == 'POST':
@@ -60,19 +60,20 @@ def perfil_create(request):
     else:
         form = PerfilForm()
     context = {'form': form, 'create': True}
-    return reder(request, 'home/form.html', context)
+    return render(request, 'form.html', context)
 
 @login_required
 def perfil_edit(request, pk):
-    perifl = get_object_or_404(Perfil, pk=pk)
+    perfil = get_object_or_404(Perfil, pk=pk)
     if request.method == 'POST':
         form = PerfilForm(instance=perfil, data=request.POST)
         if form.is_valid():
             form.save()
+            HttpResponseRedirect('home/')
     else:
         form = PerfilForm(instance=perfil)
     context = {'form': form, 'create': False}
-    return render(request, 'home/form.html', context)
+    return render(request, 'form.html', context)
 
 @login_required
 def actividad_create(request):

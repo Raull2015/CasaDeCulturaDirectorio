@@ -53,7 +53,7 @@ class Rol(models.Model):
 class Perfil(models.Model):
     nombreArtista = models.CharField(max_length=100)
     nombreReal = models.CharField(max_length=65)
-    imagen = models.CharField(max_length=100)
+    imagen = models.ImageField()
     sexo = models.SmallIntegerField(default=0)
     fechaNacimiento = models.DateField('Fecha de nacimiento')
     telefono = models.CharField(max_length=16)
@@ -84,7 +84,7 @@ class Actividad(models.Model):
     fechaRealizacion = models.DateField('Fecha a realizar')
     hora = models.TimeField('Hora de Realizacion')
     descripcion = models.TextField(max_length=800)
-    imagen = models.CharField(max_length=100)
+    imagen = models.ImageField()
     fechaPublicacion = models.DateField('Fecha de publicacion')
     puntuacion = models.IntegerField(default=0)
     visitas = models.IntegerField(default=0)
