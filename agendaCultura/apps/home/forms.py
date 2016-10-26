@@ -23,5 +23,5 @@ class CapsulaForm(ModelForm):
         exclude = ('autorizado','usuario')
 
 class LoginForm(forms.Form):
-    username = forms.CharField(widget= forms.TextInput(attrs={'class': 'user'}), label = 'Usuario')
-    password = forms.CharField(widget = forms.PasswordInput(attrs={'class': 'user'}) , label = 'Contrasenia')
+    username = forms.CharField(widget= forms.TextInput(attrs={'class': 'form-control'}), label = 'Usuario')
+    password = forms.CharField(widget = forms.PasswordInput(attrs={'class': 'form-control'}) , label = 'Contrasenia')
