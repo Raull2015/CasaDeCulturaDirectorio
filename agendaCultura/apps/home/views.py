@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from datetime import date
 from .models import *
 from .forms import *
 
@@ -83,8 +84,11 @@ def actividad_create(request):
         if form.is_valid():
             print "formulario actividad valido"
             actividad = form.save(commit=False)
-            actividad.perfil = request.user.perfil
+            actividad.fechaPublicacion = date.today()
+            actividad.imagen = request.FILES['imagen']
             actividad.save()
+            actividad.perfil.add(request.user.perfil)
+
             form.save_m2m()
             return HttpResponseRedirect('/home/')
     else:

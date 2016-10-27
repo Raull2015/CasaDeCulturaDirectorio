@@ -28,7 +28,7 @@ class PerfilForm(ModelForm):
         exclude = ('visitas', 'autorizado')
         widgets = {
             'fechaNacimiento': forms.SelectDateWidget(years={'1980','2000',}),
-            'imagen': forms.FileInput(),
+            #'imagen': forms.FileInput(),
         }
 
 class ActividadForm(ModelForm):
@@ -55,7 +55,7 @@ class ActividadForm(ModelForm):
         widgets = {
             'fechaRealizacion': forms.SelectDateWidget(),
             'hora': forms.TimeInput(),
-            'imagen' : forms.ClearableFileInput(),
+            #'imagen' : forms.ClearableFileInput(),
         }
 
 class CapsulaForm(ModelForm):

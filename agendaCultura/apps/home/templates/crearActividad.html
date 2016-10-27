@@ -29,7 +29,7 @@
       <h1 class="login">Crear evento</h1>
     </div>
     <div class="container">
-      <form action="/home/perfil/crearActividad/" method="post">
+      <form action="/home/perfil/crearActividad/" enctype="multipart/form-data" method="post">
           {% csrf_token %}
           <br/><br/><br/>
           <div class = "container col-md-6 col-md-offset-3">
