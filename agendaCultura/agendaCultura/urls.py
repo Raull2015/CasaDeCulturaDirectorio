@@ -36,7 +36,7 @@ urlpatterns = [
     url(r'^error/', views.error),
     url(r'^edit/', views.perfil_edit),
     url(r'^user/(?P<username>[-\w]+)/$', views.actividad_user),
-    url(r'^edit/(?P<pk>\d+)/$', views.perfil_edit),
-
+    url(r'^edit/(?P<pk>\d+)/$', views.perfil_edit, name='editar_perfil'),
+    url(r'^', views.home),
 
 ]

@@ -52,11 +52,10 @@ class ActividadForm(ModelForm):
             'imagen': 'Imagen',
             'categoria':'Seleccionar categoria:',
         }
-        exclude = ('fechaPublicacion','puntuacion', 'visitas', 'autorizado','perfil')
         widgets = {
             'fechaRealizacion': forms.SelectDateWidget(),
             'hora': forms.TimeInput(),
-            'imagen' : forms.FileInput(),
+            'imagen' : forms.ClearableFileInput(),
         }
 
 class CapsulaForm(ModelForm):

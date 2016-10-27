@@ -53,7 +53,7 @@ class Rol(models.Model):
 class Perfil(models.Model):
     nombreArtista = models.CharField(max_length=100)
     nombreReal = models.CharField(max_length=65)
-    imagen = models.ImageField()
+    imagen = models.ImageField(upload_to='imgPerfil/', default='imgPerfil/default.jpg')
     sexo = models.SmallIntegerField(default=0)
     fechaNacimiento = models.DateField('Fecha de nacimiento')
     telefono = models.CharField(max_length=16)
@@ -84,7 +84,7 @@ class Actividad(models.Model):
     fechaRealizacion = models.DateField('Fecha a realizar')
     hora = models.TimeField('Hora de Realizacion')
     descripcion = models.TextField(max_length=800)
-    imagen = models.ImageField()
+    imagen = models.ImageField(upload_to='imgActividad/', default='imgActividad/default.jpg')
     fechaPublicacion = models.DateField('Fecha de publicacion')
     puntuacion = models.IntegerField(default=0)
     visitas = models.IntegerField(default=0)
@@ -106,7 +106,7 @@ class Actividad(models.Model):
 
 class Comentarios(models.Model):
     contenido = models.TextField(max_length=200)
-    fechaComentario = models.DateField('Fecha del comentario')
+    fechaComentario = models.DateField('Fecha del comentario',default=date.today())
     actividad = models.ForeignKey(Actividad)
 
     def __str__(self):
@@ -115,18 +115,6 @@ class Comentarios(models.Model):
     class Meta:
         verbose_name = 'comentario'
         verbose_name_plural = 'comentarios'
-
-"""
-class Usuarios(models.Model):
-    login = models.CharField(max_length=100)
-    pwd = models.CharField(max_length=40)
-    ultimaConexion = models.DateField('Ultia conexion')
-    perfil = models.ForeignKey(Perfil)
-    rol = models.ForeignKey(Rol)
-
-    def __str__(self):
-        return self.login
-"""
 
 class Capsulas(models.Model):
     fechaPublicacion = models.DateField('Fecha de publicacion')

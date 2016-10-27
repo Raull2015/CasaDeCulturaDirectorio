@@ -79,12 +79,14 @@ def perfil_edit(request, pk):
 def actividad_create(request):
     if request.method == 'POST':
         form = ActividadForm(data=request.POST)
+        #print form.clean_data['nombre']
         if form.is_valid():
             print "formulario actividad valido"
             actividad = form.save(commit=False)
+            actividad.perfil = request.user.perfil
             actividad.save()
             form.save_m2m()
-            HttpResponseRedirect('inicio/')
+            return HttpResponseRedirect('/home/')
     else:
         form = ActividadForm()
 
