@@ -20,7 +20,7 @@ from django.contrib.auth import views
 from django.core.urlresolvers import reverse_lazy
 from django.views.static import serve
 from apps.home import views
-from apps.home import urls
+from apps.home import urls as homeUrls
 
 urlpatterns = [
     url(r'^static/(?P<path>.*)$', serve, {
@@ -30,21 +30,20 @@ urlpatterns = [
         'document_root': settings.MEDIA_ROOT,
     }),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^artistas/', views.perfil_list),
-    url(r'^administracion/', views.administracion),
-    url(r'^perfil/actividades/', views.actividad_user),
-    url(r'^registro/$', views.perfil_create),
-    url(r'^logout/', views.cerrar_sesion),
-    url(r'^home/listaArtistas', views.perfil_list),
-    url(r'^home/listaEventos', views.actividad_list),
-    url(r'^home/perfil/crearActividad', views.actividad_create),
-    url(r'^home/perfil/capsulas', views.capsula_create),
-    url(r'^home/', views.home),
-    url(r'^login/', views.ingresar),
-    url(r'^error/', views.error),
-    url(r'^edit/', views.perfil_edit),
-    url(r'^user/(?P<username>[-\w]+)/$', views.actividad_user),
-    url(r'^edit/(?P<pk>\d+)/$', views.perfil_edit, name='editar_perfil'),
-    url(r'^', views.home),
+    url(r'^home/', include(homeUrls, namespace='home')),
+    #url(r'^artistas/', views.perfil_list),
+    #url(r'^registro/$', views.perfil_create),
+    url(r'^login/', views.ingresar, name='iniciar_sesion'),
+    url(r'^logout/', views.cerrar_sesion, name='cerrar_sesion'),
+    #url(r'^home/listaArtistas', views.perfil_list),
+    #url(r'^home/listaEventos', views.actividad_list),
+    #url(r'^home/perfil/crearActividad', views.actividad_create),
+    url(r'^administracion/$', views.administracion, name='administracion'),
+    url(r'^administracion/capsulas/', views.capsula_create, name='capsula_create'),
+    url(r'^error/', views.error, name='error'),
+    #url(r'^edit/', views.perfil_edit),
+    #url(r'^user/(?P<username>[-\w]+)/$', views.actividad_user),
+    #url(r'^edit/(?P<pk>\d+)/$', views.perfil_edit),
+    url(r'^', views.home, name='default'),
 
 ]

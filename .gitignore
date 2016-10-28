@@ -7,9 +7,9 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
-migrations/*
+agendaCultura/apps/home/migrations/*
 agendaCultura/media/*
-*.pyc
+
 
 # Windows Installer files
 *.cab
@@ -50,3 +50,6 @@ agendaCultura/media/*
 Network Trash Folder
 Temporary Items
 .apdisk
+
+agendaCultura/agendaCultura/*.pyc
+*.pyc

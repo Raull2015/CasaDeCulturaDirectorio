@@ -33,12 +33,12 @@
         <ul>
 
           {% if logeado == False %}
-              <a href="/login/">Iniciar Sesión</a>
-              <a href="/registro/">Registrarse</a>
+              <a href= {% url 'iniciar_sesion' %} >Iniciar Sesión</a>
+              <a href={% url 'home:crear_perfil' %}>Registrarse</a>
           {% else %}
 
-              <a href="/logout/">Cerrar Sesion</a>
-                <a >Bienvenido {{user}} </a>
+              <a href={% url 'cerrar_sesion' %}>Cerrar Sesion</a>
+                <a >Bienvenido {{ usuario }} </a>
           {% endif %}
 
          </ul>
@@ -55,16 +55,16 @@
                     </a>
                 </li>
                     {% if admin == True %}
-                    <li><a href="/administracion/">Administracion</a>
+                    <li><a href={% url 'administracion' %}>Administracion</a>
                     {%endif%}
                     {% if logeado == True %}
-                    <li><a href="/home/perfil/">Perfil</a>
+                    <li><a href={% url 'home:perfil' username=user.perfil.nombreArtista %}>Perfil</a>
 
-                    <li><a href="/home/perfil/">Mis eventos</a>
-                    <li><a href="/home/perfil/crearActividad">Crear evento</a>
+                    <li><a href={% url 'home:actividad_user' username=user.perfil.nombreArtista %}>Mis eventos</a>
+                    <li><a href={% url 'home:crear_evento' username=user.perfil.nombreArtista %}>Crear evento</a>
                     {%endif%}
-                    <li><a href="/home/listaArtistas">Artistas</a>
-                    <li><a href="/home/listaEventos">Eventos</a>
+                    <li><a href={% url 'home:artistas' %}>Artistas</a>
+                    <li><a href={% url 'home:eventos' %}>Eventos</a>
 
             </ul>
         </div>

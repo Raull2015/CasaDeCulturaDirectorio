@@ -22,14 +22,14 @@
   <body>
     <div class="encabezado">
       <ul>
-        <a href="/home/perfil/">Regresar</a>
+        <a href={% url 'home:home' %}>Regresar</a>
       </ul>
     </div>
     <div class="encabezado container">
       <h1 class="login">Crear evento</h1>
     </div>
     <div class="container">
-      <form action="/home/perfil/crearActividad/" enctype="multipart/form-data" method="post">
+      <form action={% url 'home:crear_evento' username=request.user.perfil.nombreArtista %} enctype="multipart/form-data" method="post">
           {% csrf_token %}
           <br/><br/><br/>
           <div class = "container col-md-6 col-md-offset-3">
@@ -64,7 +64,7 @@
         <br/><br/>
           <div class = "container col-md-6 col-md-offset-3">
             <br>
-              <button type="submit" class="save btn btn-default">Save</button>
+              <button type="submit" class="save btn btn-default">Crear Evento</button>
           </div>
       </form>
     </div>

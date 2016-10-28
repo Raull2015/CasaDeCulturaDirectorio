@@ -32,8 +32,8 @@
             <a href="#menu-toggle" id="menu-toggle">Desplegar</a>
         </ul>
         <ul>
-            <a href="/logout/">Cerrar Sesion</a>
-            <a >Bienvenido {{user}} </a>
+            <a href={% url 'cerrar_sesion' %}>Cerrar Sesion</a>
+            <a >Bienvenido {{usuario}} </a>
          </ul>
        </div>
 
@@ -52,7 +52,7 @@
                     <li><a href="#">Moderar Eventos</a>
                     <li><a href="#">Moderar Artistas</a>
                     <li><a href="#"></a>
-                    <li><a href="/home/">Volver</a>
+                    <li><a href={% url 'home:home' %}>Volver</a>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->

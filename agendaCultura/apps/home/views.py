@@ -3,9 +3,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 from datetime import date
-from .models import *
-from .forms import *
+from models import *
+from forms import *
 
 # Create your views here.
 
@@ -16,7 +17,7 @@ def home(request):
 
     if request.user.is_authenticated:
         logeado = True
-        u = request.user.username
+        u = request.user.perfil.nombreArtista
         if request.user.perfil.rol.is_admin():
             admin = True
 
@@ -26,8 +27,9 @@ def home(request):
     context = {
         'capsula' : capsula,
         'logeado' : logeado,
-        'user' : u,
+        'usuario' : u,
         'admin' : admin,
+        'user' : request.user
     }
     return render(request, 'inicio.html', context)
 
@@ -64,20 +66,26 @@ def perfil_create(request):
     return render(request, 'form.html', context)
 
 @login_required
-def perfil_edit(request, pk):
-    perfil = get_object_or_404(Perfil, pk=pk)
+def perfil(request, username=''):
+    context = {
+    }
+    return render(request, 'perfil.html', context)
+
+@login_required
+def perfil_edit(request, username=''):
+    perfil = get_object_or_404(Perfil, nombreArtista=username)
     if request.method == 'POST':
         form = PerfilForm(instance=perfil, data=request.POST)
         if form.is_valid():
             form.save()
-            HttpResponseRedirect('home/')
+            HttpResponseRedirect(reverse('home:home'))
     else:
         form = PerfilForm(instance=perfil)
     context = {'form': form, 'create': False}
     return render(request, 'form.html', context)
 
 @login_required
-def actividad_create(request):
+def actividad_create(request,username=''):
     if request.method == 'POST':
         form = ActividadForm(data=request.POST)
         #print form.clean_data['nombre']
@@ -90,7 +98,7 @@ def actividad_create(request):
             actividad.perfil.add(request.user.perfil)
 
             form.save_m2m()
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('home:home'))
     else:
         form = ActividadForm()
 
@@ -100,7 +108,7 @@ def actividad_create(request):
 @login_required
 def capsula_create(request):
     if request.user.perfil.rol.is_admin() != True:
-        return HttpResponseRedirect('/error/')
+        return HttpResponseRedirect(reverse('error'))
 
     if request.method == 'POST':
         form = CapsulaForm(data=request.POST)
@@ -108,7 +116,7 @@ def capsula_create(request):
             capsula = form.save(commit=False)
             capsula.save()
             form.save_m2m()
-            HttpResponseRedirect('/home/perfil/')
+            HttpResponseRedirect(reverse('home:perfil',kwargs={'username': request.user.perfil.nombreArtista,}))
     else:
         form = CapsulaForm()
 
@@ -119,9 +127,12 @@ def capsula_create(request):
 def administracion(request):
 
     if request.user.perfil.rol.is_admin() != True:
-        return HttpResponseRedirect('/error/')
+        return HttpResponseRedirect(reverse('error'))
 
-    context = { }
+    u = request.user.perfil.nombreArtista
+    context = {
+        'usuario' : u,
+        }
     return render(request, 'Admi.html', context)
 
 
@@ -129,8 +140,7 @@ def administracion(request):
 def cerrar_sesion(request):
     if request.user.is_authenticated:
         logout(request)
-
-    return HttpResponseRedirect('/home/')
+    return HttpResponseRedirect(reverse('home:home'))
 
 
 def ingresar(request):
@@ -138,7 +148,7 @@ def ingresar(request):
     error = False
 
     if request.user.is_authenticated:
-        return HttpResponseRedirect('/home/perfil/')
+        return HttpResponseRedirect(reverse('home:perfil',kwargs={'username': request.user.perfil.nombreArtista,}))
 
     if request.GET:
         next = request.GET['next']
@@ -152,7 +162,7 @@ def ingresar(request):
             if user.is_active:
                 login(request, user)
                 if next == "":
-                    return HttpResponseRedirect('/home/')
+                    return HttpResponseRedirect(reverse('home:home'))
                 else:
                     return HttpResponseRedirect(next)
             else:
