@@ -81,7 +81,7 @@ def perfil(request, username):
     context = {
         'perfil': perfil
     }
-    return render(request, 'perfil_detalle.html', context)
+    return render(request, 'inicio.html', context)
 
 @login_required
 def perfil_edit(request, pk):
@@ -89,9 +89,12 @@ def perfil_edit(request, pk):
     if request.method == 'POST':
         form = PerfilForm(instance=perfil, data=request.POST)
         if form.is_valid():
+            print "si"
+            #form.save(commit=False)
             form.save()
             return HttpResponseRedirect(reverse('home:home'))
     else:
+        print "no"
         form = PerfilForm(instance=perfil)
     context = {'form': form, 'create': False}
     return render(request, 'form.html', context)
