@@ -58,10 +58,17 @@
                     <li><a href={% url 'administracion' %}>Administracion</a>
                     {%endif%}
                     {% if logeado == True %}
+<<<<<<< HEAD
                     <li><a href={% url 'home:editar_perfil' user.perfil.id %}>Perfil</a>
 
                     <li><a href={% url 'home:mis_actividades' user.perfil.id %}>Mis eventos</a>
                     <li><a href={% url 'home:crear_evento' username=user.perfil.nombreArtista %}>Crear evento</a>
+=======
+                    <li><a href={% url 'home:perfil' username=user.username %}>Perfil</a>
+
+                    <li><a href={% url 'home:actividad_user' username=user.username %}>Mis eventos</a>
+                    <li><a href={% url 'home:crear_evento' username=user.username %}>Crear evento</a>
+>>>>>>> 14b66f45fa9046ae622f7966fa10db2c0ca357b1
                     {%endif%}
                     <li><a href={% url 'home:artistas' %}>Artistas</a>
                     <li><a href={% url 'home:eventos' %}>Eventos</a>
