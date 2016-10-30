@@ -90,7 +90,7 @@ class Actividad(models.Model):
     visitas = models.IntegerField(default=0)
     autorizado = models.SmallIntegerField(default=0)
     categoria = models.ManyToManyField(Categoria)
-    perfil = models.ManyToManyField(Perfil)
+    perfil = models.ForeignKey(Perfil,db_index=True)
 
     objects = models.Manager()
     public = ActividadManager()
@@ -106,7 +106,7 @@ class Actividad(models.Model):
 
 class Comentarios(models.Model):
     contenido = models.TextField(max_length=200)
-    fechaComentario = models.DateField('Fecha del comentario',default=date.today())
+    fechaComentario = models.DateField('Fecha del comentario')
     actividad = models.ForeignKey(Actividad)
 
     def __str__(self):
