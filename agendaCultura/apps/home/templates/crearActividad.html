@@ -29,7 +29,7 @@
       <h1 class="login">Crear evento</h1>
     </div>
     <div class="container">
-      <form action={% url 'home:crear_evento' username=request.user.perfil.nombreArtista %} enctype="multipart/form-data" method="post">
+      <form action={% url 'home:crear_evento' username=request.user.username %} enctype="multipart/form-data" method="post">
           {% csrf_token %}
           <br/><br/><br/>
           <div class = "container col-md-6 col-md-offset-3">

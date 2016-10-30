@@ -1,4 +1,4 @@
-<a class="lead" href="{{ actividad.nombre }}">{{actividad.nombre}}  {{ actividad.fechaRealizacion }}</a>
+<a class="lead" href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>{{actividad.nombre}}  {{ actividad.fechaRealizacion }}</a>
 {% if actividad.descripcion %}
   <br>{{ actividad.descripcion|linebreaksbr }}
 {% endif %}

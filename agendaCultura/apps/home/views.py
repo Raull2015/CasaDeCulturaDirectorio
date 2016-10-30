@@ -69,7 +69,7 @@ def perfil_create(request):
 def perfil(request, username=''):
     context = {
     }
-    return render(request, 'perfil.html', context)
+    return render(request, 'perfil_detalle.html', context)
 
 @login_required
 def perfil_edit(request, username=''):
@@ -78,7 +78,7 @@ def perfil_edit(request, username=''):
         form = PerfilForm(instance=perfil, data=request.POST)
         if form.is_valid():
             form.save()
-            HttpResponseRedirect(reverse('home:home'))
+            return HttpResponseRedirect(reverse('home:home'))
     else:
         form = PerfilForm(instance=perfil)
     context = {'form': form, 'create': False}
@@ -116,7 +116,7 @@ def capsula_create(request):
             capsula = form.save(commit=False)
             capsula.save()
             form.save_m2m()
-            HttpResponseRedirect(reverse('home:perfil',kwargs={'username': request.user.perfil.nombreArtista,}))
+            return HttpResponseRedirect(reverse('home:perfil',kwargs={'username': request.user.username,}))
     else:
         form = CapsulaForm()
 
@@ -148,7 +148,7 @@ def ingresar(request):
     error = False
 
     if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('home:perfil',kwargs={'username': request.user.perfil.nombreArtista,}))
+        return HttpResponseRedirect(reverse('home:perfil',kwargs={'username': request.user.username,}))
 
     if request.GET:
         next = request.GET['next']
@@ -180,3 +180,23 @@ def ingresar(request):
 
 def error(request):
     return render(request, 'error.html')
+
+def actividad_detail(request, username='', id='0'):
+    logeado = False
+    u = None
+    admin = False
+    actividad = Actividad.objects.filter(id=id)
+    print actividad[0].nombre
+
+    if request.user.is_authenticated:
+        logeado = True
+        u = request.user.username
+        if request.user.perfil.rol.is_admin():
+            admin = True
+
+    context = {
+        'logeado' : logeado,
+        'usuario' : u,
+        'admin' : admin,
+    }
+    return render(request, 'detalle_actividad.html', context)
