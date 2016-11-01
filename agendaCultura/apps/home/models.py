@@ -123,6 +123,7 @@ class Capsulas(models.Model):
     usuario = models.ForeignKey(User)
 
     public = CapsulaManager()
+    objects = models.Manager()
 
     def __str__(self):
         return self.texto
