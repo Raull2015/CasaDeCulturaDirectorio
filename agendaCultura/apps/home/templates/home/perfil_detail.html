@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>Mis eventos</title>
 
     <!-- Bootstrap Core CSS -->
     <link href= "{% static "css/bootstrap.min.css"  %}" rel="stylesheet">
@@ -26,20 +26,19 @@
 </head>
 
 <body>
-    <div class="encabezado">
-        <h1>Artistas</h1>
-       </div>
-    <div class="container">
-    	<ul class="list-unstyled">
-  		{% for perfil in perfil %}
-        {% if perfil.rol.is_artista == True %}
-    	     <li class="well well-sm">{% include "perfil.html" %}</li>
-        {% endif %}
- 		 {% empty %}
-    	<li><h3>No hay artistas</h3></li>
-  		{% endfor %}
-  		</ul>
-    </div>
+  <div class="encabezado">
+      <h1>Actividades</h1>
+     </div>
+  <div class="container">
+    <ul class="list-unstyled">
+      {% for actividad in actividad %}
+      <li class="well well-sm">{{ actividad.nombre }}</li>
+      <br>{{ actividad.descripcion|linebreaksbr }}
+      <span class="label label-primary">{{ actividad.categoria|lower }}</span>&nbsp;
+      {% endfor %}
+    </ul>
+  </div>
+    <!-- /#wrapper -->
 
     <!-- jQuery -->
     <script src="{% static "js/jquery.js" %}" ></script>

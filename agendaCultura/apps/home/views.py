@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.views.generic import DetailView, View
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -53,6 +54,16 @@ def actividad_user(request, username):
     context = {'actividad': actividad, 'perfil': user}
     return render(request, 'actividad_user.html', context)
 
+class EventosDetailView(DetailView):
+    model = Perfil
+
+    def get_context_data(self, **kwargs):
+        context = super(EventosDetailView, self).get_context_data(**kwargs)
+        actividades = Actividad.objects.filter(perfil=context['object']).order_by('fechaRealizacion')
+        context = {'actividad': actividades}
+        return context
+
+
 def perfil_create(request):
     if request.method == 'POST':
         form = PerfilForm(data=request.POST)
@@ -66,20 +77,24 @@ def perfil_create(request):
     return render(request, 'form.html', context)
 
 @login_required
-def perfil(request, username=''):
+def perfil(request, username):
     context = {
+        'perfil': perfil
     }
-    return render(request, 'perfil_detalle.html', context)
+    return render(request, 'inicio.html', context)
 
 @login_required
-def perfil_edit(request, username=''):
-    perfil = get_object_or_404(Perfil, nombreArtista=username)
+def perfil_edit(request, pk):
+    perfil = get_object_or_404(Perfil, pk=pk)
     if request.method == 'POST':
         form = PerfilForm(instance=perfil, data=request.POST)
         if form.is_valid():
+            print "si"
+            #form.save(commit=False)
             form.save()
             return HttpResponseRedirect(reverse('home:home'))
     else:
+        print "no"
         form = PerfilForm(instance=perfil)
     context = {'form': form, 'create': False}
     return render(request, 'form.html', context)

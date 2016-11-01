@@ -7,10 +7,10 @@ class PerfilAdmin(admin.ModelAdmin):
     list_filter = ('nombreArtista', 'visitas', 'autorizado')
     search_fields = ['nombreArtista', 'nombreReal']
 
-class ActividadAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'lugar', 'fechaRealizacion', 'hora', 'descripcion', 'imagen', 'fechaPublicacion')
-    list_filter = ('nombre', 'lugar', 'autorizado')
-    search_fields = ['nombre', 'lugar']
+#class ActividadAdmin(admin.ModelAdmin):
+    #list_display = ('nombre', 'lugar', 'fechaRealizacion', 'hora', 'descripcion', 'imagen', 'fechaPublicacion')
+    #list_filter = ('nombre', 'lugar', 'autorizado')
+    #search_fields = ['nombre', 'lugar']
 
 #class CategoriaAdmin(admin.ModelAdmin):
 #    list_display = ('categoria')
@@ -19,7 +19,7 @@ class ActividadAdmin(admin.ModelAdmin):
 
 admin.site.register(Perfil, PerfilAdmin)
 admin.site.register(Categoria)
-admin.site.register(Actividad, ActividadAdmin)
+admin.site.register(Actividad)
 admin.site.register(Capsulas)
 admin.site.register(Rol)
 
