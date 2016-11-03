@@ -1,14 +1,23 @@
 {% extends "base.html" %}
 
 {% block title %}
-  Editar
+  Perfil
 {% endblock %}
 
 {%block heading %}
-	<h1>Editar Perfil</h1>
+	<h1>Perfil</h1>
 {% endblock %}
 
- {% block content %}
- 	
- {% endblock %}
-
+{% block content %}
+	<div class="container">
+		<h4>Nombre de Artista: {{perfil.nombreArtista}} </h4>
+		<h4>Nombre Real: {{perfil.nombreReal}} </h4>
+		<h4>Fecha de Nacimiento: {{perfil.fechaNacimiento}} </h4>
+		<h4>Visitas al perfil: {{perfil.visitas}} </h4>
+		<h4>Telefono: {{perfil.telefono}} </h4>
+		<h4>Correo: {{perfil.email}} </h4>
+	</div>
+	<div class="container">
+		<a href={% url 'home:home' %}>Regresar</a>
+	</div>
+{% endblock %}
