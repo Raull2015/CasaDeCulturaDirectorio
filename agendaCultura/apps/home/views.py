@@ -79,13 +79,16 @@ def perfil_create(request):
 @login_required
 def perfil(request, username):
     user = get_object_or_404(User, username=username)
+    is_owner = False
     if request.user == user:
         perfil = user.perfil
+        is_owner = True
     else:
         perfil = Perfil.public.filter(user_username=username)
 
     context = {
-        'perfil': perfil
+        'perfil': perfil,
+        'es_propietario': is_owner,
     }
     return render(request, 'mi_perfil.html', context)
 
