@@ -2,10 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import DetailView, View
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from datetime import date
+from herramientas import *
 from models import *
 from forms import *
 
@@ -103,16 +104,22 @@ def perfil_edit(request, pk):
 def actividad_create(request,username=''):
     if request.method == 'POST':
         form = ActividadForm(data=request.POST)
-        #print form.clean_data['nombre']
         if form.is_valid():
             print "formulario actividad valido"
             actividad = form.save(commit=False)
             actividad.fechaPublicacion = date.today()
-            actividad.imagen = request.FILES['imagen']
+
+            img = request.FILES['imagen']
+            img.name = renombrar_archivo(img.name,newName='actividad')
+            actividad.imagen = img
+
             actividad.save()
             actividad.perfil.add(request.user.perfil)
 
             form.save_m2m()
+
+            reescalar_imagen(actividad.imagen.path,actividad.imagen.path)
+
             return HttpResponseRedirect(reverse('home:home'))
     else:
         form = ActividadForm()

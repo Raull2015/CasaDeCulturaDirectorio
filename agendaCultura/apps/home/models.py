@@ -90,7 +90,7 @@ class Actividad(models.Model):
     visitas = models.IntegerField(default=0)
     autorizado = models.SmallIntegerField(default=0)
     categoria = models.ManyToManyField(Categoria)
-    perfil = models.ForeignKey(Perfil,db_index=True)
+    perfil = models.ManyToManyField(Perfil,db_index=True)
 
     objects = models.Manager()
     public = ActividadManager()
