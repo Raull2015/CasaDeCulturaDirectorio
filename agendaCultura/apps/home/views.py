@@ -77,16 +77,17 @@ def perfil_create(request):
     return render(request, 'form.html', context)
 
 @login_required
-def perfil(request, pk):
-    user = get_object_or_404(Perfil, pk=pk)
+def perfil(request, username):
+    user = get_object_or_404(User, username=username)
     if request.user == user:
-        perfil = Perfil.public.all()
+        perfil = user.perfil
     else:
-        perfil = Perfil.public.filter(pk=pk)
+        perfil = Perfil.public.filter(user_username=username)
+
     context = {
         'perfil': perfil
     }
-    return render(request, 'miPerfil.html', context)
+    return render(request, 'mi_perfil.html', context)
 
 @login_required
 def perfil_edit(request, pk):
