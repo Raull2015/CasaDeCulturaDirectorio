@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block heading %}
-  <h2>
+  <h1>
     {% if create %}
       Crear perfil
     {% else %}
-      Editar perfil
+        Editar perfil
     {% endif %}
-  </h2>
+  </h1>
 {% endblock %}
 
 {% block content %}
@@ -20,10 +20,7 @@
   {% else %}
     {% url 'home:editar_perfil' pk=form.instance.pk as action_url %}
   {% endif %}
-  <div class="encabezado">
-    <ul>
-      <a href={% url 'home:home' %}>Regresar</a>
-    </ul>
+  
   </div>
   <div class="container">
   <form action="{{ action_url }}" method="post" accept-charset="utf-8">
@@ -65,6 +62,12 @@
         <div class = "container col-md-6 col-md-offset-3">
           <br>
             <p><input type="submit" class="save btn btn-default" value="Guardar"></p>
+        </div>
+        <br/>
+        <div class="Container col-md-12">
+          <ul>
+            <a href={% url 'home:home' %}>Regresar</a>
+          </ul>
         </div>
     </div>
   </form>

@@ -64,7 +64,6 @@ class EventosDetailView(DetailView):
         context = {'actividad': actividades}
         return context
 
-
 def perfil_create(request):
     if request.method == 'POST':
         form = PerfilForm(data=request.POST)
@@ -78,11 +77,16 @@ def perfil_create(request):
     return render(request, 'form.html', context)
 
 @login_required
-def perfil(request, username):
+def perfil(request, pk):
+    user = get_object_or_404(Perfil, pk=pk)
+    if request.user == user:
+        perfil = Perfil.public.all()
+    else:
+        perfil = Perfil.public.filter(pk=pk)
     context = {
         'perfil': perfil
     }
-    return render(request, 'inicio.html', context)
+    return render(request, 'miPerfil.html', context)
 
 @login_required
 def perfil_edit(request, pk):
@@ -157,13 +161,11 @@ def administracion(request):
         }
     return render(request, 'Admi.html', context)
 
-
 @login_required
 def cerrar_sesion(request):
     if request.user.is_authenticated:
         logout(request)
     return HttpResponseRedirect(reverse('home:home'))
-
 
 def ingresar(request):
     next = ""
