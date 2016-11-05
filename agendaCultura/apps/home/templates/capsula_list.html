@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Capsulas{% endblock %}
+
+{% block heading %}
+  <h2>Capsulas <br/>
+    <small>Informacion </small>
+  </h2>
+{% endblock %}
+
+{% block content %}
+  {% for capsula in capsulas %}
+
+
+  {% endfor %}
+
+  {%if total == False%}
+    <a href= "{% url 'ver_capsulas' %}?limit={{limit}}" >Mas</a>
+  {%endif%}
+{% endblock %}

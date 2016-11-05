@@ -38,22 +38,56 @@ def home(request):
     return render(request, 'inicio.html', context)
 
 def perfil_list(request):
-    perfil = Perfil.public.all()
-    context = {'perfil': perfil}
+    limit = 10
+    aumento = 10
+    total = False
+
+    if request.GET:
+        limit=request.GET['limit']
+        limit = int(limit)
+
+    perfil = Perfil.public.all()[:limit]
+
+    if len(perfil) != limit:
+        total = True
+
+    context = {
+        'perfil': perfil,
+        'limit' : limit + aumento,
+        'total' : total
+    }
     return render(request, 'perfil_list.html', context)
 
 def actividad_list(request):
-    actividad = Actividad.public.all()
-    context = {'actividad': actividad}
+    limit = 10
+    aumento = 10
+    total = False
+
+    if request.GET:
+        limit=request.GET['limit']
+        limit = int(limit)
+
+    actividad = Actividad.public.all()[:limit]
+
+    if len(actividad) != limit:
+        total = True
+
+    context = {
+        'actividad': actividad,
+        'limit' : limit + aumento,
+        'total' : total
+    }
     return render(request, 'actividad_list.html', context)
 
 @login_required
 def actividad_user(request, username=''):
+    print "si funciona"
     user = get_object_or_404(User, username=username)
     if request.user == user:
-        actividad = Actividad.public.all()
+        actividad = Actividad.public.filter(perfil=user.perfil)
     else:
-        actividad = Actividad.public.filter(username=username)
+        actividad = Actividad.public.all()
+
     context = {'actividad': actividad, 'perfil': user}
     return render(request, 'actividad_user.html', context)
 
@@ -123,8 +157,6 @@ def perfil_create_p2(request, user=None):
             return mensaje(request, 'Usuario Creado Exitosamente')
     else:
         return HttpResponseRedirect(reverse('error'))
-
-
 
 @login_required
 def perfil(request, username=''):
@@ -203,6 +235,35 @@ def capsula_create(request):
     return render(request, 'capsulas.html', context)
 
 @login_required
+def editar_capsula(request, pk = ''):
+    pass
+
+@login_required
+def capsula_list(request):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
+    limit = 20
+    aumento = 20
+    total = False
+
+    if request.GET:
+        limit=request.GET['limit']
+        limit = int(limit)
+
+    capsulas = Capsulas.objects.all()[:limit]
+
+    if len(capsulas) != limit:
+        total = True
+
+    context = {
+        'capsulas' : capsulas,
+        'limit' : limit + aumento,
+        'total' : total
+    }
+    return render(request, 'capsula_list.html', context)
+
+@login_required
 def administracion(request):
 
     if request.user.perfil.rol.is_admin() != True:
@@ -214,12 +275,6 @@ def administracion(request):
         }
     return render(request, 'Admi.html', context)
 
-@login_required
-def cerrar_sesion(request):
-    if request.user.is_authenticated:
-        logout(request)
-    return HttpResponseRedirect(reverse('home:home'))
-
 def ingresar(request):
     next = ""
     error = False
@@ -229,9 +284,9 @@ def ingresar(request):
 
     if request.GET:
         next = request.GET['next']
+        print next
 
     if request.method == 'POST':
-
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
@@ -247,22 +302,29 @@ def ingresar(request):
         else:
             error = True
             form = LoginForm()
-        #    return HttpResponseRedirect('/login/')
     else:
         form = LoginForm()
 
     context = {'form': form, 'create': True, 'next':next, 'error':error,}
     return render(request, 'login.html', context)
 
+@login_required
+def cerrar_sesion(request):
+    if request.user.is_authenticated:
+        logout(request)
+    return HttpResponseRedirect(reverse('home:home'))
+
 def error(request):
     return render(request, 'error.html')
 
-def actividad_detail(request, username='', id='0'):
+def actividad_detail(request, username='', id=''):
     logeado = False
     u = None
     admin = False
-    actividad = Actividad.objects.filter(id=id)
-    print actividad[0].nombre
+    actividad = Actividad.objects.get(id=int(id))
+
+    if actividad.perfil.get().user.username != username:
+        return HttpResponseRedirect(reverse('error'))
 
     if request.user.is_authenticated:
         logeado = True
@@ -274,12 +336,9 @@ def actividad_detail(request, username='', id='0'):
         'logeado' : logeado,
         'usuario' : u,
         'admin' : admin,
-        'actividad':actividad,
+        'actividad': actividad,
     }
     return render(request, 'detalle_actividad.html', context)
-
-def editar_capsula(request):
-    pass
 
 def mensaje(request, mensaje=''):
     if mensaje == None:

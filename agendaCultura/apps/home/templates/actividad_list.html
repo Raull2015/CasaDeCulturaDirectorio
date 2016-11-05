@@ -31,7 +31,7 @@
        </div>
     <div class="container">
     	<ul class="list-unstyled">
- 		{% for actividad in actividad %}
+ 		  {% for actividad in actividad %}
     	<li class="well well-sm">
       <a class="lead" href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>{{actividad.nombre}}  {{ actividad.fechaRealizacion }}</a>
         {% if actividad.descripcion %}
@@ -42,10 +42,13 @@
             <span class="label label-primary">{{ categoria|lower }}</span>&nbsp;
           {% endfor %}
         {% endif %}
-     </li>
+      </li>
   		{% empty %}
     	<li><h3>No hay actividades</h3></li>
   		{% endfor %}
+      {%if total == False%}
+        <a href= "{% url 'home:eventos' %}?limit={{limit}}" >Mas</a>
+      {%endif%}
   		</ul>
     </div>
 

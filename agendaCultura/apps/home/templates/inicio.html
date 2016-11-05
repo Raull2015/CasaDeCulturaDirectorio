@@ -60,7 +60,7 @@
                     {% if logeado == True %}
                     <li><a href={% url 'home:perfil' username=user.username %}>Perfil</a>
 
-                    <li><a href={% url 'home:mis_actividades' user.perfil.id %}>Mis eventos</a>
+                    <li><a href={% url 'home:actividad_user' username=user.username %}>Mis eventos</a>
                     <li><a href={% url 'home:crear_evento' username=user.username %}>Crear evento</a>
 
                     {%endif%}

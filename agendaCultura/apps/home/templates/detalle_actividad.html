@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Evento
+{% endblock %}
+
+{%block heading %}
+	<h1>Evento</h1>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<h4>Nombre de Evento: {{actividad.nombre}} </h4>
+		<h4>Visitas : {{actividad.visitas}} </h4>
+    <h4>Fecha : {{actividad.fechaRealizacion}} </h4>
+
+	</div>
+  
+{% endblock %}

@@ -49,6 +49,9 @@
     	<li><h3>No hay artistas</h3></li>
   		{% endfor %}
   		</ul>
+      {%if total == False%}
+        <a href= "{% url 'home:artistas' %}?limit={{limit}}" >Mas</a>
+      {%endif%}
     </div>
 
     <!-- jQuery -->
