@@ -72,7 +72,8 @@ class CapsulaForm(ModelForm):
         }
         exclude = ('autorizado','usuario')
         widgets = {
-            'fechaPublicacion': forms.SelectDateWidget(years='2016')
+            'fechaPublicacion': forms.SelectDateWidget(years='2016'),
+            #'texto': forms.
         }
 
 class LoginForm(forms.Form):

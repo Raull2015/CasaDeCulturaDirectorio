@@ -14,8 +14,6 @@ from models import *
 from forms import *
 
 # Create your views here.
-perfil_gl = None
-
 def home(request):
     logeado = False
     u = None
@@ -195,9 +193,9 @@ def capsula_create(request):
         form = CapsulaForm(data=request.POST)
         if form.is_valid():
             capsula = form.save(commit=False)
+            capsula.user = request.user
             capsula.save()
-            form.save_m2m()
-            return mensaje(request, 'Capsula Creado Exitosamente')
+            return mensaje(request, 'Capsula Creada Exitosamente')
     else:
         form = CapsulaForm()
 

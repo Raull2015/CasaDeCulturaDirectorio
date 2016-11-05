@@ -119,7 +119,7 @@ class Comentarios(models.Model):
 class Capsulas(models.Model):
     fechaPublicacion = models.DateField('Fecha de publicacion')
     texto = models.TextField(max_length=225)
-    autorizado = models.SmallIntegerField(default=0)
+    autorizado = models.SmallIntegerField(default=1)
     usuario = models.ForeignKey(User)
 
     public = CapsulaManager()

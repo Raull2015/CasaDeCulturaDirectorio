@@ -1,10 +1,24 @@
-<!doctype html>
-<html lang="en">
-  <body>
-  <form action="/crearActividad/" method="post">
+{% extends "base.html" %}
+
+{% block title %}Nueva Capsula{% endblock %}
+
+{% block heading %}
+  <h2>Nueva Capsula <br/>
+    <small>No debe superar los 255 caracteres</small>
+  </h2>
+{% endblock %}
+
+{% block content %}
+  <form action={% url 'crear_capsula' %}method="post">
       {% csrf_token %}
-      {{ form }}
+
+      {{ form.fechaPublicacion.label_tag }}
+      {{ form.fechaPublicacion }}
+       <br/>
+       {{ form.texto.label_tag }}
+       {{ form.texto }}
+       <br/>
+
       <input type="submit" value="Crear" />
   </form>
-  </body>
-</html>
+{% endblock %}

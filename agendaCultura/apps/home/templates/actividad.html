@@ -1,9 +1,0 @@
-<a class="lead" href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>{{actividad.nombre}}  {{ actividad.fechaRealizacion }}</a>
-{% if actividad.descripcion %}
-  <br>{{ actividad.descripcion|linebreaksbr }}
-{% endif %}
-{% if actividad.categoria.count %}
-  {% for actividad in actividad.categoria.all %}
-    <span class="label label-primary">{{ categoria|lower }}</span>&nbsp;
-  {% endfor %}
-{% endif %}
