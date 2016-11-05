@@ -59,7 +59,7 @@ class Perfil(models.Model):
     telefono = models.CharField(max_length=16)
     email= models.EmailField('Correo')
     descripcion = models.CharField(max_length=200)
-    fechaRegistro = models.DateField('Fecha de registro')
+    fechaRegistro = models.DateField('Fecha de registro', auto_now_add=True)
     visitas = models.IntegerField(default=0)
     autorizado = models.SmallIntegerField(default=0)
     categoria = models.ManyToManyField(Categoria)

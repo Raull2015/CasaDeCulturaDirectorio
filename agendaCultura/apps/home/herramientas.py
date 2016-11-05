@@ -22,9 +22,11 @@ def renombrar_archivo(currentName,newName="archivo"):
     archivo, old_ext = os.path.splitext(currentName)
     return newName + old_ext
 
-"""def testing():
-    print "path a la imagen"
-    img = raw_input()
-    reescalar_imagen(img)"""
-
-#testing()
+def validar_password(username, password, password_confirm):
+    if len(username) > 3:
+        if password == password_confirm:
+            if len(password) > 7:
+                return True, None
+            return False, 'La contrasenia debe tener almenos 8 caracteres'
+        return False, 'Las contrasenias no coinciden'
+    return False, 'El nombre de usuario debe tener almenos 4 caracteres'

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block title %}Informacion{% endblock %}
+{% block content %}
+<h2>{{mensaje}}<br/>
+</h2>
+<a href={% url 'home:home' %}>Volver al Inicio</a>
+{% endblock %}

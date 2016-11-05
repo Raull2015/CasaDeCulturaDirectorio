@@ -34,7 +34,7 @@
 
           {% if logeado == False %}
               <a href= {% url 'iniciar_sesion' %} >Iniciar Sesión</a>
-              <a href={% url 'home:crear_perfil' %}>Registrarse</a>
+              <a href={% url 'home:crear_perfil_p1' %}>Registrarse</a>
           {% else %}
 
               <a href={% url 'cerrar_sesion' %}>Cerrar Sesion</a>
@@ -61,7 +61,7 @@
                     <li><a href={% url 'home:perfil' username=user.username %}>Perfil</a>
 
                     <li><a href={% url 'home:mis_actividades' user.perfil.id %}>Mis eventos</a>
-                    <li><a href={% url 'home:crear_evento' username=user.perfil.nombreArtista %}>Crear evento</a>
+                    <li><a href={% url 'home:crear_evento' username=user.username %}>Crear evento</a>
 
                     {%endif%}
                     <li><a href={% url 'home:artistas' %}>Artistas</a>

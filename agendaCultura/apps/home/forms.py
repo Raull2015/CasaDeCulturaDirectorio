@@ -13,7 +13,8 @@ class PerfilForm(ModelForm):
             'fechaNacimiento',
             'telefono',
             'email',
-            'descripcion'
+            'descripcion',
+            'categoria',
             )
         label = {
             'nobmreArtista': 'Nombre artistico:',
@@ -25,7 +26,7 @@ class PerfilForm(ModelForm):
             'email': 'Correo electronico:',
             'descripcion': 'Descripcion (opcional):',
         }
-        exclude = ('visitas', 'autorizado')
+        exclude = ('visitas', 'autorizado', 'fechaRegistro')
         widgets = {
             'fechaNacimiento': forms.SelectDateWidget(years={'1980','2000',}),
             #'imagen': forms.FileInput(),
@@ -73,6 +74,12 @@ class CapsulaForm(ModelForm):
         widgets = {
             'fechaPublicacion': forms.SelectDateWidget(years='2016')
         }
+
 class LoginForm(forms.Form):
     username = forms.CharField(widget= forms.TextInput(attrs={'class': 'form-control'}), label = 'Usuario')
     password = forms.CharField(widget = forms.PasswordInput(attrs={'class': 'form-control'}) , label = 'Contrasenia')
+
+class UsuarioForm(forms.Form):
+    username = forms.CharField(widget= forms.TextInput(attrs={'class': 'form-control'}), label = 'Usuario')
+    password = forms.CharField(widget = forms.PasswordInput(attrs={'class': 'form-control'}) , label = 'Contrasenia')
+    password_confirm = forms.CharField(widget = forms.PasswordInput(attrs={'class': 'form-control'}) , label = 'Repite Contrasenia')
