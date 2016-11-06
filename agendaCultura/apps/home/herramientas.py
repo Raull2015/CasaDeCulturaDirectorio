@@ -23,10 +23,16 @@ def renombrar_archivo(currentName,newName="archivo"):
     return newName + old_ext
 
 def validar_password(username, password, password_confirm):
-    if len(username) > 3:
-        if password == password_confirm:
-            if len(password) > 7:
-                return True, None
-            return False, 'La contrasenia debe tener almenos 8 caracteres'
+
+    for c in car_prohibidos = {'-','_','@'}
+        if username.find(c) != -1:
+            return False, 'El nombre de usuario no puede tener el caracter' + c
+
+    if len(username) < 4:
+        return False, 'El nombre de usuario debe tener almenos 4 caracteres'
+    if password != password_confirm:
         return False, 'Las contrasenias no coinciden'
-    return False, 'El nombre de usuario debe tener almenos 4 caracteres'
+    if len(password) < 8:
+        return False, 'La contrasenia debe tener almenos 8 caracteres'
+
+    return True, None

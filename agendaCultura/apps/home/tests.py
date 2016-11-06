@@ -3,6 +3,7 @@ from django.urls import reverse
 from datetime import date
 from views import *
 from models import *
+from herramientas import *
 # Create your tests here.
 
 class CategoriaTest(TestCase):
@@ -82,3 +83,21 @@ class HomeViewTest(TestCase):
         response = home(request)
         result = response.content.find('Cerrar Sesion')
         self.assertNotEqual(-1, result)
+
+class usernameTest(TestCase):
+    def setUp(self):
+        self.username1 = 'usuario1'
+        self.username2 = '@wwwwww'
+        self.username3 = '_wwwwww'
+        self.username4 = '-wwwwww'
+
+    def test_caracteres_nombres(self):
+        result1, mensaje = validar_password(self.username1, '12345678', '12345678')
+        result2, mensaje = validar_password(self.username2, '12345678', '12345678')
+        result3, mensaje = validar_password(self.username3, '12345678', '12345678')
+        result4, mensaje = validar_password(self.username4, '12345678', '12345678')
+
+        self.assertEqual(True, result1)
+        self.assertEqual(False, result2)
+        self.assertEqual(False, result3)
+        self.assertEqual(False, result4)

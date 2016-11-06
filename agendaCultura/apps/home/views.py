@@ -81,7 +81,6 @@ def actividad_list(request):
 
 @login_required
 def actividad_user(request, username=''):
-    print "si funciona"
     user = get_object_or_404(User, username=username)
     if request.user == user:
         actividad = Actividad.public.filter(perfil=user.perfil)
@@ -140,7 +139,7 @@ def perfil_create_p2(request, user=None):
             img.name = renombrar_archivo(img.name,newName='perfil')
             perfil.imagen = img
 
-            perfil.rol = get_object_or_404(Rol, nombreRol='Administrador')
+            perfil.rol = get_object_or_404(Rol, nombreRol='Artista')
 
             username = request.session['username']
             password = request.session['password']
@@ -161,12 +160,20 @@ def perfil_create_p2(request, user=None):
 @login_required
 def perfil(request, username=''):
     user = get_object_or_404(User, username=username)
+    perfil = user.perfil
     is_owner = False
+
     if request.user == user:
-        perfil = user.perfil
         is_owner = True
-    else:
-        perfil = Perfil.public.filter(user_username=username)
+
+    conteo = request.session.get('conteo' + username,False)
+    if conteo == False and is_owner == False:
+        perfil.visitas = perfil.visitas + 1
+        perfil.save()
+        request.session['conteo' + username] = True
+        print False
+
+
 
     context = {
         'perfil': perfil,
@@ -331,6 +338,14 @@ def actividad_detail(request, username='', id=''):
         u = request.user.username
         if request.user.perfil.rol.is_admin():
             admin = True
+
+    conteo = request.session.get('conteo' + id, False)
+    if conteo == False:
+        actividad.visitas = actividad.visitas + 1
+        actividad.save()
+        request.session['conteo' + id] = True
+        print False
+
 
     context = {
         'logeado' : logeado,

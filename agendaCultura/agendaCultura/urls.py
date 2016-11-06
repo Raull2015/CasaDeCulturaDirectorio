@@ -22,6 +22,7 @@ from django.views.static import serve
 from apps.home import views
 from apps.home import urls as homeUrls
 
+handler404 = views.error
 urlpatterns = [
     url(r'^static/(?P<path>.*)$', serve, {
         'document_root': settings.STATIC_ROOT,
