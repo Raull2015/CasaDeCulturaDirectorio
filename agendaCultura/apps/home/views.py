@@ -112,6 +112,28 @@ def actividad_to_authorize(request):
     }
     return render(request, 'autorizar_evento.html', context)
 
+@login_required
+def artista_to_authorize(request):
+    limit = 10
+    aumento = 10
+    total = False
+
+    if request.GET:
+        limit=request.GET['limit']
+        limit = int(limit)
+
+    artista = Perfil.objects.all()[:limit]
+
+    if len(artista) != limit:
+        total = True
+
+    context = {
+        'artista': artista,
+        'limit' : limit + aumento,
+        'total' : total
+    }
+    return render(request, 'autorizar_artista.html', context)
+
 class EventosDetailView(DetailView):
     model = Perfil
 
@@ -209,8 +231,15 @@ def perfil_edit(request, username=''):
         form = PerfilForm(instance=user.perfil, data=request.POST)
         if form.is_valid():
             print "si"
-            #form.save(commit=False)
+            perfil = form.save(commit=False)
+
+            img = request.FILES['imagen']
+            img.name = renombrar_archivo(img.name,newName='perfil')
+            perfil.imagen = img
             form.save()
+
+            reescalar_imagen(perfil.imagen.path,perfil.imagen.path)
+            
             return mensaje(request, 'Perfil Modificado Exitosamente')
     else:
         print "no"
@@ -400,5 +429,13 @@ def actividad_authorize(request, id=''):
     #print id
     actividad.autorizado = 1
     actividad.save()
+
+    return HttpResponseRedirect(reverse('home:home'))
+
+@login_required
+def artista_authorize(request, id=''):
+    artista = Perfil.objects.get(id=int(id))
+    artista.autorizado = 1
+    artista.save()
 
     return HttpResponseRedirect(reverse('home:home'))
