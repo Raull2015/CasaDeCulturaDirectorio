@@ -2,7 +2,7 @@
 import os
 from PIL import Image
 
-def reescalar_imagen(img,output,height=300,width=300,ext='.png'):
+def reescalar_imagen(img,output,height=300,width=400,ext='.png'):
     archivo_in, old_ext = os.path.splitext(img)
     archivo_out, new_ext = os.path.splitext(output)
     imagen = Image.open(img)
