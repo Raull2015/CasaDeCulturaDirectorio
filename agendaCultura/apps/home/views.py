@@ -398,6 +398,7 @@ def mensaje(request, mensaje=''):
 @login_required
 def actividad_authorize(request, id=''):
     actividad = Actividad.objects.get(id=int(id))
+    #print id
     actividad.autorizado = 1
     actividad.save()
 

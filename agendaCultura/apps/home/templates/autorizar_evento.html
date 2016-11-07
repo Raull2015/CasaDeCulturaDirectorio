@@ -30,6 +30,10 @@
   		{% empty %}
     	<li><h3>No hay actividades</h3></li>
   		{% endfor %}
+      {%if total == False%}
+        <a href= "{% url 'home:eventos' %}?limit={{limit}}" >Mas</a>
+      {%endif%}
+      		<br/>
   		</ul>
 	</div>
 {% endblock %}
