@@ -11,9 +11,11 @@ urlpatterns = [
     url(r'registro/$', perfil_create_p1, name='crear_perfil_p1'),
     #url(r'(?P<pk>[\d]+)/$', EventosDetailView.as_view(), name='mis_actividades'),
     url(r'(?P<username>[-\w]+)/crearEvento/$', actividad_create, name='crear_evento'),
-    url(r'(?P<username>[-\w]+)/evento/(?P<id>\d+)$', actividad_detail, name='detalle_evento'),
+    url(r'(?P<username>[-\w]+)/evento/(?P<id>[\d]+)$', actividad_detail, name='detalle_evento'),
     url(r'(?P<username>[-\w]+)/eventos/$', actividad_user, name='actividad_user'),
     url(r'(?P<username>[-\w]+)/editar/$', perfil_edit, name='editar_perfil'),
     url(r'(?P<username>[-\w]+)/$', perfil, name='perfil'),
-
+    #url(r'admin/eventos/$', actividad_to_authorize, name='actividad_pendiente'),
+    url(r'evento/(?P<id>[\d]+)$', actividad_authorize, name='autorizar_evento'),
+    url(r'artista/(?P<id>[\d]+)$', artista_authorize, name='autorizar_artista'),
 ]

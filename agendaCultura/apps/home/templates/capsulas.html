@@ -3,12 +3,24 @@
 {% block title %}Nueva Capsula{% endblock %}
 
 {% block heading %}
-  <h2>Nueva Capsula <br/>
-    <small>No debe superar los 255 caracteres</small>
-  </h2>
+      {% if create %}
+      <h2>Nueva Capsula <br/>
+        <small>>No debe superar los 255 caracteress</small>
+      </h2>
+      {% else %}
+      <h1>
+          Editar capsula
+      </h1>
+      {% endif %}
 {% endblock %}
 
 {% block content %}
+  {% if create %}
+    {% url "home:capsula_create" as action_url %}
+  {% else %}
+    {% url 'home:editar_capsula' pk=form.instance.pk as action_url %}
+  {% endif %}
+
   <form action={% url 'crear_capsula' %}method="post">
       {% csrf_token %}
 

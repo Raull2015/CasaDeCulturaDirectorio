@@ -90,6 +90,50 @@ def actividad_user(request, username=''):
     context = {'actividad': actividad, 'perfil': user}
     return render(request, 'actividad_user.html', context)
 
+@login_required
+def actividad_to_authorize(request):
+    limit = 10
+    aumento = 10
+    total = False
+
+    if request.GET:
+        limit=request.GET['limit']
+        limit = int(limit)
+
+    actividad = Actividad.objects.all()[:limit]
+
+    if len(actividad) != limit:
+        total = True
+
+    context = {
+        'actividad': actividad,
+        'limit' : limit + aumento,
+        'total' : total
+    }
+    return render(request, 'autorizar_evento.html', context)
+
+@login_required
+def artista_to_authorize(request):
+    limit = 10
+    aumento = 10
+    total = False
+
+    if request.GET:
+        limit=request.GET['limit']
+        limit = int(limit)
+
+    artista = Perfil.objects.all()[:limit]
+
+    if len(artista) != limit:
+        total = True
+
+    context = {
+        'artista': artista,
+        'limit' : limit + aumento,
+        'total' : total
+    }
+    return render(request, 'autorizar_artista.html', context)
+
 class EventosDetailView(DetailView):
     model = Perfil
 
@@ -188,14 +232,21 @@ def perfil_edit(request, username=''):
         form = PerfilForm(instance=user.perfil, data=request.POST)
         if form.is_valid():
             print "si"
-            #form.save(commit=False)
+            perfil = form.save(commit=False)
+
+            img = request.FILES['imagen']
+            img.name = renombrar_archivo(img.name,newName='perfil')
+            perfil.imagen = img
             form.save()
+
+            reescalar_imagen(perfil.imagen.path,perfil.imagen.path)
+            
             return mensaje(request, 'Perfil Modificado Exitosamente')
     else:
         print "no"
         form = PerfilForm(instance=user.perfil)
     context = {'form': form, 'create': False}
-    return render(request, 'form.html', context)
+    return render(request, 'crear_perfil_p2.html', context)
 
 @login_required
 def actividad_create(request,username=''):
@@ -243,7 +294,16 @@ def capsula_create(request):
 
 @login_required
 def editar_capsula(request, pk = ''):
-    pass
+    capsula = get_object_or_404(Capsulas, pk=pk)
+    if request.method == 'POST':
+        form = CapsulaForm(instance=capsula, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return mensaje(request, 'Capsula Modificada Exitosamente')
+    else:
+        form = CapsulaForm(instance=capsula)
+    context = {'form': form, 'create': False}
+    return render(request, 'capsulas,html', context)
 
 @login_required
 def capsula_list(request):
@@ -363,3 +423,20 @@ def mensaje(request, mensaje=''):
         'mensaje':mensaje,
     }
     return render(request, 'mensaje.html', context)
+
+@login_required
+def actividad_authorize(request, id=''):
+    actividad = Actividad.objects.get(id=int(id))
+    #print id
+    actividad.autorizado = 1
+    actividad.save()
+
+    return HttpResponseRedirect(reverse('home:home'))
+
+@login_required
+def artista_authorize(request, id=''):
+    artista = Perfil.objects.get(id=int(id))
+    artista.autorizado = 1
+    artista.save()
+
+    return HttpResponseRedirect(reverse('home:home'))
