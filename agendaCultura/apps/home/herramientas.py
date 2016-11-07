@@ -23,8 +23,8 @@ def renombrar_archivo(currentName,newName="archivo"):
     return newName + old_ext
 
 def validar_password(username, password, password_confirm):
-
-    for c in car_prohibidos = {'-','_','@'}
+    car_prohibidos = {'-','_','@'}
+    for c in car_prohibidos:
         if username.find(c) != -1:
             return False, 'El nombre de usuario no puede tener el caracter' + c
 

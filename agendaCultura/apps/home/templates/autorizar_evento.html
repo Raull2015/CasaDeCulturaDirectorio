@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Administracion
+{% endblock %}
+
+{%block heading %}
+	<h1>Autorizar Evento</h1>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<ul class="list-unstyled">
+ 		  {% for actividad in actividad %}
+    	<li class="well well-sm">
+        {% if actividad.autorizado == 0 %}
+        <a class="lead" href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>{{actividad.nombre}}  {{ actividad.fechaRealizacion }}</a>
+          {% if actividad.descripcion %}
+            <br>{{ actividad.descripcion|linebreaksbr }}
+          {% endif %}
+          {% if actividad.categoria.count %}
+            {% for actividad in actividad.categoria.all %}
+              <span class="label label-primary">{{ categoria|lower }}</span>&nbsp;
+            {% endfor %}
+          {% endif %}
+        <a href={% url 'home:autorizar_evento' id=actividad.id %} >Aceptar</a>
+        <a href="#" >Rechazar</a>
+        {% endif %}
+      </li>
+  		{% empty %}
+    	<li><h3>No hay actividades</h3></li>
+  		{% endfor %}
+  		</ul>
+	</div>
+{% endblock %}
