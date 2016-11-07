@@ -34,6 +34,9 @@
  		  {% for actividad in actividad %}
     	<li class="well well-sm">
       <a class="lead" href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>{{actividad.nombre}}  {{ actividad.fechaRealizacion }}</a>
+      {%if actividad.autorizado == 0%}
+      <p> Pendiente de Autorizar por la Administracion </p>
+      {%endif%}
         {% if actividad.descripcion %}
           <br>{{ actividad.descripcion|linebreaksbr }}
         {% endif %}
