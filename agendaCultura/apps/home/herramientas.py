@@ -1,7 +1,7 @@
 import os
 from PIL import Image
 
-def reescalar_imagen(img,output,height=100,ext='.png'):
+def reescalar_imagen(img,output,height=500,ext='.png'):
     archivo_in, old_ext = os.path.splitext(img)
     archivo_out, new_ext = os.path.splitext(output)
     imagen = Image.open(img)
@@ -38,9 +38,3 @@ def validar_password(username, password, password_confirm):
         return False, 'La contrasenia debe tener almenos 8 caracteres'
 
     return True, None
-
-def holi():
-    a = raw_input()
-    reescalar_imagen(a,a)
-
-#holi()

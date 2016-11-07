@@ -26,12 +26,10 @@
       <div>
         {% block content %}{% endblock %}
       </div>
+      <hr>
       <footer>
-        <div class="container col-md-12">
-            <hr>
-            <a href={% url 'home:home' %}>Regresar</a>
-            <p>&copy; URL-Landivar 2016-2017</p>
-        </div>
+        <a href={% url 'home:home' %}>Regresar</a>
+        <p>&copy; URL-Landivar 2016-2017</p>
       </footer>
     </div> <!-- /container -->
     <!-- jQuery -->
