@@ -179,7 +179,6 @@ def perfil_create_p2(request, user=None):
     else:
         return HttpResponseRedirect(reverse('error'))
 
-@login_required
 def perfil(request, username=''):
     user = get_object_or_404(User, username=username)
     perfil = user.perfil
