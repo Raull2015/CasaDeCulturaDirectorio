@@ -16,6 +16,6 @@
 		<h4>Visitas al perfil: {{perfil.visitas}} </h4>
 		<h4>Telefono: {{perfil.telefono}} </h4>
 		<h4>Correo: {{perfil.email}} </h4>
-		<a href="#" class="btn btn-default">Editar</a>
+		<a href={% url 'home:editar_perfil' username=perfil.user.username %} class="btn btn-default">Editar</a>
 	</div>
 {% endblock %}

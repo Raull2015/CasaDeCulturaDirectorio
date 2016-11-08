@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'(?P<username>[-\w]+)/$', perfil, name='perfil'),
     #url(r'admin/eventos/$', actividad_to_authorize, name='actividad_pendiente'),
     url(r'evento/(?P<id>[\d]+)$', actividad_authorize, name='autorizar_evento'),
+    url(r'artista/(?P<id>[\d]+)$', artista_authorize, name='autorizar_artista'),
 ]

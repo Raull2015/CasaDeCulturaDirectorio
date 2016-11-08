@@ -44,6 +44,7 @@ urlpatterns = [
     url(r'^administracion/capsula/$', views.capsula_list, name='ver_capsulas'),
     url(r'^administracion/$', views.administracion, name='administracion'),
     url(r'administracion/eventos/$', views.actividad_to_authorize, name='actividad_pendiente'),
+    url(r'administracion/artistas/$', views.artista_to_authorize, name='artista_pendiente'),
     url(r'^error/$', views.error, name='error'),
     #url(r'^edit/', views.perfil_edit),
     #url(r'^user/(?P<username>[-\w]+)/$', views.actividad_user),
