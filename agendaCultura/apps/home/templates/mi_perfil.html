@@ -9,7 +9,10 @@
 {% endblock %}
 
 {% block content %}
-	<div class="container">
+	<div class="container col-sm-12 col-md-6">
+		<img src="{{perfil.imagen.name}}" alt="Imagen">
+	</div>
+	<div class="container col-sm-12 col-md-6">
 		<h4>Nombre de Artista: {{perfil.nombreArtista}} </h4>
 		<h4>Nombre Real: {{perfil.nombreReal}} </h4>
 		<h4>Fecha de Nacimiento: {{perfil.fechaNacimiento}} </h4>
