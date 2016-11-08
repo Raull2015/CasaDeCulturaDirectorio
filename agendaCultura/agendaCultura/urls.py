@@ -39,6 +39,8 @@ urlpatterns = [
     #url(r'^home/listaArtistas', views.perfil_list),
     #url(r'^home/listaEventos', views.actividad_list),
     #url(r'^home/perfil/crearActividad', views.actividad_create),
+    url(r'administracion/evento/(?P<id>[\d]+)$', views.actividad_authorize, name='autorizar_evento'),
+    url(r'administracion/artista/(?P<id>[\d]+)$', views.artista_authorize, name='autorizar_artista'),
     url(r'^administracion/capsula/(?P<pk>\d+)/$', views.editar_capsula, name='editar_capsula'),
     url(r'^administracion/capsula/crear/$', views.capsula_create, name='crear_capsula'),
     url(r'^administracion/capsula/$', views.capsula_list, name='ver_capsulas'),

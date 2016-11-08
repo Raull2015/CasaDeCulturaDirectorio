@@ -82,8 +82,9 @@ def actividad_list(request):
 @login_required
 def actividad_user(request, username=''):
     user = get_object_or_404(User, username=username)
+
     if request.user == user:
-        actividad = Actividad.public.filter(perfil=user.perfil)
+        actividad = Actividad.public.filter(perfil=user.username)
     else:
         actividad = Actividad.public.all()
 
@@ -101,6 +102,9 @@ def actividad_to_authorize(request):
         limit = int(limit)
 
     actividad = Actividad.objects.all()[:limit]
+
+    if len(Actividad.objects.filter(autorizado = 0)) == 0:
+        return mensaje(request, mensaje='No hay actividades por autorizar')
 
     if len(actividad) != limit:
         total = True
@@ -240,7 +244,7 @@ def perfil_edit(request, username=''):
             form.save()
 
             reescalar_imagen(perfil.imagen.path,perfil.imagen.path)
-            
+
             return mensaje(request, 'Perfil Modificado Exitosamente')
     else:
         print "no"
@@ -431,7 +435,7 @@ def actividad_authorize(request, id=''):
     actividad.autorizado = 1
     actividad.save()
 
-    return HttpResponseRedirect(reverse('home:home'))
+    return mensaje(request, 'Actividad autorizada')
 
 @login_required
 def artista_authorize(request, id=''):
