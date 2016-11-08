@@ -81,18 +81,22 @@ def actividad_list(request):
 
 @login_required
 def actividad_user(request, username=''):
+    print 'si llego'
     user = get_object_or_404(User, username=username)
 
     if request.user == user:
-        actividad = Actividad.public.filter(perfil=user.username)
+        actividad = Actividad.objects.filter(perfil=request.user.perfil)
     else:
-        actividad = Actividad.public.all()
+        return HttpResponseRedirect(reverse('error'))
 
     context = {'actividad': actividad, 'perfil': user}
-    return render(request, 'actividad_user.html', context)
+    return render(request, 'actividad_list.html', context)
 
 @login_required
 def actividad_to_authorize(request):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
     limit = 10
     aumento = 10
     total = False
@@ -101,7 +105,7 @@ def actividad_to_authorize(request):
         limit=request.GET['limit']
         limit = int(limit)
 
-    actividad = Actividad.objects.all()[:limit]
+    actividad = Actividad.objects.filter(autorizado=0)[:limit]
 
     if len(Actividad.objects.filter(autorizado = 0)) == 0:
         return mensaje(request, mensaje='No hay actividades por autorizar')
@@ -118,6 +122,9 @@ def actividad_to_authorize(request):
 
 @login_required
 def artista_to_authorize(request):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
     limit = 10
     aumento = 10
     total = False
@@ -205,7 +212,6 @@ def perfil_create_p2(request, user=None):
     else:
         return HttpResponseRedirect(reverse('error'))
 
-@login_required
 def perfil(request, username=''):
     user = get_object_or_404(User, username=username)
     perfil = user.perfil
