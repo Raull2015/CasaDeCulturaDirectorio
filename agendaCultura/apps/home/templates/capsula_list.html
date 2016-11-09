@@ -10,7 +10,9 @@
 
 {% block content %}
   {% for capsula in capsulas %}
-
+  	<h2>{{capsula.texto}}</h2>
+  	<h3>{{capsula.fechaPublicacion}}</h3>
+  	<h4>{{capsula.usuario}}</h4>
 
   {% endfor %}
 
