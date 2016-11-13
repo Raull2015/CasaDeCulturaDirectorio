@@ -82,7 +82,7 @@ def actividad_list(request):
 @login_required
 def actividad_user(request, username=''):
     user = get_object_or_404(User, username=username)
-
+    print "llllll"
     if request.user == user:
         actividad = Actividad.objects.filter(perfil=request.user.perfil)
     else:
