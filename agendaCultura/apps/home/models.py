@@ -122,8 +122,9 @@ class Capsulas(models.Model):
     autorizado = models.SmallIntegerField(default=1)
     usuario = models.ForeignKey(User)
 
-    public = CapsulaManager()
     objects = models.Manager()
+    public = CapsulaManager()
+
 
     def __str__(self):
         return self.texto

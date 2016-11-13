@@ -11,7 +11,7 @@
 {% block content %}
 	<div class="container">
 		<ul class="list-unstyled">
- 		  {% for actividad in actividad %}
+ 		  {% for actividad in actividades %}
     	<li class="well well-sm">
         {% if actividad.autorizado == 0 %}
         <a class="lead" href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>{{actividad.nombre}}  {{ actividad.fechaRealizacion }}</a>
@@ -24,14 +24,14 @@
             {% endfor %}
           {% endif %}
         <a href={% url 'autorizar_evento' id=actividad.id %} >Aceptar</a>
-        <a href="#" >Rechazar</a>
+        <a href={% url 'rechazar_evento' id=actividad.id %} >Rechazar</a>
         {% endif %}
       </li>
   		{% empty %}
     	<li><h3>No hay actividades</h3></li>
   		{% endfor %}
       {%if total == False%}
-        <a href= "{% url 'home:eventos' %}?limit={{limit}}" >Mas</a>
+        <a href= "{% url 'actividad_pendiente' %}?limit={{limit}}" >Mas</a>
       {%endif%}
       		<br/>
   		</ul>

@@ -81,7 +81,6 @@ def actividad_list(request):
 
 @login_required
 def actividad_user(request, username=''):
-    print 'si llego'
     user = get_object_or_404(User, username=username)
 
     if request.user == user:
@@ -105,16 +104,13 @@ def actividad_to_authorize(request):
         limit=request.GET['limit']
         limit = int(limit)
 
-    actividad = Actividad.objects.filter(autorizado=0)[:limit]
+    actividades = Actividad.objects.filter(autorizado=0)[:limit]
 
-    if len(Actividad.objects.filter(autorizado = 0)) == 0:
-        return mensaje(request, mensaje='No hay actividades por autorizar')
-
-    if len(actividad) != limit:
+    if len(actividades) != limit:
         total = True
 
     context = {
-        'actividad': actividad,
+        'actividades': actividades,
         'limit' : limit + aumento,
         'total' : total
     }
@@ -133,13 +129,13 @@ def artista_to_authorize(request):
         limit=request.GET['limit']
         limit = int(limit)
 
-    artista = Perfil.objects.all()[:limit]
+    perfiles = Perfil.objects.filter(autorizado=0)[:limit]
 
-    if len(artista) != limit:
+    if len(perfiles) != limit:
         total = True
 
     context = {
-        'artista': artista,
+        'perfiles': perfiles,
         'limit' : limit + aumento,
         'total' : total
     }
@@ -295,7 +291,7 @@ def capsula_create(request):
             capsula = form.save(commit=False)
             capsula.user = request.user
             capsula.save()
-            return mensaje(request, 'Capsula Creada Exitosamente')
+            return mensaje(request, 'Capsula Creada Exitosamente', reverse('ver_capsulas'))
     else:
         form = CapsulaForm()
 
@@ -304,24 +300,24 @@ def capsula_create(request):
 
 @login_required
 def editar_capsula(request, pk = ''):
-    capsula = get_object_or_404(Capsulas, pk=pk)
+    capsula = get_object_or_404(Capsulas, id=int(pk))
     if request.method == 'POST':
         form = CapsulaForm(instance=capsula, data=request.POST)
         if form.is_valid():
             form.save()
-            return mensaje(request, 'Capsula Modificada Exitosamente')
+            return mensaje(request, 'Capsula Modificada Exitosamente',reverse('ver_capsulas'))
     else:
         form = CapsulaForm(instance=capsula)
     context = {'form': form, 'create': False}
-    return render(request, 'capsulas,html', context)
+    return render(request, 'capsulas.html', context)
 
 @login_required
 def capsula_list(request):
     if request.user.perfil.rol.is_admin() != True:
         return HttpResponseRedirect(reverse('error'))
 
-    limit = 20
-    aumento = 20
+    limit = 10
+    aumento = 10
     total = False
 
     if request.GET:
@@ -425,28 +421,64 @@ def actividad_detail(request, username='', id=''):
     }
     return render(request, 'detalle_actividad.html', context)
 
-def mensaje(request, mensaje=''):
+def mensaje(request, mensaje='', path=''):
     if mensaje == None:
         return HttpResponseRedirect(reverse('error'))
 
     context={
         'mensaje':mensaje,
+        'path' : path,
     }
     return render(request, 'mensaje.html', context)
 
 @login_required
 def actividad_authorize(request, id=''):
-    actividad = Actividad.objects.get(id=int(id))
-    #print id
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
+    actividad = get_object_or_404(Actividad, id=int(id))
+    if actividad.autorizado != 0:
+        return HttpResponseRedirect(reverse('error'))
     actividad.autorizado = 1
     actividad.save()
 
-    return mensaje(request, 'Actividad autorizada')
+    return mensaje(request, 'Actividad autorizada', reverse('actividad_pendiente'))
+
+@login_required
+def actividad_reject(request, id=''):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
+    actividad = get_object_or_404(Actividad, id=int(id))
+    if actividad.autorizado != 0:
+        return HttpResponseRedirect(reverse('error'))
+    actividad.delete()
+
+    return mensaje(request, 'Actividad rechazado', reverse('actividad_pendiente'))
 
 @login_required
 def artista_authorize(request, id=''):
-    artista = Perfil.objects.get(id=int(id))
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
+    artista = get_object_or_404(Perfil, id=int(id))
+    if artista.autorizado != 0:
+        return HttpResponseRedirect(reverse('error'))
     artista.autorizado = 1
     artista.save()
 
-    return HttpResponseRedirect(reverse('home:home'))
+    return  mensaje(request, 'Artista autorizado', reverse('artista_pendiente'))
+
+@login_required
+def artista_reject(request, id=''):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
+    artista = get_object_or_404(Perfil, id=int(id))
+    if artista.autorizado != 0:
+        return HttpResponseRedirect(reverse('error'))
+    user = artista.user
+    artista.delete()
+    user.delete()
+
+    return  mensaje(request, 'Artista rechazado', reverse('artista_pendiente'))

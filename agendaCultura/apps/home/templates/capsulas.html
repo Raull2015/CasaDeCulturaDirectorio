@@ -16,9 +16,9 @@
 
 {% block content %}
   {% if create %}
-    {% url "home:capsula_create" as action_url %}
+    {% url "crear_capsula" as action_url %}
   {% else %}
-    {% url 'home:editar_capsula' pk=form.instance.pk as action_url %}
+    {% url 'editar_capsula' pk=form.instance.pk as action_url %}
   {% endif %}
 
   <form action={% url 'crear_capsula' %}method="post">
