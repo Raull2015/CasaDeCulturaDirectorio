@@ -482,3 +482,14 @@ def artista_reject(request, id=''):
     user.delete()
 
     return  mensaje(request, 'Artista rechazado', reverse('artista_pendiente'))
+
+@login_required
+def estadisticas(request):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+    test = GenGraficos()
+    grafico = test.generarGrafico(test.graficaPie,test.generoArtistasReg,fechaInicio='2016-01-01',fechaFin='2016-11-20')
+    context={
+        'grafico':grafico,
+    }
+    return render(request, 'estadisticas.html', context)

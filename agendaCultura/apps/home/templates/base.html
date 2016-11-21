@@ -14,17 +14,23 @@
 
     <!-- Custom CSS -->
     <link href="{% static "css/simple-sidebar.css/" %}" rel="stylesheet">
+    {% block scripts %}
+    {%endblock%}
 
 </head>
 
     <body>
 
-    <div class="encabezado">
+    <div id="barra-superior" class="encabezado">
+
         {% block heading %}{% endblock %}
     </div>
+
     <div class="container">
       <div>
+
         {% block content %}{% endblock %}
+
       </div>
       <footer>
         <div class="container col-md-12">
