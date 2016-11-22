@@ -23,6 +23,7 @@ class CapsulaManager(models.Manager):
 
 class Categoria(models.Model):
     categoria = models.CharField(max_length=100)
+    objects = models.Manager()
 
     def __str__(self):
         return self.categoria
@@ -34,6 +35,7 @@ class Categoria(models.Model):
 class Rol(models.Model):
     nombreRol = models.CharField(max_length=45)
     descripcion = models.CharField(max_length=45)
+    objects = models.Manager()
 
     def __str__(self):
         return self.nombreRol
