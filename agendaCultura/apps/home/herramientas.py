@@ -110,6 +110,26 @@ class GenGraficos():
         titulo = 'Numero de Eventos realizados por Categoria'
         return valores, etiquetas, titulo
 
+    def artistasVisitas(self, limite=10):
+        valores = []
+        etiquetas = []
+        rol = Rol.objects.get(nombreRol = 'Artista')
+        for c in Perfil.public.filter(rol = rol).order_by('visitas')[:limite]:
+            valores.append(c.visitas)
+            etiquetas.append(c.nombreArtista)
+
+        titulo = "Artistas Mas Visitados"
+        return valores, etiquetas, titulo
+
+    def eventosVisitas(self, limite = 10):
+        valores = []
+        etiquetas = []
+        for c in Perfil.public.all().order_by('visitas')[:limite]:
+            valores.append(c.visitas)
+            etiquetas.append(c.nombreArtista)
+            titulo = "Eventos Mas Vistos"
+            return valores, etiquetas, titulo
+
     def generarGrafico(self, tipoGrafico, tipoEstadistica, **kwargs):
         valores, etiquetas, titulo = tipoEstadistica(**kwargs)
         fig = tipoGrafico(valores,etiquetas,titulo)

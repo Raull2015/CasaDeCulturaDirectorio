@@ -488,7 +488,7 @@ def estadisticas(request):
     if request.user.perfil.rol.is_admin() != True:
         return HttpResponseRedirect(reverse('error'))
     test = GenGraficos()
-    grafico = test.generarGrafico(test.graficaPie,test.eventosPorCategoria)
+    grafico = test.generarGrafico(test.graficaPie,test.eventosVisitas)
     context={
         'grafico':grafico,
     }
