@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from PIL import Image
+from datetime import date
 import numpy as np
 import plotly.offline as py
 import plotly.graph_objs as go
@@ -54,6 +55,22 @@ class GenGraficos():
         self.noImagen = self.noImagen + 1
         return self.ruta + str(self.noImagen)
 
+    def getTipoEstadistica(self, tipo):
+        tipos = { 'generoArtistas' : self.generoArtistasReg,
+                  'categoriaArtistas': self.artistasPorCategoria,
+                  'categoriaEventos': self.eventosPorCategoria,
+                  'visitasArtistas': self.artistasVisitas,
+                  'visitasEventos': self.eventosVisitas,}
+
+        return tipos.get(tipo,None)
+
+    def getTipoGrafica(self, tipo):
+        tipos = { 'Pie' : self.graficaPie,
+                  'Barras': self.graficaBarra,
+                  'Linea': self.graficaLinea,}
+
+        return tipos.get(tipo,None)
+
     def graficaPie(self, valores, etiquetas, titulo):
 
         data = [go.Pie(labels=etiquetas,values = valores)]
@@ -81,33 +98,40 @@ class GenGraficos():
         return go.Figure(data=data,layout=layout)
 
 
-    def generoArtistasReg(self, fechaInicio = None, fechaFin = None):
+    def generoArtistasReg(self, fechaInicio = '2016-01-01', fechaFin = None):
+        if fechaFin == None:
+            fechaFin = str(date.today())
+
         valores = [ Perfil.objects.filter(sexo=0,fechaRegistro__range=(fechaInicio,fechaFin)).count(),
                     Perfil.objects.filter(sexo=1,fechaRegistro__range=(fechaInicio,fechaFin)).count()]
         etiquetas = ['Mujeres' ,'Hombres']
-        titulo = 'Numero de Hombres y Mujeres registrados desde ' + fechaInicio + ' hasta ' + fechaFin
+        titulo = 'Porcentaje de artistas registrados por genero desde ' + fechaInicio + ' hasta ' + fechaFin
 
         return valores, etiquetas, titulo
 
-    def artistasPorCategoria(self):
+    def artistasPorCategoria(self, fechaInicio = '2016-01-01', fechaFin = None):
+        if fechaFin == None:
+            fechaFin = str(date.today())
         valores = []
         etiquetas = []
         rol = Rol.objects.get(nombreRol = 'Artista')
         for c in Categoria.objects.all():
-            valores.append(Perfil.public.filter(rol = rol , categoria=c).count())
+            valores.append(Perfil.public.filter(rol = rol , categoria=c, fechaRegistro__range=(fechaInicio,fechaFin)).count())
             etiquetas.append(c.categoria)
 
-        titulo = 'Numero de Artistas Registrados por Categoria'
+        titulo = 'Porcentaje de Artistas Registrados por Categoria desde ' + fechaInicio + ' hasta ' + fechaFin
         return valores, etiquetas, titulo
 
-    def eventosPorCategoria(self):
+    def eventosPorCategoria(self, fechaInicio = '2016-01-01', fechaFin = None):
+        if fechaFin == None:
+            fechaFin = str(date.today())
         valores = []
         etiquetas = []
         for c in Categoria.objects.all():
-            valores.append(Actividad.public.filter(categoria=c).count())
+            valores.append(Actividad.public.filter(categoria=c,fechaRealizacion__range=(fechaInicio,fechaFin)).count())
             etiquetas.append(c.categoria)
 
-        titulo = 'Numero de Eventos realizados por Categoria'
+        titulo = 'Porcentaje de Eventos realizados por Categoria desde ' + fechaInicio + ' hasta ' + fechaFin
         return valores, etiquetas, titulo
 
     def artistasVisitas(self, limite=10):
@@ -118,17 +142,18 @@ class GenGraficos():
             valores.append(c.visitas)
             etiquetas.append(c.nombreArtista)
 
-        titulo = "Artistas Mas Visitados"
+        titulo = "Top " + str(limite) + " artistas mas vistos"
         return valores, etiquetas, titulo
 
     def eventosVisitas(self, limite = 10):
         valores = []
         etiquetas = []
-        for c in Perfil.public.all().order_by('visitas')[:limite]:
+        for c in Actividad.public.all().order_by('-visitas')[:limite]:
             valores.append(c.visitas)
-            etiquetas.append(c.nombreArtista)
-            titulo = "Eventos Mas Vistos"
-            return valores, etiquetas, titulo
+            etiquetas.append(c.nombre)
+
+        titulo = "Top " + str(limite) + " eventos mas vistos"
+        return valores, etiquetas, titulo
 
     def generarGrafico(self, tipoGrafico, tipoEstadistica, **kwargs):
         valores, etiquetas, titulo = tipoEstadistica(**kwargs)

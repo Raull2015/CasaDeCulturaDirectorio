@@ -234,10 +234,13 @@ def perfil(request, username=''):
 @login_required
 def perfil_edit(request, username=''):
     user = get_object_or_404(User, username=username)
+
+    if request.user != user:
+        return HttpResponseRedirect(reverse('error'))
+
     if request.method == 'POST':
         form = PerfilForm(instance=user.perfil, data=request.POST)
         if form.is_valid():
-            print "si"
             perfil = form.save(commit=False)
 
             img = request.FILES['imagen']
@@ -247,7 +250,7 @@ def perfil_edit(request, username=''):
 
             reescalar_imagen(perfil.imagen.path,perfil.imagen.path)
 
-            return mensaje(request, 'Perfil Modificado Exitosamente')
+            return mensaje(request, 'Perfil Modificado Exitosamente', reverse(''))
     else:
         print "no"
         form = PerfilForm(instance=user.perfil)
@@ -256,6 +259,9 @@ def perfil_edit(request, username=''):
 
 @login_required
 def actividad_create(request,username=''):
+    if request.user != User.objects.get(username=username):
+        return HttpResponseRedirect(reverse('error'))
+
     if request.method == 'POST':
         form = ActividadForm(data=request.POST)
         if form.is_valid():
@@ -300,7 +306,11 @@ def capsula_create(request):
 
 @login_required
 def editar_capsula(request, pk = ''):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
     capsula = get_object_or_404(Capsulas, id=int(pk))
+
     if request.method == 'POST':
         form = CapsulaForm(instance=capsula, data=request.POST)
         if form.is_valid():
@@ -487,8 +497,15 @@ def artista_reject(request, id=''):
 def estadisticas(request):
     if request.user.perfil.rol.is_admin() != True:
         return HttpResponseRedirect(reverse('error'))
-    test = GenGraficos()
-    grafico = test.generarGrafico(test.graficaPie,test.eventosVisitas)
+
+    grafico = None
+    g = GenGraficos()
+
+    if request.GET:
+        tipoE=request.GET['type']
+        tipoG=request.GET['g']
+        grafico = g.generarGrafico(g.getTipoGrafica(tipoG),g.getTipoEstadistica(tipoE))
+
     context={
         'grafico':grafico,
     }

@@ -47,12 +47,15 @@
                         Menu
                     </a>
                 </li>
-                    <li><a href="{% url 'estadisticas' %}">Estadisticas</a>
-                    <li><a href="{% url 'ver_capsulas' %}">Administrar Capsulas</a>
-                    <li><a href={% url 'actividad_pendiente' %}>Moderar Eventos</a>
-                    <li><a href={% url 'artista_pendiente' %}>Moderar Artistas</a>
+                    <li><a href="{% url 'estadisticas' %}?type=visitasArtistas&g=Pie">Artistas mas vistos</a>
+                    <li><a href="{% url 'estadisticas' %}?type=visitasEventos&g=Pie">Eventos mas vistos</a>
                     <li><a href="#"></a>
-                    <li><a href={% url 'home:home' %}>Volver</a>
+                    <li><a href="{% url 'estadisticas' %}?type=generoArtistas&g=Pie">Artistas por Genero</a>
+                    <li><a href="#"></a>
+                    <li><a href="{% url 'estadisticas' %}?type=categoriaArtistas&g=Pie">Categorias de Artista</a>
+                    <li><a href="{% url 'estadisticas' %}?type=categoriaEventos&g=Pie">Categorias de Eventos</a>
+                    <li><a href="#"></a>
+                    <li><a href="{% url 'administracion' %}">Volver</a>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -64,12 +67,14 @@
                     <div class="container col-sm-12 col-lg-12">
                         <div class="menu">
 							<ul>
-								<a href="#">holi</a>
-								<a href="#">khe</a>
+								<a href="#"></a>
+								<a href="#"></a>
 							</ul>
 						</div>
-                        {{grafico|safe}}
-                    </div>
+              {%if grafico%}
+                  {{grafico|safe}}
+              {%endif%}
+            </div>
                 </div>
             </div>
         </div>
