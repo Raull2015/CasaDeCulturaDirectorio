@@ -19,7 +19,7 @@ html{
     -o-background-size: cover;
     background-size: cover;
 
-    opacity: 0.85;
+    opacity: 0.90;
 }
  body {
     overflow-x: hidden;
@@ -71,6 +71,11 @@ html{
 }
 
 /* Sidebar Styles */
+
+.grafico {
+    opacity: 1; 
+}
+
 
 .sidebar-nav {
     position: absolute;
