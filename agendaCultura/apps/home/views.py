@@ -25,9 +25,7 @@ def home(request):
         if request.user.perfil.rol.is_admin():
             admin = True
 
-    capsula = Capsulas.public.all()
-    if len(capsula) is not 0:
-         capsula =capsula[0]
+    capsula = Capsulas.objects.all().order_by('-fechaPublicacion')[0]
     context = {
         'capsula' : capsula,
         'logeado' : logeado,
@@ -82,7 +80,6 @@ def actividad_list(request):
 @login_required
 def actividad_user(request, username=''):
     user = get_object_or_404(User, username=username)
-    print "llllll"
     if request.user == user:
         actividad = Actividad.objects.filter(perfil=request.user.perfil)
     else:
@@ -186,9 +183,10 @@ def perfil_create_p2(request, user=None):
         if form.is_valid():
             perfil = form.save(commit=False)
 
-            img = request.FILES['imagen']
-            img.name = renombrar_archivo(img.name,newName='perfil')
-            perfil.imagen = img
+            img = request.FILES.get('imagen',None)
+            if img != None:
+                img.name = renombrar_archivo(img.name,newName='perfil')
+                perfil.imagen = img
 
             perfil.rol = get_object_or_404(Rol, nombreRol='Artista')
 
@@ -199,7 +197,8 @@ def perfil_create_p2(request, user=None):
 
             perfil.save()
 
-            reescalar_imagen(perfil.imagen.path,perfil.imagen.path)
+            if img != None:
+                reescalar_imagen(perfil.imagen.path,perfil.imagen.path)
 
             del request.session['username']
             del request.session['password']
@@ -243,16 +242,18 @@ def perfil_edit(request, username=''):
         if form.is_valid():
             perfil = form.save(commit=False)
 
-            img = request.FILES['imagen']
-            img.name = renombrar_archivo(img.name,newName='perfil')
-            perfil.imagen = img
+            img = request.FILES.get('imagen',None)
+            if img != None:
+                img.name = renombrar_archivo(img.name,newName='perfil')
+                perfil.imagen = img
+
             form.save()
 
-            reescalar_imagen(perfil.imagen.path,perfil.imagen.path)
+            if img != None:
+                reescalar_imagen(perfil.imagen.path,perfil.imagen.path)
 
-            return mensaje(request, 'Perfil Modificado Exitosamente', reverse(''))
+            return mensaje(request, 'Perfil Modificado Exitosamente', reverse('home:perfil',kwargs={'username': request.user.username,}))
     else:
-        print "no"
         form = PerfilForm(instance=user.perfil)
     context = {'form': form, 'create': False}
     return render(request, 'crear_perfil_p2.html', context)
@@ -268,16 +269,18 @@ def actividad_create(request,username=''):
             actividad = form.save(commit=False)
             actividad.fechaPublicacion = date.today()
 
-            img = request.FILES['imagen']
-            img.name = renombrar_archivo(img.name,newName='actividad')
-            actividad.imagen = img
+            img = request.FILES.get('imagen',None)
+            if img != None:
+                img.name = renombrar_archivo(img.name,newName='actividad')
+                actividad.imagen = img
 
             actividad.save()
             actividad.perfil.add(request.user.perfil)
 
             form.save_m2m()
 
-            reescalar_imagen(actividad.imagen.path,actividad.imagen.path)
+            if img != None:
+                reescalar_imagen(actividad.imagen.path,actividad.imagen.path)
 
             return mensaje(request, 'Actividad Creada Exitosamente')
     else:
