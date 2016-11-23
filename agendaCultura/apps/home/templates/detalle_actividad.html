@@ -5,7 +5,7 @@
 {% endblock %}
 
 {%block heading %}
-	<h1>Evento</h1>
+	<h3 align=center><font face="univers" color="white">Evento</font><h3>
 {% endblock %}
 
 {% block content %}
@@ -21,4 +21,9 @@
     	<h4>Descripcion: {{actividad.descripcion}}</h4>
 	</div>
   
+{% endblock %}
+
+{% block footer %}
+	<a href="{% url 'home:eventos' %}">volver a Eventos</a>
+	<br/>
 {% endblock %}

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {%block heading %}
-	<h1>Autorizar Artista</h1>
+  <h3 align=center><font face="univers" color="white">Autorizar Artista</font><h3>
 {% endblock %}
 
 {% block content %}
@@ -14,9 +14,9 @@
  		  {% for perfil in perfiles %}
     	<li class="well well-sm">
         {% if perfil.autorizado == 0 %}
-        <a class="lead" href={% url 'home:perfil' username=perfil.user.username %}>{{perfil.user.username}} {{perfil.nombreArtista}}  {{ perfil.email }}</a>
+        <a class="lead" href={% url 'home:perfil' username=perfil.user.username %}>Nombre: {{perfil.user.username}} <br/> Nombre de Artista: {{perfil.nombreArtista}} <br/> Correo: {{ perfil.email }}</a>
           {% if perfil.descripcion %}
-            <br>{{ perfil.descripcion|linebreaksbr }}
+            <br/> Descripcion: {{ perfil.descripcion|linebreaksbr }}<br/>
           {% endif %}
           {% if perfil.categoria.count %}
             {% for perfil in perfil.categoria.all %}

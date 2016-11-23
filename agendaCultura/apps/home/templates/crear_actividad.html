@@ -20,13 +20,8 @@
   </head>
 
   <body>
-    <div class="encabezado">
-      <ul>
-        <a href={% url 'home:home' %}>Regresar</a>
-      </ul>
-    </div>
     <div class="encabezado container">
-      <h1 class="login">Crear evento</h1>
+      <h3 align=center><font face="univers" color="white">Crear evento</font><h3>
     </div>
     <div class="container">
       <form action={% url 'home:crear_evento' username=request.user.username %} enctype="multipart/form-data" method="post">
@@ -67,7 +62,17 @@
               <button type="submit" class="save btn btn-default">Crear Evento</button>
           </div>
       </form>
+
+      <footer>
+        <div class="container col-md-12">
+            <hr>
+            {% block footer %}{% endblock %}
+            <a href={% url 'home:home' %}>Regresar</a>
+            <p>&copy; URL-Landivar 2016-2017</p>
+        </div>
+    </footer>
     </div>
+
     <script src="{% static "js/jquery.js" %}" ></script>
 
     <!-- Bootstrap Core JavaScript -->

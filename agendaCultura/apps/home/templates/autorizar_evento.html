@@ -5,7 +5,7 @@
 {% endblock %}
 
 {%block heading %}
-	<h1>Autorizar Evento</h1>
+  <h3 align=center><font face="univers" color="white">Autorizar Eventos</font><h3>
 {% endblock %}
 
 {% block content %}
@@ -14,9 +14,9 @@
  		  {% for actividad in actividades %}
     	<li class="well well-sm">
         {% if actividad.autorizado == 0 %}
-        <a class="lead" href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>{{actividad.nombre}}  {{ actividad.fechaRealizacion }}</a>
+        <a class="lead" href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>Nombre: {{actividad.nombre}} <br/> Fecha de la Avtividad: {{ actividad.fechaRealizacion }}</a>
           {% if actividad.descripcion %}
-            <br>{{ actividad.descripcion|linebreaksbr }}
+            <br> Descripcion: {{ actividad.descripcion|linebreaksbr }}<br/>
           {% endif %}
           {% if actividad.categoria.count %}
             {% for actividad in actividad.categoria.all %}

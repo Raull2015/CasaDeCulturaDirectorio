@@ -5,7 +5,7 @@
 {% endblock %}
 
 {%block heading %}
-	<h1>Perfil</h1>
+	<h3 align=center><font face="univers" color="white">Perfil</font><h3>
 {% endblock %}
 
 {% block content %}
@@ -23,4 +23,11 @@
 		<a href={% url 'home:editar_perfil' username=perfil.user.username %} class="btn btn-default">Editar</a>
     {%endif%}
 	</div>
+{% endblock %}
+
+{% block footer %}
+	{%if es_propietario == False %}
+		<a href="{% url 'home:artistas' %}">volver a Artistas</a>
+		<br/>
+	{%endif%}
 {% endblock %}
