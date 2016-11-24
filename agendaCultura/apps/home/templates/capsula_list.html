@@ -4,18 +4,18 @@
 
 {% block heading %}
   <h2>Capsulas <br/>
-    <small>Informacion </small>
+    <small>Información </small>
   </h2>
 {% endblock %}
 
 {% block content %}
 <br/>
-<a href= {% url 'crear_capsula' %} class="btn btn-primary btn-lg active" role="button" >Nueva Capsula</a>
+<a href= {% url 'crear_capsula' %} class="btn btn-primary btn-lg active" role="button" >Nueva Cápsula</a>
 <br/><br/><br/>
   {% for capsula in capsulas %}
     <li class="well well-sm">
-  	<h2>Contendido: {{capsula.texto}}</h2>
-  	<h3>Fecha de Publicacion: {{capsula.fechaPublicacion}}</h3>
+  	<h2>Contenido: {{capsula.texto}}</h2>
+  	<h3>Fecha de Publicación: {{capsula.fechaPublicacion}}</h3>
   	<h4>Creado por: {{capsula.usuario}}</h4>
     <a href= {% url 'editar_capsula' pk=capsula.id %}>Editar</a>
     </li>

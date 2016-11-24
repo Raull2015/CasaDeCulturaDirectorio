@@ -16,7 +16,7 @@
         {% if perfil.autorizado == 0 %}
         <a class="lead" href={% url 'home:perfil' username=perfil.user.username %}>Nombre: {{perfil.user.username}} <br/> Nombre de Artista: {{perfil.nombreArtista}} <br/> Correo: {{ perfil.email }}</a>
           {% if perfil.descripcion %}
-            <br/> Descripcion: {{ perfil.descripcion|linebreaksbr }}<br/>
+            <br/> Descripción: {{ perfil.descripcion|linebreaksbr }}<br/>
           {% endif %}
           {% if perfil.categoria.count %}
             {% for perfil in perfil.categoria.all %}

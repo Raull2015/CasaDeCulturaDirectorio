@@ -16,13 +16,13 @@
 		<h4>Nombre de Artista: {{perfil.nombreArtista}} </h4>
 		<h4>Nombre Real: {{perfil.nombreReal}} </h4>
 		{% if perfil.sexo == 1 %}
-			<h4>Genero: Masculino</h4>
+			<h4>Género: Masculino</h4>
 		{% else %}
-			<h4>Genero: Femenino</h4>
+			<h4>Género: Femenino</h4>
 		{% endif %}
 		<h4>Fecha de Nacimiento: {{perfil.fechaNacimiento}} </h4>
 		<h4>Visitas al perfil: {{perfil.visitas}} </h4>
-		<h4>Telefono: {{perfil.telefono}} </h4>
+		<h4>Teléfono: {{perfil.telefono}} </h4>
 		<h4>Correo: {{perfil.email}} </h4>
 
     {%if es_propietario == True %}
@@ -33,7 +33,7 @@
 
 {% block footer %}
 	{%if es_propietario == False %}
-		<a href="{% url 'home:artistas' %}">volver a Artistas</a>
+		<a href="{% url 'home:artistas' %}">Volver a Artistas</a>
 		<br/>
 	{%endif%}
 {% endblock %}

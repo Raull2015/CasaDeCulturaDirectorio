@@ -20,7 +20,7 @@
            {% endif %}
            {% if perfil.categoria.count %}
              {% for categoria in perfil.categoria.all %}
-               <span class="label label-primary">Categoria: {{ categoria|lower }}</span>&nbsp;
+               <span class="label label-primary">Categoría: {{ categoria|lower }}</span>&nbsp;
              {% endfor %}
            {% endif %}
          </li>
@@ -30,7 +30,7 @@
       {% endfor %}
       </ul>
       {%if total == False%}
-        <a href= "{% url 'home:artistas' %}?limit={{limit}}" >Mas</a>
+        <a href= "{% url 'home:artistas' %}?limit={{limit}}" >Más</a>
       {%endif%}
     </div>
 {% endblock %}
