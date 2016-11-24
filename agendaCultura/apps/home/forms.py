@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.forms import ModelForm
 from django import forms
+
 from .models import Perfil, Actividad, Capsulas, Categoria
 
 class PerfilForm(ModelForm):

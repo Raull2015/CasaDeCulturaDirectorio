@@ -3,12 +3,19 @@ from django.contrib.auth.models import User
 from django.db.models.base import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import DetailView, View
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, render_to_response
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.template import RequestContext
 from django.urls import reverse
 from django.core import serializers
+
+
 from datetime import date
+import re
+import urlparse
+import json
+
 from herramientas import *
 from models import *
 from forms import *
@@ -57,7 +64,8 @@ def perfil_list(request):
     context = {
         'perfil': perfil,
         'limit' : limit + aumento,
-        'total' : total
+        'total' : total,
+        'autorizar' : False
     }
     return render(request, 'perfil_list.html', context)
 
@@ -78,7 +86,8 @@ def actividad_list(request):
     context = {
         'actividad': actividad,
         'limit' : limit + aumento,
-        'total' : total
+        'total' : total,
+        'autorizar' : False
     }
     return render(request, 'actividad_list.html', context)
 
@@ -114,7 +123,7 @@ def actividad_to_authorize(request):
     context = {
         'actividades': actividades,
         'limit' : limit + aumento,
-        'total' : total
+        'total' : total,
     }
     return render(request, 'autorizar_evento.html', context)
 
@@ -139,7 +148,7 @@ def artista_to_authorize(request):
     context = {
         'perfiles': perfiles,
         'limit' : limit + aumento,
-        'total' : total
+        'total' : total,
     }
     return render(request, 'autorizar_artista.html', context)
 
@@ -213,6 +222,7 @@ def perfil_create_p2(request, user=None):
         return HttpResponseRedirect(reverse('error'))
 
 def perfil(request, username=''):
+
     user = get_object_or_404(User, username=username)
     perfil = user.perfil
     is_owner = False
@@ -221,13 +231,10 @@ def perfil(request, username=''):
         is_owner = True
 
     conteo = request.session.get('conteo' + username,False)
-    if conteo == False and is_owner == False:
+    if conteo == False and is_owner == False and perfil.autorizado == True:
         perfil.visitas = perfil.visitas + 1
         perfil.save()
         request.session['conteo' + username] = True
-        print False
-
-
 
     context = {
         'perfil': perfil,
@@ -500,6 +507,51 @@ def artista_reject(request, id=''):
     user.delete()
 
     return  mensaje(request, 'Artista rechazado', reverse('artista_pendiente'))
+
+@login_required
+def actividad_delete(request):
+    id = request.POST.get('id')
+    print id
+    actividad = Actividad.objects.get(pk=id)
+    actividad.delete()
+
+    response = {}
+
+    return JsonResponse(response)
+
+def search_artista(request):
+    if request.method == 'POST':
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+
+    if search_text == '':
+        search_text = ' '
+
+    perfil = Perfil.public.filter(nombreArtista__startswith= search_text)
+
+    context = {
+        'perfil':perfil,
+    }
+
+    return render(request, 'buscar_artistas.html', context)
+
+def search_actividad(request):
+    if request.method == 'POST':
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+
+    if search_text == '':
+        search_text = ' '
+
+    actividad = Actividad.public.filter(nombre__startswith= search_text)
+
+    context = {
+        'actividad':actividad,
+    }
+
+    return render(request, 'buscar_actividades.html', context)
 
 @login_required
 def estadisticas(request):

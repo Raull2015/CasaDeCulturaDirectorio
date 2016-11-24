@@ -23,8 +23,8 @@
               <span class="label label-primary">{{ categoria|lower }}</span>&nbsp;
             {% endfor %}
           {% endif %}
-        <a href={% url 'autorizar_evento' id=actividad.id %} >Aceptar</a>
-        <a href={% url 'rechazar_evento' id=actividad.id %} >Rechazar</a>
+          <a href={% url 'autorizar_evento' id=actividad.id %} >Aceptar</a>
+          <a href={% url 'rechazar_evento' id=actividad.id %} >Rechazar</a>
         {% endif %}
       </li>
   		{% empty %}

@@ -1,6 +1,8 @@
 from django.test import TestCase, RequestFactory
 from django.urls import reverse
 from datetime import date
+
+
 from views import *
 from models import *
 from herramientas import *
@@ -81,7 +83,7 @@ class HomeViewTest(TestCase):
         request.user = self.user
 
         response = home(request)
-        result = response.content.find('Cerrar Sesion')
+        result = response.content.find('Iniciar Sesion')
         self.assertNotEqual(-1, result)
 
 class usernameTest(TestCase):

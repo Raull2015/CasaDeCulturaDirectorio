@@ -23,7 +23,7 @@
   {% endif %}
 
   <div class="container">
-  <form action={% url 'crear_capsula' %}method="post">
+  <form action="{% url 'crear_capsula' %}" method="post">
     <br/>
       {% csrf_token %}
 

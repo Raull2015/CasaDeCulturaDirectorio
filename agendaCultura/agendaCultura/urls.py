@@ -44,8 +44,9 @@ urlpatterns = [
     url(r'administracion/$', views.administracion, name='administracion'),
     url(r'administracion/eventos/$', views.actividad_to_authorize, name='actividad_pendiente'),
     url(r'administracion/artistas/$', views.artista_to_authorize, name='artista_pendiente'),
+    url(r'^buscar/artista/$', views.search_artista, name='buscarA'),
+    url(r'^buscar/evento/$', views.search_actividad, name='buscarE'),
     url(r'error/$', views.error, name='error'),
     url(r'estadisticas/$', views.estadisticas, name='estadisticas'),
     url(r'^', views.home, name='default'),
-
 ]

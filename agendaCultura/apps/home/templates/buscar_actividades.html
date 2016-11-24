@@ -1,0 +1,9 @@
+{% if actividad.count > 0 %}
+  {% for actividad in actividad %}
+  <li>
+  <a class="lead" href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>{{actividad.nombre}}</a>
+  </li>
+  {% endfor %}
+  {% else %}
+  <li>actividad no encontrada!</li>
+{% endif %}

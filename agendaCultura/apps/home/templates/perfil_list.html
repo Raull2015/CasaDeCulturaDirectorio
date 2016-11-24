@@ -8,6 +8,17 @@
   <h3 align=center><font face="univers" color="white">Artistas</font><h3>
 {% endblock %}
 
+{% block text %}
+  {% if not autorizar %}
+    <h3>Buscar</h3>
+    <div class="search_box">
+      {% csrf_token %}
+      <input type="text" placeholder="Buscar..."  id="searchA" name="search">
+    <div id="search-text"></div>
+    </div>
+  {% endif %}
+{% endblock %}
+
 {% block content %}
   <div class="container">
       <ul class="list-unstyled">
