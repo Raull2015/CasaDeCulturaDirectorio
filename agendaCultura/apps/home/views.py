@@ -213,6 +213,7 @@ def perfil_create_p2(request, user=None):
         return HttpResponseRedirect(reverse('error'))
 
 def perfil(request, username=''):
+
     user = get_object_or_404(User, username=username)
     perfil = user.perfil
     is_owner = False
@@ -221,13 +222,10 @@ def perfil(request, username=''):
         is_owner = True
 
     conteo = request.session.get('conteo' + username,False)
-    if conteo == False and is_owner == False:
+    if conteo == False and is_owner == False and perfil.autorizado == True:
         perfil.visitas = perfil.visitas + 1
         perfil.save()
         request.session['conteo' + username] = True
-        print False
-
-
 
     context = {
         'perfil': perfil,
