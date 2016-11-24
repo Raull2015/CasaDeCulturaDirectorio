@@ -23,9 +23,9 @@
           <br>
         {% endif %}
         {% if actividad.categoria.count %}
-          {% for actividad in actividad.categoria.all %}
-            <span class="label label-primary">{{ categoria|lower }}</span>&nbsp;
-          {% endfor %}
+          {% for categoria in actividad.categoria.all %}
+               <span class="label label-primary">Categoria: {{ categoria|lower }}</span>&nbsp;
+             {% endfor %}
         {% endif %}
       </li>
       {% empty %}
