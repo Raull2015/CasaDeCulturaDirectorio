@@ -303,7 +303,7 @@ def capsula_create(request):
         form = CapsulaForm(data=request.POST)
         if form.is_valid():
             capsula = form.save(commit=False)
-            capsula.user = request.user
+            capsula.usuario = request.user
             capsula.save()
             return mensaje(request, 'Capsula Creada Exitosamente', reverse('ver_capsulas'))
     else:
@@ -342,7 +342,7 @@ def capsula_list(request):
         limit=request.GET['limit']
         limit = int(limit)
 
-    capsulas = Capsulas.objects.all()[:limit]
+    capsulas = Capsulas.objects.all().order_by('-fechaPublicacion')[:limit]
 
     if len(capsulas) != limit:
         total = True
