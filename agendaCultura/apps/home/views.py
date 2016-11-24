@@ -3,12 +3,19 @@ from django.contrib.auth.models import User
 from django.db.models.base import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import DetailView, View
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, render_to_response
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.template import RequestContext
 from django.urls import reverse
 from django.core import serializers
+
+
 from datetime import date
+import re
+import urlparse
+import json
+
 from herramientas import *
 from models import *
 from forms import *
@@ -54,7 +61,8 @@ def perfil_list(request):
     context = {
         'perfil': perfil,
         'limit' : limit + aumento,
-        'total' : total
+        'total' : total,
+        'autorizar' : False
     }
     return render(request, 'perfil_list.html', context)
 
@@ -75,7 +83,8 @@ def actividad_list(request):
     context = {
         'actividad': actividad,
         'limit' : limit + aumento,
-        'total' : total
+        'total' : total,
+        'autorizar' : False
     }
     return render(request, 'actividad_list.html', context)
 
@@ -116,9 +125,10 @@ def actividad_to_authorize(request):
     context = {
         'actividad': actividad,
         'limit' : limit + aumento,
-        'total' : total
+        'total' : total,
+        'autorizar' : True
     }
-    return render(request, 'autorizar_evento.html', context)
+    return render(request, 'actividad_list.html', context)
 
 @login_required
 def artista_to_authorize(request):
@@ -133,17 +143,21 @@ def artista_to_authorize(request):
         limit=request.GET['limit']
         limit = int(limit)
 
-    artista = Perfil.objects.all()[:limit]
+    perfil = Perfil.objects.filter(autorizado = 0)[:limit]
 
-    if len(artista) != limit:
+    if len(Perfil.objects.filter(autorizado = 0)) == 0:
+        return mensaje(request, mensaje='No hay perfiles por autorizar')
+
+    if len(perfil) != limit:
         total = True
 
     context = {
-        'artista': artista,
+        'perfil': perfil,
         'limit' : limit + aumento,
-        'total' : total
+        'total' : total,
+        'autorizar' : True
     }
-    return render(request, 'autorizar_artista.html', context)
+    return render(request, 'perfil_list.html', context)
 
 class EventosDetailView(DetailView):
     model = Perfil
@@ -313,7 +327,7 @@ def editar_capsula(request, pk = ''):
     else:
         form = CapsulaForm(instance=capsula)
     context = {'form': form, 'create': False}
-    return render(request, 'capsulas,html', context)
+    return render(request, 'capsulas.html', context)
 
 @login_required
 def capsula_list(request):
@@ -435,18 +449,81 @@ def mensaje(request, mensaje=''):
     return render(request, 'mensaje.html', context)
 
 @login_required
-def actividad_authorize(request, id=''):
-    actividad = Actividad.objects.get(id=int(id))
-    #print id
-    actividad.autorizado = 1
-    actividad.save()
+@ensure_csrf_cookie
+def actividad_authorize(request):
+    id = request.POST.get('id')
+    print id
+    actividad = Actividad.objects.get(pk=id)
+    actividad.delete()
 
-    return mensaje(request, 'Actividad autorizada')
+    response = {}
+
+    return JsonResponse(response)
 
 @login_required
+@ensure_csrf_cookie
 def artista_authorize(request, id=''):
+    id = request.POST.get('id')
     artista = Perfil.objects.get(id=int(id))
     artista.autorizado = 1
     artista.save()
 
-    return HttpResponseRedirect(reverse('home:home'))
+    return mensaje(request, mensaje='')
+
+@login_required
+@ensure_csrf_cookie
+def artista_delete(request):
+    pk = request.POST.get('id')
+    print pk
+    perfil = Perfil.objects.get(pk=pk)
+    perfil.delete()
+
+    response = {}
+
+    return JsonResponse(response)
+
+@login_required
+@ensure_csrf_cookie
+def actividad_delete(request):
+    id = request.POST.get('id')
+    print id
+    actividad = Actividad.objects.get(pk=id)
+    actividad.delete()
+
+    response = {}
+
+    return JsonResponse(response)
+
+def search_artista(request):
+    if request.method == 'POST':
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+
+    if search_text == '':
+        search_text = ' '
+
+    perfil = Perfil.public.filter(nombreArtista__startswith= search_text)
+
+    context = {
+        'perfil':perfil,
+    }
+
+    return render(request, 'buscar_artistas.html', context)
+
+def search_actividad(request):
+    if request.method == 'POST':
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+
+    if search_text == '':
+        search_text = ' '
+
+    actividad = Actividad.public.filter(nombre__startswith= search_text)
+
+    context = {
+        'actividad':actividad,
+    }
+
+    return render(request, 'buscar_actividades.html', context)

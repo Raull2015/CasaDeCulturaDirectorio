@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 {% load static %}
 <head>
@@ -13,14 +14,21 @@
     <link href= "{% static "css/bootstrap.min.css"  %}" rel="stylesheet">
 
     <!-- Custom CSS -->
+    <link href="{% static "css/styles.css/" %}" rel="stylesheet">
     <link href="{% static "css/simple-sidebar.css/" %}" rel="stylesheet">
 
+
+    <script src="{% static "js/jquery-3.1.1.js "%}"></script>
+    <script src="{% static "js/ajax.js" %}" ></script>
 </head>
 
     <body>
 
     <div class="encabezado">
         {% block heading %}{% endblock %}
+    </div>
+    <div class="container">
+      {% block text %}{% endblock %}
     </div>
     <div class="container">
       <div>
@@ -39,6 +47,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static "js/bootstrap.min.js" %}" ></script>
     <!-- Menu Toggle Script -->
+    {% block script %}{% endblock %}
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();

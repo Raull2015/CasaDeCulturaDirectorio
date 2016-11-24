@@ -1,73 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-{% load static %}
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% extends 'base.html' %}
 
-    <title>Home</title>
+{% block title%}Artistas{% endblock %}
 
-    <!-- Bootstrap Core CSS -->
-    <link href= "{% static "css/bootstrap.min.css"  %}" rel="stylesheet">
+{% block heading%} <h1>Artistas</h1> {% endblock %}
 
-    <!-- Custom CSS -->
-    <link href="{% static "css/simple-sidebar.css/" %}" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-    <div class="encabezado">
-        <h1>Artistas</h1>
-       </div>
-    <div class="container">
-    	<ul class="list-unstyled">
-  		{% for perfil in perfil %}
-        {% if perfil.rol.is_artista == True %}
-    	     <li class="well well-sm">
-           <a class="lead" href={% url 'home:perfil' username=perfil.user.username %}>{{perfil.nombreArtista}}  {{ perfil.email }}</a>
-           {% if perfil.descripcion %}
-             <br>{{ perfil.descripcion|linebreaksbr }}
-           {% endif %}
-           {% if perfil.categoria.count %}
-             {% for categoria in perfil.categoria.all %}
-               <span class="label label-primary">{{ categoria|lower }}</span>&nbsp;
-             {% endfor %}
-           {% endif %}
-         </li>
-        {% endif %}
- 		 {% empty %}
-    	<li><h3>No hay artistas</h3></li>
-  		{% endfor %}
-  		</ul>
-      {%if total == False%}
-        <a href= "{% url 'home:artistas' %}?limit={{limit}}" >Mas</a>
-      {%endif%}
+{% block text %}
+  {% if not autorizar %}
+    <h3>Buscar</h3>
+    <div class="search_box">
+      {% csrf_token %}
+      <input type="text" placeholder="Buscar..."  id="searchA" name="search">
+    <div id="search-text"></div>
     </div>
+  {% endif %}
+{% endblock %}
 
-    <!-- jQuery -->
-    <script src="{% static "js/jquery.js" %}" ></script>
+{% block content %}
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static "js/bootstrap.min.js" %}" ></script>
+  <ul class="list-unstyled">
+  {% for perfil in perfil %}
+    {% if perfil.rol.is_artista == True %}
+       <li class="well well-sm">
+       <a class="lead" href={% url 'home:perfil' username=perfil.user.username %}>{{perfil.nombreArtista}}  {{ perfil.email }}</a>
+       {% if perfil.descripcion %}
+         <br>{{ perfil.descripcion|linebreaksbr }}
+       {% endif %}
+       {% if perfil.categoria.count %}
+         {% for categoria in perfil.categoria.all %}
+           <span class="label label-primary">{{ categoria|lower }}</span>&nbsp;
+         {% endfor %}
 
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
+       {% endif %}
+      {% endif %}
+      {% if autorizar %}
+          {% csrf_token %}
+           <button onclick="authorizeArtist('{{perfil.id}}')">Aceptar</a>
+           <button onclick="deleteArtist('{{perfil.id}}')">Rechazar</a>
+         {% endif %}
+     </li>
 
-</body>
-
-</html>
+  {% empty %}
+  <li><h3>No hay artistas</h3></li>
+  {% endfor %}
+  </ul>
+  {%if total == False%}
+    <a href= "{% url 'home:artistas' %}?limit={{limit}}" >Mas</a>
+  {%endif%}
+{% endblock %}

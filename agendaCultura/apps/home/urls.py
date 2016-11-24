@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'(?P<username>[-\w]+)/editar/$', perfil_edit, name='editar_perfil'),
     url(r'eventos/$', actividad_list, name='eventos'),
     url(r'(?P<username>[-\w]+)/$', perfil, name='perfil'),
+    #url(r'^buscar/$', search_artista, name='buscar'),
     #url(r'admin/eventos/$', actividad_to_authorize, name='actividad_pendiente'),
 ]

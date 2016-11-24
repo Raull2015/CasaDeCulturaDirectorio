@@ -1,0 +1,10 @@
+
+  {% if perfil.count > 0 %}
+    {% for perfil in perfil %}
+    <li>
+    <a class="lead" href={% url 'home:perfil' username=perfil.user.username %}>{{perfil.nombreArtista}}</a>
+    </li>
+    {% endfor %}
+    {% else %}
+    <li>Artista no encontrado!</li>
+  {% endif %}

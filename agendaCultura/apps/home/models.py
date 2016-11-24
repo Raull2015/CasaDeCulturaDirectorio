@@ -75,6 +75,9 @@ class Perfil(models.Model):
         verbose_name_plural = 'perfiles'
         ordering = ['-fechaRegistro']
 
+    def __unicode__(self):
+        return self.nombreArtista
+
     def __str__(self):
         return self.nombreArtista
 
@@ -99,6 +102,9 @@ class Actividad(models.Model):
         verbose_name = 'actividad'
         verbose_name_plural = 'actividades'
         ordering = ['-fechaRealizacion']
+
+    def __unicode__(self):
+        return self.nombre
 
     def __str__(self):
         return self.nombre

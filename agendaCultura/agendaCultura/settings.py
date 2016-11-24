@@ -110,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -130,10 +129,13 @@ USE_TZ = True
 
 ALLOWED_HOSTS = ['*']
 
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = (os.path.join(BASE_DIR,'/static/'))
 STATICFILES_DIR = (os.path.join(BASE_DIR,'/static/'))
 MEDIA_URL = '/media/'
 MEDIA_ROOT = (os.path.join(BASE_DIR,'media/'))

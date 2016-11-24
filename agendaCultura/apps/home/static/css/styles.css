@@ -1,0 +1,115 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+
+#container{
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.ui-helper-hidden-accessible{ display:none!important; }
+
+.search{
+    background: #f1f1f1;
+    border-bottom: 1px solid #CCCCCC;
+    border-radius: 4px;
+    padding: 10px;
+    width: 750px;
+    margin: 0 auto;
+}
+
+.search .searchbox{
+    border-bottom: 1px solid #DDDDDD;
+    padding-bottom: 10px;
+}
+
+.search .searchbox label{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.search .searchbox .info{
+    color: #444;
+    display: block;
+    font-size: 11px;
+}
+
+.search .searchbox input{
+    border-radius: 0;
+    border: 1px solid #DDD;
+    border-bottom-width: 2px;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 7px 10px;
+    width: 300px;
+}
+
+.search .results{
+    border-top: 1px solid #FFFFFF;
+    min-height: 20px;
+}
+
+.search .results .error{
+    display: none;
+    background: #e74c3c;
+    border-bottom: 2px solid #c0392b;
+    color: #FFFFFF;
+    padding: 7px 14px;
+}
+
+.search .results .wrapper{
+    max-height: 400px;
+    overflow: auto;
+}
+
+.search .results .wrapper div.user
+{
+    margin: 10px;
+}
+
+.search .wrapper div.user .username,
+
+
+.search .wrapper div.user .username{
+    color: #2980b9;
+}
+
+.search .wrapper div.user .username{
+    font-weight: bold;
+    font-size: 15px;
+}
+#quebusco{
+ margin: 0;
+ padding: 0;
+}
+#quebusco > ul {
+ background-color: rgb(255, 255, 255);
+ list-style: none;
+ display: table;
+ margin: 0;
+ padding: 2px;
+ border: 1px solid #F0F0E9;
+ width: 155px;
+ position: absolute;
+ z-index:1;
+ font-family: 'roboto';
+ font-size: 12px;
+ font-weight: 300;
+}
+#quebusco li{
+ padding-right: 2px;
+ height: 50px; }
+#quebusco li:hover {
+ background-color: rgba(253, 180, 94, 0.9);
+}
+#quebusco img{
+ height: 50px;
+ width: auto;
+ padding: 5px;
+ float: left;
+}

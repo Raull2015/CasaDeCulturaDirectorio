@@ -1,74 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-{% load static %}
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% extends 'base.html' %}
 
-    <title>Home</title>
+{% block title%}Eventos{% endblock %}
 
-    <!-- Bootstrap Core CSS -->
-    <link href= "{% static "css/bootstrap.min.css"  %}" rel="stylesheet">
+{% block heading%} <h1>Eventos</h1> {% endblock %}
 
-    <!-- Custom CSS -->
-    <link href="{% static "css/simple-sidebar.css/" %}" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-    <div class="encabezado">
-        <h1>Actividades</h1>
-       </div>
-    <div class="container">
-    	<ul class="list-unstyled">
- 		  {% for actividad in actividad %}
-    	<li class="well well-sm">
-      <a class="lead" href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>{{actividad.nombre}}  {{ actividad.fechaRealizacion }}</a>
-      {%if actividad.autorizado == 0%}
-      <p> Pendiente de Autorizar por la Administracion </p>
-      {%endif%}
-        {% if actividad.descripcion %}
-          <br>{{ actividad.descripcion|linebreaksbr }}
-        {% endif %}
-        {% if actividad.categoria.count %}
-          {% for actividad in actividad.categoria.all %}
-            <span class="label label-primary">{{ categoria|lower }}</span>&nbsp;
-          {% endfor %}
-        {% endif %}
-      </li>
-  		{% empty %}
-    	<li><h3>No hay actividades</h3></li>
-  		{% endfor %}
-      {%if total == False%}
-        <a href= "{% url 'home:eventos' %}?limit={{limit}}" >Mas</a>
-      {%endif%}
-  		</ul>
+{% block text %}
+  {% if not autorizar %}
+    <h3>Buscar</h3>
+    <div class="search_box">
+      {% csrf_token %}
+      <input type="text" placeholder="Buscar..."  id="searchE" name="search">
+    <div id="search-text"></div>
     </div>
+  {% endif %}
+{% endblock %}
 
-    <!-- jQuery -->
-    <script src="{% static "js/jquery.js" %}" ></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static "js/bootstrap.min.js" %}" ></script>
-
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
-
-</body>
-
-</html>
+{% block content%}
+  <ul class="list-unstyled">
+  {% for actividad in actividad %}
+  <li class="well well-sm">
+  <a class="lead" href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>{{actividad.nombre}}  {{ actividad.fechaRealizacion }}</a>
+  {%if actividad.autorizado == 0 and autorizar != True %}
+  <p> Pendiente de Autorizar por la Administracion </p>
+  {%endif%}
+    {% if actividad.descripcion %}
+      <br>{{ actividad.descripcion|linebreaksbr }}
+    {% endif %}
+    {% if actividad.categoria.count %}
+      {% for actividad in actividad.categoria.all %}
+        <span class="label label-primary">{{ categoria|lower }}</span>&nbsp;
+      {% endfor %}
+      {% if autorizar %}
+        {% csrf_token %}
+         <button onclick="authorizeEvent('{{actividad.id}}')">Aceptar</a>
+         <button onclick="deleteEvent('{{actividad.id}}')">Rechazar</a>
+      {% endif %}
+    {% endif %}
+  </li>
+  {% empty %}
+  <li><h3>No hay actividades</h3></li>
+  {% endfor %}
+  {%if total == False%}
+    <a href= "{% url 'home:eventos' %}?limit={{limit}}" >Mas</a>
+  {%endif%}
+  </ul>
+{% endblock %}
