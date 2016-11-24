@@ -42,7 +42,7 @@
           {% endif %}
 
          </ul>
-       </div>
+    </div>
 
     <div id="wrapper">
 
@@ -57,6 +57,8 @@
                     {% if admin == True %}
                     <li><a href={% url 'administracion' %}>Administracion</a>
                     {%endif%}
+                    <li><a href={% url 'home:artistas' %}>Artistas</a>
+                    <li><a href={% url 'home:eventos' %}>Eventos</a>
                     {% if logeado == True %}
                     <li><a href={% url 'home:perfil' username=user.username %}>Perfil</a>
 
@@ -64,8 +66,6 @@
                     <li><a href={% url 'home:crear_evento' username=user.username %}>Crear evento</a>
 
                     {%endif%}
-                    <li><a href={% url 'home:artistas' %}>Artistas</a>
-                    <li><a href={% url 'home:eventos' %}>Eventos</a>
 
             </ul>
         </div>

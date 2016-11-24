@@ -4,6 +4,7 @@
 
 {% block heading %}
       {% if create %}
+      <br/>
       <h2>Nueva Capsula <br/>
         <small>>No debe superar los 255 caracteress</small>
       </h2>
@@ -16,21 +17,24 @@
 
 {% block content %}
   {% if create %}
-    {% url "home:capsula_create" as action_url %}
+    {% url "crear_capsula" as action_url %}
   {% else %}
-    {% url 'home:editar_capsula' pk=form.instance.pk as action_url %}
+    {% url 'editar_capsula' pk=form.instance.pk as action_url %}
   {% endif %}
 
-  <form action={% url 'crear_capsula' %}method="post">
+  <div class="container">
+  <form action="{% url 'crear_capsula' %}" method="post">
+    <br/>
       {% csrf_token %}
 
       {{ form.fechaPublicacion.label_tag }}
       {{ form.fechaPublicacion }}
        <br/>
        {{ form.texto.label_tag }}
+       <br/>
        {{ form.texto }}
        <br/>
-
-      <input type="submit" value="Crear" />
+      <input type="submit" class="btn btn-primary btn-lg active" role="button" value="Crear" />
   </form>
+</div>
 {% endblock %}

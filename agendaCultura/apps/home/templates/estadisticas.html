@@ -16,6 +16,7 @@
 
     <!-- Custom CSS -->
     <link href= "{% static "css/simple-sidebar.css" %}" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,8 +33,7 @@
             <a href="#menu-toggle" id="menu-toggle">Desplegar</a>
         </ul>
         <ul>
-            <a href={% url 'cerrar_sesion' %}>Cerrar Sesion</a>
-            <a >Bienvenido {{usuario}} </a>
+            <h3 align=center><font face="univers" color="white">Estadisticas</font><h3>
          </ul>
        </div>
 
@@ -44,16 +44,19 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                        Administracion
+                        Menu
                     </a>
                 </li>
-                    <li><a href="{% url 'artista_pendiente' %}">Moderar Artistas</a>
-                    <li><a href="{% url 'actividad_pendiente' %}">Moderar Eventos</a>
-                    <li><a href="{% url 'ver_capsulas' %}">Administrar Capsulas</a>
-                    <li><a href="{% url 'estadisticas' %}?type=categoriaEventos&g=Pie">Estadisticas</a>
+                    <li><a href="{% url 'estadisticas' %}?type=visitasArtistas&g=Pie">Artistas mas vistos</a>
+                    <li><a href="{% url 'estadisticas' %}?type=visitasEventos&g=Pie">Eventos mas vistos</a>
+                    <li><a href="#"></a>
+                    <li><a href="{% url 'estadisticas' %}?type=generoArtistas&g=Pie">Artistas por Genero</a>
+                    <li><a href="#"></a>
+                    <li><a href="{% url 'estadisticas' %}?type=categoriaArtistas&g=Pie">Categorias de Artista</a>
+                    <li><a href="{% url 'estadisticas' %}?type=categoriaEventos&g=Pie">Categorias de Eventos</a>
                     <li><a href="#"></a>
                     <li><br/>
-                    <li><a href={% url 'home:home' %}>Volver</a>
+                    <li><a href="{% url 'administracion' %}">Volver</a>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -62,10 +65,13 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <!--contenido-->
-                    </div>
-                </div>
+                    <div class="container col-sm-12 col-lg-12">
+              {%if grafico%}
+                  <div class = "grafico">{{grafico|safe}}</div>
+              {%endif%}
+            </div>
+
+            </div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -86,7 +92,5 @@
         $("#wrapper").toggleClass("toggled");
     });
     </script>
-
 </body>
-
 </html>

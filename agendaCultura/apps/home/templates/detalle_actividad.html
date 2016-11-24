@@ -5,15 +5,25 @@
 {% endblock %}
 
 {%block heading %}
-	<h1>Evento</h1>
+	<h3 align=center><font face="univers" color="white">Evento</font><h3>
 {% endblock %}
 
 {% block content %}
-	<div class="container">
+	<div class="container col-sm-12 col-md-6">
+		<img src="/media/{{actividad.imagen.name}}" alt="Imagen">
+	</div>
+	<div class="container col-sm-12 col-md-6">
 		<h4>Nombre de Evento: {{actividad.nombre}} </h4>
-		<h4>Visitas : {{actividad.visitas}} </h4>
-    <h4>Fecha : {{actividad.fechaRealizacion}} </h4>
-
+		<h4>Visitas: {{actividad.visitas}} </h4>
+    	<h4>Lugar: {{actividad.lugar}}</h4>
+    	<h4>Hora: {{actividad.hora}}</h4>
+    	<h4>Fecha: {{actividad.fechaRealizacion}} </h4>
+    	<h4>Descripcion: {{actividad.descripcion}}</h4>
 	</div>
   
+{% endblock %}
+
+{% block footer %}
+	<a href="{% url 'home:eventos' %}">Volver a Eventos</a>
+	<br/>
 {% endblock %}

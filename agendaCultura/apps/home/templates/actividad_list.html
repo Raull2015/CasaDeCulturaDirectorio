@@ -1,8 +1,13 @@
-{% extends 'base.html' %}
 
-{% block title%}Eventos{% endblock %}
+{% extends "base.html" %}
 
-{% block heading%} <h1>Eventos</h1> {% endblock %}
+{% block title %}
+  Eventos
+{% endblock %}
+
+{%block heading %}
+  <h3 align=center><font face="univers" color="white">Eventos</font><h3>
+{% endblock %}
 
 {% block text %}
   {% if not autorizar %}
@@ -15,33 +20,32 @@
   {% endif %}
 {% endblock %}
 
-{% block content%}
-  <ul class="list-unstyled">
-  {% for actividad in actividad %}
-  <li class="well well-sm">
-  <a class="lead" href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>{{actividad.nombre}}  {{ actividad.fechaRealizacion }}</a>
-  {%if actividad.autorizado == 0 and autorizar != True %}
-  <p> Pendiente de Autorizar por la Administracion </p>
-  {%endif%}
-    {% if actividad.descripcion %}
-      <br>{{ actividad.descripcion|linebreaksbr }}
-    {% endif %}
-    {% if actividad.categoria.count %}
-      {% for actividad in actividad.categoria.all %}
-        <span class="label label-primary">{{ categoria|lower }}</span>&nbsp;
+{% block content %}
+  <div class="container">
+      <ul class="list-unstyled">
+      {% for actividad in actividad %}
+      <li class="well well-sm">
+      <a class="lead" href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>Nombre: {{actividad.nombre}}
+       <br/>
+       Fecha: {{ actividad.fechaRealizacion }}</a>
+      {%if actividad.autorizado == 0%}
+      <p> Pendiente de Autorizar por la Administracion </p>
+      {%endif%}
+        {% if actividad.descripcion %}
+          <br>
+        {% endif %}
+        {% if actividad.categoria.count %}
+          {% for categoria in actividad.categoria.all %}
+               <span class="label label-primary">Categoria: {{ categoria|lower }}</span>&nbsp;
+             {% endfor %}
+        {% endif %}
+      </li>
+      {% empty %}
+      <li><h3>No hay actividades</h3></li>
       {% endfor %}
-      {% if autorizar %}
-        {% csrf_token %}
-         <button onclick="authorizeEvent('{{actividad.id}}')">Aceptar</a>
-         <button onclick="deleteEvent('{{actividad.id}}')">Rechazar</a>
-      {% endif %}
-    {% endif %}
-  </li>
-  {% empty %}
-  <li><h3>No hay actividades</h3></li>
-  {% endfor %}
-  {%if total == False%}
-    <a href= "{% url 'home:eventos' %}?limit={{limit}}" >Mas</a>
-  {%endif%}
-  </ul>
+      {%if total == False%}
+        <a href= "{% url 'home:eventos' %}?limit={{limit}}" >Mas</a>
+      {%endif%}
+      </ul>
+    </div>
 {% endblock %}

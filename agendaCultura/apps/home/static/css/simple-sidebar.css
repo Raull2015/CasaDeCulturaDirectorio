@@ -19,10 +19,11 @@ html{
     -o-background-size: cover;
     background-size: cover;
 
-    opacity: 0.85;
+    opacity: 0.90;
 }
  body {
     overflow-x: hidden;
+
  }
 
 /* Toggle Styles */
@@ -70,6 +71,11 @@ html{
 }
 
 /* Sidebar Styles */
+
+.grafico {
+    opacity: 1; 
+}
+
 
 .sidebar-nav {
     position: absolute;
@@ -152,7 +158,6 @@ html{
     border-bottom-style: solid;
     border-color: #000;
 }
-
 .encabezado h2{
     color: white;
     float: left;
@@ -177,7 +182,22 @@ html{
     float: left;
     display: inline-block;
 }
-h1 {
+
+h1{
     color:#fff;
     text-align: center;
 }
+
+.menu{
+    width: 100%;
+    background: rgb(4,70,136);
+    overflow: hidden;
+}
+
+.menu ul a{
+    padding: 1% 1%;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+

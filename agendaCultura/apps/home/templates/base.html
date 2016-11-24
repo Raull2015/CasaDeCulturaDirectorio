@@ -16,6 +16,8 @@
     <!-- Custom CSS -->
     <link href="{% static "css/styles.css/" %}" rel="stylesheet">
     <link href="{% static "css/simple-sidebar.css/" %}" rel="stylesheet">
+    {% block scripts %}
+    {%endblock%}
 
 
     <script src="{% static "js/jquery-3.1.1.js "%}"></script>
@@ -24,20 +26,25 @@
 
     <body>
 
-    <div class="encabezado">
+    <div id="barra-superior" class="encabezado">
+
         {% block heading %}{% endblock %}
     </div>
+
     <div class="container">
       {% block text %}{% endblock %}
     </div>
     <div class="container">
       <div>
+
         {% block content %}{% endblock %}
+
       </div>
       <footer>
         <div class="container col-md-12">
             <hr>
-            <a href={% url 'home:home' %}>Regresar</a>
+            {% block footer %}{% endblock %}
+            <a href={% url 'home:home' %}>Volver al Inicio</a>
             <p>&copy; URL-Landivar 2016-2017</p>
         </div>
       </footer>
