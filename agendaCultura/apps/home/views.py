@@ -27,7 +27,7 @@ def home(request):
 
     capsula = None
     try:
-        capsula = Capsulas.objects.all().order_by('-fechaPublicacion')[0]
+        capsula = Capsulas.objects.all().filter(fechaPublicacion__range=('2016-01-01',date.today())).order_by('-fechaPublicacion')[0]
     except IndexError:
         pass
 
