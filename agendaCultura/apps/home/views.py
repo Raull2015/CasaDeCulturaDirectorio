@@ -25,11 +25,12 @@ def home(request):
         if request.user.perfil.rol.is_admin():
             admin = True
 
+    capsula = None
     try:
         capsula = Capsulas.objects.all().order_by('-fechaPublicacion')[0]
     except IndexError:
-        pass:
-        
+        pass
+
     context = {
         'capsula' : capsula,
         'logeado' : logeado,
