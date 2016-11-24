@@ -21,8 +21,9 @@
   {% else %}
     {% url 'editar_capsula' pk=form.instance.pk as action_url %}
   {% endif %}
+
   <div class="container">
-  <form action="{% url 'crear_capsula' %}" method="post">
+  <form action={% url 'crear_capsula' %}method="post">
     <br/>
       {% csrf_token %}
 
@@ -33,8 +34,7 @@
        <br/>
        {{ form.texto }}
        <br/>
-
-      <input type="submit" value="Crear" />
+      <input type="submit" class="btn btn-primary btn-lg active" role="button" value="Crear" />
   </form>
 </div>
 {% endblock %}

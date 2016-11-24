@@ -9,13 +9,14 @@
 {% endblock %}
 
 {% block content %}
-<a href= {% url 'crear_capsula' %}>Nueva Capsula</a>
 <br/>
+<a href= {% url 'crear_capsula' %} class="btn btn-primary btn-lg active" role="button" >Nueva Capsula</a>
+<br/><br/><br/>
   {% for capsula in capsulas %}
     <li class="well well-sm">
-  	<h2>{{capsula.texto}}</h2>
-  	<h3>{{capsula.fechaPublicacion}}</h3>
-  	<h4>{{capsula.usuario}}</h4>
+  	<h2>Contendido: {{capsula.texto}}</h2>
+  	<h3>Fecha de Publicacion: {{capsula.fechaPublicacion}}</h3>
+  	<h4>Creado por: {{capsula.usuario}}</h4>
     <a href= {% url 'editar_capsula' pk=capsula.id %}>Editar</a>
     </li>
   {% endfor %}

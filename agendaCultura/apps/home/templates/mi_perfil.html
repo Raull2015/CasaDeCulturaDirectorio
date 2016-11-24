@@ -26,7 +26,7 @@
 		<h4>Correo: {{perfil.email}} </h4>
 
     {%if es_propietario == True %}
-		<a href={% url 'home:editar_perfil' username=perfil.user.username %} class="btn btn-default">Editar</a>
+		<a href={% url 'home:editar_perfil' username=perfil.user.username %} class="btn btn-primary btn-lg active" role="button">Editar</a>
     {%endif%}
 	</div>
 {% endblock %}
