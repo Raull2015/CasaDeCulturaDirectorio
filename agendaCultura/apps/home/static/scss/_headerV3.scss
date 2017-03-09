@@ -1,0 +1,39 @@
+.headerV3{
+	position:absolute;
+	width:100%;
+	top:0;
+	.lightHeader {
+	    background-color:rgba($black-color,0.5);
+	    box-shadow:none;
+	}
+	#menuBar.menu-sm {
+	    background-color:rgba($black-color,0.8);
+	}
+	.lightHeader .navbar-nav > li > a {
+		@include tablet{
+		    color: $white-color;
+		}
+	}
+	.navbar-right .dropdown-menu-left {
+		@include tablet{
+		    right: auto;
+		    left: -50%;
+		}
+	}
+	.navbar-right .dropdown-menu-right{
+		@include tablet{
+		    left: auto;
+		    right: -50%;
+		}
+	}
+}
+.version3{
+	#menuBar.bb-fixed-header {
+	    background-color:rgba($black-color,0.8);
+	}
+	.lightHeader .navbar-nav > li > a {
+		@include tablet{
+		    color: $white-color;
+		}
+	}
+}

@@ -1,0 +1,16 @@
+.categorySection{
+	@include desktops {
+		padding-bottom:0;
+	} 
+	.box{
+		@include desktops {
+			margin-bottom: 100px;
+		}
+	}
+	.box-info h4{
+		margin-bottom:0;
+	}
+	.box-info{
+		padding:25px;
+	}
+}

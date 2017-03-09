@@ -1,0 +1,1011 @@
+/*=== 2. UI KIT ===*/
+aside{
+	margin-bottom: 25px;
+}
+/*=== 2.1 BUTTON ===*/
+.btn-primary{
+	height: 45px;
+	padding: 0 20px;
+	border: none;
+	line-height: 45px;
+	@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+	background-color: $color3;
+	@include border-radius(6px);
+	font-size: 16px;
+	text-transform: uppercase;
+	color: $white-color;
+	@include transition(all 0.3s ease-in-out);
+	font-weight: 600;
+	@include tablet{
+		padding: 0 10px;
+	}
+	@include desktops{
+		padding: 0 20px;
+	}
+	>i{
+		margin-right: 10px;
+		padding-left:7px;
+	}
+	&:hover{
+		background-color: $color3;
+		@include box-shadow(0, 4px, 0, rgba($black-color, .3) );
+	}
+	&:focus, &.active, &:active{
+		border: none;
+		background-color: $color3;
+		outline: 0;
+		@include box-shadow(0, 4px, 0, rgba($black-color, .3) );
+	}
+	&.btn-Full{
+		float: left !important;
+		width: 100% !important;
+	}
+}
+.btn-primary.active.focus, 
+.btn-primary.active:focus, 
+.btn-primary.active:hover, 
+.btn-primary:active.focus, 
+.btn-primary:active:focus, 
+.btn-primary:active:hover, 
+.open>.dropdown-toggle.btn-primary.focus, 
+.open>.dropdown-toggle.btn-primary:focus, 
+.open>.dropdown-toggle.btn-primary:hover{
+	border: none;
+	background-color: $color3;
+	outline: 0;
+	@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+}
+.backToTop{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	line-height: 45px;
+	background-color: $color3;
+	@include add-border(2px, $white-color, all);
+	@include border-radius(13px);
+	color: $white-color;
+	display: block;
+	font-size: 16px;
+	@include opacity(0);
+	@include transition(all 0.3s ease-in-out);
+	&:hover, &:focus, &:active{
+		color: $white-color;
+	}
+}
+/*=== 2.2 SECTION TITLE ===*/
+.whiteSection, .mainContent, .lightSection, .colorSection{
+	@include mobile-all{
+		padding: 50px 0;
+	}
+	@include tablet{
+		padding: 100px 0;
+	}
+}
+.whiteSection, .mainContent{
+	background-color: $white-color;
+}
+.lightSection{
+	background-color: #f5f5f5;
+}
+.sectionTitle{
+	h2{
+		font-family: 'Dosis', sans-serif;
+		font-size: 36px;
+		color: $color3;
+		text-transform: capitalize;
+		float: left;
+		width: 100%;
+		span{
+			padding: 0 15px;
+			@include mobile-all{
+				display: block;
+				width: 100%;
+				float: left;
+			}
+			@include tablet{
+				display: inline-block;
+				width: auto;
+				float: none;
+			}
+		}
+		@include mobile-all{
+			margin-bottom: 30px;
+		}
+		@include tablet{
+			margin-bottom: 70px;
+		}
+	}
+	&.alt{
+		h2{
+			color: $white-color;
+		}
+	}
+}
+.sectionTitleSmall{
+	margin-bottom: 40px;
+	h2{
+		text-align: center; 
+		font-family: 'Dosis', sans-serif;
+		text-transform: capitalize;
+		margin: 0 0 12px 0;
+		color: $white-color;
+	}
+	p{
+		color: $white-color;
+		text-align: center;
+		font-size: 15px;
+	}
+}
+.pageTitleSection{
+	background-image: url("../img/page-title/page-title-bg.jpg");
+	width: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+	color: #ffffff;
+	padding:75px 0;
+	.pageTitleInfo{
+		text-align: center;
+		h2{
+			font-size: 40px;
+			line-height: 33px;
+			color: $white-color;
+			margin-bottom: 40px;
+			margin: 0 0 8px 0;
+			font-family: 'Dosis', sans-serif;
+			text-transform: capitalize;
+			font-weight: 600;
+		}
+		.breadcrumb{
+			background-color: transparent;
+			li{
+				color: $white-color;
+				font-size: 15px;
+				a{
+					color: $white-color;
+					font-size: 15px;
+				}
+			}
+			> li + li::before{
+				content: " \276F\00a0 ";
+			}
+		}
+	}
+}
+/*=== 2.3 FORM ===*/
+.searchArea{
+	@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+	background-color: #f8f8f8;
+	margin-bottom: 70px;
+	@include border-radius(7px);
+	height: 55px;
+	@include tablet {
+		height: 70px;
+	}
+	>.input-group-addon{
+		background-color: transparent;
+		border: none;
+		min-width:  60px;
+		font-size: 18px;
+		color:$text-color;
+		&.button{
+			height: 55px;
+			border: none;
+			line-height: 45px;
+			background-color: $color3;
+			font-size: 14px;
+			text-transform: uppercase;
+			color: $white-color;
+			@include transition(all 0.3s ease-in-out);
+			font-weight: 600;
+			display: inline-block;
+			width: 25%;
+			position:absolute;
+			right: 0;
+			z-index: 9;
+			@include tablet {
+				height: 70px;
+				font-size: 18px;
+				line-height: 45px;
+				width: 20%;
+			}
+			&:hover{
+				background-color: $color3;
+			}
+		}
+	}
+	>.form-control{
+		width: 100%;
+		background-color: transparent;
+		border: none;
+		box-shadow: none;
+		height: 55px;
+		font-size: 13px;
+		color:#222222;
+		@include tablet {
+			height: 70px;
+			font-size: 15px;
+		}
+	}
+}
+.resultInfo{
+	h3{
+		font-family: 'Dosis', sans-serif;
+		color: $text-color;
+		font-size: 28px;
+		text-transform: capitalize;
+		margin-bottom: 40px;
+	}
+}
+
+.formPanel{
+	&.panel{
+		border: 0;
+		margin-bottom: 30px;
+		@include border-radius(7px);
+		.panel-heading{
+			@include border-radius(7px 7px 0 0);
+			.panel-title{
+				font-size: 24px;
+				color: $white-color;
+				text-transform: capitalize;
+				font-weight: 700;
+				font-family: 'Dosis', sans-serif;
+			}
+		}
+		.panel-body{
+			@include add-border(1px, #dedede, all );
+			border-top: 0;
+			@include border-radius(0 0 7px 7px);
+			.media-list{
+				li{
+					padding: 10px 0;
+					margin: 0;
+					.media-left.iconContent{
+						width: 45px;
+						height: 45px;
+						line-height: 45px;
+						text-align: center;
+						color: $white-color;
+						@include border-radius(100%);
+						display: inline-block;
+						float: left;
+						padding: 0;
+						margin-right: 20px;
+						font-size: 16px;
+					}
+					.media-body.iconContent{
+						.media-heading{
+							font-family: 'Dosis', sans-serif;
+							font-size: 20px;
+							font-weight: 700;
+						}
+						p{
+							font-weight: 600;
+							margin-bottom: 0;
+						}
+					}
+				}
+				&.blogListing{
+					li{
+						.media-heading{
+							a{
+								font-weight: 600;
+								font-size: 14px;
+								text-transform: capitalize;
+								color: $text-color;
+								&:hover{
+									color: $color5 !important;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.formField{
+	.form-control{
+		height: 50px;
+		@include border-radius(10px);
+		color: #222222;
+		border-color: #e4e4e4;
+		box-shadow: none;
+		margin-bottom: 15px;
+	}
+	.btn-primary{
+		margin-bottom: 15px;
+		&:focus{
+			outline: 0;
+			@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+		}
+	}
+	.help-block{
+		text-align: center;
+		margin-bottom: 0;
+		a{
+			&:hover{
+				color: $color3;
+			}
+		}
+	}
+}
+.errorSpace{
+	.form-control{
+		border-color: rgba($text-color, .2);
+		margin-bottom: 40px;
+	}
+}
+/*=== 2.4 PAGINATION ===*/
+
+/*=== 2.5 ACCORDION ===*/
+.accordionCommon{
+	.panel{
+		margin-bottom: 30px;
+		border: none;
+	}
+	.panel-heading{
+		display: block;
+		padding: 15px 20px;
+		@include border-radius(8px);
+		font-weight: 600;
+		color: $white-color;
+		font-size: 14px;
+		text-transform: uppercase;
+		position: relative;
+		span.iconBlock{
+			width: 20px;
+			height: 20px;
+			line-height: 20px;
+			text-align: center;
+			@include border-radius(3px);
+			background-color: $white-color;
+			color: $text-color;
+			display: inline-block;
+			float: right;
+			@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+			&.iconTransparent{
+				background-color: transparent;
+				box-shadow: none;
+				color: $white-color;
+			}
+		}
+	}
+	span.separator{
+		width: 1px;
+		height: 100%;
+		background-color: rgba($white-color, .25);
+		position: absolute;
+		top: 0;
+		right: 60px;
+	}
+	.panel-body{
+		padding: 30px;
+		background-color: #f8f8f8;
+		@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+		border-top: none !important;
+		@include border-radius( 0 0 8px 8px);
+		p{
+			margin-bottom: 35px;
+			&:last-child{
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+/*=== 2.6 TABS ===*/
+.tabCommon{
+	.nav{
+		border-bottom: none;
+		text-align: center;
+		li{
+			display: inline-block;
+			float: none;
+			@include mobile-all{
+				padding: 6px 2px;
+			}
+			@include tablet{
+				padding: 0 2px;
+			}
+			a{
+				padding: 0 25px;
+				height:  40px;
+				font-size: 14px;
+				line-height: 40px;
+				color: #222222;
+				text-transform: uppercase;
+				font-weight: 600;
+				display: inline-block;
+				@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+				background-color: #f8f8f8;
+				@include border-radius(4px);
+			}
+			&.active{
+				a{
+					background-color: $color3;
+					color: #fffefe;
+				}
+			}
+		}
+	}
+	.tab-content{
+		padding-top: 50px;
+	}
+	.tab-pane{
+		@include add-border(3px, rgba($color3, .3), all);
+		@include border-radius(8px);
+	}
+	.media-left{
+		@include mobile-all{
+			display: block;
+			float: left;
+			width: 100%;
+			padding-right: 0;
+		}
+		@include tablet{
+			display: block;
+			float: left;
+			width: 100%;
+			padding-right: 0;
+		}
+		@include desktops{
+			display: inline-block;
+			float: left;
+			width: auto;
+			padding-right: 10px;
+		}
+		img{
+			width: 100%;
+		}
+	}
+	.media-body{
+		@include mobile-all{
+			padding: 30px;
+		}
+		@include tablet{
+			padding: 30px;
+		}
+		@include desktops{
+			padding: 30px;
+		}
+		@include large-desktops{
+			padding: 50px 30px 0 0;
+		}
+		.media-heading{
+			font-family: 'Dosis', sans-serif;
+			font-size: 28px;
+			color: $color3;
+			margin: 0 0 25px 0;
+			text-transform: capitalize;
+		}
+		p{
+			color: #222222;
+			margin-bottom: 30px;
+		}
+	}
+	&.tabLeft{
+		.nav{
+			
+			padding-right: 10px;
+			@include mobile-all{
+				display: block;
+			}
+			@include tablet{
+				display: table-cell;
+			}
+			li{
+				display: block;
+				padding: 0 0 10px 0;
+				&.active{
+					a{
+						position: relative;
+						&:after{
+							content:"";
+							width: 0;
+							height: 0;
+							border-style: solid;
+							border-width: 10px 0 10px 10px;
+							border-color: transparent transparent transparent $color3;
+							position: absolute;
+							right: -9px;
+							top: 10px;
+							@include border-radius(8px);
+							@include transition(all 0.3s ease-in-out);
+						}
+						
+					}
+				}
+			}
+		}
+		.tab-content{
+			display: table-cell;
+			padding: 0;
+		}
+	}
+}
+/*=== 2.7 DATEPICKER ===*/
+
+/*=== 2.8 THUMBNAIL ===*/
+.thumbnail{
+	padding: 0;
+	border: none;
+	@include border-radius(9px);
+	position: relative;
+	@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+	>a{
+		img{
+			border-radius: 9px 9px 0 0;
+			width: 100%;
+		}
+	}
+	img{
+		border-radius: 9px 9px 0 0;
+		width: 100%;
+	}
+}
+/*=== 2.9 MODAL ===*/
+.customModal{
+	.modal-content{
+		@include border-radius(8px);
+	}
+	.modal-dialog{
+		@include mobile-all{
+			width: 100%;
+		}
+		@include tablet{
+			width: 350px;
+		}
+	}
+	.formPanel.panel{
+		margin-bottom: 0 !important;
+	}
+}
+/*=== 2.10 PORDUCT QUICK VIEW MODAL ===*/
+.modal.quick-view.in .modal-dialog {
+    -webkit-transform: translate(0,25%);
+    -ms-transform: translate(0,25%);
+    -o-transform: translate(0,25%);
+    transform: translate(0,25%);
+}
+.quick-view{
+	.modal-dialog{
+		@include mobile-xs{
+		  width: 280px;
+		  margin: 0 auto;
+		}
+		@include mobile{
+		  width: 450px;
+		  margin: 0 auto;
+		}
+		@include tablet{
+		  width: 750px;
+		}
+		@include desktops{
+		  width: 950px;
+		}
+		@include large-desktops{
+		  width: 1030px;
+		}
+	}
+	.modal-content{
+		padding:50px 30px;
+		img{
+			margin: auto;
+		}
+		.add-to-cart.btn-primary {
+			@include mobile-xs{
+			  margin-top: 15px;
+			}
+		}
+	}
+}
+/*=== 2.10 PANEL ===*/
+
+/*=== 2.11 PRICE RANGE SLIDER ===*/
+
+/*=== 2.12 LIST ===*/
+.topList{
+	li{
+		color: rgba($white-color, .8);
+		@include tablet{
+			margin-right: 5px;
+			font-size: 10px;
+		}
+		@include desktops{
+			margin-right: 10px;
+			font-size: 14px;
+		}
+		@include large-desktops{
+			margin-right: 20px;
+		}
+		i{
+			width: 21px;
+			height: 21px;
+			display: inline-block;
+			
+			color: $white-color;
+			@include border-radius(100%); 
+			text-align: center;
+			line-height: 21px;
+			@include tablet{
+				margin-right: 5px;
+			}
+			@include desktops{
+				margin-right: 5px;
+			}
+			@include large-desktops{
+				margin-right: 10px;
+			}
+		}
+		a{
+			color: rgba($white-color, .8);
+			@include tablet{
+				font-size: 10px;
+			}
+			@include desktops{
+				font-size: 14px;
+			}
+		}
+		&:last-child{
+			margin-right: 0;
+		}
+	}
+}
+
+.functionList{
+	@include tablet{
+		width: 100%;
+		float: left;
+	}
+	@include desktops{
+		width: 100%;
+		float: left;
+	}
+	@include large-desktops{
+		width: 92%;
+		float: right;
+	}
+	>li{
+		color: rgba($white-color, .8);
+		float: left;
+		@include tablet{
+			margin-right: 5px;
+			padding: 0;
+			font-size: 10px;
+		}
+		@include desktops{
+			margin-right: 10px;
+			padding: 0;
+			font-size: 14px;
+		}
+		@include large-desktops{
+			margin-right: 15px;
+			padding: 0 5px;
+		}
+		span{
+			margin: 0 5px;
+		}
+		i{
+			width: 21px;
+			height: 21px;
+			display: inline-block;
+			color: $white-color;
+			@include border-radius(100%); 
+			text-align: center;
+			line-height: 21px;
+			@include tablet{
+				margin-right: 5px;
+			}
+			@include desktops{
+				margin-right: 10px;
+			}
+		}
+		&:last-child{
+			margin-right: 0;
+		}
+		a{
+			color: rgba($white-color, .8);
+			font-weight: 600;
+		}
+		&.LanguageList{
+			width: 22%;
+		}
+		&:first-child{
+			margin-right: 0;
+			i{
+				margin-right: 0;
+			}
+		}
+	}
+}
+/*=== 2.13 CART ===*/
+.navbar-default .cart-dropdown{
+	position: absolute;
+    top: 26px;
+    right: 90px;
+    @include tablet{
+	    display: none;
+	}
+}
+.cart-dropdown{
+	> a{
+		color: rgba($white-color, .8);
+		font-weight: 600;
+		i{
+			width: 21px;
+			height: 21px;
+			display: inline-block;
+			color: $white-color;
+			@include border-radius(100%); 
+			text-align: center;
+			line-height: 21px;
+			margin-right: 0;
+		}
+	}
+}
+.display-block{
+	display:block;
+}
+.display-none{
+	display:none;
+}
+.shop-cart{
+	color: rgba($white-color, .8);
+	font-weight: 600;
+	margin-right: 0;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	border-radius: 5px;
+	margin-top: 0;
+	display: block;
+	text-align: center;
+	position: relative;
+	@include transition(all 0.3s ease-in-out);
+	i{
+		color: $white-color;
+		margin-right: 0 ;
+	}
+	.badge{
+		position: absolute;
+		top: -5px;
+		right: -15px;
+	}
+}
+.cart-dropdown .dropdown-menu{
+	width:300px;
+	border-top: 4px solid #ea7066;
+	@include border-radius(5px);
+	-webkit-box-shadow: 0 4px 6px rgba(0,0,0,.175);
+    box-shadow: 0 4px 6px rgba(0,0,0,.175);
+    margin-top: 18px;
+    padding: 20px 10px;
+    height: 450px;
+    right: -76px;
+    overflow-y: scroll;
+	@include tablet {
+		width: 400px;
+		padding: 25px;
+		height: auto;
+		overflow-y: inherit;
+		margin-top: 11px;
+		right: 21px;
+	}
+	li:first-child{
+		font-family: 'Dosis', sans-serif;
+	    font-size: 24px;
+	    color: #222222;
+	    text-transform: capitalize;
+	    padding-top:0;
+	    padding-bottom: 10px;
+	    font-weight: 700;
+	    i{
+	    	color: #222222;
+	    	font-size: 20px;
+	    	margin-right: 15px;
+	    }
+	}
+	li{
+		padding:25px 0;
+		border-bottom: 1px solid rgba($black-color,0.15);
+		position:relative;
+		a{
+			padding:0;
+			background-color:$white-color;
+			color: $text-color;
+		}
+		.cancel{
+			margin: 0;
+			i{
+				position:absolute;
+				top: 25px;
+				right: 0;
+				color: $text-color;
+				font-size: 18px;
+				margin-right: 0;
+			}
+		} 
+	}
+	li:last-child{
+		border:none;
+		span{
+			font-family: 'Dosis', sans-serif;
+		    font-size: 24px;
+		    color: #222222;
+		    font-weight: 700;
+		    display: inline-block;
+		}
+		.cart-total{
+			float: left;
+		}
+		.cart-price{
+			float: right;
+		}
+	}
+	.cart-button{
+		clear: both;
+	    margin-top: 25px;
+	    width: 100%;
+	    float: left;
+	}
+	.cart-button .btn-primary{
+		width: 120px;
+		padding:0 10px;
+		@include tablet {
+			width: 162px;
+			padding:0 20px;
+		}
+	}
+	.cart-button .btn-primary:first-child{
+		margin-right: 10px;
+		@include tablet {
+			margin-right: 20px;
+		}
+	}
+	.cart-button .btn-primary:last-child{
+		background-color:#f8f8f8;
+		color: $text-color;
+	}
+	.media-left{
+		width: 90px;
+		height: 100px;
+    	line-height: 100px;
+		text-align: center;
+		background-color:#f3f3f3;
+		@include border-radius(5px);
+		padding:0;
+		float: left;
+		margin-right: 10px;
+		@include tablet {
+			margin-right: 20px;
+		}
+	}
+	.media-body{
+		h4 {
+		    font-family: 'Dosis', sans-serif;
+		    font-size: 20px;
+		    color: #222222;
+		    text-transform: capitalize;
+		    margin-bottom: 10px;
+		    font-weight: 700;
+		}
+		.price span{
+			margin-bottom: 7px;
+		}
+	}
+	span{
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+.cart-dropdown .dropdown-menu:before{
+	border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 7px solid $color3;
+    margin-left: -10px;
+    content: "";
+    display: inline-block;
+    right: 6px;
+    position: absolute;
+    top: -11px;
+}
+.LanguageList .sbSelector{
+	@include tablet{
+		font-size: 10px;
+	}
+	@include desktops{
+		font-size: 14px;
+	}
+}
+/*=== 2.14 PAGER ===*/
+.pagerArea{
+	>.pager{
+		display: inline-block;
+		margin: 50px auto 20px;
+		text-align: left;
+		@include desktops{
+			text-align: center;
+			margin: 80px auto 20px;
+		}
+		li{
+			padding: 0 8px;
+			@include desktops{
+				padding: 0 15px;
+			}
+			a{
+				height: 45px;
+				border: none;
+				line-height: 45px;
+				padding:0;
+				background-color:transparent;
+				font-size: 12px;
+				text-transform: uppercase;
+				color: $text-color;
+				@include transition(all 0.3s ease-in-out);
+				font-weight: 600;
+				@include desktops{
+					font-size: 16px;
+				}
+				&:hover{
+					color: $color3;
+				}
+			}
+		}
+		li.active a{
+			color: $color3;
+		}
+		li.prev a, li.next a{
+			width: 80px;
+			padding: 0 10px;
+			background-color: $color3;
+			color: $white-color;
+			@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+			@include border-radius(6px);
+			@include desktops{
+				width: 114px;
+				padding: 0 20px;
+			}
+			&:hover{
+				color:  $white-color;
+			}
+		}
+		li.prev{
+			padding-left:0;
+			a i{
+				margin-right: 10px;
+			}
+		}
+		li.next{
+			padding-right:0;
+			a i{
+				margin-left: 10px;
+			}
+		}
+	}
+}
+/*=== 2.15 Extra ===*/
+.errorMsg{
+	text-align: center;
+}
+.errorInfo{
+	h3{
+		font-family: 'Dosis', sans-serif;
+		font-size: 48px;
+		color: #222222;
+		margin-bottom: 25px;
+		text-transform: capitalize;
+	}
+	p{
+		font-size: 28px;
+		color: $secondary-color;
+		margin-bottom: 55px;
+		line-height: 34px;
+	}
+}

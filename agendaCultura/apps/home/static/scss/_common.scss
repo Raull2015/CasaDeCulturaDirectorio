@@ -1,0 +1,285 @@
+/*=== 1.COMMON ===*/
+.container{
+	width: 100%;
+	@include mobile {
+		width: 450px;
+	}
+	@include mobile-all {
+		width: 100%;
+	}
+	@include tablet {
+		width: 750px;
+	}
+	@include desktops {
+		width: 970px;
+	}
+	@include large-desktops {
+		width: 1170px;
+	}
+}
+.main-wrapper{
+	background-color:#ffffff;
+}
+body.bodyColor.default{
+	background-color:#f5f5f5;
+}
+body.bodyColor.pattern-01{
+	background-image: url("../img/patterns/001.png");
+	background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+body.bodyColor.pattern-02{
+	background-image: url("../img/patterns/002.png");
+	background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+body.bodyColor.pattern-03{
+	background-image: url("../img/patterns/003.png");
+	background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+body.bodyColor.pattern-04{
+	background-image: url("../img/patterns/004.png");
+	background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+body.bodyColor.pattern-06{
+	background-image: url("../img/patterns/006.png");
+	background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+body.bodyColor.pattern-07{
+	background-image: url("../img/patterns/007.png");
+	background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+body.bodyColor.pattern-05{
+	background-image: url("../img/patterns/005.png");
+	background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+body.bodyColor.wrapper {
+    margin:0 auto;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+	@include mobile {
+		max-width: 450px;
+	}
+	@include tablet {
+		max-width: 750px;
+	}
+	@include desktops {
+		max-width: 970px;
+	}
+	@include large-desktops {
+		max-width: 1170px;
+	}
+}
+body.bodyColor .header-wrapper {
+	@include mobile {
+		max-width: 450px;
+	}
+	@include tablet {
+		max-width: 750px;
+	}
+	@include desktops {
+		max-width: 970px;
+	}
+	@include large-desktops {
+		max-width: 1170px;
+	}
+}
+body.bodyColor .color-bar {
+	@include mobile {
+		max-width: 450px;
+	}
+	@include tablet {
+		max-width: 750px;
+	}
+	@include desktops {
+		max-width: 970px;
+	}
+	@include large-desktops {
+		max-width: 1170px;
+	}
+}
+body.bodyColor #menuBar.bb-fixed-header {
+	right:auto;
+	left:auto;
+	@include mobile {
+		max-width: 450px;
+		width: 100%;
+	}
+	@include tablet {
+		max-width: 750px;
+	}
+	@include desktops {
+		max-width: 970px;
+	}
+	@include large-desktops {
+		max-width: 1170px;
+	}
+}
+body.static #menuBar.bb-fixed-header {
+	display:none;
+}
+.btn{
+	display: inline-block;
+	@include border-radius(4px);
+	text-transform: uppercase;
+    text-align: center;
+    font-size: 14px;
+    padding: 9px 0;
+    @include mobile {
+    	font-size: 15px;
+    	padding: 13px 0;
+    }
+    @include tablet {
+    	font-size: 12px;
+    	padding: 8px 0;
+    }
+    @include desktops {
+    	font-size: 14px;
+    	padding: 12px 0;
+    }
+    @include large-desktops {
+    	font-size: 15px;
+    	padding: 13px 0;
+    }
+}
+a{
+	color: $color3;
+	text-decoration: none !important;
+	@include transition(all 0.3s ease-in-out);
+	&:hover{
+	outline: 0;
+	}
+	&:focus{
+    outline: 0;
+	}
+}
+.main-wrapper{
+	position: relative;
+	overflow:hidden;
+}
+.form-control:focus{
+	box-shadow: none;
+}
+// yellow
+.color-1{
+	color: $color1 !important;
+}
+.bg-color-1{
+	background-color: $color1 !important;
+}
+.border-color-1{
+	border-color: $color1 !important;
+}
+
+// green
+.color-2{
+	color: $color2 !important;
+}
+.bg-color-2{
+	background-color: $color2 !important;
+}
+.border-color-2{
+	border-color: $color2 !important;
+}
+// red / primary-color
+.color-3{
+	color: $color3 !important;
+}
+.bg-color-3{
+	background-color: $color3 !important;
+}
+.border-color-3{
+	border-color: $color3 !important;
+}
+// sky 
+.color-4{
+	color: $color4 !important;
+}
+.bg-color-4{
+	background-color: $color4 !important;
+}
+.border-color-4{
+	border-color: $color4 !important;
+}
+// purple
+.color-5{
+	color: $color5 !important;
+}
+.bg-color-5{
+	background-color: $color5 !important;
+}
+.border-color-5{
+	border-color: $color5 !important;
+}
+// pink
+.color-6{
+	color: $color6 !important;
+}
+.bg-color-6{
+	background-color: $color6 !important;
+}
+.border-color-6{
+	border-color: $color6 !important;
+}
+// blue ash
+.bg-color-7{
+	background-color: darken(desaturate(adjust-hue($color3, 196.4545), 58.3182), 43.5294);
+}
+.full-width{
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+//padding none (p-n)
+.p-n{
+	padding: 0;
+}
+//padding top none (p-t-n)
+.p-t-n{
+	padding-top: 0 !important;
+}
+.table-curved {
+   border-collapse: separate;
+   border: solid #ccc 1px;
+   border-radius: 6px;
+   border-left: 0px;
+   border-top: 0px;
+}
+.table-curved > thead:first-child > tr:first-child > th {
+    border-bottom: 0px;
+    border-top: 0;
+}
+.table-curved > thead:first-child > tr > th:first-child{
+	border-left: 1px solid $color1;
+}
+.table-curved > thead:first-child > tr > th:last-child{
+	border-right: 1px solid $color6;
+}
+.table-curved td, .table-curved th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+.table-curved > :first-child > :first-child > :first-child {
+    border-radius: 6px 0 0 0;
+}
+.table-curved > :first-child > :first-child > :last-child {
+    border-radius: 0 6px 0 0;
+}
+.table-curved > :last-child > :last-child > :first-child {
+    border-radius: 0 0 0 6px;
+}
+.table-curved > :last-child > :last-child > :last-child {
+    border-radius: 0 0 6px 0;
+}

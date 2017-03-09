@@ -1,0 +1,146 @@
+/*================= 12 PRICING TABLE ==================*/
+.pricingTable{
+	@include box-shadow(0, 4px, 0, rgba($black-color, .2) );
+	@include border-radius(8px);
+	background-color: #f8f8f8;
+	margin-bottom: 30px;
+	.priceUper, .priceLower{
+		display: block;
+		width: 100%;
+	}
+	.priceLower{
+		padding: 50px 20px 30px 20px;
+	}
+	&.tableVertical{
+		width: 100%;
+		float: left;
+		.priceUper, .priceLower{
+			@include mobile {
+				display: inline-block;
+				float: left;
+				width: 50%;
+			}
+		}
+	}
+}
+.priceTitle{
+	height: auto;
+	padding: 35px 20px 10px 20px;
+	@include border-radius(8px 8px 0 0);
+	h3{
+		margin: 0;
+		color: $white-color;
+		font-family: 'Dosis', sans-serif;
+		font-size: 34px;
+		font-weight: 600;
+		text-transform: capitalize; 
+	}
+	&.alt{
+		height: 90px;
+		padding: 0 20px;
+		h3{
+			line-height: 90px; 
+			font-size: 36px;
+		}
+	}
+	&.checkingTitle{
+		height: 80px;
+		padding: 0 20px;
+		h3{
+			line-height: 80px; 
+			font-size: 24px;
+		}
+	}
+}
+.priceInfo{
+	height: 104px;
+	p{
+		color: #fffefe;
+		padding: 0 20px;
+	}
+	&.alt{
+		height: 180px;
+		overflow: hidden;
+	}
+}
+.priceOffer{
+	li{
+		margin-bottom: 25px;
+		font-family: 'Dosis', sans-serif;
+		color: $text-color;
+		font-size: 18px;
+		i{
+			margin-right: 8px;
+		}
+		&:last-child{
+			margin-bottom: 35px;
+		}
+	}
+}
+.priceBtn{
+	h4{
+		display: inline-block;
+		float: right;
+		font-family: 'Dosis', sans-serif;
+		font-size: 34px;
+		font-weight: 600;
+		text-align: center;
+		margin-bottom: 0;
+		line-height: 20px;
+		small{
+			text-transform: capitalize;
+			font-size: 14px;
+		}
+	}
+	h5{
+		font-family: 'Dosis', sans-serif;
+		font-size: 28px;
+		font-weight: 600;
+		color: #222222;
+		span{
+			color: $color3;
+		}
+	}
+}
+.tableVertical{
+	.priceTitle{
+		@include border-radius(8px 0 0 0);
+	}
+	.priceInfo{
+		min-height: 205px;
+		@include border-radius( 0 0 0 8px);
+		@include tablet {
+			min-height: 135px;
+		}
+	}
+	.priceBtn{
+		&.alt{
+			padding: 20px 20px 0 20px;
+			.btn-primary{
+				background-color: $white-color;
+				color: $text-color;
+			}
+			h4{
+				color: $white-color;
+				small{
+					color: $white-color;
+				}
+				@include mobile {
+					float: none;
+				    display: block;
+				    margin-top: 20px;
+				    text-align: left;
+				}
+				@include tablet {
+					float: right;
+				    display: inline-block;
+				    margin-top: 0;
+				    text-align: center;
+				}
+			}
+		}
+	}
+	.priceLower{
+		padding: 20px 20px 0 20px;
+	}
+}

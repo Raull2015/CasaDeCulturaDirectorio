@@ -1,0 +1,383 @@
+
+/* CSS Document */
+
+/*............................................ Start Select Box ....................................*/
+
+.sbHolder { width:96px; height:33px; float:left; position:relative; font-family: 'MyriadProSemibold'; font-size:14px; color:#613c40 !important; font-weight:normal; background:#ffffff; border:1px solid #9c9c9c; margin-right:10px;/*  -webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;  */
+}
+.sbSelector { width:94px; height:34px; position:absolute; top:0; left:0; display:block; line-height:34px; outline:none; overflow:hidden; text-indent:20px;
+}
+.sbSelector:link, .sbSelector:visited, .sbSelector:hover { color:#00f !important; outline:none; text-decoration:none; 
+}
+.sbToggle { width:14px; height:10px; position:absolute; top:14px; right:15px; display:block; outline:none; background:url(../images/arrow-down-1.png) no-repeat; 
+}
+.sbToggle:hover { 
+}
+.sbToggleOpen { 
+}
+.sbToggleOpen:hover { 
+}
+.sbHolderDisabled { background:none; border:none;
+}
+.sbHolderDisabled .sbHolder { 
+}
+.sbHolderDisabled .sbToggle { 
+}
+.sbOptions { width:96px !important; position:absolute; right:-1px !important; top:32px; padding:0; list-style:none; z-index:1; overflow-y:auto; background:#ffffff; border:1px solid #9c9c9c;/*  -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; */ max-height:inherit !important; margin-top: -1px;
+}
+.sbOptions li { padding:0px 0px 0px 0px;
+}
+.sbOptions a { display:block; font-size:14px; font-family: 'MyriadProSemibold'; color:#000000; line-height:16px; outline:none; padding:6px 0px 6px 20px; border-bottom:none; 
+}
+.sbOptions a:link, .sbOptions a:visited { color:#613c40; text-decoration:none;
+}
+.sbOptions a:hover { color:#00f !important;
+}
+.sbOptions li.last a { border-bottom:none;
+}
+.sbOptions .sbDisabled { display:block; color:#484848; padding:0px 0px 0px 0px; border-bottom:none;
+}
+.sbOptions .sbGroup { display:block; color:#484848; font-weight:normal; padding:0px 0px 0px 0px; border-bottom:none;
+}
+.sbOptions .sbSub { padding-left:0px;
+}
+
+/*............................................ End Select Box ....................................*/
+
+
+.requerd .sbHolder { border:1px solid #c83157;}
+.inc-color .sbHolder { border:1px solid #e6e6e6;} 
+
+
+/*............................................ Start Select Box2 ....................................*/
+.stblk_1 .sbHolder { border:1px solid #e6e6e6;} 
+.stblk_1 .sbOptions { width:96px !important; position:absolute; right:0px !important; top:32px; padding:0; list-style:none; z-index:1; overflow-y:auto; background:#ffffff; border:1px solid #f3f3f3; -webkit-border-radius: 5px 5px 5px 5px;-moz-border-radius: 5px 5px 5px 5px;border-radius: 5px 5px 5px 5px; max-height:inherit !important;}
+
+/*............................................ Start Select Box3 ....................................*/
+.set_order-rt .sbHolder { border:1px solid #e6e6e6;width:226px; margin-right:0px;} 
+.set_order-rt .sbOptions { width:226px !important; position:absolute; right:0px !important; top:32px; padding:0; list-style:none; z-index:1; overflow-y:auto; background:#ffffff; border:1px solid #f3f3f3; -webkit-border-radius: 0 0 5px 5px;-moz-border-radius: 0 0 5px 5px;border-radius: 0 0 5px 5px; max-height:inherit !important;}
+.set_order-rt .sbOptions { width:226px !important; position:absolute; right:0px !important; top:32px; padding:0; list-style:none; z-index:1; overflow-y:auto; background:#ffffff; border:1px solid #f3f3f3; -webkit-border-radius: 5px 5px 5px 5px;-moz-border-radius: 5px 5px 5px 5px;border-radius: 5px 5px 5px 5px; max-height:inherit !important;}
+
+.set_order-rt .sbSelector { width:225px; height:34px; position:absolute; top:0; left:0; display:block; line-height:34px; outline:none; overflow:hidden; text-indent:20px;}
+
+
+.set_order-rt2 .sbHolder { border:1px solid #e6e6e6;width:226px;} 
+.set_order-rt2 .sbOptions { width:226px !important; position:absolute; right:0px !important; top:32px; padding:0; list-style:none; z-index:1; overflow-y:auto; background:#ffffff; border:1px solid #f3f3f3; -webkit-border-radius: 0 0 5px 5px;-moz-border-radius: 0 0 5px 5px;border-radius: 0 0 5px 5px; max-height:inherit !important;}
+.set_order-rt2 .sbOptions { width:226px !important; position:absolute; right:0px !important; top:32px; padding:0; list-style:none; z-index:1; overflow-y:auto; background:#ffffff; border:1px solid #f3f3f3; -webkit-border-radius: 5px 5px 5px 5px;-moz-border-radius: 5px 5px 5px 5px;border-radius: 5px 5px 5px 5px; max-height:inherit !important;}
+.set_order-rt2 .sbSelector { width:225px; height:34px; position:absolute; top:0; left:0; display:block; line-height:34px; outline:none; overflow:hidden; text-indent:20px;}
+
+
+.set_order-rt3 .sbHolder { border:1px solid #e6e6e6;width:183px;} 
+.set_order-rt3 .sbOptions { width:183px !important; position:absolute; right:0px !important; top:32px; padding:0; list-style:none; z-index:1; overflow-y:auto; background:#ffffff; border:1px solid #f3f3f3; -webkit-border-radius: 0 0 5px 5px;-moz-border-radius: 0 0 5px 5px;border-radius: 0 0 5px 5px; max-height:inherit !important;}
+.set_order-rt3 .sbOptions { width:183px !important; position:absolute; right:0px !important; top:32px; padding:0; list-style:none; z-index:1; overflow-y:auto; background:#ffffff; border:1px solid #f3f3f3; -webkit-border-radius: 5px 5px 5px 5px;-moz-border-radius: 5px 5px 5px 5px;border-radius: 5px 5px 5px 5px; max-height:inherit !important;}
+.set_order-rt3 .sbSelector { width:180px; height:34px; position:absolute; top:0; left:0; display:block; line-height:34px; outline:none; overflow:hidden; text-indent:20px;}
+
+
+.left_content_blk2.bbq{
+	height: auto;
+}
+
+/*custom style*/
+
+/* LANGUAGE LIST */
+.LanguageList .sbHolder, .LanguageList .sbSelector{
+	width: 100% !important;
+	height: 21px !important;
+}
+
+.LanguageList .sbHolder{
+	background-color: transparent;
+	border: none;
+	margin: 0;
+}
+.LanguageList .sbSelector:link, .LanguageList .sbSelector:visited, .LanguageList .sbSelector:hover{
+	color: rgba(255, 255, 255, 0.8) !important;
+	text-transform: capitalize;
+}
+.LanguageList .sbSelector{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 21px;
+	text-indent: 0px;
+	font-weight: 600;
+	text-transform: capitalize;
+}
+.LanguageList .sbToggle {
+	background: rgba(0, 0, 0, 0) url("images/arrow-down-1.png") no-repeat scroll 0 0;
+	height: 5px;
+	right: 0;
+	top: 9px;
+	width: 9px;
+}
+.LanguageList .sbOptions{
+	width: auto !important;
+	background-color: #ffffff;
+	border: 1px solid #e5e5e5;
+	right: -6px !important;
+	border-radius: 4px;
+	z-index: 1500;
+	margin-top: 13px;
+}
+.LanguageList .sbOptions li{
+	padding: 4px;
+	border: none;
+	width: 100%;
+}
+.LanguageList .sbOptions li:last-child{
+	border-bottom: none;
+}
+.LanguageList .sbOptions a{
+	color: #969696 !important;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	padding: 6px 12px;
+	text-transform: capitalize;
+}
+.LanguageList .sbOptions a:hover{
+    color: #fff !important;
+    background-color: #84bed6;
+}
+
+/* LIGHT DROP */
+.lightDrop .sbHolder, .lightDrop .sbSelector{
+	width: 100% !important;
+	height: 50px !important;
+}
+
+.lightDrop .sbHolder{
+	background-color: transparent;
+	border: 1px solid #dedede;
+	margin: 20px 0 0 0;
+	border-radius: 4px;
+}
+.lightDrop .sbSelector:link, .lightDrop .sbSelector:visited, .lightDrop .sbSelector:hover{
+	color: #666666 !important;
+	text-transform: capitalize;
+}
+.lightDrop .sbSelector{
+	font-family: 'Open Sans', sans-serif;
+	color: #666666;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 51px;
+	text-indent: 20px;
+}
+.lightDrop .sbToggle {
+	background: rgba(0, 0, 0, 0) url("images/arrow-down-2.png") no-repeat scroll 0 0;
+	height: 6px;
+	right: 20px;
+	top: 21px;
+	width: 9px;
+}
+.lightDrop .sbOptions{
+	width: 100% !important;
+	background-color: #ffffff;
+	border: 1px solid #dedede;
+	right: 0 !important;
+	border-radius: 4px;
+	z-index: 100;
+}
+.lightDrop .sbOptions li{
+	padding: 4px;
+	border-bottom: 1px solid #dedede;
+}
+.lightDrop .sbOptions li:last-child{
+	border-bottom: none;
+}
+.lightDrop .sbOptions a{
+	color: #969696 !important;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	padding: 11px 17px;
+	text-transform: capitalize;
+}
+.lightDrop .sbOptions a:hover{
+    color: #ea7066 !important;
+    background-color: #f5f5f5;
+}
+.lightDrop.addCircle .sbHolder{
+	border-radius: 25px;
+}
+
+/* BOOKING DROP */
+.bookingDrop .sbHolder, .bookingDrop .sbSelector{
+	width: 100% !important;
+	height: 45px !important;
+}
+
+.bookingDrop .sbHolder{
+	background-color: #ffffff;
+	border: none;
+	margin: 0;
+	border-radius: 7px;
+	border: 3px solid #f7e0a5;
+}
+.bookingDrop.alt .sbHolder{
+	border-color: #daeab4;
+}
+.bookingDrop .sbSelector:link, .bookingDrop .sbSelector:visited, .bookingDrop .sbSelector:hover{
+	color: #222222 !important;
+	text-transform: capitalize;
+}
+.bookingDrop .sbSelector{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	line-height: 42px;
+	text-indent: 12px;
+}
+.bookingDrop .sbToggle {
+	background: rgba(0, 0, 0, 0) url("images/check-drop-1.png") no-repeat scroll 0 0;
+	height: 39px;
+	right: 0px;
+	top: 0px;
+	width: 25px;
+}
+.bookingDrop.alt .sbToggle{
+	background: rgba(0, 0, 0, 0) url("images/check-drop-2.png") no-repeat scroll 0 0;
+}
+.bookingDrop .sbOptions{
+	width: 100% !important;
+	background-color: #ffffff;
+	border: 1px solid #e5e5e5;
+	right: 0 !important;
+	border-radius: 4px;
+	z-index: 100;
+	margin-top: -3px;
+}
+.bookingDrop .sbOptions li{
+	padding: 4px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.bookingDrop .sbOptions li:last-child{
+	border-bottom: none;
+}
+.bookingDrop .sbOptions a{
+	color: #969696 !important;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	padding: 11px 17px;
+	text-transform: uppercase;
+}
+.bookingDrop .sbOptions a:hover{
+    color: #f0c24b !important;
+    background-color: #f5f5f5;
+}
+
+/* DROP DOWN STYLING */
+.dropGeneral .sbHolder, .dropGeneral .sbSelector{
+	width: 100% !important;
+	height: 50px !important;
+}
+
+.dropGeneral .sbHolder{
+	background-color: transparent;
+	border: 2px solid #dedede;
+	margin: 0 0 30px 0;
+	border-radius: 0;
+}
+.dropGeneral.border-color-3 .sbHolder{
+	border-color: #ea7066;
+}
+.dropGeneral.grayBg .sbHolder{
+	background-color: #f8f8f8;
+	border-color: #f8f8f8;
+}
+.dropGeneral.bg-color-3 .sbHolder{
+	background-color: #ea7066;
+	border-color: #ea7066;
+}
+.dropGeneral.bg-color-2 .sbHolder{
+	background-color: #b5d56a;
+	border-color: #b5d56a;
+}
+.dropGeneral.border-color-2 .sbHolder{
+	border-color: #b5d56a;
+}
+.dropGeneral.bg-color-5 .sbHolder{
+	background-color: #a597e7;
+	border-color: #a597e7;
+}
+.dropGeneral.border-color-5 .sbHolder{
+	border-color: #a597e7;
+}
+.dropGeneral.bg-color-6 .sbHolder{
+	background-color: #ea77ad;
+	border-color: #ea77ad;
+}
+.dropGeneral.border-color-6 .sbHolder{
+	border-color: #ea77ad;
+}
+.dropGeneral.roundOne .sbHolder{
+	border-radius: 7px;
+}
+.dropGeneral.roundTwo .sbHolder{
+	border-radius: 25px;
+}
+.dropGeneral.roundThree .sbHolder{
+	border-radius: 3px;
+}
+
+
+
+.dropGeneral .sbSelector:link, .dropGeneral .sbSelector:visited, .dropGeneral .sbSelector:hover{
+	color: #666666 !important;
+	text-transform: capitalize;
+}
+.dropGeneral.colorBg .sbSelector:link, .dropGeneral.colorBg .sbSelector:visited, .dropGeneral.colorBg .sbSelector:hover{
+	color: #ffffff !important;
+	text-transform: capitalize;
+}
+
+.dropGeneral .sbSelector{
+	font-family: 'Open Sans', sans-serif;
+	color: #666666;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 48px;
+	text-indent: 20px;
+}
+.dropGeneral.colorBg .sbSelector{
+	color: #ffffff;
+}
+
+.dropGeneral .sbToggle {
+	background: rgba(0, 0, 0, 0) url("images/down-arrow-gray.png") no-repeat scroll 0 0;
+	height: 6px;
+	right: 20px;
+	top: 21px;
+	width: 11px;
+}
+.dropGeneral.colorBg .sbToggle{
+	background: rgba(0, 0, 0, 0) url("images/down-arrow-white.png") no-repeat scroll 0 0;
+}
+
+.dropGeneral .sbOptions{
+	width: 100% !important;
+	background-color: #ffffff;
+	border: 1px solid #dedede;
+	right: 0 !important;
+	border-radius: 4px;
+	z-index: 100;
+}
+.dropGeneral .sbOptions li{
+	padding: 4px;
+	border-bottom: 1px solid #dedede;
+}
+.dropGeneral .sbOptions li:last-child{
+	border-bottom: none;
+}
+.dropGeneral .sbOptions a{
+	color: #969696 !important;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	padding: 11px 17px;
+	text-transform: capitalize;
+}
+.dropGeneral .sbOptions a:hover{
+    color: #ea7066 !important;
+    background-color: #f5f5f5;
+}
+.dropGeneral.addCircle .sbHolder{
+	border-radius: 25px;
+}

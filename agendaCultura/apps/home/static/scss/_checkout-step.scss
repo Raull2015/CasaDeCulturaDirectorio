@@ -1,0 +1,318 @@
+/*================= 13. CHECKOUT STEP ==================*/
+/*========== 13.1 CHECKOUT PROGRESS ==========*/
+.progress-wizard {
+	margin-top: 40px;
+	margin: 40px 0 70px 0;
+	padding: 0 0 30px 0;
+	> .progress-wizard-step{
+		padding: 0; 
+		position: relative; 
+		height: 105px;
+		@include mobile-all{
+			margin-bottom: 30px;			
+		}
+		@include tablet{
+			margin-bottom: 0;
+			height: 100px;			
+		}
+		> .progress {
+			position: relative; 
+			border-radius: 0px; 
+			height: 5px; 
+			box-shadow: none; 
+			margin: 20px 0;
+			> .progress-bar {
+				width:0px; 
+				box-shadow: none; 
+				@include mobile-all{
+					background-color: transparent;
+				}
+				@include tablet{
+					background: $color3;
+				}
+			}
+		}
+		&.complete{
+			> .progress{
+				> .progress-bar {
+					width:100%;
+				}
+			}
+		}
+		&.active {
+			> .progress {
+				> .progress-bar {
+					width:50%;
+				}
+			}
+		}
+	}
+}
+.progress-wizard {
+	> .progress-wizard-step {
+		> .progress {
+			> .progress-bar {
+				width:0%;
+			}
+		}
+	}
+}
+.progress-wizard {
+	> .progress-wizard-step:first-child.active {
+		> .progress {
+			> .progress-bar {width:0%;}
+		}
+	}
+}
+.progress-wizard {
+	> .progress-wizard-step:last-child.active {
+		> .progress {
+			> .progress-bar {width: 100%;}
+		}
+	}
+}
+
+.progress-wizard {
+	> .progress-wizard-step:first-child  {
+		> .progress {left: 50%; width: 50%;}
+	}
+}
+.progress-wizard {
+	> .progress-wizard-step:last-child  {
+		> .progress {width: 50%;}
+	}
+}
+.progress-wizard {
+	> .progress-wizard-step.disabled {
+		a.progress-wizard-dot{ pointer-events: none; }
+	}
+}
+.progress{
+	@include mobile-all{
+		background-color: transparent;
+	}
+	@include tablet{
+    background-color: #f8f8f8;
+	}
+}
+.progress-wizard {
+	> .progress-wizard-step {
+		> .progress-wizard-dot {
+			display: block; 
+			background-color: $white-color; 
+			@include border-radius(100%);
+			@include add-border(5px, $color3, all);
+			padding: 5px;
+			text-align: center;
+			color: $black-color;
+			@include mobile-all{
+				width: 110px;
+				position: relative;
+				top: 0;
+				left: 0;
+				margin: -20px auto 0 auto;
+			}
+			@include tablet{
+				width: auto;
+				position: absolute; 
+				top: -30px;
+				left: 28%; 
+				margin-top: -15px; 
+				margin-left: -15px; 
+			}
+			i{
+				display: block;
+				color: $color3;
+				font-size: 24px;
+				line-height: 90px; 
+				width: 90px;
+				height: 90px;
+				@include border-radius(100%);
+				background-color: #ededed;
+				text-align: center;
+				@include tablet{
+					line-height: 102px; 
+					width: 102px;
+					height: 102px; 
+				}
+			}
+			&:hover{
+				@include opacity(1);
+			}
+		} 
+	}
+}
+.progress-wizard {
+	> .progress-wizard-step.incomplete {
+		> .progress-wizard-dot {
+			border-color: #f8f8f8;
+			color: $text-color;
+			i{
+				color: $text-color;
+			}
+		}
+	}
+}
+.progress-wizard {
+	> .progress-wizard-step.complete {
+		> .progress-wizard-dot{
+			// color: $white-color;
+			i{
+				color: $white-color;
+				background-color: $color3;
+			}
+		}
+	}
+}
+.progress-wizard{
+	.progressInfo{
+		text-align: center;
+		font-family: 'Dosis', sans-serif;
+		font-weight: 600;
+		font-size: 16px;
+		color: #222222;
+		@include tablet{
+			margin: 70px 0 0 0px;
+		}
+		@include desktops{
+			margin: 70px 0 0 -40px;
+		}
+		@include large-desktops{
+			margin: 70px 0 0 -70px;
+		}
+	}
+}
+
+/*========== 13.2 CHECKOUT INFO ==========*/
+.checkoutInfo{
+	&.panel{
+		border: none;
+		@include border-radius(8px);
+	}
+	.panel-heading{
+		height: 80px;
+		padding: 0 30px;
+		@include border-radius(8px 8px 0 0);
+		.panel-title{
+			font-family: 'Dosis', sans-serif;
+			font-weight: 700;
+			font-size: 24px;
+			color: $white-color;
+			line-height: 80px;
+			text-transform: capitalize; 
+		}
+	}
+	.panel-body{
+		@include add-border(1px, #dedede, all);
+		border-top: none;
+		@include border-radius( 0 0 8px 8px);
+		padding: 50px 30px;
+	}
+	.form-group{
+		label{
+			color: #222222;
+			font-weight: 400;
+		}
+		.form-control{
+			height: 45px;
+			border-width: 3px;
+			@include border-radius(7px);
+			margin-bottom: 10px;
+		}
+		textarea.form-control{
+			height: 151px;
+		}
+	}
+	.checkbox{
+		label{
+			color: #222222;
+		}
+		a{
+			&:hover{
+				color: $color3;
+			}
+		}
+	}
+}
+.panel-body .form-group{
+	display:inline;
+}
+
+.continueBtnArea{
+	.btn-primary{
+		background-color: #f8f8f8;
+		color: $text-color;
+		&:hover{
+			background-color: $color3;
+			color: $white-color;
+		}
+	}
+}
+.lowerPartTitle{
+	h4{
+		font-family: 'Dosis', sans-serif;
+		font-weight: 700;
+		font-size: 24px;
+		color: $color3;
+		text-transform: capitalize;
+		margin-top: 15px;
+		margin-left: 15px;
+		span{
+			color: #222222;
+		}
+	}
+	p{
+		margin-bottom: 30px;
+		color: #222222;
+	}
+}
+.blankLabel{
+	height: 16px;
+}
+.alert{
+	&.alert{
+		@include add-border(3px, rgba(96, 166, 98, .5), all);
+		@include border-radius(7px);
+		font-family: 'Dosis', sans-serif;
+		font-weight: 600;
+		font-size: 24px;
+		color: #60a662;
+		padding: 15px 30px;
+		.successAlert{
+			width: 50px;
+			height: 50px;
+			line-height: 50px;
+			@include border-radius(100%);
+			background-color: #60a662;
+			color: $white-color;
+			display: inline-block;
+			text-align: center;
+			margin-right: 24px;
+		}
+		.close{
+			top: 12px;
+			right: 0;
+			color: #60a662;
+			@include opacity(1);
+		}
+	}
+}
+.addressInfo{
+	dt{
+		width: 70px;
+		text-align: left;
+		font-weight: 600;
+		color: #222222;
+	}
+	dd{
+		margin-left: 70px;
+		color: #222222; 
+	}
+}
+.card-img{
+	text-align:center;
+	img{
+		display: inline-block;
+		margin-bottom: 7px;
+	}
+}

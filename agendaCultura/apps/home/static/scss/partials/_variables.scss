@@ -1,0 +1,15 @@
+/*=== VARIABLES ===*/
+$color1:#f0c24b;
+$color2:#b5d56a;
+$color3:#ea7066;
+$color4:#84bed6;
+$color5:#a597e7;
+$color6:#ea77ad;
+$secondary-color:#202020;
+$white-color: #ffffff;
+$black-color: #000000;
+$text-color:#666666;
+
+@function tint($color3, $percentage) {
+  @return mix(white, $color3, $percentage);
+}

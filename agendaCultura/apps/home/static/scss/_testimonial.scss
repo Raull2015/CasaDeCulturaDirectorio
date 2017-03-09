@@ -1,0 +1,52 @@
+/*================= 10 TESTIMONIAL ==================*/
+.testimonialArea{
+	padding-bottom: 0 !important;
+}
+.testimonial-grid{
+	float:left;
+	margin-top: 50px;
+}
+.testimonialContent{
+	width: 100%;
+	height: 250px;
+	display: block;
+	@include border-radius(13px);
+	text-align: center;
+	@include transition(all 0.3s ease-in-out);
+	@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+	padding: 35px;
+	margin-bottom: 80px;
+	span.userSign{
+		width: 100px;
+		height: 100px;
+		@include border-radius(100%);
+		background-color: $white-color;
+		border-width: 6px;
+		border-style: solid;
+		top: -50px;
+		font-size: 30px;
+		line-height: 90px;
+		display: block;
+		position: absolute;
+		left: 50%;
+		margin-left: -50px;
+	}
+	p{
+		color: $white-color;
+		margin: 25px 0;
+		font-size: 16px;
+	}
+	h3{
+		font-weight: 600;
+		color: $white-color;
+		margin: 0;
+		font-size: 16px;
+		line-height: 30px;
+		small{
+			margin: 0;
+			font-size: 14px;
+			text-transform: capitalize;
+			color: rgba($white-color, .8);
+		}
+	}
+}

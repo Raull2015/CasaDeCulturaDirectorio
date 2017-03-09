@@ -1,0 +1,373 @@
+@import 'partials/mixins';
+@import 'partials/variables';
+@import 'partials/media-query';
+
+$color1:#fe7d6f;
+$color2:#f680b8;
+$color3:#54d8c4;
+$color4:#ade122;
+$color5:#d37dfa;
+$color6:#ffb109;
+
+/*================= $color1 ==================*/
+.color-1,
+.courseList .media-body .list-inline.btnPart.btn-yellow > li a.btn-link:hover {
+  color: $color1 !important;
+}
+.navbar-default.lightHeader .navbar-nav > li.active.color-1 > a,
+.navbar-nav > li.color-1 > a:hover span,
+.navbar-nav > li.color-1.singleDrop > .dropdown-menu li.active > a, 
+.navbar-nav > li.color-1.singleDrop > .dropdown-menu li.active li.active a,
+.navbar-nav > li.color-1.singleDrop.open a > span,
+.navbar-default.lightHeader .navbar-nav > li.active.color-1 > a,
+.navbar-nav > li.color-1 > a:hover span,
+.sectionLink:hover .border-color-1,
+.block .list-inline.btn-yellow .btn-link:hover,
+.teamContent:hover .teamInfo h3 a,
+.eventContent .list-inline.btn-yellow .btn-primary:hover{
+  color: $color1;
+}
+.bg-color-1,
+.courseList .media-body .list-inline.btnPart.btn-yellow > li a.btn-primary:hover {
+  background-color: $color1 !important;
+}
+.navbar-nav > li.color-1.singleDrop > .dropdown-menu li a:hover,
+.navbar-nav > li.color-1.singleDrop > .dropdown-menu li.active a:hover,
+.block .list-inline.btn-yellow .btn-primary:hover{
+  background-color: $color1;
+}
+.border-color-1 {
+  border-color: $color1 !important;
+}
+.table-curved > thead:first-child > tr > th:first-child ,
+.cartInfo .table-responsive .table thead tr{
+  border-color:$color1;
+}
+.navbar-nav > li.color-1.dropdown  a:after{
+  border-bottom-color: $color1;
+}
+@media (min-width: 768px) {
+  .navbar-nav > li.color-1 > a > span,
+  .navbar-nav > li.color-1.singleDrop > .dropdown-menu,
+  .navbar-nav > li.color-1.singleDrop > .dropdown-menu li .dropdown-menu,
+  .navbar-nav > li.color-1 > a > span,
+  {
+    border-color: $color1;
+  }
+}
+
+/*================= $color2 ==================*/
+.color-2 ,
+.courseList .media-body .list-inline.btnPart.btn-green > li a.btn-link:hover{
+  color: $color2 !important;
+}
+.navbar-nav > li.dropdown.megaDropMenu.open > a > span ,
+.navbar-default.lightHeader .navbar-nav > li.active.color-2 > a,
+.navbar-nav > li.color-2 > a:hover span,
+.navbar-nav > li.color-2.dropdown.megaDropMenu .dropdown-menu .list-unstyled li.listHeading, 
+.navbar-nav > li.color-2.dropdown.megaDropMenu .dropdown-menu .list-unstyled li:first-child,
+.navbar-nav > li.color-2.dropdown.megaDropMenu .dropdown-menu .list-unstyled li.active > a, 
+.navbar-nav > li.color-2.dropdown.megaDropMenu .dropdown-menu .list-unstyled li.active li.active a,
+.navbar-nav > li.color-2.dropdown.megaDropMenu .open a > span,
+.sectionLink:hover .border-color-2,
+.block .list-inline.btn-green .btn-link:hover,
+.eventContent .list-inline.btn-green .btn-primary:hover,
+.count-down #simple_timer .table-cell.hour .tab-val{
+  color: $color2;
+}
+.bg-color-2,
+.priceRange .progress .progress-bar,
+.priceRange .progress .bulet,
+.courseList .media-body .list-inline.btnPart.btn-green > li a.btn-primary:hover {
+  background-color: $color2 !important;
+}
+.navbar-nav > li.color-2.dropdown.megaDropMenu .dropdown-menu .list-unstyled li a:hover,
+.block .list-inline.btn-green .btn-primary:hover,
+.priceRange .price-slider-inner .ui-widget-content .ui-slider-range,
+.priceRange .price-slider-inner .ui-widget-content .ui-slider-handle,
+.dropGeneral.bg-color-2 .sbHolder {
+  background-color: $color2;
+}
+.border-color-2,
+.priceRange .progress .bulet {
+  border-color: $color2 !important;
+}
+.priceRange .price-slider-inner .ui-widget-content .ui-slider-handle,
+.dropGeneral.border-color-2 .sbHolder,
+.dropGeneral.bg-color-2 .sbHolder {
+  border-color: $color2;
+}
+.navbar-nav > li.color-2.dropdown.megaDropMenu > a:after{
+  border-bottom-color: $color2;
+}
+@media (min-width: 768px) {
+  .navbar-nav > li.color-2 > a > span,
+  .navbar-nav > li.color-2.dropdown.megaDropMenu .dropdown-menu {
+    border-color: $color2;
+  }
+}
+
+/*================= $color3 ==================*/
+.color-3,
+.block .list-inline.btn-red .btn-link:hover,
+.courseList .media-body .list-inline.btnPart.btn-red > li a.btn-link:hover{
+	color: $color3 !important;
+}
+a ,
+.sectionTitle h2,
+.formField .help-block a:hover,
+.tabCommon .media-body .media-heading,
+.pagerArea > .pager li a:hover,
+.pagerArea > .pager li.active a,
+.navbar-default.lightHeader .navbar-nav > li.active.color-3 > a,
+.navbar-nav > li.color-3 > a:hover span,
+.navbar-nav > li.color-3.singleDrop > .dropdown-menu li.active > a, 
+.navbar-nav > li.color-3.singleDrop > .dropdown-menu li.active li.active a,
+.navbar-nav > li.color-3.singleDrop.open a > span,
+.navbar-nav > li.color-4 > a:hover span,
+.copyRightText p a:hover,
+.tp-caption.rs-caption-1 span,
+.sectionLink:hover .border-color-3,
+.schoolInfo h2,
+.teamInfo h3 a:hover ,
+.teamContent.teamAdjust .teamInfo h3 a,
+.teamContent.teamAdjust .teamInfo h3 a:hover,
+.teamStyle .media-body h4 a:hover,
+.teachersInfo h3,
+.eventContent .list-inline.btn-red .btn-primary:hover,
+.isotopeSelector:hover h4,
+.homeContactContent h2,
+.footer-2 .copyRightText p a,
+.blogComments h3,
+.count-down #simple_timer .table-cell.minute .tab-val,
+.priceBtn h5 span,
+.progress-wizard > .progress-wizard-step > .progress-wizard-dot i,
+.checkoutInfo .checkbox a:hover,
+.lowerPartTitle h4 ,
+.product-review .tab-content h3{
+  color: $color3;
+}
+.bg-color-3,
+.courseList .media-body .list-inline.btnPart.btn-red > li a.btn-primary:hover {
+	background-color: $color3 !important;
+}
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus, 
+.btn-primary.active, 
+.btn-primary:active,
+.btn-primary.active.focus,
+.btn-primary.active:focus,
+.btn-primary.active:hover,
+.btn-primary:active.focus,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.open > .dropdown-toggle.btn-primary.focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.open > .dropdown-toggle.btn-primary:hover,
+.backToTop,
+.searchArea > .input-group-addon.button,
+.searchArea > .input-group-addon.button:hover,
+.tabCommon .nav li.active a,
+.pagerArea > .pager li.prev a, .pagerArea > .pager li.next a,
+.navbar-nav > li.color-3.singleDrop > .dropdown-menu li a:hover,
+.navbar-default .navbar-toggle, 
+.navbar-default .navbar-toggle:focus, 
+.navbar-default .navbar-toggle:hover,
+.footerInfo .input-group .input-group-addon,
+.footerInfo .input-group .input-group-addon:hover,
+.footerInfo .input-group .input-group-addon,
+.footerInfo .input-group .input-group-addon:hover,
+.block .list-inline.btn-red .btn-primary:hover,
+.countUpSection .counterInfo,
+.isotopeFilters ul.filter > li.active a,
+.continueBtnArea .btn-primary:hover,
+.dropGeneral.bg-color-3 .sbHolder,
+.progress-wizard > .progress-wizard-step.complete > .progress-wizard-dot i {
+  background-color: $color3;
+}
+@media (min-width: 768px) {
+  .progress-wizard > .progress-wizard-step > .progress > .progress-bar {
+    background: $color3;
+  }
+}
+.border-color-3 {
+	border-color: $color3 !important;
+}
+
+.navbar-default .navbar-toggle, 
+.navbar-default .navbar-toggle:focus, 
+.navbar-default .navbar-toggle:hover,
+.footerInfo .input-group .input-group-addon:hover,
+.progress-wizard > .progress-wizard-step > .progress-wizard-dot,
+.dropGeneral.border-color-3 .sbHolder,
+.dropGeneral.bg-color-3 .sbHolder{
+	border-color: $color3;
+}
+.cart-dropdown .dropdown-menu{
+  border-top-color: $color3;
+}
+.navbar-nav > li.color-3.dropdown.singleDrop .dropdown-menu .dropdown-menu:after{
+  border-right-color: $color3;
+}
+.navbar-nav > li.color-3.dropdown  a:after{
+  border-bottom-color: $color3;
+}
+@media (min-width: 768px) {
+  .navbar-nav > li.color-3 > a > span,
+  .navbar-nav > li.color-3.singleDrop > .dropdown-menu,
+  .navbar-nav > li.color-3.singleDrop > .dropdown-menu li .dropdown-menu {
+    border-color: $color3;
+  }
+}
+.tabCommon.tabLeft .nav li.active a:after {
+  border-color: transparent transparent transparent $color3;
+}
+.cart-dropdown .dropdown-menu:before {
+  border-bottom-color:$color3;
+}
+.sectionTitle h2 span.bg-color-3,
+.sectionTitle h2 span.bg-color-3:after, 
+.sectionTitle h2 span.bg-color-3:before{
+  background-color: lighten( $color3, 7% ) !important;
+}
+
+/*================= $color4 ==================*/
+.color-4 ,
+.courseList .media-body .list-inline.btnPart.btn-sky > li a.btn-link:hover,
+.coursesCounter .counterInner > .btn-primary{
+  color: $color4 !important;
+}
+.navbar-default.lightHeader .navbar-nav > li.active.color-4 > a,
+.navbar-nav > li.color-4.singleDrop > .dropdown-menu li.active > a, 
+.navbar-nav > li.color-4.singleDrop > .dropdown-menu li.active li.active a,
+.navbar-nav > li.color-4.singleDrop.open a > span,
+.sectionLink:hover .border-color-4,
+.block .list-inline.btn-sky .btn-link:hover,
+.eventContent .list-inline.btn-sky .btn-primary:hover ,
+.count-down #simple_timer .table-cell.second .tab-val,
+.product-info .price span{
+  color: $color4;
+}
+.bg-color-4,
+.courseList .media-body .list-inline.btnPart.btn-sky > li a.btn-primary:hover {
+  background-color: $color4 !important;
+}
+.navbar-nav > li.color-4.singleDrop > .dropdown-menu li a:hover,
+.block .list-inline.btn-sky .btn-primary:hover,
+.sticker-round,
+.LanguageList .sbOptions a:hover {
+  background-color: $color4;
+}
+.border-color-4 {
+  border-color: $color4 !important;
+}
+.navbar-nav > li.color-4.dropdown.singleDrop .dropdown-menu .dropdown-menu:after {
+  border-right-color: $color4;
+}
+.navbar-nav > li.color-4.dropdown  a:after{
+  border-bottom-color: $color4;
+}
+@media (min-width: 768px) {
+  .navbar-nav > li.color-4 > a > span,
+  .navbar-nav > li.color-4.singleDrop > .dropdown-menu,
+  .navbar-nav > li.color-4.singleDrop > .dropdown-menu li .dropdown-menu {
+    border-color: $color4;
+  }
+}
+.sectionTitle h2 span.bg-color-4,
+.sectionTitle h2 span.bg-color-4:after, 
+.sectionTitle h2 span.bg-color-4:before{
+  background-color: lighten( $color4, 7% ) !important;
+}
+
+/*================= $color5 ==================*/
+.color-5 ,
+.formPanel.panel .panel-body .media-list.blogListing li .media-heading a:hover,
+.courseList .media-body .list-inline.btnPart.btn-purple > li a.btn-link:hover,
+.rightSidebar .panel .panel-body .media-list.blogListing li .media-heading a:hover,
+.eventSidebar.panel .panel-body .media-list.blogListing li .media-heading a:hover{
+  color: $color5 !important;
+}
+.navbar-default.lightHeader .navbar-nav > li.active.color-5 > a,
+.navbar-nav > li.color-5 > a:hover span,
+.navbar-nav > li.color-5.singleDrop > .dropdown-menu li.active > a, 
+.navbar-nav > li.color-5.singleDrop > .dropdown-menu li.active li.active a,
+.navbar-nav > li.color-5.singleDrop.open a > span ,
+.block .list-inline.btn-purple .btn-link:hover,
+.eventContent .list-inline.btn-purple .btn-primary:hover  {
+  color: $color5;
+}
+.bg-color-5,
+.courseList .media-body .list-inline.btnPart.btn-purple > li a.btn-primary:hover {
+  background-color: $color5 !important;
+}
+.navbar-nav > li.color-5.singleDrop > .dropdown-menu li a:hover,
+.block .list-inline.btn-purple .btn-primary:hover,
+.dropGeneral.bg-color-5 .sbHolder {
+  background-color: $color5;
+}
+.dropGeneral.bg-color-5 .sbHolder,
+.dropGeneral.border-color-5 .sbHolder{
+  border-color: $color5;
+}
+.border-color-5 {
+  border-color: $color5 !important;
+}
+.navbar-nav > li.color-5.dropdown.singleDrop .dropdown-menu .dropdown-menu:after {
+  border-right-color: $color5;
+}
+.navbar-nav > li.color-5.dropdown a:after{
+  border-bottom-color: $color5;
+}
+@media (min-width: 768px) {
+  .navbar-nav > li.color-5 > a > span,
+  .navbar-nav > li.color-5.singleDrop > .dropdown-menu,
+  .navbar-nav > li.color-5.singleDrop > .dropdown-menu li .dropdown-menu {
+    border-color: $color5;
+  }
+}
+
+/*================= $color6 ==================*/
+.color-6,
+.courseList .media-body .list-inline.btnPart.btn-pink > li a.btn-link:hover {
+  color: $color6 !important;
+}
+.navbar-default.lightHeader .navbar-nav > li.active.color-6 > a,
+.navbar-nav > li.color-6 > a:hover span,
+.navbar-nav > li.color-6.singleDrop > .dropdown-menu li.active > a, 
+.navbar-nav > li.color-6.singleDrop > .dropdown-menu li.active li.active a,
+.navbar-nav > li.color-6.singleDrop.open a > span,
+.block .list-inline.btn-pink .btn-link:hover,
+.eventContent .list-inline.btn-pink .btn-primary:hover {
+  color: $color6;
+}
+.bg-color-6,
+.courseList .media-body .list-inline.btnPart.btn-pink > li a.btn-primary:hover {
+  background-color: $color6 !important;
+}
+.navbar-nav > li.color-6.singleDrop > .dropdown-menu li a:hover,
+.block .list-inline.btn-pink .btn-primary:hover,
+.dropGeneral.bg-color-6 .sbHolder {
+  background-color: $color6;
+}
+.border-color-6 {
+  border-color: $color6 !important;
+}
+.table-curved > thead:first-child > tr > th:last-child,
+.dropGeneral.bg-color-6 .sbHolder,
+.dropGeneral.border-color-6 .sbHolder{
+  border-color: $color6;
+}
+.navbar-nav > li.color-6.dropdown.singleDrop .dropdown-menu .dropdown-menu:after {
+  border-right-color: $color6;
+}
+.navbar-nav > li.color-6.dropdown a:after{
+  border-bottom-color: $color6;
+}
+@media (min-width: 768px) {
+  .navbar-nav > li.color-6.singleDrop > .dropdown-menu,
+  .navbar-nav > li.color-6.singleDrop > .dropdown-menu li .dropdown-menu {
+    border-color: $color6;
+  }
+}

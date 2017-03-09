@@ -1,0 +1,27 @@
+.footer-2{
+	.footerInfoArea{
+		border-bottom: 1px solid rgba($black-color, .1);
+	}
+	.footerInfoArea, .copyRight{
+		background:#f8f8f8;
+	}
+	.footerInfo p,
+	.footerList > li > a,
+	.postLink li .media-body .media-heading a,
+	.copyRightText p  {
+	    color: $text-color;
+	}
+	.footerInfo .input-group .form-control {
+	    background-color: #ffffff;
+	}
+	.footerInfo .input-group {
+		@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+		@include transition(all 0.3s ease-in-out);
+		&:hover{
+			@include box-shadow(0, 4px, 0, rgba($black-color, .3) );
+		}
+	}
+	.copyRightText p a {
+	    color: $color3;
+	}
+}

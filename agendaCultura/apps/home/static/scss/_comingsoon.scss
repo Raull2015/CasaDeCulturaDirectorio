@@ -1,0 +1,228 @@
+/*================= 8 COMING SOON ==================*/
+/*=== 8.1 COMING SOON BG ===*/
+.comingSoonBg{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 80px8;
+	overflow: hidden;
+	background: no-repeat center top fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-color: $white-color;
+}
+.comingTitle{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	padding: 35px 0;
+	text-align: center;
+	@include mobile-all{
+		padding: 15px 0;
+	}
+	@include tablet{
+		padding: 35px 0;
+	}
+	img{
+		width: 200px;
+		height: 60px;
+	}
+}
+.comingContent{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	@include mobile-all{
+		width: 100%;
+		min-width: 100%;
+		padding: 0 10px;
+	}
+	@include tablet{
+		width: auto; 
+		min-width: 557px;
+		padding: 0
+	}
+	h1{
+		font-weight: 700;
+		color: #222222;
+		font-size: 4px1;
+		font-family: 'Dosis', sans-serif;
+		text-transform: capitalize;
+		@include mobile-all{
+			font-size: 30px;
+			margin: 20px 0 15px 0;
+		}
+		@include tablet{
+			font-size: 40px;
+			margin: 70px 0 25px 0;
+		}
+	}
+	p{
+		color: $secondary-color;
+		margin-bottom: 20px;
+		@include mobile-all{
+			font-size: 10px;
+			line-height: 15px;
+		}
+		@include tablet{
+			font-size: 24px;
+			line-height: 21px;
+		}
+	}
+	.input-group{
+		margin: 0 auto;
+		margin-bottom: 20px;
+		@include mobile-all{
+			width: 100%;
+		}
+		@include tablet{
+			width: 550px;
+		}
+		.form-control{
+			height: 50px;
+			box-shadow: none;
+			background-color: transparent;
+			border-color: rgba($color5, .5);
+			border-width: 3px; 
+			color: #222222;
+			border-right: none;
+			@include border-radius(8px 0 0 8px);
+			width: 92%;
+		}
+		.input-group-addon{
+			height: 50px;
+			background-color: transparent;
+			color: #888888;
+			@include add-border(3px, rgba($color5, .5), all);
+			border-left: none;
+			@include border-radius(0 8px 8px 0);
+			padding: 6px 10px; 
+			display: inline-block;
+			float: left;
+			width: 8%;
+		}
+	}
+	.list-inline{
+		li{
+			@include tablet{
+				padding: 2px;
+			}
+			@include desktops{
+				padding: 0 2px;
+			}
+			@include large-desktops{
+				padding: 0 5px;
+			}
+			a{
+				display: block;
+				text-align: center;
+				border-radius: 100%;
+				color: $white-color !important;
+				&:hover{
+					@include opacity(1);
+				}
+				@include mobile-all{
+					width: 35px;
+					height: 35px;
+					line-height: 35px;
+					font-size: 14px;
+				}
+				@include tablet{
+					width: 25px;
+					height: 25px;
+					line-height: 25px; 
+					font-size: 10px;
+				}
+				@include desktops{
+					width: 28px;
+					height: 28px;
+					line-height: 28px;
+					font-size: 14px; 
+				}
+				i{
+					margin: 0 !important;
+				}
+			}
+		}
+	}
+}
+.count-down{
+	padding: 0 0 35px 0;
+	#simple_timer{
+		width: 100%;
+		margin: 0 auto;
+		color: $color1;
+		text-align: center;
+		font-family: 'Dosis', sans-serif;
+		.table-cell{
+			display: inline-block;
+			@include mobile {
+				margin: 0 10px;
+			}
+			@include tablet {
+				margin: 0 10px;
+			}
+			@include desktops {
+				margin: 0 10px;
+			}
+			@include large-desktops {
+				margin: 0 12px;
+			}
+			.tab-val{
+				font-weight: 700;
+				display: block;
+				margin-bottom: 20px;
+				@include border-radius(7px);
+				background-color: #f8f8f8;
+				@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+				@include mobile-all {
+					width: 65px;
+					height: 65px;
+					line-height: 65px;
+					font-size: 25px;
+				}
+				@include tablet {
+					width: 85px;
+					height: 85px;
+					line-height: 85px;
+					font-size: 35px;
+				}
+				@include desktops {
+					width: 85px;
+					height: 85px;
+					line-height: 85px;
+					font-size: 35px;
+				}
+				@include large-desktops {
+					width: 120px;
+					height: 120px;
+					line-height: 120px;
+					font-size: 70px;
+				}
+			}
+			.tab-metr{
+				display: none;
+			}
+			&.hour{
+				.tab-val{
+					color: $color2;
+				}
+			}
+			&.minute{
+				.tab-val{
+					color: $color3;
+				}
+			}
+			&.second{
+				.tab-val{
+					color: $color4;
+				}
+			}
+		}
+	}
+}

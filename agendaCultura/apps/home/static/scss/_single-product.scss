@@ -1,0 +1,207 @@
+/*=== 14.1 PRODUCT GALLERY ===*/
+.product-gallery{
+	position:relative;
+	width:100%;
+	margin-bottom:50px;
+	@include  tablet{
+		margin-bottom:0;
+	}
+	.product-gallery-preview{
+		display:block;
+		position:relative;
+		list-style:none;
+		padding:0;
+		width:100%;
+		text-align: center;
+		li{
+			display:block;
+			position:absolute;
+			top:0;
+			left:0;
+			margin:0 0 0 117px;
+			opacity:0;
+			padding:70px 0;
+			@include border-radius(12px);
+			border:4px solid rgba($black-color, .1);
+			@include  mobile-xs{
+				margin:0 0 0 87px;
+			}
+			img{
+				display:inline-block;
+			}
+		}
+		li.current{
+			position:relative;
+			opacity:1
+		}
+	}
+}
+.product-gallery{
+	.product-gallery-thumblist{
+		position:absolute;
+		top: 0;
+		left: 0;
+		width:110px;
+		list-style:none;
+		padding:0;
+		@include  mobile-xs{
+			width:80px;
+		}
+		li{
+			display:block;
+			padding:15px 10px;
+			@include border-radius(12px);
+			border:4px solid rgba($black-color, .1);
+			margin-bottom: 7px;
+			@include  mobile-xs{
+				padding:10px 7px;
+			}
+			a{
+				display:block;
+				text-decoration:none;
+				@include opacity(.3);
+				@include transition(opacity 0.3s);
+			}
+		}
+		li.active>a{
+			@include opacity(1);
+		}
+	}
+}
+.product-info{
+	.product-title{
+		font-family: 'Dosis', sans-serif;
+	    font-size: 40px;
+	    color: #222222;
+	    text-transform: capitalize;
+	    margin-bottom: 50px;
+	    font-weight: 600;
+	}
+	.price span{
+		font-size: 55px;
+	    color: $color4;
+	    margin-bottom: 45px;
+	    del{
+	    	color: #e4e4e4;
+	    	font-size: 45px;
+	    	margin-left: 15px;
+	    }
+	}
+	p{
+		font-size: 15px;
+		margin-bottom: 45px;
+	}
+}
+.add-cart{
+	.count-input{
+		display: inline-block;
+		position:relative;
+		width: 70px;
+		margin-right: 10px;
+		.btn-primary{
+			width: 100%;
+			background: #f8f8f8;
+			color: $text-color;
+			position:relative;
+			width: 100%;
+		    text-align: center;
+		    -webkit-appearance: none;
+		    -moz-appearance: none;
+		    -o-appearance: none;
+		    appearance: none;
+		}
+		.incr-btn{
+			position:absolute;
+			right: 7px;
+			color: $text-color;
+			height: 14px;
+			display: inline-block;
+			line-height: 10px;
+		}
+		.incr-up{
+			top: 8px;
+		}
+		.incr-down{
+			bottom: 9px;
+		}
+	}
+}
+.product-category{
+	color:#222222;
+	font-size: 15px;
+	margin: 45px 0;
+}
+.share{
+	span{
+		font-family: 'Dosis', sans-serif;
+	    font-size: 24px;
+	    color: #222222;
+	    font-weight: 600;
+	    display: inline-block;
+	    margin-right: 10px;
+	}
+	.list-inline{
+		display: inline-block;
+		li{
+			padding: 2px;
+			a{
+				display: block;
+				text-align: center;
+				border-radius: 100%;
+				width: 35px;
+				height: 35px;
+				line-height: 35px;
+				font-size: 14px;
+				color: $white-color;
+				&:hover{
+					@include opacity(1);
+				}
+			}
+		}
+	}
+}
+
+/*=== 14.2 PRODUCT REVIEW ===*/
+.product-review{
+	.tabCommon .nav {
+	    text-align: left;
+	}
+	.tabCommon .tab-content {
+	    padding-top: 25px;
+	    padding-bottom: 5px;
+	}
+	.tabCommon .tab-pane {
+	    border:none;
+	    background:#f8f8f8;
+	    padding:30px 25px;
+	    @include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+	}
+	.tab-content h3{
+		font-family: 'Dosis', sans-serif;
+	    font-size: 24px;
+	    color: $color3;
+	    text-transform: capitalize;
+	    margin-bottom: 20px;
+	    font-weight: 600;
+	}
+	.tab-content p{
+		font-size: 15px;
+		margin-bottom: 25px;
+		color: $text-color;
+	}
+	.para-list.list-unstyled {
+	    margin-bottom: 10px;
+	    display: inline-block;
+	    margin-right: 30px;
+	}
+	.commentsList .media-body .media-heading {
+	    text-transform: uppercase;
+	}
+	.product-rating {
+	    display: inline-block;
+	    color: #ffce2b;
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+	}
+}

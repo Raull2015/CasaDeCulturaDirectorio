@@ -1,0 +1,773 @@
+/*=== 3. HEADER ===*/
+.navbar .container{
+	position:relative;
+}
+.bb-fixed-header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 999;
+}
+/*=== 3.1 TOP COLOR BAR ===*/
+.color-bar{
+	width: 100%;
+	.col-sm-1{
+		height: 3px;
+		text-indent: -99999px;
+	}
+}
+.top-fixed{
+	position: fixed;
+	z-index: 2000;
+}
+
+/*=== 3.2 TOP INFO BAR ===*/
+.top-info-bar{
+	padding: 15px 0 12px 0;
+	display: block;
+	width: 100%;
+	z-index: 1000;
+	position: relative;
+	top: 3px;
+	@include transition(height 0.15s ease);
+	height:53px;
+}
+
+/*=== 3.3 HEADER TRANSPARENT ===*/
+.navbar-default{
+	background-color: transparent;
+	border: none;
+	border-radius: 0;
+	margin-bottom: 0;
+	z-index:700;
+}
+.navbar-header .navbar-brand {
+  float: left;
+  > img{
+  	width: 100%;
+  }
+  @include mobile-all{
+  	height: auto;
+    padding: 15px;
+    width: 160px;
+  }
+  @include tablet{
+  	height: 110px;
+  	padding: 30px 15px;
+  	width: 196px;
+  }
+}
+.navbar-default .navbar-nav{
+	background-color: $white-color;
+	margin-bottom:0;
+	@include mobile-all{
+		margin-top: 0;
+	}
+	@include tablet{
+		height:auto;
+		background-color: transparent;
+	}
+	&.navbar-right{
+		@include mobile-all{
+			margin-right: -15px;
+		}
+		@include tablet{
+			margin-right: 0;
+		}
+	}
+	>li{
+		>a{
+			text-transform: capitalize;
+			font-weight: 600;
+			font-size: 15px;
+			&:hover, &:focus{
+				background-color: transparent !important;
+			}
+			@include mobile-all{
+				color: $black-color;
+				padding: 12px;
+			}
+			@include tablet{
+				margin: 0;
+				padding: 23px 0;
+			}
+			> i{
+				width: 35px;
+				height: 35px;
+				line-height: 35px;
+				text-align: center;
+				border-radius: 100%;
+				display: block;
+				color: $white-color;
+				font-size: 16px;
+				@include mobile-all{
+					display: inline-block;
+					margin: 0 10px 0 0;
+				}
+				@include tablet{
+					display: block;
+					margin: 0 auto 12px auto;
+				}
+			}
+			> span{
+				padding: 0;
+				line-height: 16px;
+				text-align: center;
+				text-transform: capitalize;
+				@include mobile-all{
+					display: inline-block;
+				}
+				@include tablet{
+					width: auto;
+					padding: 0 15px;
+					display: block;
+				}
+				@include desktops{
+					width: 110px;
+					padding: 0;
+				}
+			}
+		}
+		&:last-child{
+			>a{
+				>span{
+					width: auto;
+					@include tablet{
+						padding-left: 15px;
+					}
+				}
+			}
+		}
+		&.active{
+			>a, >a:hover, >a:focus{
+				background-color: transparent;
+				@include opacity(1);
+			}
+		}
+		&.open{
+			>a, >a:hover > a:focus{
+				background-color: transparent;
+			}
+		}
+		&.dropdown{
+			.dropdown-menu{
+				a{
+					padding: 3px 20px;
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+}
+.navbar-nav > li.dropdown.open > a:after{
+	@include mobile-all{
+		display: none;
+	}
+	@include tablet{
+		border-left: 9px solid transparent;
+	    border-right: 9px solid transparent;
+	    margin-left: -10px;
+	    content: "";
+	    display: inline-block;
+	    left: 50%;
+	    position: absolute;
+	    top: 102px;
+	}
+}
+.navbar-nav > li.color-1.dropdown  a:after{
+	border-bottom: 7px solid $color1;
+}
+.navbar-nav > li.color-2.dropdown.megaDropMenu > a:after{
+	border-bottom: 7px solid $color2;
+}
+.navbar-nav > li.color-3.dropdown  a:after{
+	border-bottom: 7px solid $color3;
+}
+.navbar-nav > li.color-4.dropdown  a:after{
+	border-bottom: 7px solid $color4;
+}
+.navbar-nav > li.color-5.dropdown  a:after{
+	border-bottom: 7px solid $color5;
+}
+.navbar-nav > li.color-6.dropdown  a:after{
+	border-bottom: 7px solid $color6;
+}
+.navbar-nav > li.dropdown.singleDrop .dropdown-menu .dropdown-menu:after {
+	@include mobile-all{
+		display: none;
+	}
+	@include tablet{
+		@include add-border(8px, transparent, top-bottom);
+		top: 20%;
+		margin-top: -10px;
+		content: "";
+		display: inline-block;
+		left: -11px;
+		position: absolute;
+	}
+}
+.navbar-nav > li.color-3.dropdown.singleDrop .dropdown-menu .dropdown-menu:after {
+	border-right: 7px solid $color3;
+}
+.navbar-nav > li.color-4.dropdown.singleDrop .dropdown-menu .dropdown-menu:after {
+	border-right: 7px solid $color4;
+}
+.navbar-nav > li.color-5.dropdown.singleDrop .dropdown-menu .dropdown-menu:after {
+	border-right: 7px solid $color5;
+}
+.navbar-nav > li.color-6.dropdown.singleDrop .dropdown-menu .dropdown-menu:after {
+	border-right: 7px solid $color6;
+}
+.navbar-nav > li.color-1.singleDrop > .dropdown-menu li.active a{
+	background-color:transparent;
+}
+.navbar-nav > li.color-1.singleDrop > .dropdown-menu li.active a:hover{
+	background-color:$color1;
+}
+.navbar-nav > li.dropdown.megaDropMenu{
+	position: static;
+	.dropdown-menu{
+		margin: -2px auto 0 auto;
+		right: 15px;
+		@include border-radius(5px);
+		@include mobile-all{
+			left: 0;
+			padding: 0;
+			width: 100%;
+		}
+		@include tablet{
+			left: 15px;
+			padding: 10px 5px 0;
+			width: 720px;
+		}
+		@include desktops{
+			width: 940px;
+		}
+		@include large-desktops{
+			width: 1140px;
+		}
+		.list-unstyled{
+			width: 100%;
+			float: left;
+			@include mobile-all{
+				padding-bottom: 5px;
+			}
+			@include tablet{
+				padding-bottom: 15px;
+			}
+			li{
+				&.listHeading, &:first-child{
+					float: left;
+					font-weight: 700;
+					font-family: 'Dosis', sans-serif;
+					@include mobile-all{
+						padding: 10px 12px 10px 0;
+						font-size: 20px;
+					}
+					@include tablet{
+						padding: 10px 12px;
+						font-size: 24px;
+					}
+				}
+				a{
+					color: $text-color;
+					font-size: 14px;
+					float: left;
+					width: 100%;
+					background-color: transparent;
+					@include mobile-all{
+						padding: 6px 12px;
+					}
+					@include tablet{
+						padding: 10px 12px;
+					}
+					&:hover{
+						padding-left: 22px;
+					}
+				}
+			}
+		}
+	}
+	&.open > a > span{
+		color: $color2 ;
+	}
+}
+.navbar-nav > li.dropdown.singleDrop{
+	.dropdown-menu{
+		@include border-radius(5px);
+		margin-top: 0;
+		padding: 5px;
+		@include mobile-all{
+			min-width: 230px;
+		}
+		@include tablet{
+			min-width: 210px;
+		}
+		@include large-desktops{
+			min-width: 230px;
+		}
+		li{
+			a{
+				color: $text-color;
+				font-size: 14px;
+				float: none;
+				width: 100%;
+				background-color: transparent;
+				@include mobile-all{
+					padding: 6px 12px 6px 24px;
+				}
+				@include tablet{
+					padding: 10px 12px;
+				}
+				&:hover{
+					padding-left: 22px;
+				}
+			}
+			.dropdown-menu{
+				margin-left: 4px;
+				li{
+					a{
+						@include mobile-all{
+							padding: 6px 12px 6px 36px;
+						}
+						@include tablet{
+							padding: 10px 12px;
+						}
+						&:hover{
+							padding-left: 22px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.dropdown-submenu{
+	position:relative;
+	a{
+		position: relative;
+		i{
+			position: absolute;
+			right: 10px;
+			top: 13px;
+		}
+	}
+	>.dropdown-menu{
+		top:0;
+		margin-top: 0 !important;
+		margin-left:-1px;
+		-webkit-border-radius:0 6px 6px 6px;
+		-moz-border-radius:0 6px 6px 6px;
+		border-radius:0 6px 6px 6px;
+		@include mobile{
+			left: 0;
+		}
+		@include tablet{
+			left: 100%;
+		}
+	}
+	&.pull-left{
+		float:none;
+		>.dropdown-menu{
+			left:-100%;
+			margin-left:10px;
+			-webkit-border-radius:6px 0 6px 6px;
+			-moz-border-radius:6px 0 6px 6px;
+			border-radius:6px 0 6px 6px;
+		}
+	}
+}
+.navbar-toggle{
+	margin-top: 20px;
+}
+.navbar-toggle{
+	background-color: $white-color;
+}
+.navbar-default .navbar-nav{
+    height: 340px;
+    overflow-x:hidden; 
+    @include transition(height 0.3s ease);
+    @include tablet{
+    	height: auto;
+    	 overflow-x:visible;
+    	  overflow-y:visible;
+	}
+}
+.navbar-collapse.in {
+    overflow-y: visible;
+}
+.navbar-collapse{
+	@include mobile-all{
+		@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+	}
+	@include tablet{
+		border-color: $white-color;
+		box-shadow:none;
+	}
+	li{
+		&.dropdown{
+			.dropdown-menu{
+				box-shadow:none;
+				@include mobile-all{
+					position: relative;
+					width: 100%;
+					float: left;
+					border: 0;
+					display: block;
+				}
+				@include tablet{
+					position: absolute;
+					float: left;
+					display: none;
+					-webkit-box-shadow: 0 4px 6px rgba(0,0,0,.175);
+    				box-shadow: 0 4px 6px rgba(0,0,0,.175);
+				}
+			}
+			&.open{
+				.dropdown-menu{
+					display: block;
+				}
+			}
+			&.dropdown-submenu{
+				.dropdown-menu{
+					@include mobile-all{
+						position: relative;
+						width: 100%;
+						float: left;
+						border: 0;
+						display: block;
+					}
+					@include tablet{
+						position: absolute;
+						float: left;
+						display: none;
+					}
+				}
+				&.open{
+					.dropdown-menu{
+						display: block;
+					}
+				}
+			}
+		}
+	}
+}
+
+/*=== 3.4 LIGHT HEADER ===*/
+.navbar-default.lightHeader{
+	@include transition(all 0.3s ease-in-out);
+	@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+	background-color: $white-color;
+	//position: relative;
+	
+	@include mobile-all{
+		height: 70px;
+		top: 3px;
+	}
+	@include tablet{
+		height: 110px;
+	}
+	.navbar-nav{
+		> li > a{
+			color: $black-color;
+		}
+		>li.active.color-1 > a{
+			color: $color1;
+		}
+		>li.active.color-2 > a{
+			color: $color2;
+		}
+		>li.active.color-3 > a{
+			color: $color3;
+		}
+		>li.active.color-4 > a{
+			color: $color4;
+		}
+		>li.active.color-5 > a{
+			color: $color5;
+		}
+		>li.active.color-6 > a{
+			color: $color6;
+		}
+	} 
+}
+//menu item color
+
+.navbar-nav > li.color-1{
+	> a > span{
+		@include tablet{
+			@include add-border(2px, $color1, right);
+		}
+	}
+	>a:hover span{
+		color: $color1;
+	}
+	&.singleDrop{
+		>.dropdown-menu{
+			@include tablet{
+				@include add-border(4px, $color1, top);
+			}
+			li{
+				a:hover{
+					background-color: $color1;
+					color: $white-color;
+				}
+				&.active > a, &.active li.active a{
+					color: $color1;
+				}
+				&.active a:hover, &.active li.active a:hover{
+					color: $white-color;
+				}
+				.dropdown-menu{
+					@include tablet{
+						@include add-border(4px, $color1, left);
+					}
+				}
+			}
+		}
+		&.open a > span{
+			color: $color1;
+		}
+	}
+}
+.navbar-nav > li.color-2{
+	> a > span{
+		@include tablet{
+			@include add-border(2px, $color2, right);
+		}
+	}
+	>a:hover span{
+		color: $color2;
+	}
+}
+.navbar-nav > li.color-2.dropdown.megaDropMenu{
+	.dropdown-menu{
+		@include tablet{
+			@include add-border(4px, $color2, top);
+		}
+		.list-unstyled{
+			li{
+				&.listHeading, &:first-child{
+					color: $color2;
+				}
+				a:hover{
+					background-color: $color2;
+					color: $white-color;
+				}
+				&.active > a, &.active li.active a{
+					color: $color2 ;
+				}
+				&.active a:hover, &.active li.active a:hover{
+					color: $white-color;
+				}
+			}
+		}
+	}
+	.open a > span{
+		color: $color2;
+	}
+}
+.navbar-nav > li.color-3{
+	> a > span{
+		@include tablet{
+			@include add-border(2px, $color3, right);
+		}
+	}
+	>a:hover span{
+		color: $color3;
+	}
+	&.singleDrop{
+		>.dropdown-menu{
+			@include tablet{
+				@include add-border(4px, $color3, top);
+			}
+			li{
+				a:hover{
+					background-color: $color3;
+					color: $white-color;
+				}
+				&.active > a, &.active li.active a{
+					color: $color3 ;
+				}
+				&.active a:hover, &.active li.active a:hover{
+					color: $white-color;
+				}
+				.dropdown-menu{
+					@include tablet{
+						@include add-border(4px, $color3, left);
+					}
+				}
+			}
+		}
+		&.open a > span{
+			color: $color3;
+		}
+	}
+}
+.navbar-nav > li.color-4{
+	> a > span{
+		@include tablet{
+			@include add-border(2px, $color4, right);
+		}
+	}
+	>a:hover span{
+		color: $color3;
+	}
+	&.singleDrop{
+		>.dropdown-menu{
+			@include tablet{
+				@include add-border(4px, $color4, top);
+			}
+			li{
+				a:hover{
+					background-color: $color4;
+					color: $white-color;
+				}
+				&.active > a, &.active li.active a{
+					color: $color4 ;
+				}
+				&.active a:hover, &.active li.active a:hover{
+					color: $white-color;
+				}
+				.dropdown-menu{
+					@include tablet{
+						@include add-border(4px, $color4, left);
+					}
+				}
+			}
+		}
+		&.open a > span{
+			color: $color4;
+		}
+	}
+}
+.navbar-nav > li.color-5{
+	> a > span{
+		@include tablet{
+			@include add-border(2px, $color5, right);
+		}
+	}
+	>a:hover span{
+		color: $color5;
+	}
+	&.singleDrop{
+		>.dropdown-menu{
+			@include tablet{
+				@include add-border(4px, $color5, top);
+			}
+			li{
+				a:hover{
+					background-color: $color5;
+					color: $white-color;
+				}
+				&.active > a, &.active li.active a{
+					color: $color5 ;
+				}
+				&.active a:hover, &.active li.active a:hover{
+					color: $white-color;
+				}
+				.dropdown-menu{
+					@include tablet{
+						@include add-border(4px, $color5, left);
+					}
+				}
+			}
+		}
+		&.open a > span{
+			color: $color5;
+		}
+	}
+}
+.navbar-nav > li.color-6{
+	> a:hover  span{
+		color: $color6;
+	}
+	&.singleDrop{
+		>.dropdown-menu{
+			@include tablet{
+				@include add-border(4px, $color6, top);
+			}
+			li {
+				a:hover{
+					background-color: $color6;
+					color: $white-color;
+				}
+				&.active > a, &.active li.active a{
+					color: $color6 ;
+				}
+				&.active a:hover, &.active li.active a:hover{
+					color: $white-color;
+				}
+				.dropdown-menu{
+					@include tablet{
+						@include add-border(4px, $color6, left);
+					}
+				}
+			}
+		}
+		&.open a > span{
+			color: $color6;
+		}
+	}
+}
+.navbar-nav{
+	> li:last-child{
+		> a{
+			> span{
+				border-right: none;
+			}
+		}
+	}
+}
+.navbar-right{
+	margin-right: 0;
+}
+.navbar-default{
+	.navbar-toggle, .navbar-toggle:focus, .navbar-toggle:hover {
+		background-color: $color3 ;
+		border-color: $color3;
+		@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+		.icon-bar{
+			background-color: $white-color;
+		}
+	}
+}
+.bb-fixed-header .navbar-nav > li.dropdown.open > a:after{
+	@include tablet{
+	    top: 83px;
+	}
+}
+#menuBar{
+	&.bb-fixed-header{
+		@include transition(all 0.3s ease-in-out);
+		z-index: 1030 !important;
+		top: 3px;
+		@include mobile{
+			height: 70px;
+		}
+		@include tablet{
+			height: 90px;
+		}
+		.navbar-brand{
+			@include mobile{
+				height: auto;
+			    padding: 15px;
+			    width: 160px;
+			}
+			@include tablet{
+				height: auto;
+			    padding: 20px 15px;
+			    width: 190px;
+			}
+		}
+		.navbar-nav > li > a{
+			@include mobile-all{
+				padding: 12px;
+			}
+			@include tablet{
+				padding: 13px 0;
+			}
+		}
+	}
+}

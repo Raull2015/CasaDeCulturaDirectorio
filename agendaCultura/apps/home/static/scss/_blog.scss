@@ -1,0 +1,137 @@
+/*=== 7. BLOG ===*/
+.singleBlog{
+	p, .blogInfo{
+		margin-bottom: 30px !important;
+	}
+}
+.thumbnailContent{
+	> .caption{
+		&.singleBlog{
+			h3{
+				line-height: 34px;
+				font-family: 'Dosis', sans-serif;
+				text-transform: capitalize;
+				font-weight: 700;
+				margin: 0 0 20px 0;
+				width: 100%;
+				text-overflow: ellipsis;
+				white-space: normal;
+				overflow: hidden;
+				display: block;
+			}
+		}
+	}
+}
+.socailLink{
+	&.list-inline{
+		text-align: left;
+		li{
+			@include tablet{
+				padding: 2px;
+			}
+			@include desktops{
+				padding: 0 2px;
+			}
+			@include large-desktops{
+				padding: 0 5px;
+			}
+			a{
+				display: block;
+				text-align: center;
+				border-radius: 100%;
+				color: $white-color !important;
+				&:hover{
+					@include opacity(1);
+				}
+				@include mobile-all{
+					width: 35px;
+					height: 35px;
+					line-height: 35px;
+					font-size: 14px;
+				}
+				@include tablet{
+					width: 25px;
+					height: 25px;
+					line-height: 25px; 
+					font-size: 10px;
+				}
+				@include desktops{
+					width: 28px;
+					height: 28px;
+					line-height: 28px;
+					font-size: 14px; 
+				}
+				i{
+					margin: 0 !important;
+				}
+			}
+		}
+	}
+}
+
+.blogComments{
+	background-color: #f8f8f8;
+	padding: 15px;
+	@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+	@include border-radius(9px);
+	margin-bottom: 20px;
+	h3{
+		font-family: 'Dosis', sans-serif;
+		font-size: 24px;
+		color: $color3;
+		font-weight: 700;
+		text-transform: capitalize;
+		margin-bottom: 30px;
+	}
+}
+.commentsList{
+	.media{
+		padding-bottom: 20px;
+		margin-top: 20px; 
+		@include add-border(1px, #dedede, bottom );
+	}
+	li:last-child{
+		border: none;
+	}
+	.media-left{
+		padding-right: 25px;
+		img{
+			width: 50px;
+			height: 50px;
+			margin-bottom: 15px;
+		}
+	}
+	.media-body{
+		overflow: visible;
+		padding:0;
+		position: relative;
+		.media-heading{
+			font-weight: 600;
+			font-size: 14px;
+			color: $text-color;
+			margin-bottom: 15px;
+			text-transform: capitalize;
+		}
+		p{
+			font-size: 13px;
+			margin-bottom: 20px;
+		}
+	}
+	cite {
+	    display: block;
+	    font-size: 14px;
+	    color: #999;
+	    font-weight: normal;
+	    font-style: normal;
+	    margin-top: 9px;
+	}
+	cite:before {
+	    display: inline-block;
+	    vertical-align: middle;
+	    content: "";
+	    width: 20px;
+	    height: 1px;
+	    background-color: #999;
+	    margin-right: 9px;
+	}
+}

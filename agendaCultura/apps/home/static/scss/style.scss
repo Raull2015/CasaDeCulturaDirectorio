@@ -1,0 +1,92 @@
+// scss file
+
+/* ====== index =====
+1. COMMON
+2. UI KIT
+	2.1 BUTTON
+	2.2 SECTION TITLE
+	2.3 FORM
+	2.4 PAGINATION
+	2.5 ACCORDION
+	2.6 TABS
+	2.7 DATEPICKER
+	2.8 THUMBNAIL
+	2.9 MODAL
+	2.10 PANEL
+	2.11 PRICE RANGE SLIDER
+	2.12 LIST
+	2.13 CART
+	2.14 PAGER
+	2.15 Extra
+3. 1.1 HEADER 
+	3.1 TOP COLOR BAR
+	3.2 TOP INFO BAR
+	3.3 HEADER TRANSPARENT
+	3.4 LIGHT HEADER
+   1.2 HEADER V3
+4. 1.1 FOOTER
+	4.1 FOOTER INFO
+	4.2 COPY RIGHT
+   1.2 FOOTER V2
+5. 1.1 HOME
+	5.1 BANNER
+	5.2 FEATURES SECTION
+	5.3 PROMOTION
+	5.4 ABOUT SCHOOL
+	5.5 SERVICES SECTION
+	5.7 TEAM SECTION
+	5.8 EVENT SECTION
+	5.9 COUNT UP SECTION
+	5.10 HOME GALLERY SECTION
+	5.11 COMMENT SECTION
+	5.12 MAP AREA SECTION
+	5.13 HOME CONTACT SECTION
+   1.2 HOME V2
+    5.1 BANNER
+    5.2.BANNER BOTTOM
+    5.3 PRODUCT SECTION
+    5.4 BRAND SECTION
+   1.2 HOME V3
+    5.1 BANNER
+6. 6. COURSE
+	6.1 COURSE LEFT SIDEBAR
+	6.2 COURSE LIST
+	6.3 COURSE RIGHT SIDE BAR
+	6.4 COURSE COUNTER
+7. BLOG
+8. COMING SOON
+9. SERVICES
+	9.1 SERVICES STYLE
+10. TESTIMONIAL
+11. CART PAGE
+12. PRICING TABLE
+13. CHECKOUT STEP
+	13.1 CHECKOUT PROGRESS
+	13.2 CHECKOUT INFO
+14. SINGLE PRODUCT
+    14.1 PRODUCT GALLERY
+    14.2 PRODUCT REVIEW
+15. CATEGORY
+===================== */
+
+@import 'partials/mixins';
+@import 'partials/variables';
+@import 'partials/media-query';
+@import 'reset';
+@import 'common';
+@import 'ui-kit';
+@import 'header';
+@import 'footer';
+@import 'home';
+@import 'homev2';
+@import 'homev3';
+@import 'course';
+@import 'blog';
+@import 'comingsoon';
+@import 'services';
+@import 'testimonial';
+@import 'cart';
+@import 'pricing-table';
+@import 'checkout-step';
+@import 'category';
+@import 'single-product';

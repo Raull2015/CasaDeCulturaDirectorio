@@ -20,6 +20,12 @@ class CapsulaManager(models.Manager):
         qs = super(CapsulaManager, self).get_queryset()
         return qs.filter(fechaPublicacion=date.today())
 
+class Imagenes(models.Model):
+    imagen = models.ImageField(upload_to='imgActividad/', default='imgActividad/default.jpg')
+    objects = models.Manager()
+    class Meta:
+        verbose_name = 'imagen'
+        verbose_name_plural = 'imagenes'
 
 class Categoria(models.Model):
     categoria = models.CharField(max_length=100)
@@ -53,14 +59,14 @@ class Rol(models.Model):
         verbose_name_plural = 'roles'
 
 class Perfil(models.Model):
-    nombreArtista = models.CharField(max_length=100)
+    nombreArtista = models.CharField(max_length=100, null=True)
     nombreReal = models.CharField(max_length=65)
     imagen = models.ImageField(upload_to='imgPerfil/', default='imgPerfil/default.jpg')
     sexo = models.SmallIntegerField(default=0)
     fechaNacimiento = models.DateField('Fecha de nacimiento')
     telefono = models.CharField(max_length=16)
     email= models.EmailField('Correo')
-    descripcion = models.CharField(max_length=200)
+    descripcion = models.CharField(max_length=200, null = True)
     fechaRegistro = models.DateField('Fecha de registro', auto_now_add=True)
     visitas = models.IntegerField(default=0)
     autorizado = models.SmallIntegerField(default=0)
@@ -89,7 +95,8 @@ class Actividad(models.Model):
     fechaRealizacion = models.DateField('Fecha a realizar')
     hora = models.TimeField('Hora de Realizacion')
     descripcion = models.TextField(max_length=800)
-    imagen = models.ImageField(upload_to='imgActividad/', default='imgActividad/default.jpg')
+    imagen = models.ImageField(upload_to='imgActividad/', default='imgActividad/default.jpg')  #Temporal
+    imagenes = models.ManyToManyField(Imagenes)                                                #Real
     fechaPublicacion = models.DateField('Fecha de publicacion')
     puntuacion = models.IntegerField(default=0)
     visitas = models.IntegerField(default=0)
@@ -128,6 +135,7 @@ class Capsulas(models.Model):
     fechaPublicacion = models.DateField('Fecha de publicacion')
     texto = models.TextField(max_length=225)
     autorizado = models.SmallIntegerField(default=1)
+    imagen = models.ImageField(upload_to='imgCapsula/', default='imgCapsula/default.jpg')
     usuario = models.ForeignKey(User)
 
     objects = models.Manager()
@@ -140,3 +148,24 @@ class Capsulas(models.Model):
     class Meta:
         verbose_name = 'capsula'
         verbose_name_plural = 'capsulas'
+
+#Numero de visitas que recibe el Perfil
+class VisitasPerfil(models.Model):
+    cantidad = models.IntegerField(default=0)
+    fecha = models.DateField()
+    perfil = models.ForeignKey(Perfil)
+
+    class Meta:
+        verbose_name = 'visitaperfil'
+        verbose_name_plural = 'visitasperfiles'
+        ordering = ['-fecha']
+
+#   Numero de Visitas que recibe una Actividad
+class VisitasActividad(models.Model):
+    cantidad = models.IntegerField(default=0)
+    fecha = models.DateField()
+    actividad = models.ForeignKey(Actividad)
+
+    class Meta():
+        verbose_name = 'visitactividad'
+        verbose_name_plural = 'visitasactividades'

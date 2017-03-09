@@ -4,7 +4,7 @@ from django.db.models.base import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import DetailView, View
 from django.shortcuts import render, get_object_or_404, render_to_response
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.template import RequestContext
 from django.urls import reverse
@@ -45,7 +45,7 @@ def home(request):
         'admin' : admin,
         'user' : request.user
     }
-    return render(request, 'inicio.html', context)
+    return render(request, 'index-v1.html', context)
 
 def perfil_list(request):
     limit = 10
@@ -162,28 +162,36 @@ class EventosDetailView(DetailView):
         return context
 
 def perfil_create_p1(request):
-    mensaje = None
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        password_confirm = request.POST['password_confirm']
+        response_data = {}
+        username = request.POST['usuario']
+        password = request.POST['contrasenia']
+        password_confirm = request.POST['r_contrasenia']
+        nombre = request.POST['nombre']
+        email = request.POST['email']
+        telefono = request.POST['telefono']
+        nacimiento = request.POST['nacimiento']
         try:
             User.objects.get(username=username)
-            mensaje = 'El nombre de usuario ya existe'
-            form = UsuarioForm()
+            response_data['existe'] = True
+            return JsonResponse(response_data)
 
         except ObjectDoesNotExist :
             estado, mensaje = validar_password(username, password,password_confirm)
             if estado:
-                request.session['username'] = username
-                request.session['password'] = password
-                return perfil_create_p2(request,user=True)
-            form = UsuarioForm()
-    else:
-        form = UsuarioForm()
+                nuevo_usuario = User.objects.create_user(username=username, email='xela@casacult.com', password=password)
+                perfil = Perfil(nombreReal = nombre, email=email, telefono=telefono,fechaNacimiento= nacimiento)
+                perfil.rol = get_object_or_404(Rol, nombreRol='Artista')
+                perfil.user = nuevo_usuario
+                perfil.save()
+                return JsonResponse(response_data)
+            else:
+                response_data['error'] = True
+                response_data['mensaje'] = mensaje
+                return JsonResponse(response_data)
 
-    context = {'form': form, 'mensaje': mensaje }
-    return render(request, 'crear_perfil_p1.html', context)
+    else:
+        return HttpResponseBadRequest()
 
 def perfil_create_p2(request, user=None):
     print user
@@ -374,37 +382,33 @@ def administracion(request):
     return render(request, 'Admi.html', context)
 
 def ingresar(request):
-    next = ""
-    error = False
-
     if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('home:perfil',kwargs={'username': request.user.username,}))
+        return HttpResponseRedirect(reverse('home:home'))
 
-    if request.GET:
-        next = request.GET['next']
-        print next
+
+    if request.method == 'GET':
+        response_data = {}
+        return HttpResponseRedirect(reverse('home:home'))
+        #return JsonResponse(response_data)
 
     if request.method == 'POST':
+        response_data = {}
+
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.perfil.autorizado == True:
                 login(request, user)
-                if next == "":
-                    return HttpResponseRedirect(reverse('home:home'))
-                else:
-                    return HttpResponseRedirect(next)
+                return JsonResponse(response_data)
             else:
-                return mensaje(request, 'Tu usuario aun no ha sido autorizado...')
-        else:
-            error = True
-            form = LoginForm()
-    else:
-        form = LoginForm()
+                response_data['autorizado'] = False
+                return JsonResponse(response_data)
+        #else:
+        #    error = True
+    return HttpResponseBadRequest()
+    #context = {'create': True}
 
-    context = {'form': form, 'create': True, 'next':next, 'error':error,}
-    return render(request, 'login.html', context)
 
 @login_required
 def cerrar_sesion(request):

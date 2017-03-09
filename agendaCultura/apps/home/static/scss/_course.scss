@@ -1,0 +1,604 @@
+/*================= 6. COURSE ==================*/
+
+/*=== 6.1 COURSE LEFT SIDEBAR ===*/
+.courseSidebar{
+	border: none;
+	@include border-radius(7px);
+	.panel-heading{
+		@include border-radius(7px 7px 0 0);
+		.panel-title{
+			font-size: 24px;
+			color: $white-color;
+			text-transform: capitalize;
+			font-family: 'Dosis', sans-serif;
+		}
+	}
+	.panel-body{
+		@include add-border(1px, #dedede, all);
+		border-top: none;
+		@include border-radius(0 0 7px 7px);
+		>.input-group{
+			@include add-border(1px, #dedede, bottom);
+			margin: 20px 0 10px 0;
+			padding-bottom: 10px;
+			.form-control{
+				height: 49px;
+				border: none;
+				padding: 0 12px 0 12px;
+				color: $text-color;
+			}
+			.input-group-addon{
+				background-color: transparent;
+				padding: 0;
+				border: none;
+				.btn-primary{
+					width: 75px;
+					padding: 0;
+				}
+			}
+		}
+		.categoryItem{
+			li{
+				a{
+					display: block;
+					width: 100%;
+					height: 50px;
+					line-height: 50px;
+					font-weight: 600;
+					color: $text-color; 
+					font-size: 14px;
+					@include add-border(1px, #dedede, all);
+					@include border-radius(12px);
+					margin: 5px 0;
+					text-indent: 20px;
+					float: left;
+				}
+			}
+		}
+	}
+}
+
+.priceRange{
+	.progress{
+		margin: 20px 0 25px 0; 
+		height: 4px;
+		background-color: #252525;
+		position: relative;
+		overflow: visible;
+		.progress-bar{
+			background-color: $color2 !important;
+		}
+		.bulet{
+			width: 16px;
+			height: 16px;
+			background-color: $color2 !important;
+			@include add-border(2px, $color2 !important, all);
+			@include border-radius(100%);
+			left: 0px;
+			top: -5px;
+			position: absolute;
+			&.next{
+				left: 60px;
+			}
+		}
+	}
+	.priceLabel{
+		float: right;
+		line-height: 30px;
+		color: $secondary-color;
+		@include mobile{
+			font-size: 14px;
+		}
+		@include tablet{
+			font-size: 5px;
+		}
+		@include desktops{
+			font-size: 14px;
+		}
+	}
+}
+.priceRange{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	float: left;
+	margin-top: 20px;
+	.price-slider-inner{
+		display: block;
+		margin: 15px 0 25px 0;
+		.amount-wrapper{
+			position: absolute;
+			bottom: 14px;
+			right:0;
+			font-size: 14px;
+			width: 120px;
+			input{
+				background-color: transparent;
+				border: 0;
+				width: 28%;
+				font-size: 14px;
+				color: $text-color;
+				font-weight: 400;
+				text-align: right;
+			}
+		}
+		.ui-widget-content{
+			background: none;
+			border: 0;
+			background-color: #eeeeee;
+			height: 5px;
+			clear: both;
+			border-radius: 0;
+			@include border-radius(2px);
+			margin: 0 5px 0 9px;
+			.ui-slider-range{
+				background-color: $color2;
+				border: none;
+				border-radius: 0;
+			}
+			.ui-slider-handle{
+				border-radius: 50%;
+				@include border-radius(3px);
+				background: none;
+				@include add-border(3px, $color2, all);
+				background-color: $color2;
+				top: -6px;
+				width: 16px;
+				height: 16px;
+				outline: none;
+			}
+		}
+	}
+}
+/*=== 6.2 COURSE LIST ===*/
+.courseList{
+	background-color: #f8f8f8;
+	@include border-radius(7px);
+	@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+	margin-bottom: 30px;
+	border: none;
+	.media-left{
+		position: relative;
+		padding: 0;
+		float: left;
+		@include mobile-all{
+			margin: 0 0 5px 0;
+			border-right: none;
+			display: block;
+			width: 100%;
+		}
+		@include tablet{
+			margin: 0 0 5px 0;
+			border-right: none;
+			display: block;
+			width: 100%;
+		}
+		@include desktops{
+			margin: 0 25px 0 0;
+			display: inline-block;
+			width: 50%;
+		}
+		img{
+			width: 100%;
+		}
+		.sticker{
+			position: absolute;
+			left: 20px;
+			top: 20px;
+			width: 65px;
+			height: 65px;
+			@include border-radius(100%);
+			text-align: center;
+			line-height: 65px;
+			color: $white-color;
+			font-weight: 600;
+			font-size: 24px;
+		}
+	}
+	.media-body{
+		@include mobile-all{
+			padding: 20px;
+		}
+		@include tablet{
+			padding: 20px;
+		}
+		@include desktops{
+			padding: 0;
+		}
+		.media-heading{
+			a{
+				font-family: 'Dosis', sans-serif;
+				text-transform: capitalize;
+				font-weight: 700;
+				line-height: 20px;
+				margin: 0 0 20px 0;
+				width: 100%;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				display: block;
+				@include mobile-all{
+					margin: 0 0 20px 0;
+				}
+				@include tablet{
+					margin: 15px 0;
+				}
+			}
+		}
+		.list-inline{
+			margin-bottom: 15px;
+			li{
+				line-height: 21px;
+				color: $text-color;
+				margin-bottom: 5px;
+				i{
+					margin-right: 6px;
+				}
+			}
+		}
+		.list-inline.btnPart{
+			margin-bottom: 0;
+			>li{
+				a{
+					&.btn-primary{
+						font-size: 14px;
+						background-color: $white-color;
+						color: $text-color;
+						&:hover{
+							color: $white-color;
+						}
+					}
+					&.btn-link{
+						text-transform: capitalize;
+						font-size: 14px;
+						color: $text-color;
+						font-weight: 600;
+						text-decoration: underline !important;
+					}
+				}
+			}
+			&.btn-yellow{
+				>li{
+					a{
+						&.btn-primary{
+							&:hover{
+								background-color: $color1 !important;
+							}
+						}
+						&.btn-link{
+							&:hover{
+								color: $color1 !important;
+							}
+						}
+					}
+				}
+			}
+			&.btn-green{
+				>li{
+					a{
+						&.btn-primary{
+							&:hover{
+								background-color: $color2 !important;
+							}
+						}
+						&.btn-link{
+							&:hover{
+								color: $color2 !important;
+							}
+						}
+					}
+				}
+			}
+			&.btn-red{
+				>li{
+					a{
+						&.btn-primary{
+							&:hover{
+								background-color: $color3 !important;
+							}
+						}
+						&.btn-link{
+							&:hover{
+								color: $color3 !important;
+							}
+						}
+					}
+				}
+			}
+			&.btn-sky{
+				>li{
+					a{
+						&.btn-primary{
+							&:hover{
+								background-color: $color4 !important;
+							}
+						}
+						&.btn-link{
+							&:hover{
+								color: $color4 !important;
+							}
+						}
+					}
+				}
+			}
+			&.btn-purple{
+				>li{
+					a{
+						&.btn-primary{
+							&:hover{
+								background-color: $color5 !important;
+							}
+						}
+						&.btn-link{
+							&:hover{
+								color: $color5 !important;
+							}
+						}
+					}
+				}
+			}
+			&.btn-pink{
+				>li{
+					a{
+						&.btn-primary{
+							&:hover{
+								background-color: $color6 !important;
+							}
+						}
+						&.btn-link{
+							&:hover{
+								color: $color6 !important;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	&.couresListPage{
+		.media-left{
+			@include mobile-all{
+				margin: 0 0 5px 0;
+				border-right: none;
+				display: block;
+				width: 100%;
+			}
+			@include tablet{
+				margin: 0 0 5px 0;
+				border-right: none;
+				display: block;
+				width: 100%;
+			}
+			@include desktops{
+				margin: 0 25px 0 0;
+				display: inline-block;
+				width: 50%;
+			}
+			@include large-desktops{
+				margin: 0 25px 0 0;
+				display: inline-block;
+				width: auto;
+			}
+		}
+	}
+}
+.blog-full .courseList .media-left {
+    @include desktops{
+		width: 35%;
+	}
+}
+.blog-full .courseList .media-body {
+    @include desktops{
+		padding-right: 20px;
+	}
+}
+/*=== 6.3 COURSE RIGHT SIDE BAR ===*/
+.rightSidebar{
+	.panel{
+		border: 0;
+		margin-bottom: 30px;
+		.panel-heading{
+			@include border-radius(7px 7px 0 0);
+			.panel-title{
+				font-size: 24px;
+				color: $white-color;
+				text-transform: capitalize;
+				font-weight: 700;
+				font-family: 'Dosis', sans-serif;
+			}
+		}
+		.panel-body{
+			@include add-border(1px, #dedede, all );
+			border-top: 0;
+			@include border-radius(0 0 7px 7px);
+			padding: 0;
+			.media-list{
+				li{
+					padding: 20px 0 20px 20px;
+					@include add-border(1px, #dedede, bottom );
+					margin: 0;
+					&:last-child{
+							border: 0;
+					}
+					.media-left.iconContent{
+						width: 45px;
+						height: 45px;
+						line-height: 45px;
+						text-align: center;
+						color: $white-color;
+						@include border-radius(100%);
+						display: inline-block;
+						float: left;
+						padding: 0;
+						margin-right: 20px;
+						font-size: 16px;
+					}
+					.media-body.iconContent{
+						.media-heading{
+							font-family: 'Dosis', sans-serif;
+							font-size: 20px;
+							font-weight: 700;
+						}
+						p{
+							font-weight: 600;
+							margin-bottom: 0;
+						}
+					}
+				}
+				&.blogListing{
+					li{
+						.media-heading{
+							a{
+								font-weight: 600;
+								font-size: 14px;
+								text-transform: capitalize;
+								color: $text-color;
+								&:hover{
+									color: $color5 !important;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	>.btnPart{
+		margin-bottom: 30px; 
+	}
+}
+.eventSidebar{
+	&.panel{
+		border: 0;
+		margin-bottom: 30px;
+		.panel-heading{
+			@include border-radius(7px 7px 0 0);
+			.panel-title{
+				font-size: 24px;
+				color: $white-color;
+				text-transform: capitalize;
+				font-weight: 700;
+				font-family: 'Dosis', sans-serif;
+			}
+		}
+		.panel-body{
+			@include add-border(1px, #dedede, all );
+			border-top: 0;
+			@include border-radius(0 0 7px 7px);
+			.media-list{
+				li{
+					padding: 10px 0;
+					margin: 0;
+					.media-left.iconContent{
+						width: 45px;
+						height: 45px;
+						line-height: 45px;
+						text-align: center;
+						color: $white-color;
+						@include border-radius(100%);
+						display: inline-block;
+						float: left;
+						padding: 0;
+						margin-right: 20px;
+						font-size: 16px;
+					}
+					.media-body.iconContent{
+						.media-heading{
+							font-family: 'Dosis', sans-serif;
+							font-size: 20px;
+							font-weight: 700;
+						}
+						p{
+							font-weight: 600;
+							margin-bottom: 0;
+						}
+					}
+				}
+				&.blogListing{
+					li{
+						.media-heading{
+							a{
+								font-weight: 600;
+								font-size: 14px;
+								text-transform: capitalize;
+								color: $text-color;
+								&:hover{
+									color: $color5 !important;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/*=== 6.4 COURSE COUNTER ===*/
+.coursesCounter{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 330px;
+	overflow: hidden;
+	background:url(../img/course-single/course-count.jpg) no-repeat center top;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	@include border-radius(7px);
+	padding: 10px;
+	.counterInner{
+		width: 100%;
+		height: 100%;
+		display: block;
+		@include add-border(1px, $white-color, all);
+		@include border-radius(7px);
+		text-align: center;
+		h3{
+			font-family: 'Dosis', sans-serif;
+			font-size: 26px;
+			font-weight: 700;
+			color: $white-color;
+			text-transform: capitalize;
+			text-align: center;
+			margin: 40px 0;
+		}
+		>.btn-primary{
+			background-color: $white-color;
+			color: $color4 !important;
+		}
+	}
+}
+
+.coursesCountStart{
+	padding: 0 0 35px 0;
+	.courseCountTimer{
+		width: 100%;
+		margin: 0 auto;
+		color: $white-color;
+		text-align: center;
+		.table-cell{
+			display: inline-block;
+			margin: 0 5px;
+			.tab-val{
+				width: 45px;
+				height: 45px;
+				line-height: 45px;
+				font-size: 20px;
+				font-weight: 700;
+				display: block;
+				margin-bottom: 5px;
+				@include border-radius(7px);
+				background-color: rgba($white-color, .1);
+				@include add-border(1px, $white-color, all);
+			}
+			.tab-metr{
+				font-size: 12px;
+				font-weight: 400;
+				color: $white-color;
+				text-transform: capitalize;
+				font-weight: 600;
+			}
+		}
+	}
+}

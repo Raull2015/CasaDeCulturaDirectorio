@@ -1,0 +1,83 @@
+/*================= 9 SERVICES ==================*/
+/*=== 9.1 SERVICES STYLE ===*/
+.servicesStyle{
+	margin-bottom: 40px;
+	>.media-body{
+		width: auto;
+		display: inherit;
+		>.media-heading{
+			text-transform: capitalize;
+			font-family: 'Dosis', sans-serif;
+			font-size: 24px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+	}
+	.media-left{
+		width: 76px;
+		height: 76px;
+		padding: 6px;
+		margin-right: 20px;
+		display: inline-block;
+		float: left;
+		@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+		@include border-radius(7px);
+		>i{
+			width:62px;
+			height:62px;
+			line-height:62px;
+			@include border-radius(100%);
+			@include add-border(2px, $white-color, all);
+			text-align: center;
+			font-size: 22px;
+			color: $white-color;
+			@include transition(all 0.3s ease-in-out);
+		}
+		&:hover{
+			i{
+				-webkit-transform: rotate(360deg);
+				-moz-transform: rotate(360deg);
+				-o-transform: rotate(360deg);
+				-ms-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+	}
+	&.alt{
+		.media-left{
+			>i{
+				border: none;
+			}
+		}
+	}
+	&.alignRight{
+		.media-left{
+			float: right;
+			margin: 0 0 0 20px;
+		}
+		>.media-body{
+			h3, p{
+				text-align: right;
+			}
+		}
+	}
+}
+.servicesContent{
+	.media-body{
+		@include tablet {
+			display: block;
+			margin-top: 20px;
+			max-width: 198px;
+			float: left;
+		}
+		@include desktops {
+			margin-top: 0;
+			display: table-cell;
+			float: none;
+		}
+		@include large-desktops {
+			max-width: 10000px;
+		}
+	}
+}

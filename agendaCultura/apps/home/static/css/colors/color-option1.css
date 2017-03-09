@@ -1,0 +1,410 @@
+/*=== MIXINS ===*/
+/*=== VARIABLES ===*/
+/*=== MEDIA QUERY ===*/
+/*================= $color1 ==================*/
+.color-1,
+.courseList .media-body .list-inline.btnPart.btn-yellow > li a.btn-link:hover {
+  color: #3ecdc6 !important;
+}
+
+.navbar-default.lightHeader .navbar-nav > li.active.color-1 > a,
+.navbar-nav > li.color-1 > a:hover span,
+.navbar-nav > li.color-1.singleDrop > .dropdown-menu li.active > a,
+.navbar-nav > li.color-1.singleDrop > .dropdown-menu li.active li.active a,
+.navbar-nav > li.color-1.singleDrop.open a > span,
+.navbar-default.lightHeader .navbar-nav > li.active.color-1 > a,
+.navbar-nav > li.color-1 > a:hover span,
+.sectionLink:hover .border-color-1,
+.block .list-inline.btn-yellow .btn-link:hover,
+.teamContent:hover .teamInfo h3 a,
+.eventContent .list-inline.btn-yellow .btn-primary:hover {
+  color: #3ecdc6;
+}
+
+.bg-color-1,
+.courseList .media-body .list-inline.btnPart.btn-yellow > li a.btn-primary:hover {
+  background-color: #3ecdc6 !important;
+}
+
+.navbar-nav > li.color-1.singleDrop > .dropdown-menu li a:hover,
+.navbar-nav > li.color-1.singleDrop > .dropdown-menu li.active a:hover,
+.block .list-inline.btn-yellow .btn-primary:hover {
+  background-color: #3ecdc6;
+}
+
+.border-color-1 {
+  border-color: #3ecdc6 !important;
+}
+
+.table-curved > thead:first-child > tr > th:first-child,
+.cartInfo .table-responsive .table thead tr {
+  border-color: #3ecdc6;
+}
+
+.navbar-nav > li.color-1.dropdown a:after {
+  border-bottom-color: #3ecdc6;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li.color-1 > a > span,
+  .navbar-nav > li.color-1.singleDrop > .dropdown-menu,
+  .navbar-nav > li.color-1.singleDrop > .dropdown-menu li .dropdown-menu,
+  .navbar-nav > li.color-1 > a > span {
+    border-color: #3ecdc6;
+  }
+}
+/*================= $color2 ==================*/
+.color-2,
+.courseList .media-body .list-inline.btnPart.btn-green > li a.btn-link:hover {
+  color: #8f74f6 !important;
+}
+
+.navbar-nav > li.dropdown.megaDropMenu.open > a > span,
+.navbar-default.lightHeader .navbar-nav > li.active.color-2 > a,
+.navbar-nav > li.color-2 > a:hover span,
+.navbar-nav > li.color-2.dropdown.megaDropMenu .dropdown-menu .list-unstyled li.listHeading,
+.navbar-nav > li.color-2.dropdown.megaDropMenu .dropdown-menu .list-unstyled li:first-child,
+.navbar-nav > li.color-2.dropdown.megaDropMenu .dropdown-menu .list-unstyled li.active > a,
+.navbar-nav > li.color-2.dropdown.megaDropMenu .dropdown-menu .list-unstyled li.active li.active a,
+.navbar-nav > li.color-2.dropdown.megaDropMenu .open a > span,
+.sectionLink:hover .border-color-2,
+.block .list-inline.btn-green .btn-link:hover,
+.eventContent .list-inline.btn-green .btn-primary:hover,
+.count-down #simple_timer .table-cell.hour .tab-val {
+  color: #8f74f6;
+}
+
+.bg-color-2,
+.priceRange .progress .progress-bar,
+.priceRange .progress .bulet,
+.courseList .media-body .list-inline.btnPart.btn-green > li a.btn-primary:hover {
+  background-color: #8f74f6 !important;
+}
+
+.navbar-nav > li.color-2.dropdown.megaDropMenu .dropdown-menu .list-unstyled li a:hover,
+.block .list-inline.btn-green .btn-primary:hover,
+.priceRange .price-slider-inner .ui-widget-content .ui-slider-range,
+.priceRange .price-slider-inner .ui-widget-content .ui-slider-handle,
+.dropGeneral.bg-color-2 .sbHolder {
+  background-color: #8f74f6;
+}
+
+.border-color-2,
+.priceRange .progress .bulet {
+  border-color: #8f74f6 !important;
+}
+
+.priceRange .price-slider-inner .ui-widget-content .ui-slider-handle,
+.dropGeneral.border-color-2 .sbHolder,
+.dropGeneral.bg-color-2 .sbHolder {
+  border-color: #8f74f6;
+}
+
+.navbar-nav > li.color-2.dropdown.megaDropMenu > a:after {
+  border-bottom-color: #8f74f6;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li.color-2 > a > span,
+  .navbar-nav > li.color-2.dropdown.megaDropMenu .dropdown-menu {
+    border-color: #8f74f6;
+  }
+}
+/*================= $color3 ==================*/
+.color-3,
+.block .list-inline.btn-red .btn-link:hover,
+.courseList .media-body .list-inline.btnPart.btn-red > li a.btn-link:hover {
+  color: #ff9907 !important;
+}
+
+a,
+.sectionTitle h2,
+.formField .help-block a:hover,
+.tabCommon .media-body .media-heading,
+.pagerArea > .pager li a:hover,
+.pagerArea > .pager li.active a,
+.navbar-default.lightHeader .navbar-nav > li.active.color-3 > a,
+.navbar-nav > li.color-3 > a:hover span,
+.navbar-nav > li.color-3.singleDrop > .dropdown-menu li.active > a,
+.navbar-nav > li.color-3.singleDrop > .dropdown-menu li.active li.active a,
+.navbar-nav > li.color-3.singleDrop.open a > span,
+.navbar-nav > li.color-4 > a:hover span,
+.copyRightText p a:hover,
+.tp-caption.rs-caption-1 span,
+.sectionLink:hover .border-color-3,
+.schoolInfo h2,
+.teamInfo h3 a:hover,
+.teamContent.teamAdjust .teamInfo h3 a,
+.teamContent.teamAdjust .teamInfo h3 a:hover,
+.teamStyle .media-body h4 a:hover,
+.teachersInfo h3,
+.eventContent .list-inline.btn-red .btn-primary:hover,
+.isotopeSelector:hover h4,
+.homeContactContent h2,
+.footer-2 .copyRightText p a,
+.blogComments h3,
+.count-down #simple_timer .table-cell.minute .tab-val,
+.priceBtn h5 span,
+.progress-wizard > .progress-wizard-step > .progress-wizard-dot i,
+.checkoutInfo .checkbox a:hover,
+.lowerPartTitle h4,
+.product-review .tab-content h3 {
+  color: #ff9907;
+}
+
+.bg-color-3,
+.courseList .media-body .list-inline.btnPart.btn-red > li a.btn-primary:hover {
+  background-color: #ff9907 !important;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.active,
+.btn-primary:active,
+.btn-primary.active.focus,
+.btn-primary.active:focus,
+.btn-primary.active:hover,
+.btn-primary:active.focus,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.open > .dropdown-toggle.btn-primary.focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.open > .dropdown-toggle.btn-primary:hover,
+.backToTop,
+.searchArea > .input-group-addon.button,
+.searchArea > .input-group-addon.button:hover,
+.tabCommon .nav li.active a,
+.pagerArea > .pager li.prev a, .pagerArea > .pager li.next a,
+.navbar-nav > li.color-3.singleDrop > .dropdown-menu li a:hover,
+.navbar-default .navbar-toggle,
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover,
+.footerInfo .input-group .input-group-addon,
+.footerInfo .input-group .input-group-addon:hover,
+.footerInfo .input-group .input-group-addon,
+.footerInfo .input-group .input-group-addon:hover,
+.block .list-inline.btn-red .btn-primary:hover,
+.countUpSection .counterInfo,
+.isotopeFilters ul.filter > li.active a,
+.continueBtnArea .btn-primary:hover,
+.dropGeneral.bg-color-3 .sbHolder,
+.progress-wizard > .progress-wizard-step.complete > .progress-wizard-dot i {
+  background-color: #ff9907;
+}
+
+@media (min-width: 768px) {
+  .progress-wizard > .progress-wizard-step > .progress > .progress-bar {
+    background: #ff9907;
+  }
+}
+.border-color-3 {
+  border-color: #ff9907 !important;
+}
+
+.navbar-default .navbar-toggle,
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover,
+.footerInfo .input-group .input-group-addon:hover,
+.progress-wizard > .progress-wizard-step > .progress-wizard-dot,
+.dropGeneral.border-color-3 .sbHolder,
+.dropGeneral.bg-color-3 .sbHolder {
+  border-color: #ff9907;
+}
+
+.cart-dropdown .dropdown-menu {
+  border-top-color: #ff9907;
+}
+
+.navbar-nav > li.color-3.dropdown.singleDrop .dropdown-menu .dropdown-menu:after {
+  border-right-color: #ff9907;
+}
+
+.navbar-nav > li.color-3.dropdown a:after {
+  border-bottom-color: #ff9907;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li.color-3 > a > span,
+  .navbar-nav > li.color-3.singleDrop > .dropdown-menu,
+  .navbar-nav > li.color-3.singleDrop > .dropdown-menu li .dropdown-menu {
+    border-color: #ff9907;
+  }
+}
+.tabCommon.tabLeft .nav li.active a:after {
+  border-color: transparent transparent transparent #ff9907;
+}
+
+.cart-dropdown .dropdown-menu:before {
+  border-bottom-color: #ff9907;
+}
+
+.sectionTitle h2 span.bg-color-3,
+.sectionTitle h2 span.bg-color-3:after,
+.sectionTitle h2 span.bg-color-3:before {
+  background-color: #ffa82b !important;
+}
+
+/*================= $color4 ==================*/
+.color-4,
+.courseList .media-body .list-inline.btnPart.btn-sky > li a.btn-link:hover,
+.coursesCounter .counterInner > .btn-primary {
+  color: #ff6962 !important;
+}
+
+.navbar-default.lightHeader .navbar-nav > li.active.color-4 > a,
+.navbar-nav > li.color-4.singleDrop > .dropdown-menu li.active > a,
+.navbar-nav > li.color-4.singleDrop > .dropdown-menu li.active li.active a,
+.navbar-nav > li.color-4.singleDrop.open a > span,
+.sectionLink:hover .border-color-4,
+.block .list-inline.btn-sky .btn-link:hover,
+.eventContent .list-inline.btn-sky .btn-primary:hover,
+.count-down #simple_timer .table-cell.second .tab-val,
+.product-info .price span {
+  color: #ff6962;
+}
+
+.bg-color-4,
+.courseList .media-body .list-inline.btnPart.btn-sky > li a.btn-primary:hover {
+  background-color: #ff6962 !important;
+}
+
+.navbar-nav > li.color-4.singleDrop > .dropdown-menu li a:hover,
+.block .list-inline.btn-sky .btn-primary:hover,
+.sticker-round,
+.LanguageList .sbOptions a:hover {
+  background-color: #ff6962;
+}
+
+.border-color-4 {
+  border-color: #ff6962 !important;
+}
+
+.navbar-nav > li.color-4.dropdown.singleDrop .dropdown-menu .dropdown-menu:after {
+  border-right-color: #ff6962;
+}
+
+.navbar-nav > li.color-4.dropdown a:after {
+  border-bottom-color: #ff6962;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li.color-4 > a > span,
+  .navbar-nav > li.color-4.singleDrop > .dropdown-menu,
+  .navbar-nav > li.color-4.singleDrop > .dropdown-menu li .dropdown-menu {
+    border-color: #ff6962;
+  }
+}
+.sectionTitle h2 span.bg-color-4,
+.sectionTitle h2 span.bg-color-4:after,
+.sectionTitle h2 span.bg-color-4:before {
+  background-color: #ff8b86 !important;
+}
+
+/*================= $color5 ==================*/
+.color-5,
+.formPanel.panel .panel-body .media-list.blogListing li .media-heading a:hover,
+.courseList .media-body .list-inline.btnPart.btn-purple > li a.btn-link:hover,
+.rightSidebar .panel .panel-body .media-list.blogListing li .media-heading a:hover,
+.eventSidebar.panel .panel-body .media-list.blogListing li .media-heading a:hover {
+  color: #a5d03c !important;
+}
+
+.navbar-default.lightHeader .navbar-nav > li.active.color-5 > a,
+.navbar-nav > li.color-5 > a:hover span,
+.navbar-nav > li.color-5.singleDrop > .dropdown-menu li.active > a,
+.navbar-nav > li.color-5.singleDrop > .dropdown-menu li.active li.active a,
+.navbar-nav > li.color-5.singleDrop.open a > span,
+.block .list-inline.btn-purple .btn-link:hover,
+.eventContent .list-inline.btn-purple .btn-primary:hover {
+  color: #a5d03c;
+}
+
+.bg-color-5,
+.courseList .media-body .list-inline.btnPart.btn-purple > li a.btn-primary:hover {
+  background-color: #a5d03c !important;
+}
+
+.navbar-nav > li.color-5.singleDrop > .dropdown-menu li a:hover,
+.block .list-inline.btn-purple .btn-primary:hover,
+.dropGeneral.bg-color-5 .sbHolder {
+  background-color: #a5d03c;
+}
+
+.dropGeneral.bg-color-5 .sbHolder,
+.dropGeneral.border-color-5 .sbHolder {
+  border-color: #a5d03c;
+}
+
+.border-color-5 {
+  border-color: #a5d03c !important;
+}
+
+.navbar-nav > li.color-5.dropdown.singleDrop .dropdown-menu .dropdown-menu:after {
+  border-right-color: #a5d03c;
+}
+
+.navbar-nav > li.color-5.dropdown a:after {
+  border-bottom-color: #a5d03c;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li.color-5 > a > span,
+  .navbar-nav > li.color-5.singleDrop > .dropdown-menu,
+  .navbar-nav > li.color-5.singleDrop > .dropdown-menu li .dropdown-menu {
+    border-color: #a5d03c;
+  }
+}
+/*================= $color6 ==================*/
+.color-6,
+.courseList .media-body .list-inline.btnPart.btn-pink > li a.btn-link:hover {
+  color: #f0d128 !important;
+}
+
+.navbar-default.lightHeader .navbar-nav > li.active.color-6 > a,
+.navbar-nav > li.color-6 > a:hover span,
+.navbar-nav > li.color-6.singleDrop > .dropdown-menu li.active > a,
+.navbar-nav > li.color-6.singleDrop > .dropdown-menu li.active li.active a,
+.navbar-nav > li.color-6.singleDrop.open a > span,
+.block .list-inline.btn-pink .btn-link:hover,
+.eventContent .list-inline.btn-pink .btn-primary:hover {
+  color: #f0d128;
+}
+
+.bg-color-6,
+.courseList .media-body .list-inline.btnPart.btn-pink > li a.btn-primary:hover {
+  background-color: #f0d128 !important;
+}
+
+.navbar-nav > li.color-6.singleDrop > .dropdown-menu li a:hover,
+.block .list-inline.btn-pink .btn-primary:hover,
+.dropGeneral.bg-color-6 .sbHolder {
+  background-color: #f0d128;
+}
+
+.border-color-6 {
+  border-color: #f0d128 !important;
+}
+
+.table-curved > thead:first-child > tr > th:last-child,
+.dropGeneral.bg-color-6 .sbHolder,
+.dropGeneral.border-color-6 .sbHolder {
+  border-color: #f0d128;
+}
+
+.navbar-nav > li.color-6.dropdown.singleDrop .dropdown-menu .dropdown-menu:after {
+  border-right-color: #f0d128;
+}
+
+.navbar-nav > li.color-6.dropdown a:after {
+  border-bottom-color: #f0d128;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li.color-6.singleDrop > .dropdown-menu,
+  .navbar-nav > li.color-6.singleDrop > .dropdown-menu li .dropdown-menu {
+    border-color: #f0d128;
+  }
+}
+
+/*# sourceMappingURL=color-option1.css.map */
