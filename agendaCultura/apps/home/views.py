@@ -89,7 +89,7 @@ def actividad_list(request):
         'total' : total,
         'autorizar' : False
     }
-    return render(request, 'actividad_list.html', context)
+    return render(request, 'eventos.html', context)
 
 @login_required
 def actividad_user(request, username=''):
