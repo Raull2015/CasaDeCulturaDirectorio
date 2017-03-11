@@ -70,7 +70,7 @@ def actividad_list(request):
         'total' : total,
         'autorizar' : False
     }
-    return render(request, 'actividad_list.html', context)
+    return render(request, 'actividades.html', context)
 
 @login_required
 def actividad_user(request, username=''):
@@ -413,6 +413,8 @@ def actividad_detail(request, username='', id=''):
     u = None
     admin = False
     actividad = Actividad.objects.get(id=int(id))
+    actividades = Actividad.public.all()[:5]
+    categoria = Categoria.objects.all()
 
     if actividad.perfil.get().user.username != username:
         return HttpResponseRedirect(reverse('error'))
@@ -436,6 +438,8 @@ def actividad_detail(request, username='', id=''):
         'usuario' : u,
         'admin' : admin,
         'actividad': actividad,
+        'actividades': actividades,
+        'categoria': categoria,
     }
     return render(request, 'detalle_actividad.html', context)
 

@@ -22,5 +22,6 @@ admin.site.register(Categoria)
 admin.site.register(Actividad)
 admin.site.register(Capsulas)
 admin.site.register(Rol)
+admin.site.register(Imagenes)
 
 # Register your models here.

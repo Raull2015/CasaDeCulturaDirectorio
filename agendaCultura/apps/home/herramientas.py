@@ -7,7 +7,7 @@ import plotly.offline as py
 import plotly.graph_objs as go
 from models import Perfil, Rol, Actividad, Capsulas
 
-def reescalar_imagen(img,output,height=300,width=400,ext='.png'):
+def reescalar_imagen(img,output,height=260,width=370,ext='.png'):
     archivo_in, old_ext = os.path.splitext(img)
     archivo_out, new_ext = os.path.splitext(output)
     imagen = Image.open(img)

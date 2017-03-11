@@ -347,7 +347,8 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
     $.ajax({
         url : "/login/", // the endpoint
         type : "POST", // http method
-        data : { username : $('#id_username').val() , password : $('#id_password').val()  }, // data sent with the post request
+        data : { username : $('#id_username').val() ,
+                 password : $('#id_password').val()}, // data sent with the post request
         // handle a successful response
         success : function(json) {
           //  $('#id_username').val('');
