@@ -381,7 +381,8 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
                  nombre : $('#id_nombre').val(),
                  email : $('#id_email').val(),
                  telefono : $('#id_telefono').val(),
-                 nacimiento : $('#id_nacimiento').val() }, // data sent with the post request
+                 nacimiento : $('#id_nacimiento').val(),
+                 sexo : $('#id_genero').val() }, // data sent with the post request
         // handle a successful response
         success : function(json) {
             $('#id_usuario').val('');
@@ -403,7 +404,7 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
         },
         // handle a non-successful response
         error : function(xhr,errmsg,err) {
-            $('#results').html("<p class='help-block'><a href='#'>Usuario o Contraseña Incorrecto</a></p>"); // add the error to the dom
+            $('#results_2').html("<p class='help-block'><a href='#'>Ocurrio un error</a></p>"); // add the error to the dom
             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
         }
     });
@@ -411,12 +412,12 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
 
   $('#post-login').on('submit', function(event){
     event.preventDefault();
-    console.log("form submitted!")  // sanity check
+    console.log("form submitted!");  // sanity check
     logear();
   });
 
   $('#post-crear-user').on('submit', function(event){
     event.preventDefault();
-    console.log("form submitted!")  // sanity check
+    console.log("form submitted!");  // sanity check
     crear_usuario();
   });

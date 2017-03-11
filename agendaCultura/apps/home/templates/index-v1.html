@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 {% load static %}
 <head>
@@ -85,10 +85,10 @@
                   </select>
                 </li>
 
-                {% if logeado == False %}
+                {% if H_logeado == False %}
                 <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#loginModal' data-toggle="modal" >Iniciar Sesion</a><span>o</span><a href='#createAccount' data-toggle="modal">Registrarse</a></li>
                 {% else %}
-                <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#' data-toggle="modal" >Bienvenido {{ usuario }} </a><span></span><a href= {% url 'cerrar_sesion' %} data-toggle="modal">Cerrar Sesion</a></li>
+                <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#' data-toggle="modal" >Bienvenido {{ H_nombre_usuario }} </a><span></span><a href= {% url 'cerrar_sesion' %} data-toggle="modal">Cerrar Sesion</a></li>
                 {% endif %}
                 <!--<li class="cart-dropdown">
                   <a href="#" class="bg-color-6 shop-cart" >
@@ -586,7 +586,6 @@
             <span class="shape shape-right bg-color-4"></span>
           </h2>
         </div>
-
         <div class="row">
           <div class="col-sm-4 col-xs-12">
             <div class="media featuresContent">
@@ -679,7 +678,6 @@
             <span class="shape shape-right bg-color-4"></span>
           </h2>
         </div>
-
         <div class="row">
           <div class="col-sm-3 col-xs-12 block">
             <div class="thumbnail thumbnailContent">
@@ -939,7 +937,6 @@
             <span class="shape shape-right bg-color-4"></span>
           </h2>
         </div>
-
         <div class="row">
           <div class="col-xs-12">
             <div class="filter-container isotopeFilters">
@@ -968,7 +965,6 @@
               </figure>
             </article>
           </div>
-
           <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector nature">
             <article class="">
               <figure>
@@ -984,7 +980,6 @@
               </figure>
             </article>
           </div>
-
           <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector nature">
             <article class="">
               <figure>
@@ -1000,7 +995,6 @@
               </figure>
             </article>
           </div>
-
           <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector charity">
             <article class="">
               <figure>
@@ -1016,7 +1010,6 @@
               </figure>
             </article>
           </div>
-
           <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector nature">
             <article class="">
               <figure>
@@ -1032,7 +1025,6 @@
               </figure>
             </article>
           </div>
-
           <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector children">
             <article class="">
               <figure>
@@ -1048,7 +1040,6 @@
               </figure>
             </article>
           </div>
-
           <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector children">
             <article class="">
               <figure>
@@ -1064,7 +1055,6 @@
               </figure>
             </article>
           </div>
-
           <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector children">
             <article class="">
               <figure>
@@ -1081,11 +1071,9 @@
             </article>
           </div>
         </div>
-
         <div class="btnArea">
           <a href="photo-gallery.html" class="btn btn-primary">View more</a>
         </div>
-
       </div>
     </section>-->
 
@@ -1096,7 +1084,6 @@
           <h2>Some Fun Facts</h2>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod</p>
         </div>
-
         <div class="row">
           <div class="col-sm-3 col-xs-12">
             <div class="text-center">
@@ -1445,13 +1432,19 @@
                 <input type="text" class="form-control" id="id_nombre" name="nombre" placeholder="Nombre" required>
               </div>
               <div class="form-group formField">
-                <input type="text" class="form-control" id="id_email" name="email" placeholder="Email" required>
+                <input type="email" class="form-control" id="id_email" name="email" placeholder="Email" required>
               </div>
               <div class="form-group formField">
-                <input type="text" class="form-control" id="id_telefono" name="telefono" placeholder="Telefono" required>
+                <input type="text" pattern="[0-9]+" class="form-control" id="id_telefono" name="telefono" placeholder="Telefono" required>
               </div>
               <div class="form-group formField">
-                <input type="text" class="form-control" id="id_nacimiento" name="nacimiento" placeholder="Fecha de Nacimiento"required>
+                Genero </br>
+                <input type="radio" class="" id="id_genero" name="genero" value="True" checked> Hombre <br>
+                <input type="radio" class="" id="id_genero" name="genero" value="False"> Mujer <br>
+              </div>
+              <div class="form-group formField">
+                Fecha de Nacimiento </br>
+                <input type="date" class="form-control" max="2000-12-31" id="id_nacimiento" name="nacimiento" required>
               </div>
               <div class="form-group formField">
                 <input type="submit" class="btn btn-primary btn-block bg-color-3 border-color-3" value="Crear">
