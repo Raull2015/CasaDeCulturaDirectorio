@@ -26,6 +26,8 @@ def home(request):
     u = None
     admin = False
 
+    actividad = Actividad.public.all()[:3]
+
     if request.user.is_authenticated:
         logeado = True
         u = request.user.perfil.nombreArtista
@@ -42,6 +44,7 @@ def home(request):
         'capsula' : capsula,
         'logeado' : logeado,
         'usuario' : u,
+        'actividad' : actividad,
         'admin' : admin,
         'user' : request.user
     }

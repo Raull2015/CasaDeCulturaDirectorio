@@ -27,12 +27,12 @@
           {% for actividad in actividad %}
           <div class="col-sm-4 col-xs-12 block">
             <div class="thumbnail thumbnailContent">
-              <a href="single-blog-left-sidebar.html"><img src= "{% static "img/home/courses/course-1.jpg" %}" alt="image" class="img-responsive"></a>
+              <a href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}><img src= "/media/{{actividad.imagen.name}}" alt="image" class="img-responsive"></a>
               <div class="sticker-round bg-color-1">{{actividad.fechaRealizacion.day}} <br>{{actividad.fechaRealizacion.month}}</div>
               <div class="caption border-color-1">
-                <h3><a href="single-blog-left-sidebar.html" class="color-1">{{actividad.nombre}}</a></h3>
+                <h3><a href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %} class="color-1">{{actividad.nombre}}</a></h3>
                 <ul class="list-inline">
-                  <li><i class="fa fa-user" aria-hidden="true"></i>{{actividad.perfil.all.get.user.username}}</li>
+                  <li><i class="fa fa-user" aria-hidden="true"></i>{{actividad.perfil.get.nombreArtista}}</li>
                   <li><i class="fa fa-comments-o" aria-hidden="true"></i>0 Comentarios </li>
                 </ul>
                 <p>{{actividad.descripcion}}</p>

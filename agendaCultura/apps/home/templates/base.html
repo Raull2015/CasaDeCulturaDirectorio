@@ -289,7 +289,11 @@
                   <span>Eventos</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                  <li><a href="blog-grid.html">Todos</a></li>
+                  <li><a href={% url 'home:eventos' %}>Todos</a></li>
+                  {% if logeado == True %}
+                  <li><a href={% url 'home:crear_evento' username=user.username %}>Crear evento</a></li>
+                  <li><a href={% url 'home:actividad_user' username=user.username %}>Mis eventos</a></li>
+                  {% endif %}
                   <!--<li class="dropdown dropdown-submenu">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Blog Grid<i class="fa fa-chevron-right" aria-hidden="true"></i>
                     </a>
