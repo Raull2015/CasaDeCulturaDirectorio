@@ -130,6 +130,7 @@
         </div>
       </div>
     </section>
+
     {% endblock %}
 
     {% block main-section%}
@@ -356,63 +357,74 @@
             </h2>
           </div>
 
+          {%if eventos%}
           <div class="row">
+          {%for evento in eventos%}
             <div class="col-sm-4 col-xs-12 block">
               <div class="thumbnail thumbnailContent">
-                <a href="single-blog-left-sidebar.html"><img src= "{% static "img/home/news/news-1.jpg" %}" alt="image" class="img-responsive"></a>
-                <div class="sticker-round bg-color-1">10 <br>July</div>
+                <a ><img src="{{MEDIA_URL}}{{evento.get_imagen}}" alt="image" class="img-responsive"></a>
+                <div class="sticker-round bg-color-1">{{evento.get_dia}}<br>{{evento.get_mes}}<br>{{evento.get_anio}}</div>
                 <div class="caption border-color-1">
-                  <h3><a href="single-blog-left-sidebar.html" class="color-1">The standard chunk of Lorem.</a></h3>
+                  <h3><a href="single-blog-left-sidebar.html" class="color-1">{{evento.nombre}}.</a></h3>
                   <ul class="list-inline">
-                    <li><a href="single-blog-left-sidebar.html"><i class="fa fa-user" aria-hidden="true"></i>Jone Doe</a></li>
-                    <li><a href="single-blog-left-sidebar.html"><i class="fa fa-comments-o" aria-hidden="true"></i>4 Comments</a></li>
+                    <li><a href={% url 'home:perfil' username=evento.perfil.all.get.user.username %} ><i class="fa fa-user" aria-hidden="true"></i>{{evento.perfil.all.get.nombreArtista}}</a></li>
+                    <li><a ><i class="fa fa-comments-o" aria-hidden="true"></i>{{evento.get_numero_comentarios}} Comentarios</a></li>
                   </ul>
-                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classi cal Latin literature. </p>
+                  <p>{{evento.descripcion}} </p>
                   <ul class="list-inline btn-yellow">
-                    <li><a href="single-blog-left-sidebar.html" class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Read More</a></li>
+                    <li><a href={% url 'home:detalle_evento' username=evento.perfil.all.get.user.username id=evento.id %} class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Ver Mas</a></li>
                   </ul>
                 </div>
               </div>
             </div>
-            <div class="col-sm-4 col-xs-12 block">
-              <div class="thumbnail thumbnailContent">
-                <a href="single-blog-left-sidebar.html"><img src= "{% static "img/home/news/news-2.jpg" %}" alt="image" class="img-responsive"></a>
-                <div class="sticker-round bg-color-2">10 <br>July</div>
-                <div class="caption border-color-2">
-                  <h3><a href="single-blog-left-sidebar.html" class="color-2">Vestibulum congue massa vitae.</a></h3>
-                  <ul class="list-inline">
-                    <li><a href="single-blog-left-sidebar.html"><i class="fa fa-user" aria-hidden="true"></i>Jone Doe</a></li>
-                    <li><a href="single-blog-left-sidebar.html"><i class="fa fa-comments-o" aria-hidden="true"></i>4 Comments</a></li>
-                  </ul>
-                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classi cal Latin literature. </p>
-                  <ul class="list-inline btn-green">
-                    <li><a href="single-blog-left-sidebar.html" class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Read More</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4 col-xs-12 block">
-              <div class="thumbnail thumbnailContent">
-                <a href="single-blog-left-sidebar.html"><img src= "{% static "img/home/news/news-3.jpg" %}" alt="image" class="img-responsive"></a>
-                <div class="sticker-round bg-color-3">10 <br>July</div>
-                <div class="caption border-color-3">
-                  <h3><a href="single-blog-left-sidebar.html" class="color-3">Curabitur ac nulla sodales risus.</a></h3>
-                  <ul class="list-inline">
-                    <li><a href="single-blog-left-sidebar.html"><i class="fa fa-user" aria-hidden="true"></i>Jone Doe</a></li>
-                    <li><a href="single-blog-left-sidebar.html"><i class="fa fa-comments-o" aria-hidden="true"></i>4 Comments</a></li>
-                  </ul>
-                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classi cal Latin literature. </p>
-                  <ul class="list-inline btn-red">
-                    <li><a href="single-blog-left-sidebar.html" class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Read More</a></li>
-                  </ul>
-                </div>
+          {%endfor%}
+          <!--<div class="col-sm-4 col-xs-12 block">
+            <div class="thumbnail thumbnailContent">
+              <a href="single-blog-left-sidebar.html"><img src= "{% static "img/home/news/news-2.jpg" %}" alt="image" class="img-responsive"></a>
+              <div class="sticker-round bg-color-2">10 <br>July</div>
+              <div class="caption border-color-2">
+                <h3><a href="single-blog-left-sidebar.html" class="color-2">Vestibulum congue massa vitae.</a></h3>
+                <ul class="list-inline">
+                  <li><a href="single-blog-left-sidebar.html"><i class="fa fa-user" aria-hidden="true"></i>Jone Doe</a></li>
+                  <li><a href="single-blog-left-sidebar.html"><i class="fa fa-comments-o" aria-hidden="true"></i>4 Comments</a></li>
+                </ul>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classi cal Latin literature. </p>
+                <ul class="list-inline btn-green">
+                  <li><a href="single-blog-left-sidebar.html" class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Read More</a></li>
+                </ul>
               </div>
             </div>
           </div>
-
+          <div class="col-sm-4 col-xs-12 block">
+            <div class="thumbnail thumbnailContent">
+              <a href="single-blog-left-sidebar.html"><img src= "{% static "img/home/news/news-3.jpg" %}" alt="image" class="img-responsive"></a>
+              <div class="sticker-round bg-color-3">10 <br>July</div>
+              <div class="caption border-color-3">
+                <h3><a href="single-blog-left-sidebar.html" class="color-3">Curabitur ac nulla sodales risus.</a></h3>
+                <ul class="list-inline">
+                  <li><a href="single-blog-left-sidebar.html"><i class="fa fa-user" aria-hidden="true"></i>Jone Doe</a></li>
+                  <li><a href="single-blog-left-sidebar.html"><i class="fa fa-comments-o" aria-hidden="true"></i>4 Comments</a></li>
+                </ul>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classi cal Latin literature. </p>
+                <ul class="list-inline btn-red">
+                  <li><a href="single-blog-left-sidebar.html" class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Read More</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>  -->
+          </div>
           <div class="btnArea">
-            <a href="blog-grid.html" class="btn btn-primary">Ver Mas</a>
+            <a href={% url 'home:eventos' %} class="btn btn-primary">Ver Mas</a>
           </div>
+          {%else%}
+          <div class="sectionTitle text-center">
+            <h2>
+              <span class="shape shape-left bg-color-2"></span>
+              <span>Nada Aqui por Ahora</span>
+              <span class="shape shape-right bg-color-2"></span>
+            </h2>
+          </div>
+          {%endif%}
 
         </div>
       </section>

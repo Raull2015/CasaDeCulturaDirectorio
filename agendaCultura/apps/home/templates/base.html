@@ -172,7 +172,8 @@
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li class="active dropdown singleDrop color-1">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <!-- data-toggle="dropdown" -->
+                <a href="{% url 'home:home' %}" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-home bg-color-1" aria-hidden="true"></i> <span>Inicio</span>
                 </a>
                 <!--<ul class="dropdown-menu dropdown-menu-left">
@@ -190,6 +191,7 @@
                   {%empty%}
                   <li><a href="#">Nada aqui por ahora</a></li>
                   {%endfor%}
+                  <li><a href="#">Ver Todas</a></li>
                   <!--<li class="dropdown dropdown-submenu">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Team<i class="fa fa-chevron-right" aria-hidden="true"></i>
                     </a>
@@ -290,13 +292,14 @@
                 </ul>
               </li>-->
               <li class="dropdown singleDrop color-5">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <!-- data-toggle="dropdown" -->
+                <a href={% url 'home:eventos' %} class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-calendar bg-color-5" aria-hidden="true"></i>
                   <span>Eventos</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right">
+                <!--<ul class="dropdown-menu dropdown-menu-right">
                   <li><a href="blog-grid.html">Todos</a></li>
-                  <!--<li class="dropdown dropdown-submenu">
+                  <li class="dropdown dropdown-submenu">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Blog Grid<i class="fa fa-chevron-right" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown-menu">
@@ -322,16 +325,18 @@
                       <li><a href="single-blog-left-sidebar.html">Single Blog Left Sidebar</a></li>
                       <li><a href="single-blog-right-sidebar.html">Single Blog Right Sidebar</a></li>
                     </ul>
-                  </li>-->
-                </ul>
+                  </li>
+                </ul>-->
               </li>
               <li class="dropdown singleDrop color-6">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-star-half-o   bg-color-6" aria-hidden="true"></i> <span>Artistas</span></a>
-                <ul class="dropdown-menu dropdown-menu-right">
+                <!-- data-toggle="dropdown" -->
+                <a href={% url 'home:artistas' %} class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-star-half-o   bg-color-6" aria-hidden="true"></i> <span>Artistas</span></a>
+                <!--<ul class="dropdown-menu dropdown-menu-right">
                   <li><a href="#">Todos</a></li>
-                  <!--<li><a href="accordion-toggles.html">Accordions &amp; Toggles</a></li>
-                  <li><a href="tabs-dropdown.html">Tabs &amp; Dropdowns</a></li>-->
-                </ul>
+                  <li><a href="accordion-toggles.html">Accordions &amp; Toggles</a></li>
+                  <li><a href="tabs-dropdown.html">Tabs &amp; Dropdowns</a></li>
+                </ul>-->
               </li>
             </ul>
           </div>
