@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^home/', include(homeUrls, namespace='home')),
     url(r'^login/$', views.ingresar, name='iniciar_sesion'),
+    url(r'^login_page/$', views.ingresar_pagina, name='ingresar_pagina'),
     url(r'^logout/$', views.cerrar_sesion, name='cerrar_sesion'),
     url(r'administracion/evento/aceptado/(?P<id>[\d]+)$', views.actividad_authorize, name='autorizar_evento'),
     url(r'administracion/evento/rechazado/(?P<id>[\d]+)$', views.actividad_reject, name='rechazar_evento'),

@@ -78,16 +78,22 @@ class Perfil(models.Model):
     objects = models.Manager()
     public = PerfilManager()
 
+    def get_categorias(self):
+        cat = ''
+        for categoria in self.categoria.all():
+            cat +=  categoria.categoria + ' '
+        return cat
+
     class Meta:
         verbose_name = 'perfil'
         verbose_name_plural = 'perfiles'
         ordering = ['-fechaRegistro']
 
     def __unicode__(self):
-        return self.nombreArtista
+        return self.nombreReal
 
     def __str__(self):
-        return self.nombreArtista
+        return self.nombreReal
 
 class Actividad(models.Model):
     nombre = models.CharField(max_length=200)

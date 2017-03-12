@@ -171,7 +171,6 @@
             </div>
           </div>
         </div>
-      </div>
       </section>
       </br>
 
@@ -186,166 +185,164 @@
             </h2>
           </div>
 
+          {%if artistas %}
+
           <div class="row">
             <div class="col-xs-12">
               <div class="owl-carousel teamSlider">
-                <div class="slide">
-                  <div class="teamContent">
-                    <div class="teamImage">
-                      <img src= "{% static "img/home/team/team-1.jpg" %}" alt="img" class="img-circle">
-                      <div class="maskingContent">
-                        <ul class="list-inline">
-                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                        </ul>
+
+              {% for artista in artistas %}
+                    <div class="slide">
+                      <div class="teamContent">
+                        <div class="teamImage">
+                          <img src= "{{MEDIA_URL}}{{artista.imagen}}" alt="img" class="img-circle">
+                          <div class="maskingContent">
+                            <ul class="list-inline">
+                              <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                              <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                              <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                              <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="teamInfo">
+                          <h3><a href={% url 'home:perfil' username=artista.user.username %}>{{artista.nombreReal}}</a></h3>
+                          <p>{{artista.get_categorias}}</p>
+                        </div>
                       </div>
                     </div>
-                    <div class="teamInfo">
-                      <h3><a href="teachers-details.html">Amanda Smith</a></h3>
-                      <p>English Teacher</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slide">
-                  <div class="teamContent">
-                    <div class="teamImage">
-                      <img src= "{% static "img/home/team/team-2.jpg" %}" alt="img" class="img-circle">
-                      <div class="maskingContent">
-                        <ul class="list-inline">
-                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="teamInfo">
-                      <h3><a href="teachers-details.html">Amanda Stone</a></h3>
-                      <p>English Teacher</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slide">
-                  <div class="teamContent">
-                    <div class="teamImage">
-                      <img src= "{% static "img/home/team/team-3.jpg" %}" alt="img" class="img-circle">
-                      <div class="maskingContent">
-                        <ul class="list-inline">
-                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="teamInfo">
-                      <h3><a href="teachers-details.html">Amanda Stone</a></h3>
-                      <p>English Teacher</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slide">
-                  <div class="teamContent">
-                    <div class="teamImage">
-                      <img src= "{% static "img/home/team/team-4.jpg" %}" alt="img" class="img-circle">
-                      <div class="maskingContent">
-                        <ul class="list-inline">
-                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="teamInfo">
-                      <h3><a href="teachers-details.html">Amanda Stone</a></h3>
-                      <p>English Teacher</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slide">
-                  <div class="teamContent">
-                    <div class="teamImage">
-                      <img src= "{% static "img/home/team/team-1.jpg" %}" alt="img" class="img-circle">
-                      <div class="maskingContent">
-                        <ul class="list-inline">
-                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="teamInfo">
-                      <h3><a href="teachers-details.html">Amanda Stone</a></h3>
-                      <p>English Teacher</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slide">
-                  <div class="teamContent">
-                    <div class="teamImage">
-                      <img src= "{% static "img/home/team/team-2.jpg" %}" alt="img" class="img-circle">
-                      <div class="maskingContent">
-                        <ul class="list-inline">
-                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="teamInfo">
-                      <h3><a href="teachers-details.html">Amanda Stone</a></h3>
-                      <p>English Teacher</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slide">
-                  <div class="teamContent">
-                    <div class="teamImage">
-                      <img src= "{% static "img/home/team/team-3.jpg" %}" alt="img" class="img-circle">
-                      <div class="maskingContent">
-                        <ul class="list-inline">
-                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="teamInfo">
-                      <h3><a href="teachers-details.html">Amanda Stone</a></h3>
-                      <p>English Teacher</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slide">
-                  <div class="teamContent">
-                    <div class="teamImage">
-                      <img src= "{% static "img/home/team/team-4.jpg" %}" alt="img" class="img-circle">
-                      <div class="maskingContent">
-                        <ul class="list-inline">
-                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="teamInfo">
-                      <h3><a href="teachers-details.html">Amanda Stone</a></h3>
-                      <p>English Teacher</p>
-                    </div>
-                  </div>
-                </div>
+              {% endfor %}
+
               </div>
             </div>
           </div>
+
+          {%else%}
+          <div class="sectionTitle text-center alt">
+            <h2>
+              <span class="shape shape-left bg-color-2"></span>
+              <span>Nadie Aqui por Ahora</span>
+              <span class="shape shape-right bg-color-2"></span>
+            </h2>
+          </div>
+          {%endif%}
+                <!--<div class="slide">
+                  <div class="teamContent">
+                    <div class="teamImage">
+                      <img src= "{% static "img/home/team/team-2.jpg" %}" alt="img" class="img-circle">
+                      <div class="maskingContent">
+                        <ul class="list-inline">
+                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="teamInfo">
+                      <h3><a href="teachers-details.html">Amanda Stone</a></h3>
+                      <p>English Teacher</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="slide">
+                  <div class="teamContent">
+                    <div class="teamImage">
+                      <img src= "{% static "img/home/team/team-3.jpg" %}" alt="img" class="img-circle">
+                      <div class="maskingContent">
+                        <ul class="list-inline">
+                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="teamInfo">
+                      <h3><a href="teachers-details.html">Amanda Stone</a></h3>
+                      <p>English Teacher</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="slide">
+                  <div class="teamContent">
+                    <div class="teamImage">
+                      <img src= "{% static "img/home/team/team-4.jpg" %}" alt="img" class="img-circle">
+                      <div class="maskingContent">
+                        <ul class="list-inline">
+                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="teamInfo">
+                      <h3><a href="teachers-details.html">Amanda Stone</a></h3>
+                      <p>English Teacher</p>
+                    </div>
+                  </div>
+                </div>-->
+
+                <!--<div class="slide">
+                  <div class="teamContent">
+                    <div class="teamImage">
+                      <img src= "{% static "img/home/team/team-2.jpg" %}" alt="img" class="img-circle">
+                      <div class="maskingContent">
+                        <ul class="list-inline">
+                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="teamInfo">
+                      <h3><a href="teachers-details.html">Amanda Stone</a></h3>
+                      <p>English Teacher</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="slide">
+                  <div class="teamContent">
+                    <div class="teamImage">
+                      <img src= "{% static "img/home/team/team-3.jpg" %}" alt="img" class="img-circle">
+                      <div class="maskingContent">
+                        <ul class="list-inline">
+                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="teamInfo">
+                      <h3><a href="teachers-details.html">Amanda Stone</a></h3>
+                      <p>English Teacher</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="slide">
+                  <div class="teamContent">
+                    <div class="teamImage">
+                      <img src= "{% static "img/home/team/team-4.jpg" %}" alt="img" class="img-circle">
+                      <div class="maskingContent">
+                        <ul class="list-inline">
+                          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="teamInfo">
+                      <h3><a href="teachers-details.html">Amanda Stone</a></h3>
+                      <p>English Teacher</p>
+                    </div>
+                  </div>
+                </div>-->
+
         </div>
-      </div>
       </section>
 
       <!-- Eventos -->

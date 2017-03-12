@@ -59,8 +59,8 @@
             <div class="col-sm-7">
               <ul class="list-inline topList">
                 <li><i class="fa fa-envelope bg-color-1" aria-hidden="true"></i> <a href="mailto:cultura@gmail.com">cultura@gmail.com</a></li>
-                <li><i class="fa fa-phone bg-color-2" aria-hidden="true"></i> +1 234 567 8900</li>
-                <li><i class="fa fa-clock-o bg-color-6" aria-hidden="true"></i> Open: 9am - 6pm</li>
+                <li><i class="fa fa-phone bg-color-2" aria-hidden="true"></i> +502 1234 5678 </li>
+                <li><i class="fa fa-clock-o bg-color-6" aria-hidden="true"></i> Abierto: 8AM - 5PM</li>
               </ul>
             </div>
             <div class="col-sm-5">
@@ -165,14 +165,14 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index-v1.html"><img src= "{% static "img/logo-school.png" %}" alt="Kidz School"></a>
+            <a class="navbar-brand" href= "{% url 'home:home' %}" ><img src= "{% static "img/logo-school.png" %}" alt="Kidz School"></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li class="active dropdown singleDrop color-1">
-                <a href= "javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-home bg-color-1" aria-hidden="true"></i> <span>Inicio</span>
                 </a>
                 <!--<ul class="dropdown-menu dropdown-menu-left">
@@ -184,7 +184,12 @@
               <li class="dropdown singleDrop color-3">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-ul bg-color-3" aria-hidden="true"></i> <span>Categorias</span></a>
                 <ul class="dropdown-menu dropdown-menu-left">
-                  <li><a href="about_us.html">About</a></li>
+
+                  {%for categoria in H_categorias%}
+                  <li><a href="#">{{categoria.categoria}}</a></li>
+                  {%empty%}
+                  <li><a href="#">Nada aqui por ahora</a></li>
+                  {%endfor%}
                   <!--<li class="dropdown dropdown-submenu">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Team<i class="fa fa-chevron-right" aria-hidden="true"></i>
                     </a>
@@ -399,6 +404,7 @@
               </li>
             </ul>
           </div>-->
+
         </div>
       </nav>
     </header>

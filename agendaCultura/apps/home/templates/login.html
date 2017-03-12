@@ -1,42 +1,38 @@
 {% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Iniciar Sesion
+  {% endblock %}
 
-{% block title %}
-  Perfil
-{% endblock %}
-
-{%block heading %}
-  <h1>Artistas</h1>
-{% endblock %}
-
-{% block content %}
-  <div class="container">
-       {% if next %}
-       <form action="/login/?next={{next}}" method="post" >
-       {%else%}
-       <form action="/login/" method="post" >
-      {% endif %}
-      {% csrf_token %}
-        <br/><br/><br/>
-        <div class = "container col-md-6 col-md-offset-3">
-          {{ form.username.label_tag }}
-          {{ form.username }}
-          <br/>
-          {{ form.password.label_tag }}
-          {{ form.password }}
+  {% block main-section%}
+  <!-- LOGIN MODAL -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="panel panel-default formPanel">
+          <div class="panel-heading bg-color-1 border-color-1">
+            <h3 class="panel-title">Inicio de Sesion</h3>
+          </div>
+          <div class="panel-body">
+            <form action= {% url 'iniciar_sesion' %} method="POST" role="form" id="post-login">
+              {% csrf_token %}
+              <div class="form-group formField">
+                <input type="text" required class="form-control" id="id_username" name="username" placeholder="Usuario">
+              </div>
+              <div class="form-group formField">
+                <input type="password" required class="form-control" id="id_password" name="password"  placeholder="Contraseña">
+              </div>
+              <div class="form-group formField">
+                <input type="submit" class="btn btn-primary btn-block bg-color-3 border-color-3" value="Ingresar">
+              </div>
+              <div class="form-group formField" id="results">
+                <!--<p class="help-block"><a href="#">Usuario o Contraseña Incorrecto</a></p>-->
+              </div>
+              <!--<div class="form-group formField">
+                <p class="help-block"><a href="#">Forgot password?</a></p>
+              </div>-->
+            </form>
+          </div>
         </div>
-      <br/>
-        <div class = "container col-md-6 col-md-offset-3">
-          <br>
-          <input class="btn btn-primary btn-lg active" role="button" type="submit" value="Acceder" />
-        </div>
-      <br/>
-      <div class = "container col-md-6 col-md-offset-3">
-        {%if error == True%}
-          <h3>
-            *Usuario o Contraseña incorrecta
-          </h3>
-        {% endif %}
       </div>
-    </form>
     </div>
-{% endblock %}
+  {% endblock %}

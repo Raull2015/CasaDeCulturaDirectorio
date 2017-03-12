@@ -22,9 +22,10 @@ from forms import *
 
 # Create your views here.
 def home(request):
-
-    context = {}
-
+    artistas = Perfil.public.all().order_by('visitas')[:4]
+    eventos = Actividad.public.all().order_by('-fechaRealizacion')[:3]
+    context = {'artistas' : artistas,
+                'eventos' : eventos}
 
     return render(request, 'index-v1.html', infoHome(request, context))
 
@@ -70,7 +71,7 @@ def actividad_list(request):
         'total' : total,
         'autorizar' : False
     }
-    return render(request, 'actividades.html', context)
+    return render(request, 'actividades.html', infoHome(request,context) )
 
 @login_required
 def actividad_user(request, username=''):
@@ -166,7 +167,7 @@ def perfil_create_p1(request):
         except ObjectDoesNotExist :
             estado, mensaje = validar_password(username, password,password_confirm)
             if estado:
-                perfil = Perfil(nombreReal = nombre, email=email, telefono=telefono,fechaNacimiento= nacimiento,sexo=genero)
+                perfil = Perfil(nombreArtista = nombre, nombreReal = nombre, email=email, telefono=telefono,fechaNacimiento= nacimiento,sexo=genero)
                 perfil.rol = get_object_or_404(Rol, nombreRol='Artista')
                 nuevo_usuario = User.objects.create_user(username=username, email='xela@casacult.com', password=password)
                 perfil.user = nuevo_usuario
@@ -398,6 +399,10 @@ def ingresar(request):
     return HttpResponseBadRequest()
     #context = {'create': True}
 
+def ingresar_pagina(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('home:home'))
+    return render(request, 'login.html', infoHome(request, {}))
 
 @login_required
 def cerrar_sesion(request):
@@ -406,7 +411,7 @@ def cerrar_sesion(request):
     return HttpResponseRedirect(reverse('home:home'))
 
 def error(request):
-    return render(request, 'error.html')
+    return render(request, '404.html', infoHome(request, {}))
 
 def actividad_detail(request, username='', id=''):
     logeado = False
@@ -441,7 +446,7 @@ def actividad_detail(request, username='', id=''):
         'actividades': actividades,
         'categoria': categoria,
     }
-    return render(request, 'detalle_actividad.html', context)
+    return render(request, 'detalle_actividad.html', infoHome(request, context))
 
 def mensaje(request, mensaje='', path=''):
     if mensaje == None:

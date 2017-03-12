@@ -359,7 +359,14 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
                 $('#results').html("<p class='help-block'><a href='#'>Tu usuario no ha sido autorizado</a></p>");
             }
             else {
+              var next = getParameterByName("next")
+              console.log(next)
+              if (next != ""){
+                window.location = next;
+              }
+              else{
                 window.location="/home/";
+              }
             }
 
         },
@@ -422,3 +429,10 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
     console.log("form submitted!");  // sanity check
     crear_usuario();
   });
+
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
