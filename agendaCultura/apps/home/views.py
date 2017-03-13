@@ -302,7 +302,27 @@ def perfil_edit(request, username=''):
 
 @login_required
 def actividad_create(request,username=''):
-    categoria = Categoria.objects.all()
+    if request.user != User.objects.get(username=username):
+        return HttpResponseRedirect(reverse('error'))
+
+    if request.method == 'POST':
+        response_data = {}
+        nombre = request.POST['nombre']
+        lugar = request.POST['lugar']
+        fecha = request.POST['fecha']
+        hora = request.POST['hora']
+        descripcion = request.POST['descripcion']
+        categoria = request.POST['categoria']
+
+        actividad = Actividad(nombre=nombre, lugar=lugar, fechaRealizacion=fecha, hora=hora, descripcion=descripcion)
+
+        actividad.save()
+        actividad.categoria = Categoria.objects.filter(categoria=categoria)
+        actividad.perfil.add(request.user.perfil)
+
+    return render(request, 'crear_actividad.html', context={})
+
+    '''
     if request.user != User.objects.get(username=username):
         return HttpResponseRedirect(reverse('error'))
 
@@ -334,7 +354,8 @@ def actividad_create(request,username=''):
         'form': form,
         'create': True
     }
-    return render(request, 'crear_actividad.html', context)
+    '''
+
 
 @login_required
 def capsula_create(request):

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Confirmacion
+  {% endblock %}
+
+  {% block page-tittle %}
+    <!-- PAGE TITLE SECTION-->
+    <section class="pageTitleSection">
+      <div class="container">
+        <div class="pageTitleInfo">
+          <h2>Confirmacion</h2>
+          <ol class="breadcrumb">
+            <li><a href="index-v1.html">Home</a></li>
+            <li class="active">Confirmacion</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  {% endblock %}
+
+  {% block main-section %}
+    <!-- MAIN SECTION -->
+    <section class="mainContent full-width clearfix">
+      <div class="container">
+        <!--
+        <div class="row progress-wizard" style="border-bottom:0;">
+
+          <div class="col-sm-4 col-xs-12 progress-wizard-step complete">
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="checkout-step-1.html" class="progress-wizard-dot">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </a>
+            <div class="progressInfo">1. Informacion del evento</div>
+          </div>
+
+          <div class="col-sm-4 col-xs-12 progress-wizard-step active">
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="checkout-step-3.html" class="progress-wizard-dot">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </a>
+            <div class="progressInfo">3. Confirmacion</div>
+          </div>
+        </div>
+      -->
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="alert alert-success alert-dismissible alt" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">x</span></button>
+              <span class="successAlert"><i class="fa fa-check" aria-hidden="true"></i></span>
+              Evento creado! Espere mientras un administrador confirme el evento.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endblock %}

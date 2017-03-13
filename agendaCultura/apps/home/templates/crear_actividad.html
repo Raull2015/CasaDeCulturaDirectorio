@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Crear actividad
+  {% endblock %}
+
+  {% block page-tittle %}
+    <!-- PAGE TITLE SECTION-->
+    <section class="pageTitleSection">
+      <div class="container">
+        <div class="pageTitleInfo">
+          <h2>Informacion del evento</h2>
+          <ol class="breadcrumb">
+            <li><a href="index-v1.html">Home</a></li>
+            <li class="active">Informacion del evento</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  {% endblock %}
+
+  {% block main-section %}
+    <!-- MAIN SECTION -->
+    <section class="mainContent full-width clearfix">
+      <div class="container">
+        <!--
+        <div class="row progress-wizard" style="border-bottom:0;">
+
+          <div class="col-sm-4 col-xs-12 progress-wizard-step complete">
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="checkout-step-1.html" class="progress-wizard-dot">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </a>
+            <div class="progressInfo">1. Informacion del evento</div>
+          </div>
+
+          <div class="col-sm-4 col-xs-12 progress-wizard-step incomplete">
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="checkout-step-3.html" class="progress-wizard-dot">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </a>
+            <div class="progressInfo">2. Confirmacion</div>
+          </div>
+        </div>
+        -->
+        <div class="row">
+          <div class="col-sm-4 col-sm-push-8 col-xs-12">
+          </div>
+          <div class="col-sm-8  col-sm-pull-4 col-xs-12">
+            <form action={% url 'home:crear_evento' username=request.user.username %}  method="POST" role="form" id="crearEvento">
+              {% csrf_token %}
+              <div class="panel panel-default checkoutInfo">
+                <div class="panel-heading bg-color-3 border-color-3">
+                  <h3 class="panel-title">Informacion del evento</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Nombre</label>
+                      <input type="text" class="form-control border-color-1" id="nombre">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Lugar</label>
+                      <input type="text" class="form-control border-color-2" id="lugar">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Fecha de realización</label>
+                      <input type="date" class="form-control border-color-3" id="fecha">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Hora</label>
+                      <input type="time" class="form-control border-color-4" id="hora">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Descripcion</label>
+                      <textarea class="form-control border-color-5" rows="2" id="descripcion"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Categoria</label>
+                      <div class="bookingDrop">
+                        <select name="categoria" id="categoria" class="select-drop">
+                          <option value="">Seleccione una categoria</option>
+                          <option value="Arquitectura">Arquitectura</option>
+                          <option value="Escultura">Escultura</option>
+                          <option value="Pintura">Pintura</option>
+                          <option value="Cine">Cine</option>
+                          <option value="Teatro">Teatro</option>
+                          <option value="Musica">Musica</option>
+                          <option value="Danza">Danza</option>
+                          <option value="Literatura">Literatura</option>
+                          <option value="Fotografia">Fotografia</option>
+                          <option value="Pintura">Pintura</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="continueBtnArea">
+                <ul class="list-inline">
+                  <li class="pull-right"><button type="button" id="btnGuardar" class="btn btn-primary">Crear evento</button></li>
+                </ul>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endblock %}
+
+  {% block script %}
+  <script>
+    function validarForm(){
+      if ($('#nombre').val() == "") {
+        alert("El nombre es obligatorio");
+        $('#nombre').focus();
+        return false;
+      }
+      if ($('#lugar').val() == "") {
+        alert("El lugar es obligatorio");
+        $('#lugar').focus();
+        return false;
+      }
+      if ($('#fecha').val() == "") {
+        alert("La fecha de realizacion es obligatoria");
+        $('#fecha').focus();
+        return false;
+      }
+      if ($('#hora').val() == "") {
+        alert("La hora es obligatoria");
+        $('#hora').focus();
+        return false;
+      }
+      if ($('#categoria').val() == "") {
+        alert("Seleccione una categoria");
+        $('#categoria').focus();
+        return false;
+      }
+      return true;
+    }
+
+    $(document).ready( function() {
+      $('#btnGuardar').click( function() {
+        if (validarForm()) {
+          $.ajax({
+            url : '{% url 'home:crear_evento' username=request.user.username %}',
+            type : 'POST',
+            data : {
+              nombre : $('#nombre').val(),
+              lugar : $('#lugar').val(),
+              fecha : $('#fecha').val(),
+              hora : $('#hora').val(),
+              descripcion : $('#descripcion').val(),
+              categoria : $('#categoria').val()
+            },
+            success : function(data) {
+              alert("lo siento no he hecho la redireccion a otra plantilla :'v'");
+            }
+          });
+        }
+      });
+    });
+  </script>
+  {% endblock %}
