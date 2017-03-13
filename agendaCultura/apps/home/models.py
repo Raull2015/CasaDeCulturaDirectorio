@@ -72,10 +72,12 @@ class Perfil(models.Model):
     public = PerfilManager()
 
     def get_categorias(self):
-        cat = ''
         for categoria in self.categoria.all():
-            cat +=  categoria.categoria + ' '
-        return cat
+            return categoria.categoria
+
+
+    def get_descripcion(self):
+        return self.descripcion[:40] + '...'
 
     class Meta:
         verbose_name = 'perfil'
@@ -107,10 +109,8 @@ class Actividad(models.Model):
     public = ActividadManager()
 
     def get_categorias(self):
-        cat = ''
         for categoria in self.categoria.all():
-            cat +=  categoria.categoria + ' '
-        return cat
+            return categoria.categoria 
 
     def get_imagen(self):
         imagen = Imagenes.objects.filter(actividad = self)[0]
@@ -129,7 +129,10 @@ class Actividad(models.Model):
         return self.fechaRealizacion.year
 
     def get_numero_comentarios(self):
-        return len(Comentarios.objects.filter(actividad=self))
+        return Comentarios.objects.filter(actividad=self).count()
+
+    def get_descripcion(self):
+        return self.descripcion[:40] + '...'
 
     class Meta:
         verbose_name = 'actividad'

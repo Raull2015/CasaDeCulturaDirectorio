@@ -124,7 +124,7 @@
                           <a href="course-single-left-sidebar.html"><!--<img src={{MEDIA_URL}} alt="image">--></a>
                         </div>
                         <div class="media-body">
-                          <h4 class="media-heading"><a href={% url 'home:perfil' username=actividad.perfil.all.get.user.username %}>{{actividad.nombre}}</a></h4>
+                          <h4 class="media-heading"><a href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>{{actividad.nombre}}</a></h4>
                           <p>{{actividad.fechaRealizacion}}</p>
                         </div>
                       </li>

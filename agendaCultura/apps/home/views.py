@@ -44,12 +44,12 @@ def perfil_list(request):
         total = True
 
     context = {
-        'perfil': perfil,
+        'perfiles': perfil,
         'limit' : limit + aumento,
         'total' : total,
         'autorizar' : False
     }
-    return render(request, 'perfil_list.html', context)
+    return render(request, 'artistas.html', infoHome(request,context))
 
 def actividad_list(request):
     limit = 10
@@ -238,7 +238,7 @@ def perfil(request, username=''):
         'perfil': perfil,
         'es_propietario': is_owner,
     }
-    return render(request, 'mi_perfil.html', context)
+    return render(request, 'detalle_artista.html', infoHome(request,context))
 
 @login_required
 def perfil_edit(request, username=''):
@@ -414,21 +414,12 @@ def error(request):
     return render(request, '404.html', infoHome(request, {}))
 
 def actividad_detail(request, username='', id=''):
-    logeado = False
-    u = None
-    admin = False
     actividad = Actividad.objects.get(id=int(id))
     actividades = Actividad.public.all()[:5]
     categoria = Categoria.objects.all()
 
     if actividad.perfil.get().user.username != username:
         return HttpResponseRedirect(reverse('error'))
-
-    if request.user.is_authenticated:
-        logeado = True
-        u = request.user.username
-        if request.user.perfil.rol.is_admin():
-            admin = True
 
     conteo = request.session.get('conteo' + id, False)
     if conteo == False:
@@ -437,11 +428,7 @@ def actividad_detail(request, username='', id=''):
         request.session['conteo' + id] = True
         print False
 
-
     context = {
-        'logeado' : logeado,
-        'usuario' : u,
-        'admin' : admin,
         'actividad': actividad,
         'actividades': actividades,
         'categoria': categoria,

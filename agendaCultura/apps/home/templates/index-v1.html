@@ -207,7 +207,7 @@
                           </div>
                         </div>
                         <div class="teamInfo">
-                          <h3><a href={% url 'home:perfil' username=artista.user.username %}>{{artista.nombreReal}}</a></h3>
+                          <h3><a href={% url 'home:perfil' username=artista.user.username %}>{{artista.nombreArtista}}</a></h3>
                           <p>{{artista.get_categorias}}</p>
                         </div>
                       </div>
@@ -217,7 +217,10 @@
               </div>
             </div>
           </div>
-
+          
+          <div class="btnArea">
+            <a href={% url 'home:artistas' %} class="btn btn-primary">Ver Mas</a>
+          </div>
           {%else%}
           <div class="sectionTitle text-center alt">
             <h2>
@@ -365,12 +368,12 @@
                 <a ><img src="{{MEDIA_URL}}{{evento.get_imagen}}" alt="image" class="img-responsive"></a>
                 <div class="sticker-round bg-color-1">{{evento.get_dia}}<br>{{evento.get_mes}}<br>{{evento.get_anio}}</div>
                 <div class="caption border-color-1">
-                  <h3><a href="single-blog-left-sidebar.html" class="color-1">{{evento.nombre}}.</a></h3>
+                  <h3><a class="color-1">{{evento.nombre}}.</a></h3>
                   <ul class="list-inline">
                     <li><a href={% url 'home:perfil' username=evento.perfil.all.get.user.username %} ><i class="fa fa-user" aria-hidden="true"></i>{{evento.perfil.all.get.nombreArtista}}</a></li>
                     <li><a ><i class="fa fa-comments-o" aria-hidden="true"></i>{{evento.get_numero_comentarios}} Comentarios</a></li>
                   </ul>
-                  <p>{{evento.descripcion}} </p>
+                  <p>{{evento.get_descripcion}} </p>
                   <ul class="list-inline btn-yellow">
                     <li><a href={% url 'home:detalle_evento' username=evento.perfil.all.get.user.username id=evento.id %} class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Ver Mas</a></li>
                   </ul>
