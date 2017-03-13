@@ -26,8 +26,8 @@ def home(request):
     u = None
     admin = False
 
-    actividad = Actividad.public.all()[:3]
-
+    artistas = Perfil.public.all().order_by('visitas')[:4]
+    eventos = Actividad.public.all().order_by('-fechaRealizacion')[:3]
     if request.user.is_authenticated:
         logeado = True
         u = request.user.perfil.nombreArtista
@@ -44,11 +44,12 @@ def home(request):
         'capsula' : capsula,
         'logeado' : logeado,
         'usuario' : u,
-        'actividad' : actividad,
         'admin' : admin,
+        'artistas' : artistas,
+        'eventos' : eventos,
         'user' : request.user
     }
-    return render(request, 'index-v1.html', context)
+    return render(request, 'index-v1.html', infoHome(request, context))
 
 def perfil_list(request):
     limit = 10
@@ -92,7 +93,16 @@ def actividad_list(request):
         'total' : total,
         'autorizar' : False
     }
-    return render(request, 'actividades.html', context)
+    return render(request, 'actividades.html', infoHome(request,context) )
+
+def categoria_list(request):
+    categoria = Categoria.objects.all()
+
+    context = {
+        'categoria' : categoria,
+    }
+
+    return render(request, 'categorias.html', context)
 
 @login_required
 def actividad_user(request, username=''):
@@ -164,6 +174,7 @@ class EventosDetailView(DetailView):
         context = {'actividad': actividades}
         return context
 
+#ajax request
 def perfil_create_p1(request):
     if request.method == 'POST':
         response_data = {}
@@ -174,6 +185,12 @@ def perfil_create_p1(request):
         email = request.POST['email']
         telefono = request.POST['telefono']
         nacimiento = request.POST['nacimiento']
+        genero = request.POST['sexo']
+
+        if genero == 'True':
+            genero = True
+        else:
+            genero = False
         try:
             User.objects.get(username=username)
             response_data['existe'] = True
@@ -182,9 +199,9 @@ def perfil_create_p1(request):
         except ObjectDoesNotExist :
             estado, mensaje = validar_password(username, password,password_confirm)
             if estado:
-                nuevo_usuario = User.objects.create_user(username=username, email='xela@casacult.com', password=password)
-                perfil = Perfil(nombreReal = nombre, email=email, telefono=telefono,fechaNacimiento= nacimiento)
+                perfil = Perfil(nombreArtista = nombre, nombreReal = nombre, email=email, telefono=telefono,fechaNacimiento= nacimiento,sexo=genero)
                 perfil.rol = get_object_or_404(Rol, nombreRol='Artista')
+                nuevo_usuario = User.objects.create_user(username=username, email='xela@casacult.com', password=password)
                 perfil.user = nuevo_usuario
                 perfil.save()
                 return JsonResponse(response_data)
@@ -196,6 +213,7 @@ def perfil_create_p1(request):
     else:
         return HttpResponseBadRequest()
 
+"""
 def perfil_create_p2(request, user=None):
     print user
     if user != None:
@@ -231,6 +249,7 @@ def perfil_create_p2(request, user=None):
             return mensaje(request, 'Usuario Creado Exitosamente')
     else:
         return HttpResponseRedirect(reverse('error'))
+"""
 
 def perfil(request, username=''):
 
@@ -283,6 +302,7 @@ def perfil_edit(request, username=''):
 
 @login_required
 def actividad_create(request,username=''):
+    categoria = Categoria.objects.all()
     if request.user != User.objects.get(username=username):
         return HttpResponseRedirect(reverse('error'))
 
@@ -309,7 +329,11 @@ def actividad_create(request,username=''):
     else:
         form = ActividadForm()
 
-    context = {'form': form, 'create': True}
+    context = {
+        'categoria' : categoria,
+        'form': form,
+        'create': True
+    }
     return render(request, 'crear_actividad.html', context)
 
 @login_required
@@ -384,10 +408,10 @@ def administracion(request):
         }
     return render(request, 'Admi.html', context)
 
+#ajax request
 def ingresar(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse('home:home'))
-
 
     if request.method == 'GET':
         response_data = {}
@@ -412,6 +436,10 @@ def ingresar(request):
     return HttpResponseBadRequest()
     #context = {'create': True}
 
+def ingresar_pagina(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('home:home'))
+    return render(request, 'login.html', infoHome(request, {}))
 
 @login_required
 def cerrar_sesion(request):
@@ -420,7 +448,7 @@ def cerrar_sesion(request):
     return HttpResponseRedirect(reverse('home:home'))
 
 def error(request):
-    return render(request, 'error.html')
+    return render(request, '404.html', infoHome(request, {}))
 
 def actividad_detail(request, username='', id=''):
     logeado = False
@@ -455,7 +483,7 @@ def actividad_detail(request, username='', id=''):
         'actividades': actividades,
         'categoria': categoria,
     }
-    return render(request, 'detalle_actividad.html', context)
+    return render(request, 'detalle_actividad.html', infoHome(request, context))
 
 def mensaje(request, mensaje='', path=''):
     if mensaje == None:

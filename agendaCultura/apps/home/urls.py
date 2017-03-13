@@ -6,7 +6,8 @@ from views import EventosDetailView
 urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'artistas/$', perfil_list, name='artistas'),
-    url(r'registro/p2/$', perfil_create_p2, name='crear_perfil_p2'),
+    url(r'categorias/$', categoria_list, name='categorias'),
+    #url(r'registro/p2/$', perfil_create_p2, name='crear_perfil_p2'),
     url(r'registro/$', perfil_create_p1, name='crear_perfil_p1'),
     url(r'(?P<username>[-\w]+)/crearEvento/$', actividad_create, name='crear_evento'),
     url(r'(?P<username>[-\w]+)/evento/(?P<id>[\d]+)$', actividad_detail, name='detalle_evento'),

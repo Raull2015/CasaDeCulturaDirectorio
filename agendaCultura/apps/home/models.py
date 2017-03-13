@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from datetime import date
+#from datetime import datetime
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -19,13 +19,6 @@ class CapsulaManager(models.Manager):
     def get_queryset(self):
         qs = super(CapsulaManager, self).get_queryset()
         return qs.filter(fechaPublicacion=date.today())
-
-class Imagenes(models.Model):
-    imagen = models.ImageField(upload_to='imgActividad/', default='imgActividad/default.jpg')
-    objects = models.Manager()
-    class Meta:
-        verbose_name = 'imagen'
-        verbose_name_plural = 'imagenes'
 
 class Categoria(models.Model):
     categoria = models.CharField(max_length=100)
@@ -78,16 +71,22 @@ class Perfil(models.Model):
     objects = models.Manager()
     public = PerfilManager()
 
+    def get_categorias(self):
+        cat = ''
+        for categoria in self.categoria.all():
+            cat +=  categoria.categoria + ' '
+        return cat
+
     class Meta:
         verbose_name = 'perfil'
         verbose_name_plural = 'perfiles'
         ordering = ['-fechaRegistro']
 
     def __unicode__(self):
-        return self.nombreArtista
+        return self.nombreReal
 
     def __str__(self):
-        return self.nombreArtista
+        return self.nombreReal
 
 class Actividad(models.Model):
     nombre = models.CharField(max_length=200)
@@ -96,7 +95,7 @@ class Actividad(models.Model):
     hora = models.TimeField('Hora de Realizacion')
     descripcion = models.TextField(max_length=800)
     imagen = models.ImageField(upload_to='imgActividad/', default='imgActividad/default.jpg')  #Temporal
-    imagenes = models.ManyToManyField(Imagenes)                                                #Real
+    #imagenes = models.OneToManyField(Imagenes)                                                #Real
     fechaPublicacion = models.DateField('Fecha de publicacion')
     puntuacion = models.IntegerField(default=0)
     visitas = models.IntegerField(default=0)
@@ -106,6 +105,31 @@ class Actividad(models.Model):
 
     objects = models.Manager()
     public = ActividadManager()
+
+    def get_categorias(self):
+        cat = ''
+        for categoria in self.categoria.all():
+            cat +=  categoria.categoria + ' '
+        return cat
+
+    def get_imagen(self):
+        imagen = Imagenes.objects.filter(actividad = self)[0]
+        return imagen.imagen
+
+    def get_dia(self):
+        return self.fechaRealizacion.day
+
+    def get_mes(self):
+        meses = {1 : 'Enero', 2 : 'Febrero', 3 : 'Marzo', 4 : 'Abril',
+                 5 : 'Mayo', 6 : 'Junio', 7 : 'Julio', 8 : 'Agosto',
+                 9 : 'Septiempre', 10 : 'Ocutubre', 11 : 'Noviembre', 12 : 'Diciembre'}
+        return meses[self.fechaRealizacion.month]
+
+    def get_anio(self):
+        return self.fechaRealizacion.year
+
+    def get_numero_comentarios(self):
+        return len(Comentarios.objects.filter(actividad=self))
 
     class Meta:
         verbose_name = 'actividad'
@@ -169,3 +193,11 @@ class VisitasActividad(models.Model):
     class Meta():
         verbose_name = 'visitactividad'
         verbose_name_plural = 'visitasactividades'
+
+class Imagenes(models.Model):
+    imagen = models.ImageField(upload_to='imgActividad/', default='imgActividad/default.jpg')
+    actividad = models.ForeignKey(Actividad)
+    objects = models.Manager()
+    class Meta:
+        verbose_name = 'imagen'
+        verbose_name_plural = 'imagenes'

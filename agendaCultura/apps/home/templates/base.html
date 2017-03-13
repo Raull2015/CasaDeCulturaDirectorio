@@ -52,15 +52,15 @@
           <div class="col-sm-1 bg-color-6 hidden-xs">fix bar</div>
         </div>
       </div>
-      <!-- TOP INFO BAR -->
+      <!-- Barra de Informacion superior Login y registro -->
       <div class="top-info-bar bg-color-7 hidden-xs">
         <div class="container">
           <div class="row">
             <div class="col-sm-7">
               <ul class="list-inline topList">
                 <li><i class="fa fa-envelope bg-color-1" aria-hidden="true"></i> <a href="mailto:cultura@gmail.com">cultura@gmail.com</a></li>
-                <li><i class="fa fa-phone bg-color-2" aria-hidden="true"></i> +1 234 567 8900</li>
-                <li><i class="fa fa-clock-o bg-color-6" aria-hidden="true"></i> Open: 9am - 6pm</li>
+                <li><i class="fa fa-phone bg-color-2" aria-hidden="true"></i> +502 1234 5678 </li>
+                <li><i class="fa fa-clock-o bg-color-6" aria-hidden="true"></i> Abierto: 8AM - 5PM</li>
               </ul>
             </div>
             <div class="col-sm-5">
@@ -74,10 +74,10 @@
                   </select>
                 </li>
 
-                {% if logeado == False %}
+                {% if H_logeado == False %}
                 <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#loginModal' data-toggle="modal" >Iniciar Sesion</a><span>o</span><a href='#createAccount' data-toggle="modal">Registrarse</a></li>
                 {% else %}
-                <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#' data-toggle="modal" >Bienvenido {{ usuario }} </a><span></span><a href= {% url 'cerrar_sesion' %} data-toggle="modal">Cerrar Sesion</a></li>
+                <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#' data-toggle="modal" >Bienvenido {{ H_nombre_usuario }} </a><span></span><a href= {% url 'cerrar_sesion' %} data-toggle="modal">Cerrar Sesion</a></li>
                 {% endif %}
                 <!--<li class="cart-dropdown">
                   <a href="#" class="bg-color-6 shop-cart" >
@@ -153,7 +153,8 @@
         </div>
       </div>
       {% block header %}{% endblock %}
-      <!-- NAVBAR -->
+
+      <!-- Barra de Navegacion -->
       <nav id="menuBar" class="navbar navbar-default lightHeader" role="navigation">
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -164,14 +165,15 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index-v1.html"><img src= "{% static "img/logo-school.png" %}" alt="Kidz School"></a>
+            <a class="navbar-brand" href= "{% url 'home:home' %}" ><img src= "{% static "img/logo-school.png" %}" alt="Kidz School"></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li class="active dropdown singleDrop color-1">
-                <a href= "javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <!-- data-toggle="dropdown" -->
+                <a href="{% url 'home:home' %}" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-home bg-color-1" aria-hidden="true"></i> <span>Inicio</span>
                 </a>
                 <!--<ul class="dropdown-menu dropdown-menu-left">
@@ -183,7 +185,13 @@
               <li class="dropdown singleDrop color-3">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-ul bg-color-3" aria-hidden="true"></i> <span>Categorias</span></a>
                 <ul class="dropdown-menu dropdown-menu-left">
-                  <li><a href="about_us.html">About</a></li>
+
+                  {%for categoria in H_categorias%}
+                  <li><a href="#">{{categoria.categoria}}</a></li>
+                  {%empty%}
+                  <li><a href="#">Nada aqui por ahora</a></li>
+                  {%endfor%}
+                  <li><a href="{% url 'home:categorias' %}">Ver Todas</a></li>
                   <!--<li class="dropdown dropdown-submenu">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Team<i class="fa fa-chevron-right" aria-hidden="true"></i>
                     </a>
@@ -284,7 +292,8 @@
                 </ul>
               </li>-->
               <li class="dropdown singleDrop color-5">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <!-- data-toggle="dropdown" -->
+                <a href={% url 'home:eventos' %} class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-calendar bg-color-5" aria-hidden="true"></i>
                   <span>Eventos</span>
                 </a>
@@ -294,7 +303,11 @@
                   <li><a href={% url 'home:crear_evento' username=user.username %}>Crear evento</a></li>
                   <li><a href={% url 'home:actividad_user' username=user.username %}>Mis eventos</a></li>
                   {% endif %}
+
                   <!--<li class="dropdown dropdown-submenu">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a href="blog-grid.html">Todos</a></li>
+                  <li class="dropdown dropdown-submenu">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Blog Grid<i class="fa fa-chevron-right" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown-menu">
@@ -320,18 +333,21 @@
                       <li><a href="single-blog-left-sidebar.html">Single Blog Left Sidebar</a></li>
                       <li><a href="single-blog-right-sidebar.html">Single Blog Right Sidebar</a></li>
                     </ul>
-                  </li>-->
+                  </li>
+                </ul>-->
                 </ul>
               </li>
+
               <li class="dropdown singleDrop color-6">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-star-half-o   bg-color-6" aria-hidden="true"></i> <span>Artistas</span></a>
-                <ul class="dropdown-menu dropdown-menu-right">
+                <!-- data-toggle="dropdown" -->
+                <a href={% url 'home:artistas' %} class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-star-half-o   bg-color-6" aria-hidden="true"></i> <span>Artistas</span></a>
+                <!--<ul class="dropdown-menu dropdown-menu-right">
                   <li><a href="#">Todos</a></li>
-                  <!--<li><a href="accordion-toggles.html">Accordions &amp; Toggles</a></li>
-                  <li><a href="tabs-dropdown.html">Tabs &amp; Dropdowns</a></li>-->
-                </ul>
+                  <li><a href="accordion-toggles.html">Accordions &amp; Toggles</a></li>
+                  <li><a href="tabs-dropdown.html">Tabs &amp; Dropdowns</a></li>
+                </ul>-->
               </li>
-            </ul>
           </div>
 
           <!--<div class="cart-dropdown">
@@ -402,6 +418,7 @@
               </li>
             </ul>
           </div>-->
+
         </div>
       </nav>
     </header>
@@ -556,6 +573,7 @@
         </div>
       </div>
     </footer>
+
   </div>
 
   <div class="scrolling">
@@ -619,13 +637,19 @@
                 <input type="text" class="form-control" id="id_nombre" name="nombre" placeholder="Nombre" required>
               </div>
               <div class="form-group formField">
-                <input type="text" class="form-control" id="id_email" name="email" placeholder="Email" required>
+                <input type="email" class="form-control" id="id_email" name="email" placeholder="Email" required>
               </div>
               <div class="form-group formField">
-                <input type="text" class="form-control" id="id_telefono" name="telefono" placeholder="Telefono" required>
+                <input type="text" pattern="[0-9]+" class="form-control" id="id_telefono" name="telefono" placeholder="Telefono" required>
               </div>
               <div class="form-group formField">
-                <input type="text" class="form-control" id="id_nacimiento" name="nacimiento" placeholder="Fecha de Nacimiento"required>
+                Genero </br>
+                <input type="radio" class="" id="id_genero" name="genero" value="True" checked> Hombre <br>
+                <input type="radio" class="" id="id_genero" name="genero" value="False"> Mujer <br>
+              </div>
+              <div class="form-group formField">
+                Fecha de Nacimiento </br>
+                <input type="date" class="form-control" max="2000-12-31" id="id_nacimiento" name="nacimiento" required>
               </div>
               <div class="form-group formField">
                 <input type="submit" class="btn btn-primary btn-block bg-color-3 border-color-3" value="Crear">
@@ -657,7 +681,7 @@
     <script src= "{% static "plugins/smoothscroll/SmoothScroll.js" %}" ></script>
     <script src= "{% static "js/custom.js" %}" ></script>
 
-    {% block script%}{% endblock %}
+    {% block script %}{% endblock %}
 
     </body>
 </html>

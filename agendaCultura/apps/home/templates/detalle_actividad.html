@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
   {% block title %}
-    Evento
+    {{actividad.nombre}}
   {% endblock %}
 
     {% block page-tittle %}
     <!-- PAGE TITLE SECTION-->
-    <section class="pageTitleSection">
+    <!--<section class="pageTitleSection">
       <div class="container">
         <div class="pageTitleInfo">
           <h2>Detalles del evento</h2>
@@ -16,7 +16,7 @@
           </ol>
         </div>
       </div>
-    </section>
+    </section>-->
     {% endblock %}
 
     {% block main-section %}
@@ -26,13 +26,13 @@
         <div class="row">
           <div class="col-md-9 col-sm-8 col-xs-12 block pull-right">
             <div class="thumbnail thumbnailContent">
-              <img src= "/media/{{actividad.imagen.name}}" alt="image" class="img-responsive">
-              <div class="sticker-round bg-color-1">{{actividad.fechaRealizacion.day}} <br>{{actividad.fechaRealizacion.month}}</div>
+              <img src= "{{MEDIA_URL}}{{actividad.get_imagen}}" alt="image" class="img-responsive">
+              <div class="sticker-round bg-color-1">{{actividad.get_dia}}<br>{{actividad.get_mes}}<br>{{actividad.get_anio}}</div>
               <div class="caption border-color-1 singleBlog">
                 <h3 class="color-1">{{actividad.nombre}}</h3>
                 <ul class="list-inline blogInfo">
-                  <li><i class="fa fa-user" aria-hidden="true"></i>{{actividad.perfil.get.nombreArtista}}</li>
-                  <li><i class="fa fa-comments-o" aria-hidden="true"></i>0 Comentarios </li>
+                  <li><i class="fa fa-user" aria-hidden="true"></i>{{actividad.perfil.all.get.nombreArtista}}</li>
+                  <li><i class="fa fa-comments-o" aria-hidden="true"></i>{{actividad.get_numero_comentarios}} Comentarios </li>
                 </ul>
                 {{actividad.descripcion}}
                 <ul class="list-inline socailLink">
@@ -45,7 +45,7 @@
               </div>
             </div>
             <div class="blogComments">
-              <h3>0 Comentarios</h3>
+              <h3>{{actividad.get_numero_comentarios}} Comentarios</h3>
             </div>
             <div class="blogComments">
               <h3>Dinos que opinas</h3>
