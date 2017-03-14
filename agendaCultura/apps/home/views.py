@@ -337,6 +337,16 @@ def actividad_create(request,username=''):
     }
     '''
 
+def comentarios(request, id=''):
+    if request.method == 'POST':
+        texto = request.POST['texto']
+
+    comentario = Comentarios(contenido=texto, fechaComentario=date.today())
+    comentario.actividad = Actividad.objects.get(id=int(id))
+
+    comentario.save()
+
+    return render(request, 'detalle_actividad.html', context={})
 
 @login_required
 def capsula_create(request):

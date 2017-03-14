@@ -5,6 +5,7 @@ from views import EventosDetailView
 
 urlpatterns = [
     url(r'^$', home, name='home'),
+    url(r'(?P<id>[\d]+)/comentar/$', comentarios, name='comentar'),
     url(r'confirmar_registro/$', confirmar_registro, name='confirmar_registro'),
     url(r'artistas/$', perfil_list, name='artistas'),
     url(r'categorias/$', categoria_list, name='categorias'),

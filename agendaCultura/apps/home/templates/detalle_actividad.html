@@ -46,21 +46,33 @@
             </div>
             <div class="blogComments">
               <h3>{{actividad.get_numero_comentarios}} Comentarios</h3>
+              <ul class="media-list commentsList">
+                <li class="media">
+                  <div id="nuevoComentario" class="media-body">
+                  </div>
+                </li>
+              </ul>
             </div>
             <div class="blogComments">
               <h3>Dinos que opinas</h3>
               <div class="homeContactContent">
-                <form action="#" method="POST" role="form">
+                <form action={% url 'home:comentar' id=actividad.id %} method="POST" role="form">
                   <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                      <div class="form-group">
+                        <i class="fa fa-user"></i>
+                        <input type="text" class="form-control border-color-1" placeholder="Nombre" id="nombre" >
+                      </div>
+                    </div>
                     <div class="col-xs-12">
                       <div class="form-group">
                         <i class="fa fa-comments" aria-hidden="true"></i>
-                        <textarea class="form-control border-color-4" placeholder="Comenta..."></textarea>
+                        <textarea class="form-control border-color-4" placeholder="Comenta..." id="comentario"></textarea>
                       </div>
                     </div>
                     <div class="col-xs-12">
                       <div class="formBtnArea pull-left">
-                        <button type="submit" class="btn btn-primary">Comentar</button>
+                        <button type="button" id="btnGuardar" class="btn btn-primary">Comentar</button>
                       </div>
                     </div>
                   </div>
@@ -120,4 +132,28 @@
         </div>
       </div>
     </section>
+    {% endblock %}
+
+    {% block script %}
+    <script>
+      $(document).ready( function() {
+        $('#btnGuardar').click( function() {
+          var nombre = $('#nombre').val();
+          var comentario = $('#comentario').val();
+          var now = new Date();
+          var meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+          var fecha = meses[now.getMonth] + ' ' + now.getDate() + ',' + now.getFullYear();
+            $.ajax({
+              url : '{% url 'home:comentar' id=actividad.id %}',
+              type : 'POST',
+              data : {
+                texto : $('#comentario').val(),
+              },
+              success : function(data) {
+                $('#nuevoComentario').append('<h4 class="media-heading">' + nombre + '</h4><p>' + fecha + '</p><p>' + comentario +'</p>');
+              }
+            });
+        });
+      });
+    </script>
     {% endblock %}
