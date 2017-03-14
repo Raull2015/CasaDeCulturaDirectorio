@@ -108,12 +108,12 @@ def categoria_list(request):
 def actividad_user(request, username=''):
     user = get_object_or_404(User, username=username)
     if request.user == user:
-        actividad = Actividad.objects.filter(perfil=request.user.perfil)
+        actividad = Actividad.public.filter(perfil=request.user.perfil)
     else:
         return HttpResponseRedirect(reverse('error'))
 
     context = {'actividad': actividad, 'perfil': user}
-    return render(request, 'actividad_list.html', context)
+    return render(request, 'mis_actividades.html', context)
 
 @login_required
 def actividad_to_authorize(request):
@@ -313,8 +313,9 @@ def actividad_create(request,username=''):
         hora = request.POST['hora']
         descripcion = request.POST['descripcion']
         categoria = request.POST['categoria']
+        imagen = request.POST['imagen']
 
-        actividad = Actividad(nombre=nombre, lugar=lugar, fechaRealizacion=fecha, hora=hora, descripcion=descripcion)
+        actividad = Actividad(nombre=nombre, lugar=lugar, fechaRealizacion=fecha, hora=hora, descripcion=descripcion, imagen=imagen)
 
         actividad.save()
         actividad.categoria = Categoria.objects.filter(categoria=categoria)

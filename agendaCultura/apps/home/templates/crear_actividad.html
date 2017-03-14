@@ -57,25 +57,25 @@
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Nombre</label>
-                      <input type="text" class="form-control border-color-1" id="nombre">
+                      <input type="text" class="form-control border-color-1" id="nombre" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Lugar</label>
-                      <input type="text" class="form-control border-color-2" id="lugar">
+                      <input type="text" class="form-control border-color-2" id="lugar" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Fecha de realización</label>
-                      <input type="date" class="form-control border-color-3" id="fecha">
+                      <input type="date" class="form-control border-color-3" id="fecha" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Hora</label>
-                      <input type="time" class="form-control border-color-4" id="hora">
+                      <input type="time" class="form-control border-color-4" id="hora" required>
                     </div>
                   </div>
                   <div class="form-group">
@@ -86,9 +86,15 @@
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
+                      <label for="">Imagen</label>
+                      <input type="file" class="form-control border-color-6" id="imagen">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
                       <label for="">Categoria</label>
                       <div class="bookingDrop">
-                        <select name="categoria" id="categoria" class="select-drop">
+                        <select name="categoria" id="categoria" class="select-drop" required>
                           <option value="">Seleccione una categoria</option>
                           <option value="Arquitectura">Arquitectura</option>
                           <option value="Escultura">Escultura</option>
@@ -120,38 +126,8 @@
 
   {% block script %}
   <script>
-    function validarForm(){
-      if ($('#nombre').val() == "") {
-        alert("El nombre es obligatorio");
-        $('#nombre').focus();
-        return false;
-      }
-      if ($('#lugar').val() == "") {
-        alert("El lugar es obligatorio");
-        $('#lugar').focus();
-        return false;
-      }
-      if ($('#fecha').val() == "") {
-        alert("La fecha de realizacion es obligatoria");
-        $('#fecha').focus();
-        return false;
-      }
-      if ($('#hora').val() == "") {
-        alert("La hora es obligatoria");
-        $('#hora').focus();
-        return false;
-      }
-      if ($('#categoria').val() == "") {
-        alert("Seleccione una categoria");
-        $('#categoria').focus();
-        return false;
-      }
-      return true;
-    }
-
     $(document).ready( function() {
       $('#btnGuardar').click( function() {
-        if (validarForm()) {
           $.ajax({
             url : '{% url 'home:crear_evento' username=request.user.username %}',
             type : 'POST',
@@ -161,13 +137,13 @@
               fecha : $('#fecha').val(),
               hora : $('#hora').val(),
               descripcion : $('#descripcion').val(),
-              categoria : $('#categoria').val()
+              categoria : $('#categoria').val(),
+              imagen : $('#imagen').val()
             },
             success : function(data) {
               alert("lo siento no he hecho la redireccion a otra plantilla :'v'");
             }
           });
-        }
       });
     });
   </script>
