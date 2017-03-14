@@ -406,7 +406,7 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
                 }
             }
             else {
-                window.location="/home/";
+                window.location="/home/confirmar_registro/";
             }
 
         },

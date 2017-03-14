@@ -22,32 +22,12 @@ from forms import *
 
 # Create your views here.
 def home(request):
-    logeado = False
-    u = None
-    admin = False
 
     artistas = Perfil.public.all().order_by('visitas')[:4]
     eventos = Actividad.public.all().order_by('-fechaRealizacion')[:3]
-    if request.user.is_authenticated:
-        logeado = True
-        u = request.user.perfil.nombreArtista
-        if request.user.perfil.rol.is_admin():
-            admin = True
-
-    capsula = None
-    try:
-        capsula = Capsulas.objects.all().filter(fechaPublicacion__range=('2016-01-01',date.today())).order_by('-fechaPublicacion')[0]
-    except IndexError:
-        pass
-
     context = {
-        'capsula' : capsula,
-        'logeado' : logeado,
-        'usuario' : u,
-        'admin' : admin,
         'artistas' : artistas,
         'eventos' : eventos,
-        'user' : request.user
     }
     return render(request, 'index-v1.html', infoHome(request, context))
 
@@ -102,18 +82,18 @@ def categoria_list(request):
         'categoria' : categoria,
     }
 
-    return render(request, 'categorias.html', context)
+    return render(request, 'categorias.html', infoHome(request,context))
 
 @login_required
 def actividad_user(request, username=''):
     user = get_object_or_404(User, username=username)
     if request.user == user:
-        actividad = Actividad.objects.filter(perfil=request.user.perfil)
+        actividad = Actividad.public.filter(perfil=request.user.perfil)
     else:
         return HttpResponseRedirect(reverse('error'))
 
     context = {'actividad': actividad, 'perfil': user}
-    return render(request, 'actividad_list.html', context)
+    return render(request, 'mis_actividades.html', context)
 
 @login_required
 def actividad_to_authorize(request):
@@ -298,7 +278,7 @@ def perfil_edit(request, username=''):
     else:
         form = PerfilForm(instance=user.perfil)
     context = {'form': form, 'create': False}
-    return render(request, 'crear_perfil_p2.html', context)
+    return render(request, 'editar_perfil.html', infoHome(request, context))
 
 @login_required
 def actividad_create(request,username=''):
@@ -313,14 +293,15 @@ def actividad_create(request,username=''):
         hora = request.POST['hora']
         descripcion = request.POST['descripcion']
         categoria = request.POST['categoria']
+        imagen = request.POST['imagen']
 
-        actividad = Actividad(nombre=nombre, lugar=lugar, fechaRealizacion=fecha, hora=hora, descripcion=descripcion)
+        actividad = Actividad(nombre=nombre, lugar=lugar, fechaRealizacion=fecha, hora=hora, descripcion=descripcion, imagen=imagen)
 
         actividad.save()
         actividad.categoria = Categoria.objects.filter(categoria=categoria)
         actividad.perfil.add(request.user.perfil)
 
-    return render(request, 'crear_actividad.html', context={})
+    return render(request, 'crear_actividad.html', infoHome(request,{}))
 
     '''
     if request.user != User.objects.get(username=username):
@@ -617,3 +598,9 @@ def estadisticas(request):
         'grafico':grafico,
     }
     return render(request, 'estadisticas.html', context)
+
+def confirmar_registro(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('error'))
+    else:
+        return render(request, 'confirmar_registro.html', infoHome(request, {}))

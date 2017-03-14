@@ -1,22 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
   {% block title %}
-    Crear actividad
-  {% endblock %}
-
-  {% block page-tittle %}
-    <!-- PAGE TITLE SECTION-->
-    <section class="pageTitleSection">
-      <div class="container">
-        <div class="pageTitleInfo">
-          <h2>Informacion del evento</h2>
-          <ol class="breadcrumb">
-            <li><a href="index-v1.html">Home</a></li>
-            <li class="active">Informacion del evento</li>
-          </ol>
-        </div>
-      </div>
-    </section>
+    Editar Perfil
   {% endblock %}
 
   {% block main-section %}
@@ -57,25 +42,25 @@
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Nombre</label>
-                      <input type="text" class="form-control border-color-1" id="nombre" required>
+                      <input type="text" class="form-control border-color-1" id="nombre">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Lugar</label>
-                      <input type="text" class="form-control border-color-2" id="lugar" required>
+                      <input type="text" class="form-control border-color-2" id="lugar">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Fecha de realización</label>
-                      <input type="date" class="form-control border-color-3" id="fecha" required>
+                      <input type="date" class="form-control border-color-3" id="fecha">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Hora</label>
-                      <input type="time" class="form-control border-color-4" id="hora" required>
+                      <input type="time" class="form-control border-color-4" id="hora">
                     </div>
                   </div>
                   <div class="form-group">
@@ -86,15 +71,9 @@
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
-                      <label for="">Imagen</label>
-                      <input type="file" class="form-control border-color-6" id="imagen">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-xs-12">
                       <label for="">Categoria</label>
                       <div class="bookingDrop">
-                        <select name="categoria" id="categoria" class="select-drop" required>
+                        <select name="categoria" id="categoria" class="select-drop">
                           <option value="">Seleccione una categoria</option>
                           <option value="Arquitectura">Arquitectura</option>
                           <option value="Escultura">Escultura</option>
@@ -122,29 +101,4 @@
         </div>
       </div>
     </section>
-  {% endblock %}
-
-  {% block script %}
-  <script>
-    $(document).ready( function() {
-      $('#btnGuardar').click( function() {
-          $.ajax({
-            url : '{% url 'home:crear_evento' username=request.user.username %}',
-            type : 'POST',
-            data : {
-              nombre : $('#nombre').val(),
-              lugar : $('#lugar').val(),
-              fecha : $('#fecha').val(),
-              hora : $('#hora').val(),
-              descripcion : $('#descripcion').val(),
-              categoria : $('#categoria').val(),
-              imagen : $('#imagen').val()
-            },
-            success : function(data) {
-              alert("lo siento no he hecho la redireccion a otra plantilla :'v'");
-            }
-          });
-      });
-    });
-  </script>
   {% endblock %}

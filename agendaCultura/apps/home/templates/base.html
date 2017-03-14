@@ -171,7 +171,7 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="active dropdown singleDrop color-1">
+              <li class="dropdown singleDrop color-1">
                 <!-- data-toggle="dropdown" -->
                 <a href="{% url 'home:home' %}" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-home bg-color-1" aria-hidden="true"></i> <span>Inicio</span>
@@ -182,8 +182,24 @@
                   <li><a href="index-v3.html">Kidz Daycare</a></li>
                 </ul>-->
               </li>
+
+              {%if H_logeado == True %}
+              <li class="dropdown singleDrop color-4">
+                <!-- data-toggle="dropdown" -->
+                <a href={% url 'home:perfil' username=H_nombre_usuario %} class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-file-text-o bg-color-4" aria-hidden="true"></i> <span>Mi Perfil</span>
+                </a>
+                <!--<ul class="dropdown-menu dropdown-menu-left">
+                  <li class="active"><a href="index-v1.html">Kidz School</a></li>
+                  <li><a href="index-v2.html">Kidz Store</a></li>
+                  <li><a href="index-v3.html">Kidz Daycare</a></li>
+                </ul>-->
+              </li>
+              {%endif%}
+
               <li class="dropdown singleDrop color-3">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-ul bg-color-3" aria-hidden="true"></i> <span>Categorias</span></a>
+                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-list-ul bg-color-3" aria-hidden="true"></i> <span>Categorias</span></a>
                 <ul class="dropdown-menu dropdown-menu-left">
 
                   <li><a href="#">Cine</a></li>
@@ -297,11 +313,13 @@
                   <i class="fa fa-calendar bg-color-5" aria-hidden="true"></i>
                   <span>Eventos</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li><a href={% url 'home:eventos' %}>Todos</a></li>
-                  {% if logeado == True %}
+
+                  <!--<li><a href={% url 'home:eventos' %}>Todos</a></li>-->
+                  {% if H_logeado == True %}
+                  <ul class="dropdown-menu dropdown-menu-right">
                   <li><a href={% url 'home:crear_evento' username=user.username %}>Crear evento</a></li>
                   <li><a href={% url 'home:actividad_user' username=user.username %}>Mis eventos</a></li>
+                  </ul>
                   {% endif %}
 
                   <!--<li class="dropdown dropdown-submenu">
@@ -335,7 +353,7 @@
                     </ul>
                   </li>
                 </ul>-->
-                </ul>
+
               </li>
 
               <li class="dropdown singleDrop color-6">
