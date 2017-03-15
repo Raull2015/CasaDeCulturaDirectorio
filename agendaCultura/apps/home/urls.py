@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'(?P<id>[\d]+)/comentar/$', comentarios, name='comentar'),
     url(r'confirmar_registro/$', confirmar_registro, name='confirmar_registro'),
+    url(r'confirmar_actividad/$', confirmar_actividad, name='confirmar_actividad'),
     url(r'artistas/$', perfil_list, name='artistas'),
     url(r'categorias/$', categoria_list, name='categorias'),
     #url(r'registro/p2/$', perfil_create_p2, name='crear_perfil_p2'),

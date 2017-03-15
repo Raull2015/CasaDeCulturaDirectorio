@@ -47,10 +47,16 @@
             <div class="blogComments">
               <h3>{{actividad.get_numero_comentarios}} Comentarios</h3>
               <ul class="media-list commentsList">
+                {% for comentario in comentario %}
                 <li class="media">
-                  <div id="nuevoComentario" class="media-body">
+                  <div class="media-body">
+                    <p>{{comentario.fechaComentario}}</p>
+                    <p>{{comentario.contenido}}</p>
                   </div>
                 </li>
+                {% endfor %}
+                <div id="nuevoComentario" class="media-body">
+                </div>
               </ul>
             </div>
             <div class="blogComments">
@@ -142,15 +148,18 @@
           var comentario = $('#comentario').val();
           var now = new Date();
           var meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-          var fecha = meses[now.getMonth] + ' ' + now.getDate() + ',' + now.getFullYear();
+          var fecha = now.getDate() + ' de ' + meses[now.getMonth()] + ' de ' + now.getFullYear();
             $.ajax({
               url : '{% url 'home:comentar' id=actividad.id %}',
               type : 'POST',
               data : {
                 texto : $('#comentario').val(),
               },
-              success : function(data) {
+              success : function(response) {
                 $('#nuevoComentario').append('<h4 class="media-heading">' + nombre + '</h4><p>' + fecha + '</p><p>' + comentario +'</p>');
+                $('#nombre').val('');
+                $('#comentario').val('');
+                //window.location = '{% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}>'
               }
             });
         });

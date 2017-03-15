@@ -418,29 +418,6 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
     });
   };
 
-  /*function crear_evento() {
-    console.log("create post is working!")
-    $.ajax({
-      url : 'home/crear_evento/',
-      type : 'POST',
-      data : {
-        nombre : $('#nombre').val().
-        lugar : $('#lugar').val(),
-        fecha : $('#fecha').val(),
-        hora : $('#hora').val(),
-        descripcion : $('#descripcion').val(),
-        imagen : $('#imagen').val(),
-        categoria : $('#categoria').val()
-      },
-      success : function() {
-        console.log("success");
-      },
-      error : function(xhr, errmsg, err) {
-        console.log(xhr.status + ": " + xhr.responseText);
-      }
-    });
-  };*/
-
   $('#post-login').on('submit', function(event){
     event.preventDefault();
     console.log("form submitted!");  // sanity check

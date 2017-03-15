@@ -337,17 +337,6 @@ def actividad_create(request,username=''):
     }
     '''
 
-def comentarios(request, id=''):
-    if request.method == 'POST':
-        texto = request.POST['texto']
-
-    comentario = Comentarios(contenido=texto, fechaComentario=date.today())
-    comentario.actividad = Actividad.objects.get(id=int(id))
-
-    comentario.save()
-
-    return render(request, 'detalle_actividad.html', context={})
-
 @login_required
 def capsula_create(request):
     if request.user.perfil.rol.is_admin() != True:
@@ -466,6 +455,7 @@ def actividad_detail(request, username='', id=''):
     actividad = Actividad.objects.get(id=int(id))
     actividades = Actividad.public.all()[:5]
     categoria = Categoria.objects.all()
+    comentario = Comentarios.objects.filter(actividad=actividad)
 
     if actividad.perfil.get().user.username != username:
         return HttpResponseRedirect(reverse('error'))
@@ -481,6 +471,7 @@ def actividad_detail(request, username='', id=''):
         'actividad': actividad,
         'actividades': actividades,
         'categoria': categoria,
+        'comentario' : comentario,
     }
     return render(request, 'detalle_actividad.html', infoHome(request, context))
 
@@ -614,3 +605,18 @@ def confirmar_registro(request):
         return HttpResponseRedirect(reverse('error'))
     else:
         return render(request, 'confirmar_registro.html', infoHome(request, {}))
+
+def confirmar_actividad(request):
+    return render(request, 'confirmar_actividad.html', infoHome(request, {}))
+
+def comentarios(request, id=''):
+    if request.method == 'POST':
+        response_date = {}
+        texto = request.POST['texto']
+
+        comentario = Comentarios(contenido=texto, fechaComentario=date.today())
+        comentario.actividad = Actividad.objects.get(id=int(id))
+
+        comentario.save()
+
+    return JsonResponse(response_date)
