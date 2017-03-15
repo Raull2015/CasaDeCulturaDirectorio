@@ -25,9 +25,12 @@ def home(request):
 
     artistas = Perfil.public.all().order_by('visitas')[:4]
     eventos = Actividad.public.all().order_by('-fechaRealizacion')[:3]
+    capsula = Capsulas.objects.all().filter(fechaPublicacion__range=('2016-01-01',date.today())).order_by('-fechaPublicacion')[0]
+
     context = {
         'artistas' : artistas,
         'eventos' : eventos,
+        'capsula' : capsula,
     }
     return render(request, 'index-v1.html', infoHome(request, context))
 
