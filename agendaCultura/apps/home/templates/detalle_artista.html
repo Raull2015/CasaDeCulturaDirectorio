@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
   {% block title %}
-    {{actividad.nombre}}
+    {{perfil.nombreArtista}}
   {% endblock %}
 
   {% block main-section %}
@@ -25,16 +25,17 @@
                   <li><a href="#" class="bg-color-5"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
                 </ul>
                 <h3>Informacion</h3>
-                <div class="teachersProfession bg-color-1">Designation</div>
-                <div class="professionDetails">Assistent Teacher</div>
-                <div class="teachersProfession bg-color-2">Degree</div>
-                <div class="professionDetails">English Literature</div>
-                <div class="teachersProfession bg-color-3">Experience</div>
-                <div class="professionDetails">10 Years In Preschool Education</div>
-                <div class="teachersProfession bg-color-4">Hobbies</div>
-                <div class="professionDetails">Music,Dancing And Playing Football</div>
-                <div class="teachersProfession bg-color-5">My Course</div>
-                <div class="professionDetails">Language,Grammer</div>
+                {%if perfil.nombreArtista%}
+                <div class="teachersProfession bg-color-1">Nombre: </div>
+                <div class="professionDetails">{{perfil.nombreArtista}}</div>
+                {%endif%}
+                <div class="teachersProfession bg-color-2">E-Mail: </div>
+                <div class="professionDetails">{{perfil.email}}</div>
+                <div class="teachersProfession bg-color-3">Edad: </div>
+                <div class="professionDetails">{{perfil.get_edad}}</div>
+                <div class="teachersProfession bg-color-4">Categorias: </div>
+                <div class="professionDetails">{{perfil.get_categorias}}</div>
+
               </div>
             </div>
           </div>
