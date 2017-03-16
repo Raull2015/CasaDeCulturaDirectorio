@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-#from datetime import datetime
+from datetime import date
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -75,6 +75,14 @@ class Perfil(models.Model):
         for categoria in self.categoria.all():
             return categoria.categoria
 
+    def get_edad(self):
+        edad = date.today().year - self.fechaNacimiento.year
+        if date.today().month == self.fechaNacimiento.month:
+            if date.today().day >= self.fechaNacimiento.day:
+                return edad
+        elif date.today().month > self.fechaNacimiento.month:
+            return edad
+        return edad - 1
 
     def get_descripcion(self):
         return self.descripcion[:40] + '...'
@@ -178,10 +186,10 @@ class Capsulas(models.Model):
 
 #Numero de visitas que recibe el Perfil
 class VisitasPerfil(models.Model):
-    cantidad = models.IntegerField(default=0)
-    fecha = models.DateField()
+    cantidad = models.IntegerField(default=1)
+    fecha = models.DateField(auto_now_add=True)
     perfil = models.ForeignKey(Perfil)
-
+    objects = models.Manager()
     class Meta:
         verbose_name = 'visitaperfil'
         verbose_name_plural = 'visitasperfiles'
@@ -189,10 +197,10 @@ class VisitasPerfil(models.Model):
 
 #   Numero de Visitas que recibe una Actividad
 class VisitasActividad(models.Model):
-    cantidad = models.IntegerField(default=0)
-    fecha = models.DateField()
+    cantidad = models.IntegerField(default=1)
+    fecha = models.DateField(auto_now_add=True)
     actividad = models.ForeignKey(Actividad)
-
+    objects = models.Manager()
     class Meta():
         verbose_name = 'visitactividad'
         verbose_name_plural = 'visitasactividades'

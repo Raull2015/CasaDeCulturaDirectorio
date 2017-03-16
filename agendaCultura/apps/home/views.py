@@ -25,7 +25,11 @@ def home(request):
 
     artistas = Perfil.public.all().order_by('visitas')[:4]
     eventos = Actividad.public.all().order_by('-fechaRealizacion')[:3]
-    capsula = Capsulas.objects.all().filter(fechaPublicacion__range=('2016-01-01',date.today())).order_by('-fechaPublicacion')[0]
+    capsula = None
+    try:
+        capsula = Capsulas.objects.all().filter(fechaPublicacion__range=('2016-01-01',date.today())).order_by('-fechaPublicacion')[0]
+    except IndexError:
+        pass
 
     context = {
         'artistas' : artistas,
@@ -245,6 +249,8 @@ def perfil(request, username=''):
 
     conteo = request.session.get('conteo' + username,False)
     if conteo == False and is_owner == False and perfil.autorizado == True:
+        visita = VisitasPerfil(perfil = perfil)
+        visita.save()
         perfil.visitas = perfil.visitas + 1
         perfil.save()
         request.session['conteo' + username] = True
@@ -259,28 +265,46 @@ def perfil(request, username=''):
 def perfil_edit(request, username=''):
     user = get_object_or_404(User, username=username)
 
-    if request.user != user:
+    if request.user != user or request.user.perfil.autorizado == False:
         return HttpResponseRedirect(reverse('error'))
 
     if request.method == 'POST':
-        form = PerfilForm(instance=user.perfil, data=request.POST)
-        if form.is_valid():
-            perfil = form.save(commit=False)
+        response_data = {}
+        nombreArtista = request.POST['nombreArtista']
+        nombreReal = request.POST['nombre']
+        genero = request.POST['genero']
+        if genero == 'True':
+            genero = True
+        else:
+            genero = False
+        nacimiento = request.POST['nacimiento']
+        telefono = request.POST['telefono']
+        email = request.POST['email']
+        descripcion = request.POST['descripcion']
+        categoria = request.POST['categoria']
 
-            img = request.FILES.get('imagen',None)
-            if img != None:
-                img.name = renombrar_archivo(img.name,newName='perfil')
-                perfil.imagen = img
+        perfil = user.perfil
+        perfil.nombreArtista = nombreArtista
+        perfil.nombreReal = nombreReal
+        perfil.sexo = genero
+        perfil.fechaNacimiento = nacimiento
+        perfil.telefono = telefono
+        perfil.email = email
+        perfil.descripcion = descripcion
 
-            form.save()
+        img = request.FILES.get('imagen', None)
+        if img != None:
+            img.name = renombrar_archivo(img.name,newName='perfil')
+            perfil.imagen = img
+            perfil.save()
+            reescalar_imagen(perfil.imagen.path,perfil.imagen.path)
 
-            if img != None:
-                reescalar_imagen(perfil.imagen.path,perfil.imagen.path)
+        perfil.save()
+        perfil.categoria =  Categoria.objects.filter(categoria=categoria)
 
-            return mensaje(request, 'Perfil Modificado Exitosamente', reverse('home:perfil',kwargs={'username': request.user.username,}))
-    else:
-        form = PerfilForm(instance=user.perfil)
-    context = {'form': form, 'create': False}
+        return HttpResponseRedirect(reverse('home:perfil',kwargs={'username': request.user.username,}))
+
+    context = {'perfil' : user.perfil}
     return render(request, 'editar_perfil.html', infoHome(request, context))
 
 @login_required
@@ -464,7 +488,9 @@ def actividad_detail(request, username='', id=''):
         return HttpResponseRedirect(reverse('error'))
 
     conteo = request.session.get('conteo' + id, False)
-    if conteo == False:
+    if conteo == False and actividad.autorizado == True:
+        visita = VisitasActividad(actividad = actividad)
+        visita.save()
         actividad.visitas = actividad.visitas + 1
         actividad.save()
         request.session['conteo' + id] = True
@@ -623,3 +649,38 @@ def comentarios(request, id=''):
         comentario.save()
 
     return JsonResponse(response_date)
+
+@login_required
+def cambiar_contrasenia(request, username=''):
+    user = get_object_or_404(User, username=username)
+
+    if request.user != user or request.user.perfil.autorizado == False:
+        return HttpResponseRedirect(reverse('error'))
+
+    if request.method == 'POST':
+        response_data = {}
+        actual = request.POST['actual']
+        user = authenticate(username=request.user.username, password=actual)
+        if user == None:
+            response_data['error'] = True
+            response_data['mensaje'] = 'Error'
+            return JsonResponse(response_data)
+        nueva = request.POST['nueva']
+        confirmacion = request.POST['confirmacion']
+        valido, mensaje = validar_password('username',nueva,confirmacion)
+        if valido == True:
+            request.user.set_password(nueva)
+            request.user.save()
+            login(request, request.user)
+            return JsonResponse(response_data)
+        response_data['error'] = True
+        response_data['mensaje'] = mensaje
+        return JsonResponse(response_data)
+
+    return render(request, 'cambiar_contrasenia.html', infoHome(request, {}))
+
+def ayuda(request):
+    return render(request, 'ayuda.html', infoHome(request, {}))
+
+def informacion(request):
+    return render(request, 'about.html', infoHome(request, {}))

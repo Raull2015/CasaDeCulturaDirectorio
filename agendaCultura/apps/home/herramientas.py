@@ -171,22 +171,22 @@ def infoHome(request, context):
         u = request.user.perfil.nombreArtista
         if request.user.perfil.rol.is_admin():
             admin = True
-    capsula = None
+    #capsula = None
 
-    try:
-        capsula = Capsulas.objects.all().filter(fechaPublicacion__range=('2016-01-01',date.today())).order_by('-fechaPublicacion')[0]
-    except IndexError:
-        pass
+    #try:
+    #    capsula = Capsulas.objects.all().filter(fechaPublicacion__range=('2016-01-01',date.today())).order_by('-fechaPublicacion')[0]
+    #except IndexError:
+    #    pass
 
-    categorias = Categoria.objects.all()[:9]
+    #categorias = Categoria.objects.all()[:9]
 
     info = {
-        'H_capsula' : capsula,
+        #'H_capsula' : capsula,
         'H_logeado' : logeado,
         'H_nombre_usuario' : u,
         'H_admin' : admin,
-        'H_user' : request.user,
-        'H_categorias' : categorias
+        'H_user' : request.user
+        #'H_categorias' : categorias
     }
     info.update(context)
     return info

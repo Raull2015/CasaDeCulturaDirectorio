@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Cambiar Contraseña
+  {% endblock %}
+
+  {% block main-section %}
+    <!-- MAIN SECTION -->
+    <section class="mainContent full-width clearfix">
+      <div class="container">
+        <!--
+        <div class="row progress-wizard" style="border-bottom:0;">
+
+          <div class="col-sm-4 col-xs-12 progress-wizard-step complete">
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="checkout-step-1.html" class="progress-wizard-dot">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </a>
+            <div class="progressInfo">1. Informacion del evento</div>
+          </div>
+
+          <div class="col-sm-4 col-xs-12 progress-wizard-step incomplete">
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="checkout-step-3.html" class="progress-wizard-dot">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </a>
+            <div class="progressInfo">2. Confirmacion</div>
+          </div>
+        </div>
+        -->
+        <div class="row">
+          <div class="col-sm-4 col-sm-push-8 col-xs-12">
+          </div>
+          <div class="col-sm-8  col-sm-pull-4 col-xs-12">
+            <form action='{% url 'home:cambiar_contrasenia' username=request.user.username %}' method="POST" role="form" id="cambiarContrasenia">
+              {% csrf_token %}
+              <div class="panel panel-default checkoutInfo">
+                <div class="panel-heading bg-color-3 border-color-3">
+                  <h3 class="panel-title">Cambiar Contraseña</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Contraseña Actual</label>
+                      <input type="password" class="form-control border-color-1" id="id_actual" name="actual" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Nueva Contraseña</label>
+                      <input type="password" class="form-control border-color-1" id="id_nueva" name="nueva" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Repetir Contraseña</label>
+                      <input type="password" class="form-control border-color-1" id="id_confirmacion" name="confirmacion" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="continueBtnArea">
+                <ul class="list-inline">
+                  <li class="pull-right"><input type="submit" value="Cambiar" id="btnGuardar" class="btn btn-primary"></input></li>
+                </ul>
+              </div>
+              <div class="form-group formField" id="results_2">
+                <!--<p class="help-block">Allready have an account? <a href="#">Log in</a></p>-->
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endblock %}
+
+  {% block script %}
+  <script>
+  function cambiar_contrasenia(formData) {
+    console.log("create post is working!") // sanity check
+    $.ajax({
+        url : '{% url 'home:cambiar_contrasenia' username=request.user.username %}', // the endpoint
+        type : "POST", // http method
+        //dataType: "html",
+        data : formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success : function(json) {
+          if(json['error'] == true){
+            if(json['mensaje'] == 'Error'){
+              $('#id_actual').val() = ''
+              $('#results_3').html("<p class='help-block'><a href='#'>" + json['mensaje'] + "</a></p>");
+            }
+            else{
+              $('#id_nueva').val() = ''
+              $('#id_confirmacion').val() = ''
+              $('#results_3').html("<p class='help-block'><a href='#'>" + json['mensaje'] + "</a></p>");
+            }
+
+          }
+          else{
+            window.location = '{% url 'home:perfil' username=request.user.username %}'
+          }
+        }
+
+    });
+  };
+
+  </script>
+  {% endblock %}

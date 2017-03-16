@@ -418,6 +418,54 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
     });
   };
 
+  /*function editar_perfil(formData) {
+    console.log("create post is working!") // sanity check
+    $.ajax({
+        url : window.location.href, // the endpoint
+        type : "POST", // http method
+        data : formData, // data sent with the post request
+        // handle a successful response
+        success : function(json) {
+          // $('#id_usuario').val('');
+          // $('#id_password').val(''); // remove the value from the input
+            console.log(json); // log the returned json to the console
+            console.log("success"); // another sanity check
+
+            $('#results_2').html("<p class='help-block'><a href='#'>Tu perfil ha sido actualizado</a></p>");
+
+              window.location = json['redirect'];
+        },
+        // handle a non-successful response
+        error : function(xhr,errmsg,err) {
+            $('#results_2').html("<p class='help-block'><a href='#'>Ocurrio un error</a></p>"); // add the error to the dom
+            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        }
+    });
+  };*/
+
+  /*function crear_evento() {
+    console.log("create post is working!")
+    $.ajax({
+      url : 'home/crear_evento/',
+      type : 'POST',
+      data : {
+        nombre : $('#nombre').val().
+        lugar : $('#lugar').val(),
+        fecha : $('#fecha').val(),
+        hora : $('#hora').val(),
+        descripcion : $('#descripcion').val(),
+        imagen : $('#imagen').val(),
+        categoria : $('#categoria').val()
+      },
+      success : function() {
+        console.log("success");
+      },
+      error : function(xhr, errmsg, err) {
+        console.log(xhr.status + ": " + xhr.responseText);
+      }
+    });
+  };*/
+
   $('#post-login').on('submit', function(event){
     event.preventDefault();
     console.log("form submitted!");  // sanity check
@@ -434,6 +482,20 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
     event.preventDefault();
     console.log("form submitted!");  // sanity check
     crear_evento();
+  });
+
+  /*$('#editar_evento').on('submit', function(event){
+    event.preventDefault();
+    var f = $(this);
+    var formData = new FormData(document.getElementById("editarPerfil"));
+    editar_perfil(formData);
+  });*/
+
+  $('#cambiarContrasenia').on('submit', function(event){
+    event.preventDefault();
+    var f = $(this);
+    var formData = new FormData(document.getElementById("cambiarContrasenia"));
+    cambiar_contrasenia(formData);
   });
 
   function getParameterByName(name) {

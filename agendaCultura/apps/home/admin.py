@@ -23,5 +23,8 @@ admin.site.register(Actividad)
 admin.site.register(Capsulas)
 admin.site.register(Rol)
 admin.site.register(Imagenes)
+admin.site.register(VisitasPerfil)
+admin.site.register(VisitasActividad)
+
 
 # Register your models here.
