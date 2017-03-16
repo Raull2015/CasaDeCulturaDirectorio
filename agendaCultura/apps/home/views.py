@@ -85,7 +85,7 @@ def categoria_list(request):
         'categoria' : categoria,
     }
 
-    return render(request, 'categorias.html', infoHome(request,context))
+    return render(request, 'lista_categorias.html', infoHome(request,context))
 
 @login_required
 def actividad_user(request, username=''):
