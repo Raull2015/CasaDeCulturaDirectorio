@@ -293,7 +293,6 @@ def perfil_edit(request, username=''):
         perfil.descripcion = descripcion
 
         img = request.FILES.get('imagen', None)
-        print  request.FILES
         if img != None:
             img.name = renombrar_archivo(img.name,newName='perfil')
             perfil.imagen = img
@@ -650,3 +649,38 @@ def comentarios(request, id=''):
         comentario.save()
 
     return JsonResponse(response_date)
+
+@login_required
+def cambiar_contrasenia(request, username=''):
+    user = get_object_or_404(User, username=username)
+
+    if request.user != user or request.user.perfil.autorizado == False:
+        return HttpResponseRedirect(reverse('error'))
+
+    if request.method == 'POST':
+        response_data = {}
+        actual = request.POST['actual']
+        user = authenticate(username=request.user.username, password=actual)
+        if user == None:
+            response_data['error'] = True
+            response_data['mensaje'] = 'Error'
+            return JsonResponse(response_data)
+        nueva = request.POST['nueva']
+        confirmacion = request.POST['confirmacion']
+        valido, mensaje = validar_password('username',nueva,confirmacion)
+        if valido == True:
+            request.user.set_password(nueva)
+            request.user.save()
+            login(request, request.user)
+            return JsonResponse(response_data)
+        response_data['error'] = True
+        response_data['mensaje'] = mensaje
+        return JsonResponse(response_data)
+
+    return render(request, 'cambiar_contrasenia.html', infoHome(request, {}))
+
+def ayuda(request):
+    return render(request, 'ayuda.html', infoHome(request, {}))
+
+def informacion(request):
+    return render(request, 'about.html', infoHome(request, {}))

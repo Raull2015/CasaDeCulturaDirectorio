@@ -484,11 +484,18 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
     crear_evento();
   });
 
-  $('#editar_evento').on('submit', function(event){
+  /*$('#editar_evento').on('submit', function(event){
     event.preventDefault();
     var f = $(this);
     var formData = new FormData(document.getElementById("editarPerfil"));
     editar_perfil(formData);
+  });*/
+
+  $('#cambiarContrasenia').on('submit', function(event){
+    event.preventDefault();
+    var f = $(this);
+    var formData = new FormData(document.getElementById("cambiarContrasenia"));
+    cambiar_contrasenia(formData);
   });
 
   function getParameterByName(name) {
