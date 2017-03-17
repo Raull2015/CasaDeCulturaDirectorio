@@ -91,6 +91,27 @@ def categoria_list(request):
 
     return render(request, 'lista_categorias.html', infoHome(request,context))
 
+def categoria(request, id=''):
+    opcion = 1
+
+    if request.method == 'POST':
+        opcion = request.POST['op']
+
+
+    categoria = Categoria.objects.get(id=int(id))
+
+    actividad = Actividad.public.filter(categoria=categoria)
+    perfil = Perfil.public.filter(categoria=categoria)
+
+    context = {
+        'categoria' : categoria,
+        'actividad' : actividad,
+        'perfil' : perfil,
+        'opcion' : opcion,
+    }
+
+    return render(request, 'categoria.html', context)
+
 @login_required
 def actividad_user(request, username=''):
     user = get_object_or_404(User, username=username)

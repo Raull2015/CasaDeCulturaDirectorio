@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'confirmar_registro/$', confirmar_registro, name='confirmar_registro'),
     url(r'ayuda/$', ayuda, name='ayuda'),
     url(r'informacion/$', informacion , name='informacion'),
+    url(r'(?P<id>[\d]+)/categoria/$', categoria, name='categoria'),
     url(r'confirmar_actividad/$', confirmar_actividad, name='confirmar_actividad'),
     url(r'artistas/$', perfil_list, name='artistas'),
     url(r'categorias/$', categoria_list, name='categorias'),

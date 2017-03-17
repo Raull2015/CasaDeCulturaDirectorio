@@ -21,18 +21,19 @@
 
   {%block main-section%}
     <!-- CATEGORY SECTION -->
+    <!-- Por el momento los id's se tienen que cambiar manualmente -->
     <section class="mainContent full-width clearfix productSection categorySection">
       <div class="container">
         <div class="row">
           <div class="col-md-3 col-xs-6">
             <div class="box bg-color-1">
               <div class="box-img border-color-1 text-center">
-                <a href="product.html">
-                  <img src="../../static/img/category/a1.jpg" alt="image" class="img-responsive">
+                <a href={% url 'home:categoria' id=5 %}>
+                  <img src="{% static "img/category/a1.jpg" %}" alt="image" class="img-responsive">
                 </a>
               </div>
               <div class="box-info">
-                <h4><a href="product.html">Arquitectura</a></h4>
+                <h4><a href={% url 'home:categoria' id=5 %}>Arquitectura</a></h4>
               </div>
             </div>
           </div>
@@ -40,12 +41,12 @@
           <div class="col-md-3 col-xs-6">
             <div class="box bg-color-3">
               <div class="box-img border-color-3 text-center">
-                <a href="product.html">
-                  <img src="../../static/img/category/e1.jpg" alt="image" class="img-responsive">
+                <a href={% url 'home:categoria' id=6 %}>
+                  <img src="{% static "img/category/e1.jpg" %}" alt="image" class="img-responsive">
                 </a>
               </div>
               <div class="box-info">
-                <h4><a href="product.html">Escultura</a></h4>
+                <h4><a href={% url 'home:categoria' id=6 %}>Escultura</a></h4>
               </div>
             </div>
           </div>
@@ -53,12 +54,12 @@
           <div class="col-md-3 col-xs-6">
             <div class="box bg-color-4">
               <div class="box-img border-color-4 text-center">
-                <a href="product.html">
-                  <img src="../../static/img/category/p1.jpg" alt="image" class="img-responsive">
+                <a href={% url 'home:categoria' id=4 %}>
+                  <img src="{% static "img/category/p1.jpg" %}" alt="image" class="img-responsive">
                 </a>
               </div>
               <div class="box-info">
-                <h4><a href="product.html">Pintura</a></h4>
+                <h4><a href={% url 'home:categoria' id=4 %}>Pintura</a></h4>
               </div>
             </div>
           </div>
@@ -66,12 +67,12 @@
           <div class="col-md-3 col-xs-6">
             <div class="box bg-color-6">
               <div class="box-img border-color-6 text-center">
-                <a href="product.html">
-                  <img src="../../static/img/category/a1.jpg" alt="image" class="img-responsive">
+                <a href={% url 'home:categoria' id=7 %}>
+                  <img src="{% static "img/category/a1.jpg" %}" alt="image" class="img-responsive">
                 </a>
               </div>
               <div class="box-info">
-                <h4><a href="product.html">Cine</a></h4>
+                <h4><a href={% url 'home:categoria' id=7 %}>Cine</a></h4>
               </div>
             </div>
           </div>
@@ -79,12 +80,12 @@
           <div class="col-md-3 col-xs-6">
             <div class="box bg-color-5">
               <div class="box-img border-color-5 text-center">
-                <a href="product.html">
-                  <img src="../../static/img/category/t1.jpg" alt="image" class="img-responsive">
+                <a href={% url 'home:categoria' id=3 %}>
+                  <img src="{% static "img/category/t1.jpg" %}" alt="image" class="img-responsive">
                 </a>
               </div>
               <div class="box-info">
-                <h4><a href="product.html">Teatro</a></h4>
+                <h4><a href={% url 'home:categoria' id=3 %}>Teatro</a></h4>
               </div>
             </div>
           </div>
@@ -92,12 +93,12 @@
           <div class="col-md-3 col-xs-6">
             <div class="box bg-color-1">
               <div class="box-img border-color-1 text-center">
-                <a href="product.html">
-                  <img src="../../static/img/category/m1.jpg" alt="image" class="img-responsive">
+                <a href={% url 'home:categoria' id=1 %}>
+                  <img src="{% static "img/category/m1.jpg" %}" alt="image" class="img-responsive">
                 </a>
               </div>
               <div class="box-info">
-                <h4><a href="product.html">Musica</a></h4>
+                <h4><a href={% url 'home:categoria' id=1 %}>Musica</a></h4>
               </div>
             </div>
           </div>
@@ -105,12 +106,12 @@
           <div class="col-md-3 col-xs-6">
             <div class="box bg-color-2">
               <div class="box-img border-color-2 text-center">
-                <a href="product.html">
-                  <img src="../../static/img/category/d1.jpg" alt="image" class="img-responsive">
+                <a href={% url 'home:categoria' id=8 %}>
+                  <img src="{% static "img/category/d1.jpg" %}" alt="image" class="img-responsive">
                 </a>
               </div>
               <div class="box-info">
-                <h4><a href="product.html">Danza</a></h4>
+                <h4><a href={% url 'home:categoria' id=8 %}>Danza</a></h4>
               </div>
             </div>
           </div>
@@ -118,12 +119,12 @@
           <div class="col-md-3 col-xs-6">
             <div class="box bg-color-3">
               <div class="box-img border-color-3 text-center">
-                <a href="product.html">
-                  <img src="../../static/img/category/l1.jpg" alt="image" class="img-responsive">
+                <a href={% url 'home:categoria' id=9 %}>
+                  <img src="{% static "img/category/l1.jpg" %}" alt="image" class="img-responsive">
                 </a>
               </div>
               <div class="box-info">
-                <h4><a href="product.html">Literatura</a></h4>
+                <h4><a href={% url 'home:categoria' id=9 %}>Literatura</a></h4>
               </div>
             </div>
           </div>
@@ -131,12 +132,12 @@
           <div class="col-md-3 col-xs-6">
             <div class="box bg-color-4">
               <div class="box-img border-color-4 text-center">
-                <a href="product.html">
-                  <img src="../../static/img/category/f1.jpg" alt="image" class="img-responsive">
+                <a href={% url 'home:categoria' id=10 %}>
+                  <img src="{% static "img/category/f1.jpg" %}" alt="image" class="img-responsive">
                 </a>
               </div>
               <div class="box-info">
-                <h4><a href="product.html">Fotografia</a></h4>
+                <h4><a href={% url 'home:categoria' id=10 %}>Fotografia</a></h4>
               </div>
             </div>
           </div>

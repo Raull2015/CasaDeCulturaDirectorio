@@ -202,11 +202,12 @@
                   <i class="fa fa-list-ul bg-color-3" aria-hidden="true"></i> <span>Categorias</span></a>
                 <ul class="dropdown-menu dropdown-menu-left">
 
-                  <li><a href="#">Cine</a></li>
-                  <li><a href="#">Teatro</a></li>
-                  <li><a href="#">Musica</a></li>
-                  <li><a href="#">Danza</a></li>
-                  <li><a href="#">Fotografia</a></li>
+                  <!-- Por el momento los id's se tienen que cambiar manualmente -->
+                  <li><a href={% url 'home:categoria' id=7 %}>Cine</a></li>
+                  <li><a href={% url 'home:categoria' id=3 %}>Teatro</a></li>
+                  <li><a href={% url 'home:categoria' id=1 %}>Musica</a></li>
+                  <li><a href={% url 'home:categoria' id=8 %}>Danza</a></li>
+                  <li><a href={% url 'home:categoria' id=10 %}>Fotografia</a></li>
                   <li><a href="{% url 'home:categorias' %}">Ver Todas</a></li>
                   <!--<li class="dropdown dropdown-submenu">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Team<i class="fa fa-chevron-right" aria-hidden="true"></i>
