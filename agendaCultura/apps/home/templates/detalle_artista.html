@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    {{perfil.nombreArtista}}
+  {% endblock %}
+
+  {% block main-section %}
+      <section class="mainContent full-width clearfix">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4 col-xs-12">
+              <div class="teachersPhoto">
+                <img src="{{MEDIA_URL}}{{perfil.imagen}}" alt="image" class="img-rounded img-responsive">
+              </div>
+            </div>
+            <div class="col-sm-8 col-xs-12">
+              <div class="teachersInfo">
+                <h3>Sobre Mi</h3>
+                <p>{{perfil.descripcion}}</p>
+                <ul class="list-inline">
+                  <li><a href="#" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="bg-color-3"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="bg-color-4"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="bg-color-5"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                </ul>
+                <h3>Informacion</h3>
+                {%if perfil.nombreArtista%}
+                <div class="teachersProfession bg-color-1">Nombre: </div>
+                <div class="professionDetails">{{perfil.nombreArtista}}</div>
+                {%endif%}
+                <div class="teachersProfession bg-color-2">E-Mail: </div>
+                <div class="professionDetails">{{perfil.email}}</div>
+                <div class="teachersProfession bg-color-3">Edad: </div>
+                <div class="professionDetails">{{perfil.get_edad}}</div>
+                <div class="teachersProfession bg-color-4">Categorias: </div>
+                <div class="professionDetails">{{perfil.get_categorias}}</div>
+
+              </div>
+            </div>
+          </div>
+          {%if es_propietario == True %}
+          <div class="btnArea">
+            <a href={% url 'home:editar_perfil' username=perfil.user.username %} class="btn btn-primary">Editar Perfil</a>
+          </div>
+          {%endif%}
+        </div>
+      </section>
+  {% endblock %}

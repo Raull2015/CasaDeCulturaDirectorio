@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/login_page/'
 APPEND_SLASH = True
 # Application definition
 #LOGIN_URL = 'agendaCultura_login'
@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },

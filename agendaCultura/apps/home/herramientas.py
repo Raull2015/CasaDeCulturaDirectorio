@@ -5,9 +5,9 @@ from datetime import date
 import numpy as np
 import plotly.offline as py
 import plotly.graph_objs as go
-from models import *
+from models import Perfil, Rol, Actividad, Capsulas, Categoria
 
-def reescalar_imagen(img,output,height=300,width=400,ext='.png'):
+def reescalar_imagen(img,output,height=260,width=370,ext='.png'):
     archivo_in, old_ext = os.path.splitext(img)
     archivo_out, new_ext = os.path.splitext(output)
     imagen = Image.open(img)
@@ -159,3 +159,34 @@ class GenGraficos():
         valores, etiquetas, titulo = tipoEstadistica(**kwargs)
         fig = tipoGrafico(valores,etiquetas,titulo)
         return py.plot(fig, include_plotlyjs=False, output_type='div',show_link=False)#ruta de imagen guardada
+
+def infoHome(request, context):
+    logeado = False
+    u = None
+    admin = False
+    categorias = []
+
+    if request.user.is_authenticated:
+        logeado = True
+        u = request.user.perfil.nombreArtista
+        if request.user.perfil.rol.is_admin():
+            admin = True
+    #capsula = None
+
+    #try:
+    #    capsula = Capsulas.objects.all().filter(fechaPublicacion__range=('2016-01-01',date.today())).order_by('-fechaPublicacion')[0]
+    #except IndexError:
+    #    pass
+
+    #categorias = Categoria.objects.all()[:9]
+
+    info = {
+        #'H_capsula' : capsula,
+        'H_logeado' : logeado,
+        'H_nombre_usuario' : u,
+        'H_admin' : admin,
+        'H_user' : request.user
+        #'H_categorias' : categorias
+    }
+    info.update(context)
+    return info

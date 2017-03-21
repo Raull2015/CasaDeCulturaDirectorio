@@ -20,13 +20,6 @@ class CapsulaManager(models.Manager):
         qs = super(CapsulaManager, self).get_queryset()
         return qs.filter(fechaPublicacion=date.today())
 
-class Imagenes(models.Model):
-    imagen = models.ImageField(upload_to='imgActividad/', default='imgActividad/default.jpg')
-    objects = models.Manager()
-    class Meta:
-        verbose_name = 'imagen'
-        verbose_name_plural = 'imagenes'
-
 class Categoria(models.Model):
     categoria = models.CharField(max_length=100)
     objects = models.Manager()
@@ -78,26 +71,42 @@ class Perfil(models.Model):
     objects = models.Manager()
     public = PerfilManager()
 
+    def get_categorias(self):
+        for categoria in self.categoria.all():
+            return categoria.categoria
+
+    def get_edad(self):
+        edad = date.today().year - self.fechaNacimiento.year
+        if date.today().month == self.fechaNacimiento.month:
+            if date.today().day >= self.fechaNacimiento.day:
+                return edad
+        elif date.today().month > self.fechaNacimiento.month:
+            return edad
+        return edad - 1
+
+    def get_descripcion(self):
+        return self.descripcion[:40] + '...'
+
     class Meta:
         verbose_name = 'perfil'
         verbose_name_plural = 'perfiles'
         ordering = ['-fechaRegistro']
 
     def __unicode__(self):
-        return self.nombreArtista
+        return self.nombreReal
 
     def __str__(self):
-        return self.nombreArtista
+        return self.nombreReal
 
 class Actividad(models.Model):
     nombre = models.CharField(max_length=200)
     lugar = models.CharField(max_length=200)
     fechaRealizacion = models.DateField('Fecha a realizar')
     hora = models.TimeField('Hora de Realizacion')
-    descripcion = models.TextField(max_length=800)
+    descripcion = models.TextField(max_length=800, null=True)
     imagen = models.ImageField(upload_to='imgActividad/', default='imgActividad/default.jpg')  #Temporal
-    imagenes = models.ManyToManyField(Imagenes)                                                #Real
-    fechaPublicacion = models.DateField('Fecha de publicacion')
+    #imagenes = models.OneToManyField(Imagenes)                                                #Real
+    fechaPublicacion = models.DateField('Fecha de publicacion', null=True)
     puntuacion = models.IntegerField(default=0)
     visitas = models.IntegerField(default=0)
     autorizado = models.SmallIntegerField(default=0)
@@ -106,6 +115,32 @@ class Actividad(models.Model):
 
     objects = models.Manager()
     public = ActividadManager()
+
+    def get_categorias(self):
+        for categoria in self.categoria.all():
+            return categoria.categoria
+
+    def get_imagen(self):
+        imagen = Imagenes.objects.filter(actividad = self)[0]
+        return imagen.imagen
+
+    def get_dia(self):
+        return self.fechaRealizacion.day
+
+    def get_mes(self):
+        meses = {1 : 'Enero', 2 : 'Febrero', 3 : 'Marzo', 4 : 'Abril',
+                 5 : 'Mayo', 6 : 'Junio', 7 : 'Julio', 8 : 'Agosto',
+                 9 : 'Septiempre', 10 : 'Ocutubre', 11 : 'Noviembre', 12 : 'Diciembre'}
+        return meses[self.fechaRealizacion.month]
+
+    def get_anio(self):
+        return self.fechaRealizacion.year
+
+    def get_numero_comentarios(self):
+        return Comentarios.objects.filter(actividad=self).count()
+
+    def get_descripcion(self):
+        return self.descripcion[:40] + '...'
 
     class Meta:
         verbose_name = 'actividad'
@@ -151,10 +186,10 @@ class Capsulas(models.Model):
 
 #Numero de visitas que recibe el Perfil
 class VisitasPerfil(models.Model):
-    cantidad = models.IntegerField(default=0)
-    fecha = models.DateField()
+    cantidad = models.IntegerField(default=1)
+    fecha = models.DateField(auto_now_add=True)
     perfil = models.ForeignKey(Perfil)
-
+    objects = models.Manager()
     class Meta:
         verbose_name = 'visitaperfil'
         verbose_name_plural = 'visitasperfiles'
@@ -162,10 +197,18 @@ class VisitasPerfil(models.Model):
 
 #   Numero de Visitas que recibe una Actividad
 class VisitasActividad(models.Model):
-    cantidad = models.IntegerField(default=0)
-    fecha = models.DateField()
+    cantidad = models.IntegerField(default=1)
+    fecha = models.DateField(auto_now_add=True)
     actividad = models.ForeignKey(Actividad)
-
+    objects = models.Manager()
     class Meta():
         verbose_name = 'visitactividad'
         verbose_name_plural = 'visitasactividades'
+
+class Imagenes(models.Model):
+    imagen = models.ImageField(upload_to='imgActividad/', default='imgActividad/default.jpg')
+    actividad = models.ForeignKey(Actividad)
+    objects = models.Manager()
+    class Meta:
+        verbose_name = 'imagen'
+        verbose_name_plural = 'imagenes'

@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Editar Perfil
+  {% endblock %}
+
+  {% block main-section %}
+    <!-- MAIN SECTION -->
+    <section class="mainContent full-width clearfix">
+      <div class="container">
+        <!--
+        <div class="row progress-wizard" style="border-bottom:0;">
+
+          <div class="col-sm-4 col-xs-12 progress-wizard-step complete">
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="checkout-step-1.html" class="progress-wizard-dot">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </a>
+            <div class="progressInfo">1. Informacion del evento</div>
+          </div>
+
+          <div class="col-sm-4 col-xs-12 progress-wizard-step incomplete">
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="checkout-step-3.html" class="progress-wizard-dot">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </a>
+            <div class="progressInfo">2. Confirmacion</div>
+          </div>
+        </div>
+        -->
+        <div class="row">
+          <div class="col-sm-4 col-sm-push-8 col-xs-12">
+          </div>
+          <div class="col-sm-8  col-sm-pull-4 col-xs-12">
+            <form action='{% url 'home:editar_perfil' username=request.user.username %}' enctype="multipart/form-data"  method="POST" role="form" id="editarPerfil">
+              {% csrf_token %}
+              <div class="panel panel-default checkoutInfo">
+                <div class="panel-heading bg-color-3 border-color-3">
+                  <h3 class="panel-title">Tu Informacion</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Nombre Artistico</label>
+                      <input type="text" value="{{perfil.nombreArtista}}" class="form-control border-color-1" name="nombreArtista" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Nombre Real (Opcional)</label>
+                      <input type="text" value="{{perfil.nombreReal}}" class="form-control border-color-2" name="nombre">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Genero</label><br>
+                      <input type="radio" class="" id="id_genero" name="genero" value="True" {%if perfil.sexo == True%} checked {%endif%}> Hombre <br>
+                      <input type="radio" class="" id="id_genero" name="genero" value="False" {%if perfil.sexo == False%} checked {%endif%}> Mujer <br>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Fecha de Nacimiento</label>
+                      <input type="date" max="2000-12-31" value="{{perfil.fechaNacimiento|date:"Y-m-d"}}" class="form-control border-color-4" name="nacimiento" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Telefono</label>
+                      <input type="text" value="{{perfil.telefono}}" pattern="[0-9]+" class="form-control border-color-4" name="telefono" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Imagen de Perfil</label>
+                      <input type="file" class="form-control border-color-6" id="imagen" name="imagen"><a href={{MEDIA_URL}}{{perfil.imagen}}>Imagen Actual</a>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">E-Mail</label>
+                      <input type="email" value="{{perfil.email}}" class="form-control" name="email" name="id_email" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Descripcion</label>
+                      <textarea class="form-control border-color-5" rows="2" name="descripcion"> {{perfil.descripcion}}  </textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Categoria</label>
+                      <div class="bookingDrop">
+                        <select name="categoria" id="id_categoria" class="select-drop">
+                          <option value="">Seleccione una categoria</option>
+                          <option value="Arquitectura" {%if perfil.get_categorias == 'Arquitectura'%} selected {%endif%}>Arquitectura</option>
+                          <option value="Escultura" {%if perfil.get_categorias == 'Escultura'%} selected {%endif%}>Escultura</option>
+                          <option value="Pintura" {%if perfil.get_categorias == 'Pintura'%} selected {%endif%}>Pintura</option>
+                          <option value="Cine" {%if perfil.get_categorias == 'Cine'%} selected {%endif%}>Cine</option>
+                          <option value="Teatro" {%if perfil.get_categorias == 'Teatro'%} selected {%endif%}>Teatro</option>
+                          <option value="Musica" {%if perfil.get_categorias == 'Musica'%} selected {%endif%}>Musica</option>
+                          <option value="Danza" {%if perfil.get_categorias == 'Danza'%} selected {%endif%}>Danza</option>
+                          <option value="Literatura" {%if perfil.get_categorias == 'Literatura'%} selected {%endif%}>Literatura</option>
+                          <option value="Fotografia" {%if perfil.get_categorias == 'Fotografia'%} selected {%endif%}>Fotografia</option>
+                          <option value="Pintura" {%if perfil.get_categorias == 'Pintura'%} selected {%endif%}>Pintura</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <br>
+                      <a href="{% url 'home:cambiar_contrasenia' username=request.user.username %}" class="btn btn-primary" type="button">Cambiar Contraseña</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="continueBtnArea">
+                <ul class="list-inline">
+                  <li class="pull-right"><input type="submit" value="Guardar" id="btnGuardar" class="btn btn-primary"></input></li>
+                </ul>
+              </div>
+              <div class="form-group formField" id="results_2">
+                <!--<p class="help-block">Allready have an account? <a href="#">Log in</a></p>-->
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endblock %}
+
+  {% block script %}
+  <script>
+  function editar_perfil(formData) {
+    console.log("create post is working!") // sanity check
+    $.ajax({
+        url : '{% url 'home:editar_perfil' username=request.user.username %}', // the endpoint
+        type : "POST", // http method
+        //dataType: "html",
+        data : formData,
+        cache: false,
+        contentType: false,
+        processData: false// data sent with the post request
+        // handle a successful response
+
+    });
+  };
+
+  </script>
+  {% endblock %}

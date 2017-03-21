@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Categorias
+  {% endblock %}
+
+{% block main-section %}
+    <!-- MAIN SECTION -->
+    <section class="mainContent full-width clearfix homeGallerySection">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="filter-container isotopeFilters">
+              <ul class="list-inline filter">
+                <li><a href="#" id="eventos" data-filter=".eventos">Eventos</a></li>
+                <li><a href="#" id="artistas" data-filter=".artistas">Artistas</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row isotopeContainer" id="container">
+          <!--
+          <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector charity">
+            <article class="">
+              <figure>
+                <img src="img/home/home_gallery/gallery_sm_1.jpg" alt="image" class="img-rounded">
+                <div class="overlay-background">
+                  <div class="inner"></div>
+                </div>
+                <div class="overlay">
+                  <a class="fancybox-pop" rel="portfolio-1" href="img/home/home_gallery/gallery_lg_1.jpg">
+                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </figure>
+            </article>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector nature">
+            <article class="">
+              <figure>
+                <img src="img/home/home_gallery/gallery_sm_2.jpg" alt="image" class="img-rounded">
+                <div class="overlay-background">
+                  <div class="inner"></div>
+                </div>
+                <div class="overlay">
+                  <a class="fancybox-pop" rel="portfolio-1" href="img/home/home_gallery/gallery_lg_2.jpg">
+                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </figure>
+            </article>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector nature">
+            <article class="">
+              <figure>
+                <img src="img/home/home_gallery/gallery_sm_3.jpg" alt="image" class="img-rounded">
+                <div class="overlay-background">
+                  <div class="inner"></div>
+                </div>
+                <div class="overlay">
+                  <a class="fancybox-pop" rel="portfolio-1" href="img/home/home_gallery/gallery_lg_3.jpg">
+                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </figure>
+            </article>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector charity">
+            <article class="">
+              <figure>
+                <img src="img/home/home_gallery/gallery_sm_4.jpg" alt="image" class="img-rounded">
+                <div class="overlay-background">
+                  <div class="inner"></div>
+                </div>
+                <div class="overlay">
+                  <a class="fancybox-pop" rel="portfolio-1" href="img/home/home_gallery/gallery_lg_4.jpg">
+                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </figure>
+            </article>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector nature">
+            <article class="">
+              <figure>
+                <img src="img/home/home_gallery/gallery_sm_5.jpg" alt="image" class="img-rounded">
+                <div class="overlay-background">
+                  <div class="inner"></div>
+                </div>
+                <div class="overlay">
+                  <a class="fancybox-pop" rel="portfolio-1" href="img/home/home_gallery/gallery_lg_5.jpg">
+                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </figure>
+            </article>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector children">
+            <article class="">
+              <figure>
+                <img src="img/home/home_gallery/gallery_sm_6.jpg" alt="image" class="img-rounded">
+                <div class="overlay-background">
+                  <div class="inner"></div>
+                </div>
+                <div class="overlay">
+                  <a class="fancybox-pop" rel="portfolio-1" href="img/home/home_gallery/gallery_lg_6.jpg">
+                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </figure>
+            </article>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector children">
+            <article class="">
+              <figure>
+                <img src="img/home/home_gallery/gallery_sm_7.jpg" alt="image" class="img-rounded">
+                <div class="overlay-background">
+                  <div class="inner"></div>
+                </div>
+                <div class="overlay">
+                  <a class="fancybox-pop" rel="portfolio-1" href="img/home/home_gallery/gallery_lg_7.jpg">
+                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </figure>
+            </article>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector children">
+            <article class="">
+              <figure>
+                <img src="img/home/home_gallery/gallery_sm_8.jpg" alt="image" class="img-rounded">
+                <div class="overlay-background">
+                  <div class="inner"></div>
+                </div>
+                <div class="overlay">
+                  <a class="fancybox-pop" rel="portfolio-1" href="img/home/home_gallery/gallery_lg_8.jpg">
+                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </figure>
+            </article>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector nature">
+            <article class="">
+              <figure>
+                <img src="img/home/home_gallery/gallery_sm_3.jpg" alt="image" class="img-rounded">
+                <div class="overlay-background">
+                  <div class="inner"></div>
+                </div>
+                <div class="overlay">
+                  <a class="fancybox-pop" rel="portfolio-1" href="img/home/home_gallery/gallery_lg_3.jpg">
+                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </figure>
+            </article>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector charity">
+            <article class="">
+              <figure>
+                <img src="img/home/home_gallery/gallery_sm_4.jpg" alt="image" class="img-rounded">
+                <div class="overlay-background">
+                  <div class="inner"></div>
+                </div>
+                <div class="overlay">
+                  <a class="fancybox-pop" rel="portfolio-1" href="img/home/home_gallery/gallery_lg_4.jpg">
+                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </figure>
+            </article>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector nature">
+            <article class="">
+              <figure>
+                <img src="img/home/home_gallery/gallery_sm_5.jpg" alt="image" class="img-rounded">
+                <div class="overlay-background">
+                  <div class="inner"></div>
+                </div>
+                <div class="overlay">
+                  <a class="fancybox-pop" rel="portfolio-1" href="img/home/home_gallery/gallery_lg_5.jpg">
+                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </figure>
+            </article>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector children">
+            <article class="">
+              <figure>
+                <img src="img/home/home_gallery/gallery_sm_6.jpg" alt="image" class="img-rounded">
+                <div class="overlay-background">
+                  <div class="inner"></div>
+                </div>
+                <div class="overlay">
+                  <a class="fancybox-pop" rel="portfolio-1" href="img/home/home_gallery/gallery_lg_6.jpg">
+                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </figure>
+            </article>
+          </div>
+        -->
+          {% for actividad in actividad %}
+          <div class="col-sm-4 col-xs-12 block isotopeSelector eventos">
+            <div class="thumbnail thumbnailContent">
+              <a href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}><img src= "{{MEDIA_URL}}{{actividad.imagen}}" alt="image" class="img-responsive"></a>
+              <div class="sticker-round bg-color-1">{{actividad.get_dia}}<br>{{actividad.get_mes}}<br>{{actividad.get_anio}}</div>
+              <div class="caption border-color-1">
+                <h3><a href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}  class="color-1">{{actividad.nombre}}</a></h3>
+                <ul class="list-inline">
+                  <li><a href={% url 'home:perfil' username=actividad.perfil.all.get.user.username %} ><i class="fa fa-user" aria-hidden="true"></i>{{actividad.perfil.all.get.nombreArtista}}</a></li>
+                  <li><i class="fa fa-comments-o" aria-hidden="true"></i>{{actividad.get_numero_comentarios}} </li>
+                </ul>
+                <p>{{actividad.get_descripcion}}</p>
+                <ul class="list-inline btn-yellow">
+                  <li><a href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %} class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Leer mas</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          {%for perfil in perfil%}
+          <div class="col-sm-6 col-xs-12 isotopeSelector artistas">
+            <div class="media teamStyle">
+              <a class="media-left" href="#">
+                <img class="img-rounded img-responsive" src="{{MEDIA_URL}}{{perfil.imagen}}" alt="Image">
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading"><a href={% url 'home:perfil' username=perfil.user.username %}>{{perfil.nombreArtista}}</a></h4>
+                <h5>{{perfil.get_categorias}}r</h5>
+                <p>{{perfil.get_descripcion}}</p>
+                <ul class="list-inline">
+                  <li><a href="#" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="bg-color-3"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="bg-color-4"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="bg-color-5"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+{% endblock %}
+
+{% block script %}
+<script>
+$(document).ready( function() {
+  $('#eventos').click( function() {
+      var opcion = 1;
+      console.log(opcion);
+      $.ajax({
+        url : '{% url 'home:categoria' id=categoria.id %}',
+        type : 'POST',
+        data : {
+          op : opcion,
+        },
+        success : function(response) {
+        }
+      });
+  });
+  $('#artistas').click( function() {
+      var opcion = 0;
+      console.log(opcion);
+      $.ajax({
+        url : '{% url 'home:categoria' id=categoria.id %}',
+        type : 'POST',
+        data : {
+          op : opcion,
+        },
+        success : function(response) {
+        }
+      });
+  });
+});
+</script>
+{% endblock %}
