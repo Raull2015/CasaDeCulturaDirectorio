@@ -4,23 +4,21 @@
     Eventos
   {% endblock %}
 
-    {% block page-tittle %}
-    <!-- PAGE TITLE SECTION-->
-  </br>
-      <div class="sectionTitle text-center">
-        <h2>
-          <span class="shape shape-left bg-color-3"></span>
-          <span>Eventos</span>
-          <span class="shape shape-right bg-color-3"></span>
-        </h2>
-      </div>
-
-    {% endblock %}
-
     {% block main-section %}
     <!-- MAIN SECTION -->
     <section class="mainContent full-width clearfix coursesSection">
       <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="sectionTitle text-center">
+              <h2>
+                <span class="shape shape-left bg-color-4"></span>
+                <span>Eventos</span>
+                <span class="shape shape-right bg-color-4"></span>
+              </h2>
+            </div>
+          </div>
+        </div>
         <div class="row">
           {% for actividad in actividad %}
           <div class="col-sm-4 col-xs-12 block">
