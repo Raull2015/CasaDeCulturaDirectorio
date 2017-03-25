@@ -161,7 +161,7 @@ def artista_to_authorize(request):
         limit=request.GET['limit']
         limit = int(limit)
 
-    perfiles = Perfil.objects.filter(autorizado=0)[:limit]
+    perfiles = Perfil.objects.filter(autorizado=0,rol__nombreRol='Artista')[:limit]
 
     if len(perfiles) != limit:
         total = True
@@ -262,6 +262,12 @@ def perfil_create_p2(request, user=None):
 def perfil(request, username=''):
 
     user = get_object_or_404(User, username=username)
+    if user.perfil.autorizado == False:
+        if request.user.is_authenticated == False:
+            return  HttpResponseRedirect(reverse('error'))
+        if request.user.perfil.rol.is_admin() != True:
+            return  HttpResponseRedirect(reverse('error'))
+
     perfil = user.perfil
     is_owner = False
 
@@ -468,6 +474,9 @@ def ingresar(request):
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
+            if user.perfil.rol.is_admin():
+                login(request, user)
+                return JsonResponse(response_data)
             if user.perfil.autorizado == True:
                 login(request, user)
                 return JsonResponse(response_data)
@@ -501,6 +510,12 @@ def actividad_detail(request, username='', id=''):
 
     if actividad.perfil.get().user.username != username:
         return HttpResponseRedirect(reverse('error'))
+
+    if actividad.autorizado == False:
+        if request.user.is_authenticated == False:
+            return  HttpResponseRedirect(reverse('error'))
+        if request.user.perfil.rol.is_admin() != True:
+            return  HttpResponseRedirect(reverse('error'))
 
     conteo = request.session.get('conteo' + id, False)
     if conteo == False and actividad.autorizado == True:
@@ -560,7 +575,7 @@ def artista_authorize(request, id=''):
         return HttpResponseRedirect(reverse('error'))
 
     artista = get_object_or_404(Perfil, id=int(id))
-    if artista.autorizado != 0:
+    if artista.autorizado != 0 or artista.user.perfil.rol.is_admin == True:
         return HttpResponseRedirect(reverse('error'))
     artista.autorizado = 1
     artista.save()

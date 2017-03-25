@@ -7,6 +7,13 @@
   {% block main-section %}
   <section class="mainContent full-width clearfix">
     <div class="container">
+      <div class="sectionTitle text-center">
+       <h2>
+          <span class="shape shape-left bg-color-4"></span>
+          <span>Moderacion de Artistas</span>
+          <span class="shape shape-right bg-color-4"></span>
+        </h2>
+      </div>
       {%if perfiles%}
         <div class="row">
           <div class="col-xs-12">
@@ -22,6 +29,7 @@
                   <li><i class="fa fa-calendar-o" aria-hidden="true"></i>{{perfil.fechaRegistro}}</li>
                   <!--<li><i class="fa fa-clock-o" aria-hidden="true"></i>9.00AM-11.00AM</li>-->
                 </ul>
+                <p>Usuario: {{perfil.user.username}}</p>
                 <p>Nombre: {{perfil.nombreReal}}</p>
                 <p>Nombre Artistico: {{perfil.nombreArtista}}</p>
                 <p>Edad: {{perfil.get_edad}}</p>
@@ -42,7 +50,7 @@
         </div>
         {%endif%}
       {%else%}
-      <div class="sectionTitle text-center alt">
+      <div class="sectionTitle text-center">
         <h2>
           <span class="shape shape-left bg-color-2"></span>
           <span>Ningun artista nuevo por ahora</span>

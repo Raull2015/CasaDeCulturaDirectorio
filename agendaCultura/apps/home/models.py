@@ -88,7 +88,7 @@ class Perfil(models.Model):
         if self.descripcion != None:
             return self.descripcion[:40] + '...'
         return ""
-        
+
     class Meta:
         verbose_name = 'perfil'
         verbose_name_plural = 'perfiles'
@@ -121,6 +121,7 @@ class Actividad(models.Model):
     def get_categorias(self):
         for categoria in self.categoria.all():
             return categoria.categoria
+        return ""
 
     def get_imagen(self):
         imagen = Imagenes.objects.filter(actividad = self)[0]

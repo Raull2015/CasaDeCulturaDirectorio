@@ -185,7 +185,7 @@ def infoHome(request, context):
         'H_logeado' : logeado,
         'H_nombre_usuario' : u,
         'H_admin' : admin,
-        'H_user' : request.user
+        'H_user' : request.user.username
         #'H_categorias' : categorias
     }
     info.update(context)
