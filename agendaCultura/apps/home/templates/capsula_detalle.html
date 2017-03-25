@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Capsula
+  {% endblock %}
+
+  {% block main-section %}
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="panel panel-default formPanel">
+        <div class="panel-heading bg-color-1 border-color-1">
+          <h3 class="panel-title">Informacion de Capsula</h3>
+
+        </div>
+        <div class="panel-body">
+          {%if create %}
+          <form action= "{% url 'crear_capsula' %}" method="POST" role="form">
+            {% csrf_token %}
+            <div class="form-group formField">
+              Fecha de Publicacion </br>
+              <input type="date" class="form-control" id="id_nacimiento" name="publicacion" required>
+            </div>
+            <div class="form-group formField">
+              Texto (no puede superar los 255 caracteres) </br>
+              <textarea class="form-control border-color-5" rows="2" name="texto" required></textarea>
+            </div>
+            <div class="form-group formField">
+              <input type="submit" class="btn btn-primary btn-block bg-color-3 border-color-3" value="Crear">
+            </div>
+          </form>
+          {%else%}
+          <form action= "{% url 'editar_capsula' pk=capsula.id %}" method="POST" role="form">
+            {% csrf_token %}
+            <div class="form-group formField">
+              Fecha de Publicacion </br>
+              <input type="date" value="{{capsula.fechaPublicacion|date:"Y-m-d"}}" class="form-control" name="publicacion" required>
+            </div>
+            <div class="form-group formField">
+              <textarea class="form-control border-color-5" rows="2" name="texto">{{capsula.texto}}</textarea>
+            </div>
+            <div class="form-group formField">
+              <input type="submit" class="btn btn-primary btn-block bg-color-3 border-color-3" value="Modificar">
+            </div>
+          </form>
+          {%endif%}
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

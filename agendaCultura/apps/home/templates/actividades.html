@@ -39,6 +39,11 @@
             </div>
           </div>
           {% endfor %}
+          {%if total == False%}
+          <div class="btnArea">
+            <a href="{% url 'home:eventos' %}?limit={{limit}}" class="btn btn-primary">Ver Mas</a>
+          </div>
+          {%endif%}
           </div>
         </div>
       </div>

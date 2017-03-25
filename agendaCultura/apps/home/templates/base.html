@@ -74,6 +74,8 @@
                   </select>
                 </li>
 
+
+
                 {% if H_logeado == False %}
                 <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#loginModal' data-toggle="modal" >Iniciar Sesion</a><span>o</span><a href='#createAccount' data-toggle="modal">Registrarse</a></li>
                 {% else %}
@@ -184,17 +186,31 @@
               </li>
 
               {%if H_logeado == True %}
-              <li class="dropdown singleDrop color-4">
-                <!-- data-toggle="dropdown" -->
-                <a href={% url 'home:perfil' username=H_nombre_usuario %} class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-file-text-o bg-color-4" aria-hidden="true"></i> <span>Mi Perfil</span>
-                </a>
-                <!--<ul class="dropdown-menu dropdown-menu-left">
-                  <li class="active"><a href="index-v1.html">Kidz School</a></li>
-                  <li><a href="index-v2.html">Kidz Store</a></li>
-                  <li><a href="index-v3.html">Kidz Daycare</a></li>
-                </ul>-->
-              </li>
+                {% if H_admin == True %}
+                <li class="dropdown singleDrop color-4">
+                  <!-- data-toggle="dropdown" -->
+                  <a href={% url 'administracion' %} class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-file-text-o bg-color-4" aria-hidden="true"></i> <span>Administrar</span>
+                  </a>
+                  <!--<ul class="dropdown-menu dropdown-menu-left">
+                    <li class="active"><a href="index-v1.html">Kidz School</a></li>
+                    <li><a href="index-v2.html">Kidz Store</a></li>
+                    <li><a href="index-v3.html">Kidz Daycare</a></li>
+                  </ul>-->
+                </li>
+                {% else %}
+                <li class="dropdown singleDrop color-4">
+                  <!-- data-toggle="dropdown" -->
+                  <a href={% url 'home:perfil' username=H_nombre_usuario %} class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-file-text-o bg-color-4" aria-hidden="true"></i> <span>Mi Perfil</span>
+                  </a>
+                  <!--<ul class="dropdown-menu dropdown-menu-left">
+                    <li class="active"><a href="index-v1.html">Kidz School</a></li>
+                    <li><a href="index-v2.html">Kidz Store</a></li>
+                    <li><a href="index-v3.html">Kidz Daycare</a></li>
+                  </ul>-->
+                </li>
+                {% endif %}
               {%endif%}
 
               <li class="dropdown singleDrop color-3">

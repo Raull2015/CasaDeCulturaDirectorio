@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Administracion
+  {% endblock %}
+
+  {% block main-section %}
+  <section class="whiteSection full-width clearfix p-t-n">
+    <div class="container">
+      <div class="sectionTitle text-center">
+       <h2>
+         <br>
+          <span class="shape shape-left bg-color-4"></span>
+          <span>Panel de Administracion</span>
+          <span class="shape shape-right bg-color-4"></span>
+        </h2>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6 col-xs-12">
+          <div class="pricingTable tableVertical">
+            <div class="priceUper">
+              <div class="priceTitle bg-color-1"><h3>Moderar Eventos</h3></div>
+              <div class="priceInfo bg-color-1">
+                <p>Autoriza nuevos Eventos</p>
+                <div class="priceBtn alt">
+                  <a href="{% url 'actividad_pendiente' %}" class="btn btn-primary">Seleccionar</a>
+                </div>
+              </div>
+            </div>
+            <div class="priceLower">
+              <ul class="list-unstyled priceOffer">
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-xs-12">
+          <div class="pricingTable tableVertical">
+            <div class="priceUper">
+              <div class="priceTitle bg-color-2"><h3>Moderar Artistas</h3></div>
+              <div class="priceInfo bg-color-2">
+                <p>Autoriza nuevos Artistas</p>
+                <div class="priceBtn alt">
+                  <a href="{% url 'artista_pendiente' %}" class="btn btn-primary">Seleccionar</a>
+                </div>
+              </div>
+            </div>
+            <div class="priceLower">
+              <ul class="list-unstyled priceOffer">
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-xs-12">
+          <div class="pricingTable tableVertical">
+            <div class="priceUper">
+              <div class="priceTitle bg-color-3"><h3>Capsulas</h3></div>
+              <div class="priceInfo bg-color-3">
+                <p>Crea o modifica capsulas informativas</p>
+                <div class="priceBtn alt">
+                  <a href="{% url 'ver_capsulas' %}" class="btn btn-primary">Seleccionar</a>
+                </div>
+              </div>
+            </div>
+            <div class="priceLower">
+              <ul class="list-unstyled priceOffer">
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-xs-12">
+          <div class="pricingTable tableVertical">
+            <div class="priceUper">
+              <div class="priceTitle bg-color-4"><h3>Estadisticas</h3></div>
+              <div class="priceInfo bg-color-4">
+                <p>Ve estadisticas utiles</p>
+                <div class="priceBtn alt">
+                  <a href="{% url 'estadisticas' %}" class="btn btn-primary">Seleccionar</a>
+                </div>
+              </div>
+            </div>
+            <div class="priceLower">
+              <ul class="list-unstyled priceOffer">
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}

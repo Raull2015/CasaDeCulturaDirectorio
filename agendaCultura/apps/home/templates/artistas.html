@@ -28,9 +28,9 @@
                 <img class="img-rounded img-responsive" src="{{MEDIA_URL}}{{perfil.imagen}}" alt="Image">
               </a>
               <div class="media-body">
-                <h4 class="media-heading"><a href={% url 'home:perfil' username=perfil.user.username %}>{{perfil.nombreArtista}}</a></h4>
-                <h5>{{artista.get_categorias}}r</h5>
-                <p>{{artista.get_descripcion}}</p>
+                <h4 class="media-heading"><a href="{% url 'home:perfil' username=perfil.user.username %}">{{perfil.nombreArtista}}</a></h4>
+                <p>{{perfil.get_descripcion}}</p>
+                <h5>{{perfil.get_categorias}}</h5>
                 <ul class="list-inline">
                   <li><a href="#" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                   <li><a href="#" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>

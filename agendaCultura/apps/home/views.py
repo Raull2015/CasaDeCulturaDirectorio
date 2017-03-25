@@ -146,7 +146,7 @@ def actividad_to_authorize(request):
         'limit' : limit + aumento,
         'total' : total,
     }
-    return render(request, 'autorizar_evento.html', context)
+    return render(request, 'autorizar_actividad.html', infoHome(request,context))
 
 @login_required
 def artista_to_authorize(request):
@@ -171,7 +171,7 @@ def artista_to_authorize(request):
         'limit' : limit + aumento,
         'total' : total,
     }
-    return render(request, 'autorizar_artista.html', context)
+    return render(request, 'autorizar_artista.html', infoHome(request,context))
 
 class EventosDetailView(DetailView):
     model = Perfil
@@ -318,7 +318,7 @@ def perfil_edit(request, username=''):
             img.name = renombrar_archivo(img.name,newName='perfil')
             perfil.imagen = img
             perfil.save()
-            reescalar_imagen(perfil.imagen.path,perfil.imagen.path)
+            reescalar_imagen(perfil.imagen.path,perfil.imagen.path,height=300,width=300)
 
         perfil.save()
         perfil.categoria =  Categoria.objects.filter(categoria=categoria)
@@ -391,17 +391,15 @@ def capsula_create(request):
         return HttpResponseRedirect(reverse('error'))
 
     if request.method == 'POST':
-        form = CapsulaForm(data=request.POST)
-        if form.is_valid():
-            capsula = form.save(commit=False)
-            capsula.usuario = request.user
-            capsula.save()
-            return mensaje(request, 'Capsula Creada Exitosamente', reverse('ver_capsulas'))
-    else:
-        form = CapsulaForm()
+        fecha = request.POST['publicacion']
+        texto = request.POST['texto']
+        capsula = Capsulas(fechaPublicacion=fecha,texto=texto,usuario=request.user)
+        capsula.save()
+        return mensaje(request, 'Capsula Creada Exitosamente', reverse('ver_capsulas'))
 
-    context = {'form': form, 'create': True}
-    return render(request, 'capsulas.html', context)
+
+    context = {'create': True}
+    return render(request, 'capsula_detalle.html', context)
 
 @login_required
 def editar_capsula(request, pk = ''):
@@ -411,14 +409,15 @@ def editar_capsula(request, pk = ''):
     capsula = get_object_or_404(Capsulas, id=int(pk))
 
     if request.method == 'POST':
-        form = CapsulaForm(instance=capsula, data=request.POST)
-        if form.is_valid():
-            form.save()
-            return mensaje(request, 'Capsula Modificada Exitosamente',reverse('ver_capsulas'))
-    else:
-        form = CapsulaForm(instance=capsula)
-    context = {'form': form, 'create': False}
-    return render(request, 'capsulas.html', context)
+        capsula.fechaPublicacion = request.POST['publicacion']
+        capsula.texto = request.POST['texto']
+        capsula.usuario = request.user
+        capsula.save()
+        return mensaje(request, 'Capsula Modificada Exitosamente',reverse('ver_capsulas'))
+
+    context = {'capsula': capsula,
+                'create': False}
+    return render(request, 'capsula_detalle.html', infoHome(request,context))
 
 @login_required
 def capsula_list(request):
@@ -443,19 +442,14 @@ def capsula_list(request):
         'limit' : limit + aumento,
         'total' : total
     }
-    return render(request, 'capsula_list.html', context)
+    return render(request, 'capsulas.html', infoHome(request,context))
 
 @login_required
 def administracion(request):
-
     if request.user.perfil.rol.is_admin() != True:
         return HttpResponseRedirect(reverse('error'))
 
-    u = request.user.perfil.nombreArtista
-    context = {
-        'usuario' : u,
-        }
-    return render(request, 'Admi.html', context)
+    return render(request, 'administracion.html', infoHome(request, {}))
 
 #ajax request
 def ingresar(request):
@@ -533,7 +527,7 @@ def mensaje(request, mensaje='', path=''):
         'mensaje':mensaje,
         'path' : path,
     }
-    return render(request, 'mensaje.html', context)
+    return render(request, 'mensaje.html', infoHome(request, context))
 
 @login_required
 def actividad_authorize(request, id=''):
@@ -546,7 +540,7 @@ def actividad_authorize(request, id=''):
     actividad.autorizado = 1
     actividad.save()
 
-    return mensaje(request, 'Actividad autorizada', reverse('actividad_pendiente'))
+    return mensaje(request, 'Evento autorizado', reverse('actividad_pendiente'))
 
 @login_required
 def actividad_reject(request, id=''):
@@ -558,7 +552,7 @@ def actividad_reject(request, id=''):
         return HttpResponseRedirect(reverse('error'))
     actividad.delete()
 
-    return mensaje(request, 'Actividad rechazado', reverse('actividad_pendiente'))
+    return mensaje(request, 'Evento rechazado', reverse('actividad_pendiente'))
 
 @login_required
 def artista_authorize(request, id=''):

@@ -85,8 +85,10 @@ class Perfil(models.Model):
         return edad - 1
 
     def get_descripcion(self):
-        return self.descripcion[:40] + '...'
-
+        if self.descripcion != None:
+            return self.descripcion[:40] + '...'
+        return ""
+        
     class Meta:
         verbose_name = 'perfil'
         verbose_name_plural = 'perfiles'
