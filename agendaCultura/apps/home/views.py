@@ -194,17 +194,17 @@ def perfil_create_p1(request):
         telefono = request.POST['telefono']
         nacimiento = request.POST['nacimiento']
         genero = request.POST['sexo']
-
         if genero == 'True':
             genero = True
         else:
             genero = False
         try:
             User.objects.get(username=username)
-            response_data['existe'] = True
+            response_data['existe'] = 'true'
             return JsonResponse(response_data)
 
         except ObjectDoesNotExist :
+
             estado, mensaje = validar_password(username, password,password_confirm)
             if estado:
                 perfil = Perfil(nombreArtista = nombre, nombreReal = nombre, email=email, telefono=telefono,fechaNacimiento= nacimiento,sexo=genero)
@@ -214,7 +214,8 @@ def perfil_create_p1(request):
                 perfil.save()
                 return JsonResponse(response_data)
             else:
-                response_data['error'] = True
+                response_data['existe'] = 'true'
+                response_data['error'] = 'true'
                 response_data['mensaje'] = mensaje
                 return JsonResponse(response_data)
 

@@ -397,8 +397,9 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
           //  $('#id_password').val(''); // remove the value from the input
             console.log(json); // log the returned json to the console
             console.log("success"); // another sanity check
-            if (json['existe'] == true){
-                if(json['error'] == true){
+            if ('true'.localeCompare(json['existe']) == 0){
+
+                if('true'.localeCompare(json['error']) == 0){
                   $('#results_2').html("<p class='help-block'><a href='#'>" + json['mensaje'] + "</a></p>");
                 }
                 else{
@@ -406,6 +407,8 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
                 }
             }
             else {
+          
+
                 window.location="/home/confirmar_registro/";
             }
 
