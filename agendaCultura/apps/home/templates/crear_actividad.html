@@ -9,41 +9,10 @@
     <section class="mainContent full-width clearfix">
       <div class="container">
         <div class="row">
-          <div class="col-xs-12">
-            <div class="sectionTitle text-center">
-              <h2>
-                <span class="shape shape-left bg-color-4"></span>
-                <span>Informacion del Evento</span>
-                <span class="shape shape-right bg-color-4"></span>
-              </h2>
-            </div>
-          </div>
-        </div>
-        <!--
-        <div class="row progress-wizard" style="border-bottom:0;">
-
-          <div class="col-sm-4 col-xs-12 progress-wizard-step complete">
-            <div class="progress"><div class="progress-bar"></div></div>
-            <a href="checkout-step-1.html" class="progress-wizard-dot">
-              <i class="fa fa-user" aria-hidden="true"></i>
-            </a>
-            <div class="progressInfo">1. Informacion del evento</div>
-          </div>
-
-          <div class="col-sm-4 col-xs-12 progress-wizard-step incomplete">
-            <div class="progress"><div class="progress-bar"></div></div>
-            <a href="checkout-step-3.html" class="progress-wizard-dot">
-              <i class="fa fa-check" aria-hidden="true"></i>
-            </a>
-            <div class="progressInfo">2. Confirmacion</div>
-          </div>
-        </div>
-        -->
-        <div class="row">
           <div class="col-sm-4 col-sm-push-8 col-xs-12">
           </div>
           <div class="col-sm-8  col-sm-pull-4 col-xs-12">
-            <form action={% url 'home:crear_evento' username=request.user.username %}  method="POST" role="form" id="crearEvento">
+            <form action={% url 'home:crear_evento' username=request.user.username %} enctype="multipart/form-data" method="POST" role="form" id="crearEvento">
               {% csrf_token %}
               <div class="panel panel-default checkoutInfo">
                 <div class="panel-heading bg-color-3 border-color-3">
@@ -77,13 +46,13 @@
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Descripcion</label>
-                      <textarea class="form-control border-color-5" rows="2" id="id_descripcion"></textarea>
+                      <textarea class="form-control border-color-5" rows="2" id="descripcion"></textarea>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Imagen</label>
-                      <input type="file" class="form-control border-color-6" id="imagen">
+                      <input type="file" class="form-control border-color-6" id="imagen" name="imagen">
                     </div>
                   </div>
                   <div class="form-group">
@@ -137,8 +106,10 @@
               hora : $('#hora').val(),
               descripcion : $('#descripcion').val(),
               categoria : $('#categoria').val(),
-              imagen : $('#imagen').val()
+              imagen : $('#imagen').val(),
             },
+            //contentType: false,
+            //processData: false,
             success : function(data) {
               window.location = "/home/confirmar_actividad/";
             }
