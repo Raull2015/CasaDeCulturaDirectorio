@@ -3,3 +3,47 @@
   {% block title %}
     Ayuda
   {% endblock %}
+
+  {% block css %}
+    <link rel="shortcut icon" href= "{% static "img/favicon.png" %}">
+  {% endblock %}
+
+  {% block main-section%}
+  <section class="mainContent full-width clearfix">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9 col-sm-8 col-xs-12">
+            <div class="accordionCommon hello" id="faqAccordion">
+              <div class="panel-group" id="accordionFaq">
+                <div class="panel panel-default">
+                  <a class="panel-heading accordion-toggle bg-color-1" data-toggle="collapse" data-parent="#accordionFaq" href="#collapse-aa">
+                    <span>Creación de un Artista</span>
+                    <span class="iconBlock"><i class="fa fa-chevron-down"></i></span>
+                  </a>                    
+                  <div id="collapse-aa" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      <p>Se le presenta un formulario que usted debe llenar con sus datos personales, una vez lleno el formulario debe de darle clic al boton crear y así se hace la petición a la administración de la Casa de la Cultura para que pueda estar como un usuario Artista, en caso contrario usted podrá ingresar a la página pero no podrá hacer publicación publicación.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <a class="panel-heading accordion-toggle bg-color-2" data-toggle="collapse" data-parent="#accordionFaq" href="#collapse-bb">
+                    <span>Creación de un Evento</span>
+                    <span class="iconBlock"><i class="fa fa-chevron-up"></i></span>
+                  </a>
+                  <div id="collapse-bb" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <p>Siendo usted un usuario Artista puede crear sus eventos llenando un formulario con los datos del mismo, si el proyecto es aceptado por la administración de la Casa de la Cultura entonces su evento estará público, en caso contrario el evento solo lo podra ver usted y la administración.</p>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  {% endblock %}

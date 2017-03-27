@@ -3,3 +3,28 @@
   {% block title %}
     Informacion
   {% endblock %}
+
+  {% block css %}
+    <link rel="shortcut icon" href= "{% static "img/favicon.png" %}">
+  {% endblock %}
+
+    {% block main-section%}
+    <section class="mainContent full-width clearfix aboutSection">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-sm-push-6 col-xs-12">
+            <img src="{% static "img/about_us/principal.jpg" %}" alt="image" class="img-responsive img-rounded">
+          </div>
+          <div class="col-sm-6 col-sm-pull-6 col-xs-12">
+            <div class="schoolInfo">
+              <h2>Un poco de historia</h2>
+              <p>Construida como prisión en 1875, a partir de 1960 se inaugura la Casa de la cultura, convirtiendo las antiguas celdas en oficinas de trabajo, la biblioteca municipal, un pequeño teatro, en este espacio funciona ahora el Museo de Arte e Historia Natural y de la Marimba.</p>
+              </ul>
+              <a href="http://www.visitguatemaya.com/2013/03/casa-de-la-cultura-quetzaltenango.html" target="_blank" class="btn btn-primary" >Leer Más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% endblock %}
