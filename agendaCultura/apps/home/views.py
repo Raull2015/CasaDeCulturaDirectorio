@@ -348,49 +348,24 @@ def actividad_create(request,username=''):
         hora = request.POST['hora']
         descripcion = request.POST['descripcion']
         categoria = request.POST['categoria']
-        imagen = request.POST['imagen']
 
-        actividad = Actividad(nombre=nombre, lugar=lugar, fechaRealizacion=fecha, hora=hora, descripcion=descripcion, imagen=imagen)
+        actividad = Actividad(nombre=nombre, lugar=lugar, fechaRealizacion=fecha, hora=hora, descripcion=descripcion)
+
+        img = request.FILES.get('imagen')
+        print img
+        if img != None:
+            img.name = renombrar_archivo(img.name,newName='actividad')
+            actividad.imagen = img
+            actividad.save()
+            reescalar_imagen(actividad.imagen.path,actividad.imagen.path)
+
+
 
         actividad.save()
         actividad.categoria = Categoria.objects.filter(categoria=categoria)
         actividad.perfil.add(request.user.perfil)
 
     return render(request, 'crear_actividad.html', infoHome(request,{}))
-
-    '''
-    if request.user != User.objects.get(username=username):
-        return HttpResponseRedirect(reverse('error'))
-
-    if request.method == 'POST':
-        form = ActividadForm(data=request.POST)
-        if form.is_valid():
-            actividad = form.save(commit=False)
-            actividad.fechaPublicacion = date.today()
-
-            img = request.FILES.get('imagen',None)
-            if img != None:
-                img.name = renombrar_archivo(img.name,newName='actividad')
-                actividad.imagen = img
-
-            actividad.save()
-            actividad.perfil.add(request.user.perfil)
-
-            form.save_m2m()
-
-            if img != None:
-                reescalar_imagen(actividad.imagen.path,actividad.imagen.path)
-
-            return mensaje(request, 'Actividad Creada Exitosamente')
-    else:
-        form = ActividadForm()
-
-    context = {
-        'categoria' : categoria,
-        'form': form,
-        'create': True
-    }
-    '''
 
 @login_required
 def capsula_create(request):

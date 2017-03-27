@@ -178,11 +178,14 @@
                 <a href="{% url 'home:home' %}" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-home bg-color-1" aria-hidden="true"></i> <span>Inicio</span>
                 </a>
-                <!--<ul class="dropdown-menu dropdown-menu-left">
+                <ul class="dropdown-menu dropdown-menu-left">
+                <li><a href='#loginModal' data-toggle="modal" >Login</a><a href='#createAccount' data-toggle="modal">Crear Cuenta</a></li>
+                </ul>
+                <!--
                   <li class="active"><a href="index-v1.html">Kidz School</a></li>
                   <li><a href="index-v2.html">Kidz Store</a></li>
                   <li><a href="index-v3.html">Kidz Daycare</a></li>
-                </ul>-->
+                -->
               </li>
 
               {%if H_logeado == True %}
@@ -465,6 +468,7 @@
     <!-- FOOTER -->
     <footer>
       <!-- COLOR BAR -->
+      <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
       <div class="container-fluid color-bar clearfix">
         <div class="row">
           <div class="col-sm-1 col-xs-2 bg-color-1">fix bar</div>
@@ -586,18 +590,21 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-5 col-sm-push-7 col-xs-12">
-              <ul class="list-inline">
-                <li><a href="#" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="bg-color-3"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="bg-color-4"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="bg-color-5"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+             <ul class="list-inline">
+                <li><a href="http://www.facebook.com" target="_blank" class="icon-button facebook"  title="Ir al sitio de Facebook"><i class="icon-facebook"></i><span></span></a></li>
+                <li><a href="http://www.instagram.com" target="_blank" class="icon-button instagram" title="Ir al sitio de Instagram"><i class="icon-instagram"></i><span></span></a></li>
+                <li><a href="http://www.twitter.com" target="_blank" class="icon-button twitter" title="Ir al sitio de Twitter"><i class="icon-twitter"></i><span></span></a></li>
+                <li><a href="http://www.linkedin.com" target="_blank" class="icon-button linkedin" title="Ir al sitio de Linkedin"><i class="icon-linkedin"></i><span></span></a></li>
               </ul>
             </div>
+
             <div class="col-sm-7 col-sm-pull-5 col-xs-12">
               <div class="copyRightText">
-                <p>© 2016 Copyright Kidz School Bootstrap Template by <a href="https://www.iamabdus.com/">Abdus</a>.</p>
+              <a href="http://www.url.edu.gt" target="_blank"><img src="http://2.bp.blogspot.com/-M76dyuMF898/Tc3Bvq2oI1I/AAAAAAAAAyA/T_FTywIhAU8/s170/Universidad-Rafael-Land%25C3%25ADvar-%2528Blanco-fondo-transaprente%2529.png" title= "Ir al sitio de la URL" id= "logl" class="logol"></a>
+
+
               </div>
+              <p id= "tl" class ="tll">© 2017 Donado por Universidad Rafael Landivar.</p>
             </div>
           </div>
         </div>
