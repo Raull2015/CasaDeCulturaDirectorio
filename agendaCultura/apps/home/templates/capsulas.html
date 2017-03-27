@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Capsulas Informativas
+  {% endblock %}
+
+  {% block main-section %}
+  <section class="mainContent full-width clearfix">
+
+    <div class="container">
+      <div class="sectionTitle text-center">
+       <h2>
+          <span class="shape shape-left bg-color-4"></span>
+          <span>Capsulas</span>
+          <span class="shape shape-right bg-color-4"></span>
+        </h2>
+      </div>
+      <div class="formBtnArea pull-left">
+        <a href="{% url 'crear_capsula' %}" class="btn btn-primary bg-color-3">Crear nueva capsula</a>
+      </div>
+      {%if capsulas%}
+        <div class="row">
+          <div class="col-xs-12">
+            <br>
+            {%for capsula in capsulas%}
+            <div class="media courseList couresListPage">
+              <a class="media-left border-color-1" >
+                <img class="media-object" src="" alt="">
+
+              </a>
+              <div class="media-body">
+                <h3 class="media-heading"><a class="color-1">Informacion</a></h3>
+                <ul class="list-inline">
+                  <li><i class="fa fa-calendar-o" aria-hidden="true"></i>Publicacion: {{capsula.fechaPublicacion}}</li>
+                  <!--<li><i class="fa fa-clock-o" aria-hidden="true"></i>9.00AM-11.00AM</li>-->
+                </ul>
+                <p>Contenido: {{capsula.texto}}</p>
+                <ul class="list-inline btn-yellow btnPart">
+                  <li><a href="{% url 'editar_capsula' pk=capsula.id %}" class="btn btn-primary ">Editar</a></li>
+                  <!--<li><a href="" class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Ver Detalles</a></li>-->
+                </ul>
+              </div>
+            </div>
+            {%endfor%}
+          </div>
+        </div>
+        {%if total == False%}
+        <div class="btnArea">
+          <a href="{% url 'ver_capsulas' %}?limit={{limit}}" class="btn btn-primary">Ver Mas</a>
+        </div>
+        {%endif%}
+      {%else%}
+      <div class="sectionTitle text-center">
+        <h2>
+          <span class="shape shape-left bg-color-2"></span>
+          <span>Ninguna capsula por Ahora</span>
+          <span class="shape shape-right bg-color-2"></span>
+        </h2>
+      </div>
+      {%endif%}
+
+    </div>
+  </section>
+  {% endblock %}

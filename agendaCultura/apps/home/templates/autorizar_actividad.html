@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Nuevos Eventos
+  {% endblock %}
+
+  {% block main-section %}
+  <section class="mainContent full-width clearfix">
+    <div class="container">
+      <div class="sectionTitle text-center">
+       <h2>
+          <span class="shape shape-left bg-color-4"></span>
+          <span>Moderacion de Eventos</span>
+          <span class="shape shape-right bg-color-4"></span>
+        </h2>
+      </div>
+      {%if actividades%}
+        <div class="row">
+          <div class="col-xs-12">
+            {%for actividad in actividades%}
+            <div class="media courseList couresListPage">
+              <a class="media-left border-color-1" >
+                <img class="media-object" src="{{MEDIA_URL}}{{actividad.imagen}}" alt="Image">
+
+              </a>
+              <div class="media-body">
+                <h3 class="media-heading"><a  class="color-1">Informacion</a></h3>
+                <ul class="list-inline">
+                  <li><i class="fa fa-calendar-o" aria-hidden="true"></i>{{actividad.fechaPublicacion}}</li>
+                  <!--<li><i class="fa fa-clock-o" aria-hidden="true"></i>9.00AM-11.00AM</li>-->
+                </ul>
+                <p>Ubicacion: {{actividad.lugar}}</p>
+                <p>Fecha de Realizacion: {{actividad.fechaRealizacion}}</p>
+                <p>Hora de Realizacion: {{actividad.hora}}</p>
+                <p>Programada por: <a href="{% url 'home:perfil' username=actividad.perfil.all.get.user.username %}"> {{actividad.perfil.all.get.user.username}}</a></p>
+                <ul class="list-inline btn-yellow btnPart">
+                  <li><a href="{% url 'autorizar_evento' id=actividad.id %}" class="btn btn-primary ">Autorizar</a></li>
+                  <li><a href="{% url 'rechazar_evento' id=actividad.id %}" class="btn btn-primary " >Denegar</a></li>
+                  <li><a href="{% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}" class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Ver Detalles</a></li>
+                </ul>
+              </div>
+            </div>
+            {%endfor%}
+          </div>
+        </div>
+        {%if total == False%}
+        <div class="btnArea">
+          <a href="{% url 'actividad_pendiente' %}?limit={{limit}}" class="btn btn-primary">Ver Mas</a>
+        </div>
+        {%endif%}
+      {%else%}
+      <div class="sectionTitle text-center">
+        <h2>
+          <span class="shape shape-left bg-color-2"></span>
+          <span>Ningun evento nuevo por ahora</span>
+          <span class="shape shape-right bg-color-2"></span>
+        </h2>
+      </div>
+      {%endif%}
+
+    </div>
+  </section>
+  {% endblock %}

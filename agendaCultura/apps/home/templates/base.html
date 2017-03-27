@@ -74,6 +74,8 @@
                   </select>
                 </li>
 
+
+
                 {% if H_logeado == False %}
                 <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#loginModal' data-toggle="modal" >Iniciar Sesion</a><span>o</span><a href='#createAccount' data-toggle="modal">Registrarse</a></li>
                 {% else %}
@@ -184,17 +186,31 @@
               </li>
 
               {%if H_logeado == True %}
-              <li class="dropdown singleDrop color-4">
-                <!-- data-toggle="dropdown" -->
-                <a href={% url 'home:perfil' username=H_nombre_usuario %} class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-file-text-o bg-color-4" aria-hidden="true"></i> <span>Mi Perfil</span>
-                </a>
-                <!--<ul class="dropdown-menu dropdown-menu-left">
-                  <li class="active"><a href="index-v1.html">Kidz School</a></li>
-                  <li><a href="index-v2.html">Kidz Store</a></li>
-                  <li><a href="index-v3.html">Kidz Daycare</a></li>
-                </ul>-->
-              </li>
+                {% if H_admin == True %}
+                <li class="dropdown singleDrop color-4">
+                  <!-- data-toggle="dropdown" -->
+                  <a href={% url 'administracion' %} class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-file-text-o bg-color-4" aria-hidden="true"></i> <span>Administrar</span>
+                  </a>
+                  <!--<ul class="dropdown-menu dropdown-menu-left">
+                    <li class="active"><a href="index-v1.html">Kidz School</a></li>
+                    <li><a href="index-v2.html">Kidz Store</a></li>
+                    <li><a href="index-v3.html">Kidz Daycare</a></li>
+                  </ul>-->
+                </li>
+                {% else %}
+                <li class="dropdown singleDrop color-4">
+                  <!-- data-toggle="dropdown" -->
+                  <a href={% url 'home:perfil' username=H_user %} class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-file-text-o bg-color-4" aria-hidden="true"></i> <span>Mi Perfil</span>
+                  </a>
+                  <!--<ul class="dropdown-menu dropdown-menu-left">
+                    <li class="active"><a href="index-v1.html">Kidz School</a></li>
+                    <li><a href="index-v2.html">Kidz Store</a></li>
+                    <li><a href="index-v3.html">Kidz Daycare</a></li>
+                  </ul>-->
+                </li>
+                {% endif %}
               {%endif%}
 
               <li class="dropdown singleDrop color-3">
@@ -471,43 +487,38 @@
           <div class="row">
             <div class="col-sm-3 col-xs-12">
               <div class="footerTitle">
-                <a href="index-v1.html"><img src= "{% static "img/logo-footer.png" %}"></a>
+                <a href= "{% url 'home:home'%}" ><img src= "{% static "img/logo-casanoj.jpg" %}"></a>
               </div>
               <div class="footerInfo">
-                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa officia.Lorem ipsum dolor sit amet.</p>
-                <p>consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Casa de la Cultura, Quetzaltenango</p>
+                <p>Holi</p>
               </div>
             </div>
             <div class="col-sm-3 col-xs-12">
               <div class="footerTitle">
-                <h4>Useful Links</h4>
+                <h4>Links Utiles</h4>
               </div>
               <div class="footerInfo">
                 <ul class="list-unstyled footerList">
-                  <li>
+                  <!--<li>
                     <a href="index-v1.html">
                     <i class="fa fa-angle-double-right" aria-hidden="true"></i>Kidz School
+                  </a>
+                  </li>-->
+                  <li>
+                    <a href="{% url 'home:informacion' %}">
+                      <i class="fa fa-angle-double-right" aria-hidden="true"></i>Sobre Nosotros
                     </a>
                   </li>
                   <li>
-                    <a href="about_us.html">
-                      <i class="fa fa-angle-double-right" aria-hidden="true"></i>About Kidz School
+                    <a href="{% url 'home:ayuda' %}">
+                      <i class="fa fa-angle-double-right" aria-hidden="true"></i>Ayuda
                     </a>
                   </li>
                   <li>
-                    <a href="index-v2.html">
-                      <i class="fa fa-angle-double-right" aria-hidden="true"></i>Kidz Store
-                    </a>
-                  </li>
-                  <li>
-                    <a href="index-v3.html">
-                      <i class="fa fa-angle-double-right" aria-hidden="true"></i>Kidz Daycare
-                    </a>
-                  </li>
-                  <li>
-                    <a href="photo-gallery.html">
+                    <a href="#">
                       <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                      Photo Gallery
+                      Donde Encontrarnos
                     </a>
                   </li>
                 </ul>
