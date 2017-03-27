@@ -101,7 +101,7 @@ class Perfil(models.Model):
         return self.nombreReal
 
 class Actividad(models.Model):
-    nombre = models.CharField(max_length=200)
+    nombre = models.CharField(max_length=200, null=True)
     lugar = models.CharField(max_length=200)
     fechaRealizacion = models.DateField('Fecha a realizar')
     hora = models.TimeField('Hora de Realizacion')

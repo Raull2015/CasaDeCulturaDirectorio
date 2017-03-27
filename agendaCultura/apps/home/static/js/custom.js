@@ -478,11 +478,13 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
     crear_usuario();
   });
 
-  $('#crearEvento').on('submit', function(event){
+  /*$('#crearEvento').on('submit', function(event){
     event.preventDefault();
+    var f = $(this);
+    var formData = new FormData(document.getElementById("crearEvento"));
     console.log("form submitted!");  // sanity check
-    crear_evento();
-  });
+    crear_evento(formData);
+  });*/
 
   /*$('#editar_evento').on('submit', function(event){
     event.preventDefault();

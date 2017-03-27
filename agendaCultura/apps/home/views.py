@@ -336,7 +336,9 @@ def perfil_edit(request, username=''):
 
 @login_required
 def actividad_create(request,username=''):
-    if request.user != User.objects.get(username=username):
+    user = get_object_or_404(User, username=username)
+
+    if request.user != user or request.user.perfil.autorizado == False:
         return HttpResponseRedirect(reverse('error'))
 
     if request.method == 'POST':
@@ -353,6 +355,7 @@ def actividad_create(request,username=''):
         img = request.FILES.get('imagen')
         print img
         if img != None:
+            print "siii"
             img.name = renombrar_archivo(img.name,newName='actividad')
             actividad.imagen = img
             actividad.save()
@@ -363,6 +366,8 @@ def actividad_create(request,username=''):
         actividad.save()
         actividad.categoria = Categoria.objects.filter(categoria=categoria)
         actividad.perfil.add(request.user.perfil)
+        return HttpResponseRedirect(reverse('home:confirmar_actividad'))
+
 
     return render(request, 'crear_actividad.html', infoHome(request,{}))
 

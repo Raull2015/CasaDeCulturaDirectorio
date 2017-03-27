@@ -12,7 +12,7 @@
           <div class="col-sm-4 col-sm-push-8 col-xs-12">
           </div>
           <div class="col-sm-8  col-sm-pull-4 col-xs-12">
-            <form action={% url 'home:crear_evento' username=request.user.username %} enctype="multipart/form-data" method="POST" role="form" id="crearEvento">
+            <form action='{% url 'home:crear_evento' username=request.user.username %}' enctype="multipart/form-data" method="POST" role="form" id="crearEvento">
               {% csrf_token %}
               <div class="panel panel-default checkoutInfo">
                 <div class="panel-heading bg-color-3 border-color-3">
@@ -22,31 +22,31 @@
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Nombre</label>
-                      <input type="text" class="form-control border-color-1" id="nombre" required>
+                      <input type="text" class="form-control border-color-1" name="nombre" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Lugar</label>
-                      <input type="text" class="form-control border-color-2" id="lugar" required>
+                      <input type="text" class="form-control border-color-2" name="lugar" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Fecha de realización</label>
-                      <input type="date" class="form-control border-color-3" id="fecha" required>
+                      <input type="date" class="form-control border-color-3" name="fecha" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Hora</label>
-                      <input type="time" class="form-control border-color-4" id="hora" required>
+                      <input type="time" class="form-control border-color-4" name="hora" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Descripcion</label>
-                      <textarea class="form-control border-color-5" rows="2" id="descripcion"></textarea>
+                      <textarea class="form-control border-color-5" rows="2" name="descripcion"></textarea>
                     </div>
                   </div>
                   <div class="form-group">
@@ -79,7 +79,7 @@
               </div>
               <div class="continueBtnArea">
                 <ul class="list-inline">
-                  <li class="pull-right"><button type="button" id="btnGuardar" class="btn btn-primary">Crear evento</button></li>
+                  <li class="pull-right"><input type="submit" value="Crear evento" id="btnGuardar" class="btn btn-primary"></input></li>
                 </ul>
               </div>
               <div class="form-group formField" id="results_3">
@@ -94,27 +94,19 @@
 
   {% block script %}
   <script>
-    $(document).ready( function() {
-      $('#btnGuardar').click( function() {
-          $.ajax({
-            url : '{% url 'home:crear_evento' username=request.user.username %}',
-            type : 'POST',
-            data : {
-              nombre : $('#nombre').val(),
-              lugar : $('#lugar').val(),
-              fecha : $('#fecha').val(),
-              hora : $('#hora').val(),
-              descripcion : $('#descripcion').val(),
-              categoria : $('#categoria').val(),
-              imagen : $('#imagen').val(),
-            },
-            //contentType: false,
-            //processData: false,
-            success : function(data) {
-              window.location = "/home/confirmar_actividad/";
-            }
-          });
-      });
+  function crear_evento(formData) {
+    console.log("create post is working!") // sanity check
+    $.ajax({
+        url : '{% url 'home:crear_evento' username=request.user.username %}', // the endpoint
+        type : "POST", // http method
+        //dataType: "html",
+        data : formData,
+        cache: false,
+        contentType: false,
+        processData: false// data sent with the post request
+        // handle a successful response
+
     });
+  };
   </script>
   {% endblock %}
