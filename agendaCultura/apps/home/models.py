@@ -22,6 +22,8 @@ class CapsulaManager(models.Manager):
 
 class Categoria(models.Model):
     categoria = models.CharField(max_length=100)
+    descripcion = models.CharField(max_length=255)
+    imagen = models.ImageField(upload_to='imgCat/', default='imgCat/default.jpg')
     objects = models.Manager()
 
     def __str__(self):

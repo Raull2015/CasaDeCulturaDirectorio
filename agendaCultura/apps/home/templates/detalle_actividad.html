@@ -29,6 +29,15 @@
                 </ul>
               </div>
             </div>
+
+            {%if autorizado == False %}
+            <ul class="list-inline btn-yellow btnPart">
+              <li><a href="{% url 'autorizar_evento' id=actividad.id %}" class="btn btn-primary ">Autorizar</a></li>
+              <li><a href="{% url 'rechazar_evento' id=actividad.id %}" class="btn btn-primary " >Denegar</a></li>
+            </ul>
+            {%endif%}
+
+
             <div class="blogComments">
               <h3>{{actividad.get_numero_comentarios}} Comentarios</h3>
               <ul class="media-list commentsList">

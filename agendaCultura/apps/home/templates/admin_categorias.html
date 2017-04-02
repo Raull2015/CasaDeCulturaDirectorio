@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Adminstrar Categorias
+  {% endblock %}
+
+  {% block main-section %}
+  <section class="mainContent full-width clearfix">
+    <div class="container">
+      <div class="sectionTitle text-center">
+       <h2>
+          <span class="shape shape-left bg-color-4"></span>
+          <span>Administracion de Categorias</span>
+          <span class="shape shape-right bg-color-4"></span>
+        </h2>
+      </div>
+
+      <div class="formBtnArea pull-left">
+        <a href="{% url 'crear_categoria' %}" class="btn btn-primary bg-color-3">Crear nueva categoria</a>
+
+      </div>
+
+      {%if categorias%}
+        <div class="row">
+          <div class="col-xs-12">
+              <br>
+            {%for categoria in categorias%}
+            <div class="media courseList couresListPage">
+              <a class="media-left border-color-1" >
+                <img class="media-object" src="{{MEDIA_URL}}{{categoria.imagen}}" alt="Image">
+
+              </a>
+              <div class="media-body">
+                <h3 class="media-heading"><a  class="color-1">{{categoria.categoria}}</a></h3>
+                <p>Descripcion: {{categoria.descripcion}}</p>
+                <ul class="list-inline btn-yellow btnPart">
+                  <li><a href="{% url 'editar_categoria' id=categoria.id %}" class="btn btn-primary ">Editar</a></li>
+                </ul>
+              </div>
+            </div>
+            {%endfor%}
+          </div>
+        </div>
+        {%if total == False%}
+        <div class="btnArea">
+          <a href="{% url 'admin_categoria' %}?limit={{limit}}" class="btn btn-primary">Ver Mas</a>
+        </div>
+        {%endif%}
+      {%else%}
+      <div class="sectionTitle text-center">
+        <h2>
+          <span class="shape shape-left bg-color-2"></span>
+          <span>Ninguna categoria por ahora</span>
+          <span class="shape shape-right bg-color-2"></span>
+        </h2>
+      </div>
+      {%endif%}
+
+    </div>
+  </section>
+  {% endblock %}

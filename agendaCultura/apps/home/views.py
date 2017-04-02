@@ -86,7 +86,7 @@ def categoria_list(request):
     categoria = Categoria.objects.all()
 
     context = {
-        'categoria' : categoria,
+        'categorias' : categoria,
     }
 
     return render(request, 'lista_categorias.html', infoHome(request,context))
@@ -110,7 +110,7 @@ def categoria(request, id=''):
         'opcion' : opcion,
     }
 
-    return render(request, 'categoria.html', context)
+    return render(request, 'categoria.html', infoHome(request,context))
 
 @login_required
 def actividad_user(request, username=''):
@@ -222,44 +222,6 @@ def perfil_create_p1(request):
     else:
         return HttpResponseBadRequest()
 
-"""
-def perfil_create_p2(request, user=None):
-    print user
-    if user != None:
-        form = PerfilForm()
-        context = {'form': form, 'create': True}
-        return render(request, 'crear_perfil_p2.html', context)
-
-    if request.method == 'POST':
-        form = PerfilForm(data=request.POST)
-        if form.is_valid():
-            perfil = form.save(commit=False)
-
-            img = request.FILES.get('imagen',None)
-            if img != None:
-                img.name = renombrar_archivo(img.name,newName='perfil')
-                perfil.imagen = img
-
-            perfil.rol = get_object_or_404(Rol, nombreRol='Artista')
-
-            username = request.session['username']
-            password = request.session['password']
-            nuevo_usuario = User.objects.create_user(username=username, email='xela@casacult.com', password=password)
-            perfil.user = nuevo_usuario
-
-            perfil.save()
-
-            if img != None:
-                reescalar_imagen(perfil.imagen.path,perfil.imagen.path)
-
-            del request.session['username']
-            del request.session['password']
-
-            return mensaje(request, 'Usuario Creado Exitosamente')
-    else:
-        return HttpResponseRedirect(reverse('error'))
-"""
-
 def perfil(request, username=''):
 
     user = get_object_or_404(User, username=username)
@@ -286,6 +248,7 @@ def perfil(request, username=''):
     context = {
         'perfil': perfil,
         'es_propietario': is_owner,
+        'autorizado' : perfil.autorizado,
     }
     return render(request, 'detalle_artista.html', infoHome(request,context))
 
@@ -512,6 +475,7 @@ def actividad_detail(request, username='', id=''):
         'actividades': actividades,
         'categoria': categoria,
         'comentario' : comentario,
+        'autorizado' : actividad.autorizado,
     }
     return render(request, 'detalle_actividad.html', infoHome(request, context))
 
@@ -695,3 +659,75 @@ def ayuda(request):
 
 def informacion(request):
     return render(request, 'about.html', infoHome(request, {}))
+
+@login_required
+def categoria_admin(request):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
+    limit = 10
+    aumento = 10
+    total = False
+
+    if request.GET:
+        limit=request.GET['limit']
+        limit = int(limit)
+
+    categorias = Categoria.objects.all()[:limit]
+
+    if len(categorias) != limit:
+        total = True
+
+    context = {
+        'categorias' : categorias,
+        'limit' : limit + aumento,
+        'total' : total
+    }
+    return render(request, 'admin_categorias.html', infoHome(request,context))
+
+@login_required
+def categoria_crear(request):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
+    if request.method == 'POST':
+        nombre = request.POST['nombre']
+        descripcion = request.POST['descripcion']
+        categoria = Categoria(categoria=nombre,descripcion=descripcion)
+        img = request.FILES.get('imagen', None)
+        if img != None:
+            img.name = renombrar_archivo(img.name,newName='cat')
+            categoria.imagen = img
+            #reescalar_imagen(perfil.imagen.path,perfil.imagen.path,height=300,width=300)
+
+        categoria.save()
+        return mensaje(request, 'Categoria Creada Exitosamente', reverse('admin_categoria'))
+
+
+    context = {'create': True}
+
+    return render(request, 'crear_categoria.html', infoHome(request,context))
+
+@login_required
+def categoria_editar(request, id=''):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
+    categoria = get_object_or_404(Categoria, id=int(id))
+
+    if request.method == 'POST':
+        categoria.nombre = request.POST['nombre']
+        categoria.descripcion = request.POST['descripcion']
+        img = request.FILES.get('imagen', None)
+        if img != None:
+            img.name = renombrar_archivo(img.name,newName='cat')
+            categoria.imagen = img
+            #reescalar_imagen(perfil.imagen.path,perfil.imagen.path,height=300,width=300)
+        categoria.save()
+
+        return mensaje(request, 'Categoria Modificada Exitosamente',reverse('admin_categoria'))
+
+    context = {'categoria': categoria,
+                'create': False}
+
+    return render(request, 'crear_categoria.html', infoHome(request,context))
