@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Resultados
+  {% endblock %}
+
+  {% block main-section %}
+    <!-- MAIN SECTION -->
+    <section class="mainContent full-width clearfix">
+      <div class="container">
+        <form action={% url 'home:buscar_artista' %} enctype="multipart/form-data" method="POST" role="form">
+          <div class="input-group searchArea">
+            <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+            {% csrf_token %}
+            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Buscar artista..." name="buscar">
+            <input type="submit" class="input-group-addon button" value="Buscar" id="basic-addon21"></input>
+          </div>
+        </form>
+        <div class="resultInfo">
+          <h3>{{perfiles.count}} resultados</h3>
+        </div>
+
+        {%if perfiles%}
+        <div class="row">
+          {%for perfil in perfiles%}
+          <div class="col-sm-6 col-xs-12">
+            <div class="media teamStyle">
+              <a class="media-left" >
+                <img class="img-rounded img-responsive" src="{{MEDIA_URL}}{{perfil.imagen}}" alt="Image">
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading"><a href="{% url 'home:perfil' username=perfil.user.username %}">{{perfil.nombreArtista}}</a></h4>
+                <p>{{perfil.get_descripcion}}</p>
+                <h5>{{perfil.get_categorias}}</h5>
+                <ul class="list-inline">
+                  <li><a href="#" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="bg-color-3"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="bg-color-4"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="bg-color-5"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          {%endfor%}
+          {%if total == False%}
+          <div class="btnArea">
+            <a href="{% url 'home:artistas' %}?limit={{limit}}" class="btn btn-primary">Ver Mas</a>
+          </div>
+          {%endif%}
+        </div>
+        {%else%}
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="sectionTitle text-center">
+              <h2>
+                <span class="shape shape-left bg-color-2"></span>
+                <span>Ningún artista coincide con la búsqueda</span>
+                <span class="shape shape-right bg-color-2"></span>
+              </h2>
+            </div>
+          </div>
+        </div>
+        {%endif%}
+      </div>
+    </section>
+  {% endblock %}

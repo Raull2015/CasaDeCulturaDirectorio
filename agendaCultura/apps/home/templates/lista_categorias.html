@@ -25,7 +25,7 @@
         <div class="row">
           {%for categoria in categorias%}
             <div class="col-md-3 col-xs-6">
-            <div class="box bg-color-1">
+            <div class="box bg-color-{{categoria.id}}">
               <div class="box-img border-color-1 text-center">
                 <a href={% url 'home:categoria' id=categoria.id %}>
                   <img src="{{MEDIA_URL}}{{categoria.imagen}}" alt="image" class="img-responsive">

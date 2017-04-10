@@ -731,3 +731,31 @@ def categoria_editar(request, id=''):
                 'create': False}
 
     return render(request, 'crear_categoria.html', infoHome(request,context))
+
+def buscar_artista(request):
+    if request.method == 'POST':
+        search_text = request.POST['buscar']
+
+    limit = 10
+    aumento = 10
+    total = False
+
+    perfil = Perfil.public.filter(nombreArtista__startswith= search_text)[:limit]
+    perfil = Perfil.public.filter(nombreReal__startswith= search_text)[:limit]
+
+    if request.GET:
+        limit=request.GET['limit']
+        limit = int(limit)
+
+
+    if len(perfil) != limit:
+        total = True
+
+    context = {
+        'perfiles': perfil,
+        'limit' : limit + aumento,
+        'total' : total,
+        'autorizar' : False
+    }
+
+    return render(request, 'resultados_busqueda.html', context)

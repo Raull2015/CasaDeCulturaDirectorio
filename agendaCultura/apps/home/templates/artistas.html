@@ -19,6 +19,16 @@
             </div>
           </div>
         </div>
+
+        <form action={% url 'home:buscar_artista' %} enctype="multipart/form-data" method="POST" role="form">
+          <div class="input-group searchArea">
+            <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+            {% csrf_token %}
+            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Buscar artista..." name="buscar">
+            <input type="submit" class="input-group-addon button" value="Buscar" id="basic-addon21"></input>
+          </div>
+        </form>
+
         {%if perfiles%}
         <div class="row">
           {%for perfil in perfiles%}

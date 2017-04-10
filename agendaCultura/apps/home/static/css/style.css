@@ -16,7 +16,7 @@
 	2.13 CART
 	2.14 PAGER
 	2.15 Extra
-3. 1.1 HEADER 
+3. 1.1 HEADER
 	3.1 TOP COLOR BAR
 	3.2 TOP INFO BAR
 	3.3 HEADER TRANSPARENT
@@ -438,7 +438,43 @@ a:focus {
   border-color: #ea77ad !important;
 }
 
+.color-7 {
+  color: #f0c24b !important;
+}
+
 .bg-color-7 {
+  background-color: #f0c24b !important;
+}
+
+.border-color-7 {
+  border-color: #f0c24b !important;
+}
+
+.color-8 {
+  color: #b5d56a !important;
+}
+
+.bg-color-8 {
+  background-color: #b5d56a !important;
+}
+
+.border-color-8 {
+  border-color: #b5d56a !important;
+}
+
+.color-9 {
+  color: #ea7066 !important;
+}
+
+.bg-color-9 {
+  background-color: #ea7066 !important;
+}
+
+.border-color-9 {
+  border-color: #ea7066 !important;
+}
+
+.bg-color-10 {
   background-color: #2f3c43;
 }
 

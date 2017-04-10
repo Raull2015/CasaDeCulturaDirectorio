@@ -57,9 +57,17 @@
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
+                      <label for="">Colaboradores</label>
+                      {% csrf_token %}
+                      <input type="text" autocomplete="off" class="form-control border-color-2" id="buscar">
+                      <div id="search-text"></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
                       <label for="">Categoria</label>
                       <div class="bookingDrop">
-                        <select name="categoria" id="categoria" class="select-drop" required>
+                        <select onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();"name="categoria" id="categoria" class="select-drop"required>
                           <option value="">Seleccione una categoria</option>
                           <option value="Arquitectura">Arquitectura</option>
                           <option value="Escultura">Escultura</option>
@@ -70,7 +78,6 @@
                           <option value="Danza">Danza</option>
                           <option value="Literatura">Literatura</option>
                           <option value="Fotografia">Fotografia</option>
-                          <option value="Pintura">Pintura</option>
                         </select>
                       </div>
                     </div>
@@ -94,18 +101,31 @@
 
   {% block script %}
   <script>
+  $(function(){
+    $('#buscar').keyup(function(){
+      $.ajax({
+        type: 'POST',
+        url: '/buscar/artista/',
+        data: {
+          'search_text': $('#buscar').val(),
+          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+        },
+        success: function(data, textStatus, jqXHR) {
+          $('#search-text').html(data);
+        },
+        dataType: 'html'
+      });
+    });
+  });
+
   function crear_evento(formData) {
-    console.log("create post is working!") // sanity check
     $.ajax({
-        url : '{% url 'home:crear_evento' username=request.user.username %}', // the endpoint
-        type : "POST", // http method
-        //dataType: "html",
+        url : '{% url 'home:crear_evento' username=request.user.username %}',
+        type : "POST",
         data : formData,
         cache: false,
         contentType: false,
-        processData: false// data sent with the post request
-        // handle a successful response
-
+        processData: false
     });
   };
   </script>
