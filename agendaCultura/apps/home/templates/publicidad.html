@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Administrar Publicidad
+  {% endblock %}
+
+  {% block main-section %}
+  <section class="mainContent full-width clearfix">
+    <div class="container">
+      <div class="sectionTitle text-center">
+       <h2>
+          <span class="shape shape-left bg-color-4"></span>
+          <span>Administracion de Publicidad</span>
+          <span class="shape shape-right bg-color-4"></span>
+        </h2>
+      </div>
+
+      <!--<div class="formBtnArea pull-left">
+        <a href="" class="btn btn-primary bg-color-3">boton</a>
+
+      </div>-->
+
+      {%if publicidad%}
+        <div class="row">
+          <div class="col-xs-12">
+              <br>
+            {%for entrada in publicidad%}
+            <div class="media courseList couresListPage">
+
+              <div class="media-body">
+                <h3 class="media-heading"><a class="color-1">{{entrada.empresa}}</a></h3>
+                <a class="media-left border-color-1" >
+                  <img class="media-object" src="{{MEDIA_URL}}{{entrada.imagen}}" alt="Image">
+                </a>
+                <p>Direccion: {{entrada.direccion}}</p>
+                <p>Telefono: {{entrada.telefono}}</p>
+                <p>Web: {{entrada.web}}</p>
+                <p>Visible: {%if entrada.visible == True%}Si{%else%}No{%endif%}</p>
+                <ul class="list-inline btn-yellow btnPart">
+                  <li><a href="{% url 'editar_publicidad' id=entrada.id %}" class="btn btn-primary ">Editar</a></li>
+                </ul>
+              </div>
+            </div>
+            {%endfor%}
+          </div>
+        </div>
+        {%if total == False%}
+        <div class="btnArea">
+          <a href="{% url 'publicidad' %}?limit={{limit}}" class="btn btn-primary">Ver Mas</a>
+        </div>
+        {%endif%}
+      {%else%}
+      <div class="sectionTitle text-center">
+        <h2>
+          <span class="shape shape-left bg-color-2"></span>
+          <span>Ninguna entrada de publicidad por ahora</span>
+          <span class="shape shape-right bg-color-2"></span>
+        </h2>
+      </div>
+      {%endif%}
+
+    </div>
+  </section>
+  {% endblock %}

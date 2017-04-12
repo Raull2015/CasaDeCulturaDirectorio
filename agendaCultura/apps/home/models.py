@@ -229,8 +229,17 @@ class Publicidad(models.Model):
     empresa = models.CharField(max_length=500)
     telefono = models.CharField(max_length=16)
     direccion = models.CharField(max_length=500)
+    visible = models.SmallIntegerField(default=0)
+    web = models.CharField(max_length=500)
 
     objects = models.Manager()
+
+    def __unicode__(self):
+        return self.empresa
+
+    def __str__(self):
+        return self.empresa
+
     class Meta:
         verbose_name = 'Publicidad'
         verbose_name_plural = 'Publicidad'

@@ -793,3 +793,62 @@ def registrarse_pagina(request):
         return HttpResponseRedirect(reverse('home:home'))
 
     return render(request, 'registrarse.html', infoHome(request,{}))
+
+@login_required
+def publicidad_list(request):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
+    limit = 10
+    aumento = 10
+    total = False
+
+    if request.GET:
+        limit=request.GET['limit']
+        limit = int(limit)
+
+    publicidad = Publicidad.objects.all()[:limit]
+
+    if len(publicidad) != limit:
+        total = True
+
+    context = {
+        "publicidad" : publicidad,
+        'limit' : limit + aumento,
+        'total' : total
+        }
+
+    return render(request, 'publicidad.html', infoHome(request,context))
+
+@login_required
+def publicidad_editar(request, id=""):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
+    entrada = get_object_or_404(Publicidad, id=int(id))
+
+    if request.method == 'POST':
+        entrada.empresa = request.POST['empresa']
+        entrada.telefono = request.POST['telefono']
+        entrada.direccion = request.POST['direccion']
+        entrada.web = request.POST['web']
+        if request.POST['visible'] == 'True':
+            entrada.visible = True
+        else:
+            entrada.visible = False
+        img = request.FILES.get('imagen', None)
+        if img != None:
+            img.name = renombrar_archivo(img.name,newName='pub')
+            entrada.imagen = img
+            entrada.save()
+            reescalar_imagen(entrada.imagen.path,entrada.imagen.path,height=65,width=99)
+
+        entrada.save()
+
+        return mensaje(request, 'Entrada publicitaria modificada exitosamente',reverse('publicidad'))
+
+    context = {
+        "entrada" : entrada
+        }
+
+    return render(request, 'editar_publicidad.html', infoHome(request,context))

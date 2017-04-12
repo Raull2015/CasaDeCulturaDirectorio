@@ -534,28 +534,20 @@
               </div>
               <div class="footerInfo">
                 <ul class="list-unstyled postLink">
-                  <li>
+                  {%for entrada in H_publicidadI%}
+                    <li>
                     <div class="media">
-                      <a class="media-left" href="single-blog.html">
-                        <img class="media-object img-rounded border-color-1" src= "{% static "img/footer/footer-img-1.png" %}" alt="Image">
+                      <a class="media-left" href="{{entrada.web}}">
+                        <img class="media-object img-rounded border-color-1" src= "{{MEDIA_URL}}{{entrada.imagen}}" alt="Image">
                       </a>
                       <div class="media-body">
-                        <h5 class="media-heading"><a href="single-blog.html">A Clean Website Gives More Experience To The Visitors</a></h5>
-                        <p>July 7 - 2016</p>
+                        <h5 class="media-heading"><a href="{{entrada.web}}">{{entrada.empresa}}</a></h5>
+                        <p>{{entrada.direccion}}</p>
+                        <p>{{entrada.telefono}}</p>
                       </div>
                     </div>
                   </li>
-                  <li>
-                    <div class="media">
-                      <a class="media-left" href="single-blog-left-sidebar.html">
-                        <img class="media-object img-rounded border-color-2" src= "{% static "img/footer/footer-img-2.png" %}" alt="Image">
-                      </a>
-                      <div class="media-body">
-                        <h5 class="media-heading"><a href="single-blog-left-sidebar.html">A Clean Website Gives More Experience To The Visitors</a></h5>
-                        <p>July 7 - 2016</p>
-                      </div>
-                    </div>
-                  </li>
+                  {%endfor%}
                 </ul>
               </div>
             </div>
@@ -565,28 +557,20 @@
               </div>
               <div class="footerInfo">
                 <ul class="list-unstyled postLink">
-                  <li>
+                  {%for entrada in H_publicidadD%}
+                    <li>
                     <div class="media">
-                      <a class="media-left" href="single-blog.html">
-                        <img class="media-object img-rounded border-color-1" src= "{% static "img/footer/footer-img-1.png" %}" alt="Image">
+                      <a class="media-left" href="{{entrada.web}}">
+                        <img class="media-object img-rounded border-color-1" src= "{{MEDIA_URL}}{{entrada.imagen}}" alt="Image">
                       </a>
                       <div class="media-body">
-                        <h5 class="media-heading"><a href="single-blog.html">A Clean Website Gives More Experience To The Visitors</a></h5>
-                        <p>July 7 - 2016</p>
+                        <h5 class="media-heading"><a href="{{entrada.web}}">{{entrada.empresa}}</a></h5>
+                        <p>{{entrada.direccion}}</p>
+                        <p>{{entrada.telefono}}</p>
                       </div>
                     </div>
                   </li>
-                  <li>
-                    <div class="media">
-                      <a class="media-left" href="single-blog-left-sidebar.html">
-                        <img class="media-object img-rounded border-color-2" src= "{% static "img/footer/footer-img-2.png" %}" alt="Image">
-                      </a>
-                      <div class="media-body">
-                        <h5 class="media-heading"><a href="single-blog-left-sidebar.html">A Clean Website Gives More Experience To The Visitors</a></h5>
-                        <p>July 7 - 2016</p>
-                      </div>
-                    </div>
-                  </li>
+                  {%endfor%}
                 </ul>
               </div>
             </div>
