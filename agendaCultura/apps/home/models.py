@@ -60,6 +60,7 @@ class Perfil(models.Model):
     sexo = models.SmallIntegerField(default=0)
     fechaNacimiento = models.DateField('Fecha de nacimiento')
     telefono = models.CharField(max_length=16)
+    publico_telefono = models.SmallIntegerField(default=0)
     email= models.EmailField('Correo')
     descripcion = models.CharField(max_length=200, null = True)
     fechaRegistro = models.DateField('Fecha de registro', auto_now_add=True)
@@ -69,6 +70,11 @@ class Perfil(models.Model):
 
     rol = models.ForeignKey(Rol)
     user =  models.OneToOneField(User, on_delete=models.CASCADE)
+
+    facebook = models.CharField(max_length=500, null=True)
+    twitter = models.CharField(max_length=500, null=True)
+    youtube = models.CharField(max_length=500, null=True)
+    otro = models.CharField(max_length=500, null=True)
 
     objects = models.Manager()
     public = PerfilManager()
@@ -217,3 +223,14 @@ class Imagenes(models.Model):
     class Meta:
         verbose_name = 'imagen'
         verbose_name_plural = 'imagenes'
+
+class Publicidad(models.Model):
+    imagen = models.ImageField(upload_to='imgPublicidad/', default='imgPublicidad/default.jpg')
+    empresa = models.CharField(max_length=500)
+    telefono = models.CharField(max_length=16)
+    direccion = models.CharField(max_length=500)
+
+    objects = models.Manager()
+    class Meta:
+        verbose_name = 'Publicidad'
+        verbose_name_plural = 'Publicidad'

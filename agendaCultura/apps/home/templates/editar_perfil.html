@@ -72,11 +72,19 @@
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
+                      Telefono Publico </br>
+                      <input type="radio" class="" id="id_publico" name="publico" value="True" {%if perfil.publico_telefono == True%} checked {%endif%}> Si <br>
+                      <input type="radio" class="" id="id_publico" name="publico" value="False" {%if perfil.publico_telefono == False%} checked {%endif%}> No <br>
+                    </div>
+                  </div>
+                  <br/>
+                  <div class="form-group">
+                    <div class="col-xs-12">
                       <label for="">Imagen de Perfil</label>
                       <input type="file" class="form-control border-color-6" id="imagen" name="imagen"><a href={{MEDIA_URL}}{{perfil.imagen}}>Imagen Actual</a>
                     </div>
                   </div>
-
+                  <br/>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">E-Mail</label>
@@ -85,8 +93,32 @@
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
+                      <label for="">Facebook</label>
+                      <input type="url" value="{{perfil.facebook}}" class="form-control" name="facebook" name="id_facebook" placeholder="Ej: http://www.facebook.com/casacultura">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Twitter</label>
+                      <input type="url" value="{{perfil.twitter}}" class="form-control" name="twitter" name="id_twitter" placeholder="Ej: http://www.twitter.com/casacultura">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Youtube</label>
+                      <input type="url" value="{{perfil.youtube}}" class="form-control" name="youtube" name="id_youtube" placeholder="Ej: http://www.youtube.com/casacultura">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Web</label>
+                      <input type="url" value="{{perfil.otro}}" class="form-control" name="web" name="id_web" placeholder="Ej: http://www.google.com">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
                       <label for="">Descripcion</label>
-                      <textarea class="form-control border-color-5" rows="2" name="descripcion"> {{perfil.descripcion}}  </textarea>
+                      <textarea class="form-control border-color-5" rows="2" name="descripcion">{%if perfil.descripcion%}{{perfil.descripcion}}{%endif%}</textarea>
                     </div>
                   </div>
                   <div class="form-group">

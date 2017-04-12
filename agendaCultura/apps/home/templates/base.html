@@ -77,7 +77,7 @@
 
 
                 {% if H_logeado == False %}
-                <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#loginModal' data-toggle="modal" >Iniciar Sesion</a><span>o</span><a href='#createAccount' data-toggle="modal">Registrarse</a></li>
+                <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#loginModal' data-toggle="modal" >Iniciar Sesion</a><span>o</span><a href="{% url 'registrarse' %}" data-toggle="modal">Registrarse</a></li>
                 {% else %}
                 <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#' data-toggle="modal" >Bienvenido {{ H_nombre_usuario }} </a><span></span><a href= {% url 'cerrar_sesion' %} data-toggle="modal">Cerrar Sesion</a></li>
                 {% endif %}
@@ -179,7 +179,11 @@
                   <i class="fa fa-home bg-color-1" aria-hidden="true"></i> <span>Inicio</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-left">
-                <li><a href='#loginModal' data-toggle="modal" >Login</a><a href='#createAccount' data-toggle="modal">Crear Cuenta</a></li>
+                {%if H_logeado == True%}
+                <li><a href= {% url 'cerrar_sesion' %} data-toggle="modal">Cerrar Sesion</a></li>
+                {%else%}
+                <li><a href='#loginModal' data-toggle="modal" >Iniciar Sesion</a><a href="{% url 'registrarse' %}" data-toggle="modal">Registrarse</a></li>
+                {%endif%}
                 </ul>
                 <!--
                   <li class="active"><a href="index-v1.html">Kidz School</a></li>
@@ -492,7 +496,6 @@
               </div>
               <div class="footerInfo">
                 <p>Casa de la Cultura, Quetzaltenango</p>
-                <p>Holi</p>
               </div>
             </div>
             <div class="col-sm-3 col-xs-12">
@@ -527,7 +530,7 @@
             </div>
             <div class="col-sm-3 col-xs-12">
               <div class="footerTitle">
-                <h4>Recent Post</h4>
+                <h4></h4>
               </div>
               <div class="footerInfo">
                 <ul class="list-unstyled postLink">
@@ -553,10 +556,30 @@
                       </div>
                     </div>
                   </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-sm-3 col-xs-12">
+              <div class="footerTitle">
+                <h4></h4>
+              </div>
+              <div class="footerInfo">
+                <ul class="list-unstyled postLink">
+                  <li>
+                    <div class="media">
+                      <a class="media-left" href="single-blog.html">
+                        <img class="media-object img-rounded border-color-1" src= "{% static "img/footer/footer-img-1.png" %}" alt="Image">
+                      </a>
+                      <div class="media-body">
+                        <h5 class="media-heading"><a href="single-blog.html">A Clean Website Gives More Experience To The Visitors</a></h5>
+                        <p>July 7 - 2016</p>
+                      </div>
+                    </div>
+                  </li>
                   <li>
                     <div class="media">
                       <a class="media-left" href="single-blog-left-sidebar.html">
-                        <img class="media-object img-rounded border-color-4" src= "{% static "img/footer/footer-img-3.png" %}" alt="Image">
+                        <img class="media-object img-rounded border-color-2" src= "{% static "img/footer/footer-img-2.png" %}" alt="Image">
                       </a>
                       <div class="media-body">
                         <h5 class="media-heading"><a href="single-blog-left-sidebar.html">A Clean Website Gives More Experience To The Visitors</a></h5>
@@ -565,18 +588,6 @@
                     </div>
                   </li>
                 </ul>
-              </div>
-            </div>
-            <div class="col-sm-3 col-xs-12">
-              <div class="footerTitle">
-                <h4>Mailing List</h4>
-              </div>
-              <div class="footerInfo">
-                <p>Sign up for our mailing list to get latest updates and offers.</p>
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Email address" aria-describedby="basic-addon21">
-                  <button type="submit" class="input-group-addon" id="basic-addon21"><i class="fa fa-check" aria-hidden="true"></i></button>
-                </div>
               </div>
             </div>
           </div>
@@ -648,7 +659,7 @@
   </div>
 
   <!-- CREATE ACCOUNT MODAL -->
-  <div class="modal fade customModal" id="createAccount" tabindex="-1" role="dialog">
+  <!--<div class="modal fade customModal" id="createAccount" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="panel panel-default formPanel">
@@ -677,10 +688,34 @@
                 <input type="text" pattern="[0-9]+" class="form-control" id="id_telefono" name="telefono" placeholder="Telefono" required>
               </div>
               <div class="form-group formField">
+                Telefono Publico </br>
+                <input type="radio" class="" id="id_telefono" name="telefono" value="True" checked> Si <br>
+                <input type="radio" class="" id="id_telefono" name="telefono" value="False"> No <br>
+              </div>
+              <br>
+              <div class="form-group formField">
+                Facebook
+                <input type="url" class="form-control" id="id_facebook" name="facebook" placeholder="Ej: www.facebook.com/casacultura" required>
+              </div>
+              <div class="form-group formField">
+                Twitter
+                <input type="url" class="form-control" id="id_twitter" name="facebook" placeholder="Ej: www.twitter.com/casacultura" required>
+              </div>
+              <div class="form-group formField">
+                Youtube
+                <input type="url" class="form-control" id="id_youtube" name="facebook" placeholder="Ej: www.youtube.com/casacultura" required>
+              </div>
+              <div class="form-group formField">
+                Web
+                <input type="url" class="form-control" id="id_web" name="facebook" placeholder="Ej: www.casacultura.com" required>
+              </div>
+
+              <div class="form-group formField">
                 Genero </br>
                 <input type="radio" class="" id="id_genero" name="genero" value="True" checked> Hombre <br>
                 <input type="radio" class="" id="id_genero" name="genero" value="False"> Mujer <br>
               </div>
+              </br>
               <div class="form-group formField">
                 Fecha de Nacimiento </br>
                 <input type="date" class="form-control" max="2000-12-31" id="id_nacimiento" name="nacimiento" required>
@@ -689,14 +724,14 @@
                 <input type="submit" class="btn btn-primary btn-block bg-color-3 border-color-3" value="Crear">
               </div>
               <div class="form-group formField" id="results_2">
-                <!--<p class="help-block">Allready have an account? <a href="#">Log in</a></p>-->
+                <p class="help-block">Allready have an account? <a href="#">Log in</a></p>
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"  ></script>
     <script src= "{% static "plugins/jquery-ui/jquery-ui.js" %}" ></script>

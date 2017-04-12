@@ -52,5 +52,6 @@ urlpatterns = [
     url(r'^buscar/evento/$', views.search_actividad, name='buscarE'),
     url(r'error/$', views.error, name='error'),
     url(r'estadisticas/$', views.estadisticas, name='estadisticas'),
+    url(r'registrarse/$', views.registrarse_pagina, name='registrarse'),
     url(r'^', views.home, name='default'),
 ]

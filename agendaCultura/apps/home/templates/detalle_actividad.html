@@ -103,7 +103,7 @@
                 <div class="panel-body">
                   <ul class="list-unstyled categoryItem">
                     {% for categoria in categoria %}
-                    <li><a href="category.html">{{categoria.categoria}}</a></li>
+                    <li><a href="{% url 'home:categoria' id=categoria.id %}">{{categoria.categoria}}</a></li>
                     {% endfor %}
                   </ul>
                 </div>

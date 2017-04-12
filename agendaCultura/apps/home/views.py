@@ -121,7 +121,7 @@ def actividad_user(request, username=''):
         return HttpResponseRedirect(reverse('error'))
 
     context = {'actividad': actividad, 'perfil': user}
-    return render(request, 'mis_actividades.html', context)
+    return render(request, 'mis_actividades.html', infoHome(request,context))
 
 @login_required
 def actividad_to_authorize(request):
@@ -192,12 +192,22 @@ def perfil_create_p1(request):
         nombre = request.POST['nombre']
         email = request.POST['email']
         telefono = request.POST['telefono']
+        publico = request.POST['publico']
         nacimiento = request.POST['nacimiento']
+        facebook = request.POST['facebook']
+        twitter = request.POST['twitter']
+        youtube = request.POST['youtube']
+        web = request.POST['web']
         genero = request.POST['sexo']
         if genero == 'True':
             genero = True
         else:
             genero = False
+        if publico == 'True':
+            publico = True
+        else:
+            publico = False
+
         try:
             User.objects.get(username=username)
             response_data['existe'] = 'true'
@@ -207,7 +217,8 @@ def perfil_create_p1(request):
 
             estado, mensaje = validar_password(username, password,password_confirm)
             if estado:
-                perfil = Perfil(nombreArtista = nombre, nombreReal = nombre, email=email, telefono=telefono,fechaNacimiento= nacimiento,sexo=genero)
+                perfil = Perfil(nombreArtista = nombre, nombreReal = nombre, email=email, telefono=telefono,fechaNacimiento= nacimiento,sexo=genero,
+                                publico_telefono=publico,facebook=facebook,twitter=twitter,youtube=youtube,otro=web)
                 perfil.rol = get_object_or_404(Rol, nombreRol='Artista')
                 nuevo_usuario = User.objects.create_user(username=username, email='xela@casacult.com', password=password)
                 perfil.user = nuevo_usuario
@@ -268,7 +279,19 @@ def perfil_edit(request, username=''):
             genero = True
         else:
             genero = False
+
+        publico = request.POST['publico']
+        if publico == 'True':
+            publico = True
+        else:
+            publico = False
+
         nacimiento = request.POST['nacimiento']
+        facebook = request.POST['facebook']
+        twitter = request.POST['twitter']
+        youtube = request.POST['youtube']
+        web = request.POST['web']
+
         telefono = request.POST['telefono']
         email = request.POST['email']
         descripcion = request.POST['descripcion']
@@ -282,6 +305,11 @@ def perfil_edit(request, username=''):
         perfil.telefono = telefono
         perfil.email = email
         perfil.descripcion = descripcion
+        perfil.publico_telefono = publico
+        perfil.facebook = facebook
+        perfil.twitter = twitter
+        perfil.youtube = youtube
+        perfil.otro = web
 
         img = request.FILES.get('imagen', None)
         if img != None:
@@ -349,7 +377,7 @@ def capsula_create(request):
 
 
     context = {'create': True}
-    return render(request, 'capsula_detalle.html', context)
+    return render(request, 'capsula_detalle.html', infoHome(request,context))
 
 @login_required
 def editar_capsula(request, pk = ''):
@@ -449,7 +477,7 @@ def error(request):
 def actividad_detail(request, username='', id=''):
     actividad = Actividad.objects.get(id=int(id))
     actividades = Actividad.public.all()[:5]
-    categoria = Categoria.objects.all()
+    categoria = actividad.categoria.all()
     comentario = Comentarios.objects.filter(actividad=actividad)
 
     if actividad.perfil.get().user.username != username:
@@ -567,7 +595,7 @@ def search_artista(request):
         'perfil':perfil,
     }
 
-    return render(request, 'buscar_artistas.html', context)
+    return render(request, 'buscar_artistas.html', infoHome(request,context))
 
 def search_actividad(request):
     if request.method == 'POST':
@@ -584,7 +612,7 @@ def search_actividad(request):
         'actividad':actividad,
     }
 
-    return render(request, 'buscar_actividades.html', context)
+    return render(request, 'buscar_actividades.html', infoHome(request,context))
 
 @login_required
 def estadisticas(request):
@@ -602,7 +630,7 @@ def estadisticas(request):
     context={
         'grafico':grafico,
     }
-    return render(request, 'estadisticas.html', context)
+    return render(request, 'estadisticas.html', infoHome(request,context))
 
 def confirmar_registro(request):
     if request.user.is_authenticated:
@@ -758,4 +786,10 @@ def buscar_artista(request):
         'autorizar' : False
     }
 
-    return render(request, 'resultados_busqueda.html', context)
+    return render(request, 'resultados_busqueda.html', infoHome(request,context))
+
+def registrarse_pagina(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('home:home'))
+
+    return render(request, 'registrarse.html', infoHome(request,{}))

@@ -16,13 +16,20 @@
             <div class="col-sm-8 col-xs-12">
               <div class="teachersInfo">
                 <h3>Sobre Mi</h3>
-                <p>{{perfil.descripcion}}</p>
+                <p>{%if perfil.descripcion %}{{perfil.descripcion}}{%else%} nada aqui por ahora {%endif%}</p>
                 <ul class="list-inline">
-                  <li><a href="#" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-3"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-4"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-5"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                  {%if perfil.facebook%}
+                  <li><a href="{{perfil.facebook}}" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  {%endif%}
+                  {%if perfil.twitter%}
+                  <li><a href="{{perfil.twitter}}" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  {%endif%}
+                  {%if perfil.youtube%}
+                  <li><a href="{{perfil.youtube}}" class="bg-color-3"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                  {%endif%}
+                  {%if perfil.otro%}
+                  <li><a href="{{perfil.otro}}" class="bg-color-4"><i class="fa fa-world" aria-hidden="true"></i></a></li>
+                  {%endif%}
                 </ul>
                 <h3>Informacion</h3>
                 {%if perfil.nombreArtista%}
@@ -33,8 +40,15 @@
                 <div class="professionDetails">{{perfil.email}}</div>
                 <div class="teachersProfession bg-color-3">Edad: </div>
                 <div class="professionDetails">{{perfil.get_edad}}</div>
-                <div class="teachersProfession bg-color-4">Categorias: </div>
-                <div class="professionDetails">{{perfil.get_categorias}}</div>
+                {%if H_logeado == True%}
+                <div class="teachersProfession bg-color-4">Telefono: </div>
+                <div class="professionDetails">{{perfil.telefono}}</div>
+                {%elif perfil.publico_telefono == True%}
+                <div class="teachersProfession bg-color-4">Telefono: </div>
+                <div class="professionDetails">{{perfil.telefono}}</div>
+                {%endif%}
+                <div class="teachersProfession bg-color-5">Categorias: </div>
+                <div class="professionDetails">{%if perfil.get_categorias%}{{perfil.get_categorias}}{%endif%}</div>
 
               </div>
             </div>

@@ -389,7 +389,12 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
                  nombre : $('#id_nombre').val(),
                  email : $('#id_email').val(),
                  telefono : $('#id_telefono').val(),
+                 publico : $('#id_publico').val(),
                  nacimiento : $('#id_nacimiento').val(),
+                 facebook : $('#id_facebook').val(),
+                 twitter : $('#id_twitter').val(),
+                 youtube : $('#id_youtube').val(),
+                 web : $('#id_web').val(),
                  sexo : $('#id_genero').val() }, // data sent with the post request
         // handle a successful response
         success : function(json) {
@@ -407,7 +412,7 @@ $( "#price-amount-2" ).val( "$" + $( "#price-range" ).slider( "values", 1 ));
                 }
             }
             else {
-          
+
 
                 window.location="/home/confirmar_registro/";
             }

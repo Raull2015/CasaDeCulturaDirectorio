@@ -57,14 +57,21 @@
               </a>
               <div class="media-body">
                 <h4 class="media-heading"><a href={% url 'home:perfil' username=perfil.user.username %}>{{perfil.nombreArtista}}</a></h4>
-                <h5>{{perfil.get_categorias}}r</h5>
+                <h5>{%if perfil.get_categorias%}{{perfil.get_categorias}}{%endif%}</h5>
                 <p>{{perfil.get_descripcion}}</p>
                 <ul class="list-inline">
-                  <li><a href="#" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-3"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-4"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-5"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                  {%if perfil.facebook%}
+                  <li><a href="{{perfil.facebook}}" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  {%endif%}
+                  {%if perfil.twitter%}
+                  <li><a href="{{perfil.twitter}}" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  {%endif%}
+                  {%if perfil.youtube%}
+                  <li><a href="{{perfil.youtube}}" class="bg-color-3"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                  {%endif%}
+                  {%if perfil.otro%}
+                  <li><a href="{{perfil.otro}}" class="bg-color-4"><i class="fa fa-world" aria-hidden="true"></i></a></li>
+                  {%endif%}
                 </ul>
               </div>
             </div>
