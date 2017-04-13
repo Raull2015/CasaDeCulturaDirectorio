@@ -16,6 +16,7 @@ urlpatterns = [
     #url(r'registro/p2/$', perfil_create_p2, name='crear_perfil_p2'),
     url(r'registro/$', perfil_create_p1, name='crear_perfil_p1'),
     url(r'(?P<username>[-\w]+)/evento/(?P<id>[\d]+)/$', actividad_detail, name='detalle_evento'),
+    url(r'(?P<username>[-\w]+)/misEventos/(?P<pag>[\d]+)/$', actividad_user, name='actividad_user'),
     url(r'(?P<username>[-\w]+)/misEventos/$', actividad_user, name='actividad_user'),
     url(r'eventos/(?P<pag>[\d]+)/$', actividad_list, name='eventos'),
     url(r'eventos/$', actividad_list, name='eventos'),

@@ -62,14 +62,15 @@ def perfil_list(request):
 
 def actividad_list(request, pag='1'):
     limit = 9
+    vacio = False
     pag = int(pag)
-    anterior = 0
-    siguiente = 0
     maximo_pag = Actividad.public.all().count()/limit
     if Actividad.public.all().count() > (limit*maximo_pag) :
         maximo_pag = maximo_pag + 1
 
-    if pag > maximo_pag:
+    if maximo_pag == 0:
+        vacio = True
+    elif pag > maximo_pag:
         return HttpResponseRedirect(reverse('error'))
 
     actividad = Actividad.public.all()[(limit*(pag-1)):(limit*pag)]
@@ -83,6 +84,7 @@ def actividad_list(request, pag='1'):
         'pag3': (pag),
         'pag4': (pag+1),
         'pag5': (pag+2),
+        'vacio' : vacio,
         'autorizar' : False
     }
     return render(request, 'actividades.html', infoHome(request,context) )
@@ -118,15 +120,35 @@ def categoria(request, id=''):
     return render(request, 'categoria.html', infoHome(request,context))
 
 @login_required
-def actividad_user(request, username=''):
+def actividad_user(request, username='', pag='1'):
     user = get_object_or_404(User, username=username)
     if request.user == user:
-        actividad = Actividad.public.filter(perfil=request.user.perfil)
+        limit = 9
+        vacio = False
+        pag = int(pag)
+        maximo_pag = Actividad.public.filter(perfil=request.user.perfil).count()/limit
+        if Actividad.public.filter(perfil=request.user.perfil).count() > (limit*maximo_pag) :
+            maximo_pag = maximo_pag + 1
+        if maximo_pag == 0:
+            vacio = True
+        elif pag > maximo_pag:
+            return HttpResponseRedirect(reverse('error'))
+        actividad = Actividad.public.filter(perfil=request.user.perfil)[(limit*(pag-1)):(limit*pag)]
+
+        context = {
+            'actividad': actividad,
+            'actual': int(pag),
+            'maximo_pag' : maximo_pag,
+            'pag1': (pag-2),
+            'pag2': (pag-1),
+            'pag3': (pag),
+            'pag4': (pag+1),
+            'pag5': (pag+2),
+            'vacio' : vacio,
+            'perfil': user}
+        return render(request, 'mis_actividades.html', infoHome(request,context))
     else:
         return HttpResponseRedirect(reverse('error'))
-
-    context = {'actividad': actividad, 'perfil': user}
-    return render(request, 'mis_actividades.html', infoHome(request,context))
 
 @login_required
 def actividad_to_authorize(request):
