@@ -39,13 +39,31 @@
             </div>
           </div>
           {% endfor %}
-          {%if total == False%}
-          <div class="btnArea">
-            <a href="{% url 'home:eventos' %}?limit={{limit}}" class="btn btn-primary">Ver Mas</a>
           </div>
-          {%endif%}
+          <div class="tabCommon">
+            <ul class="nav nav-tabs">
+              {%if actual != 1%}
+              <li class=""><a href="{% url 'home:eventos' pag=1 %}" aria-expanded="true"><<</a></li>
+              <li class=""><a href="{% url 'home:eventos' pag=pag2 %}" aria-expanded="<"><</a></li>
+              {%else%}
+              <li class=""><a aria-expanded="<"><<</a></li>
+              <li class=""><a aria-expanded="<"><</a></li>
+              {%endif%}
+              {%if pag1 > 0 %}<li class=""><a href="{% url 'home:eventos' pag=pag1 %}" aria-expanded="false">{{pag1}}</a></li>{%endif%}
+              {%if pag2 > 0 %}<li class=""><a href="{% url 'home:eventos' pag=pag2 %}" aria-expanded="false">{{pag2}}</a></li>{%endif%}
+              <li class="active"><a aria-expanded="false">{{pag3}}</a></li>
+              {%if pag4 <= maximo_pag %}<li class=""><a href="{% url 'home:eventos' pag=pag4 %}" aria-expanded="false">{{pag4}}</a></li>{%endif%}
+              {%if pag5 <= maximo_pag %}<li class=""><a href="{% url 'home:eventos' pag=pag5 %}" aria-expanded="false">{{pag5}}</a></li>{%endif%}
+              {%if actual != maximo_pag%}
+              <li class=""><a href="{% url 'home:eventos' pag=pag4 %}" aria-expanded="true">></a></li>
+              <li class=""><a href="{% url 'home:eventos' pag=maximo_pag %}" aria-expanded="<">>></a></li>
+              {%else%}
+              <li class=""><a aria-expanded="true">></a></li>
+              <li class=""><a aria-expanded="<">>></a></li>
+              {%endif%}
+            </ul>
           </div>
+
         </div>
-      </div>
     </section>
     {% endblock %}

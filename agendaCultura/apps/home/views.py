@@ -60,24 +60,29 @@ def perfil_list(request):
     }
     return render(request, 'artistas.html', infoHome(request,context))
 
-def actividad_list(request):
-    limit = 10
-    aumento = 10
-    total = False
+def actividad_list(request, pag='1'):
+    limit = 9
+    pag = int(pag)
+    anterior = 0
+    siguiente = 0
+    maximo_pag = Actividad.public.all().count()/limit
+    if Actividad.public.all().count() > (limit*maximo_pag) :
+        maximo_pag = maximo_pag + 1
 
-    if request.GET:
-        limit=request.GET['limit']
-        limit = int(limit)
+    if pag > maximo_pag:
+        return HttpResponseRedirect(reverse('error'))
 
-    actividad = Actividad.public.all()[:limit]
-
-    if len(actividad) != limit:
-        total = True
+    actividad = Actividad.public.all()[(limit*(pag-1)):(limit*pag)]
 
     context = {
         'actividad': actividad,
-        'limit' : limit + aumento,
-        'total' : total,
+        'actual': int(pag),
+        'maximo_pag' : maximo_pag,
+        'pag1': (pag-2),
+        'pag2': (pag-1),
+        'pag3': (pag),
+        'pag4': (pag+1),
+        'pag5': (pag+2),
         'autorizar' : False
     }
     return render(request, 'actividades.html', infoHome(request,context) )
@@ -331,7 +336,8 @@ def actividad_create(request,username=''):
     user = get_object_or_404(User, username=username)
 
     if request.user != user or request.user.perfil.autorizado == False:
-        return HttpResponseRedirect(reverse('error'))
+        if request.user.perfil.rol.is_admin() != True:
+            return HttpResponseRedirect(reverse('error'))
 
     if request.method == 'POST':
         response_data = {}

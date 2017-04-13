@@ -116,7 +116,7 @@ class Actividad(models.Model):
     descripcion = models.TextField(max_length=800, null=True)
     imagen = models.ImageField(upload_to='imgActividad/', default='imgActividad/default.jpg')  #Temporal
     #imagenes = models.OneToManyField(Imagenes)                                                #Real
-    fechaPublicacion = models.DateField('Fecha de publicacion', null=True)
+    fechaPublicacion = models.DateField('Fecha de publicacion', auto_now_add=True)
     puntuacion = models.IntegerField(default=0)
     visitas = models.IntegerField(default=0)
     autorizado = models.SmallIntegerField(default=0)
