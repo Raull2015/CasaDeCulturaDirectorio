@@ -24,19 +24,19 @@
 
               </a>
               <div class="media-body">
-                <h3 class="media-heading"><a  class="color-1">Informacion</a></h3>
+                <h3 class="media-heading"><a  class="color-1">Información</a></h3>
                 <ul class="list-inline">
                   <li><i class="fa fa-calendar-o" aria-hidden="true"></i>{{actividad.fechaPublicacion}}</li>
                   <!--<li><i class="fa fa-clock-o" aria-hidden="true"></i>9.00AM-11.00AM</li>-->
                 </ul>
                 <p>Ubicacion: {{actividad.lugar}}</p>
-                <p>Fecha de Realizacion: {{actividad.fechaRealizacion}}</p>
-                <p>Hora de Realizacion: {{actividad.hora}}</p>
+                <p>Fecha de realización: {{actividad.fechaRealizacion}}</p>
+                <p>Hora de realización: {{actividad.hora}}</p>
                 <p>Programada por: <a href="{% url 'home:perfil' username=actividad.perfil.all.get.user.username %}"> {{actividad.perfil.all.get.user.username}}</a></p>
                 <ul class="list-inline btn-yellow btnPart">
                   <li><a href="{% url 'autorizar_evento' id=actividad.id %}" class="btn btn-primary ">Autorizar</a></li>
                   <li><a href="{% url 'rechazar_evento' id=actividad.id %}" class="btn btn-primary " >Denegar</a></li>
-                  <li><a href="{% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}" class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Ver Detalles</a></li>
+                  <li><a href="{% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}" class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Ver detalles</a></li>
                 </ul>
               </div>
             </div>
@@ -45,7 +45,7 @@
         </div>
         {%if total == False%}
         <div class="btnArea">
-          <a href="{% url 'actividad_pendiente' %}?limit={{limit}}" class="btn btn-primary">Ver Mas</a>
+          <a href="{% url 'actividad_pendiente' %}?limit={{limit}}" class="btn btn-primary">Ver más</a>
         </div>
         {%endif%}
       {%else%}

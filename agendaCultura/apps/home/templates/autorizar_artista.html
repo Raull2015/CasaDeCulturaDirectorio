@@ -10,7 +10,7 @@
       <div class="sectionTitle text-center">
        <h2>
           <span class="shape shape-left bg-color-4"></span>
-          <span>Moderacion de Artistas</span>
+          <span>Moderación de Artistas</span>
           <span class="shape shape-right bg-color-4"></span>
         </h2>
       </div>
@@ -24,20 +24,20 @@
 
               </a>
               <div class="media-body">
-                <h3 class="media-heading"><a class="color-1">Informacion</a></h3>
+                <h3 class="media-heading"><a class="color-1">Información</a></h3>
                 <ul class="list-inline">
                   <li><i class="fa fa-calendar-o" aria-hidden="true"></i>{{perfil.fechaRegistro}}</li>
                   <!--<li><i class="fa fa-clock-o" aria-hidden="true"></i>9.00AM-11.00AM</li>-->
                 </ul>
                 <p>Usuario: {{perfil.user.username}}</p>
                 <p>Nombre: {{perfil.nombreReal}}</p>
-                <p>Nombre Artistico: {{perfil.nombreArtista}}</p>
+                <p>Nombre artístico: {{perfil.nombreArtista}}</p>
                 <p>Edad: {{perfil.get_edad}}</p>
-                <p>Email: {{perfil.email}}</p>
+                <p>Correo Electrónico: {{perfil.email}}</p>
                 <ul class="list-inline btn-yellow btnPart">
                   <li><a href="{% url 'autorizar_artista' id=perfil.id %}" class="btn btn-primary ">Autorizar</a></li>
                   <li><a href="{% url 'rechazar_artista' id=perfil.id %}" class="btn btn-primary " >Denegar</a></li>
-                  <li><a href="{% url 'home:perfil' username=perfil.user.username %}" class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Ver Detalles</a></li>
+                  <li><a href="{% url 'home:perfil' username=perfil.user.username %}" class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Ver detalles</a></li>
                 </ul>
               </div>
             </div>
@@ -46,14 +46,14 @@
         </div>
         {%if total == False%}
         <div class="btnArea">
-          <a href="{% url 'artista_pendiente' %}?limit={{limit}}" class="btn btn-primary">Ver Mas</a>
+          <a href="{% url 'artista_pendiente' %}?limit={{limit}}" class="btn btn-primary">Ver más</a>
         </div>
         {%endif%}
       {%else%}
       <div class="sectionTitle text-center">
         <h2>
           <span class="shape shape-left bg-color-2"></span>
-          <span>Ningun artista nuevo por ahora</span>
+          <span>Ningún artista nuevo por ahora</span>
           <span class="shape shape-right bg-color-2"></span>
         </h2>
       </div>

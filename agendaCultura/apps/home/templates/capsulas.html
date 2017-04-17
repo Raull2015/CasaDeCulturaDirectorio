@@ -11,12 +11,12 @@
       <div class="sectionTitle text-center">
        <h2>
           <span class="shape shape-left bg-color-4"></span>
-          <span>Capsulas</span>
+          <span>Cápsulas</span>
           <span class="shape shape-right bg-color-4"></span>
         </h2>
       </div>
       <div class="formBtnArea pull-left">
-        <a href="{% url 'crear_capsula' %}" class="btn btn-primary bg-color-3">Crear nueva capsula</a>
+        <a href="{% url 'crear_capsula' %}" class="btn btn-primary bg-color-3">Crear nueva cápsula</a>
       </div>
       {%if capsulas%}
         <div class="row">
@@ -29,9 +29,9 @@
 
               </a>
               <div class="media-body">
-                <h3 class="media-heading"><a class="color-1">Informacion</a></h3>
+                <h3 class="media-heading"><a class="color-1">Información</a></h3>
                 <ul class="list-inline">
-                  <li><i class="fa fa-calendar-o" aria-hidden="true"></i>Publicacion: {{capsula.fechaPublicacion}}</li>
+                  <li><i class="fa fa-calendar-o" aria-hidden="true"></i>Publicación: {{capsula.fechaPublicacion}}</li>
                   <!--<li><i class="fa fa-clock-o" aria-hidden="true"></i>9.00AM-11.00AM</li>-->
                 </ul>
                 <p>Contenido: {{capsula.texto}}</p>
@@ -46,14 +46,14 @@
         </div>
         {%if total == False%}
         <div class="btnArea">
-          <a href="{% url 'ver_capsulas' %}?limit={{limit}}" class="btn btn-primary">Ver Mas</a>
+          <a href="{% url 'ver_capsulas' %}?limit={{limit}}" class="btn btn-primary">Ver más</a>
         </div>
         {%endif%}
       {%else%}
       <div class="sectionTitle text-center">
         <h2>
           <span class="shape shape-left bg-color-2"></span>
-          <span>Ninguna capsula por Ahora</span>
+          <span>Ninguna cápsula por ahora</span>
           <span class="shape shape-right bg-color-2"></span>
         </h2>
       </div>
