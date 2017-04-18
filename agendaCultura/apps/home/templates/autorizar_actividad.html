@@ -33,7 +33,7 @@
                 <p>Fecha de realización: {{actividad.fechaRealizacion}}</p>
                 <p>Hora de realización: {{actividad.hora}}</p>
                 <p>Programada por: <a href="{% url 'home:perfil' username=actividad.perfil.all.get.user.username %}"> {{actividad.perfil.all.get.user.username}}</a></p>
-                <ul class="list-inline btn-yellow btnPart">
+                <ul class="list-inline btn-red btnPart">
                   <li><a href="{% url 'autorizar_evento' id=actividad.id %}" class="btn btn-primary ">Autorizar</a></li>
                   <li><a href="{% url 'rechazar_evento' id=actividad.id %}" class="btn btn-primary " >Denegar</a></li>
                   <li><a href="{% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %}" class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Ver detalles</a></li>
