@@ -317,9 +317,7 @@ def actividad_create(request,username=''):
         actividad = Actividad(nombre=nombre, lugar=lugar, fechaRealizacion=fecha, hora=hora, descripcion=descripcion)
 
         img = request.FILES.get('imagen')
-        print img
         if img != None:
-            print "siii"
             img.name = renombrar_archivo(img.name,newName='actividad')
             actividad.imagen = img
             actividad.save()
@@ -334,6 +332,45 @@ def actividad_create(request,username=''):
 
 
     return render(request, 'crear_actividad.html', infoHome(request,{}))
+
+@login_required
+def anadir_colaborador(request, username='', id=''):
+    actividad = get_object_or_404(Actividad, id=int(id))
+
+    if request.method == 'POST':
+        colaborador = request.POST['colaborador']
+
+        user = Perfil.objects.filter(nombreArtista=colaborador)
+        actividad.perfil.add(user)
+
+    context = {
+    'actividad' : actividad
+    }
+
+    return render(request, 'editar_actividad.html', context)
+
+@login_required
+def anadir_imagen(request, username='', id=''):
+    user = get_object_or_404(User, username=username)
+    actividad = get_object_or_404(Actividad, id=int(id))
+
+    if actividad.perfil.get().user.username != username:
+        return HttpResponseRedirect(reverse('error'))
+
+    if request.method == 'POST':
+        img = request.FILES.get('imagen')
+        if img != None:
+            img.name = renombrar_archivo(img.name,newName='actividad')
+            imagen = Imagenes(imagen=img, actividad=actividad)
+            #actividad.imagen.add = img
+            imagen.save()
+            reescalar_imagen(imagen.imagen.path,imagen.imagen.path)
+
+    context = {
+        'actividad' : actividad,
+    }
+
+    return render(request, 'editar_actividad.html', context)
 
 @login_required
 def capsula_create(request):
@@ -447,6 +484,7 @@ def error(request):
     return render(request, '404.html', infoHome(request, {}))
 
 def actividad_detail(request, username='', id=''):
+    user = get_object_or_404(User, username=username)
     actividad = Actividad.objects.get(id=int(id))
     actividades = Actividad.public.all()[:5]
     categoria = Categoria.objects.all()
@@ -460,6 +498,13 @@ def actividad_detail(request, username='', id=''):
             return  HttpResponseRedirect(reverse('error'))
         if request.user.perfil.rol.is_admin() != True:
             return  HttpResponseRedirect(reverse('error'))
+
+    perfil = user.perfil
+    is_owner = False
+
+    if actividad.perfil == perfil.id:
+        print 'true'
+        is_owner = True
 
     conteo = request.session.get('conteo' + id, False)
     if conteo == False and actividad.autorizado == True:
@@ -475,6 +520,7 @@ def actividad_detail(request, username='', id=''):
         'actividades': actividades,
         'categoria': categoria,
         'comentario' : comentario,
+        'es_propietario': is_owner,
         'autorizado' : actividad.autorizado,
     }
     return render(request, 'detalle_actividad.html', infoHome(request, context))
@@ -759,3 +805,37 @@ def buscar_artista(request):
     }
 
     return render(request, 'resultados_busqueda.html', context)
+
+@login_required
+def imagenes_home(request):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
+    imagenes = get_object_or_404(ImagenesHome, id=1)
+
+    if request.method == 'POST':
+        logo = request.FILES.get('logo', None)
+        homeU = request.FILES.get('homeU', None)
+        homeD = request.FILES.get('homeD', None)
+        homeT = request.FILES.get('homeT', None)
+
+        if logo != None:
+            logo.name = renombrar_archivo(logo.name,newName='logo')
+            imagenes.logo = logo
+        if homeU != None:
+            homeU.name = renombrar_archivo(homeU.name,newName='homeU')
+            imagenes.homeU = homeU
+        if homeD != None:
+            homeD.name = renombrar_archivo(homeD.name,newName='homeD')
+            imagenes.homeD = homeD
+        if homeT != None:
+            homeT.name = renombrar_archivo(homeT.name,newName='homeT')
+            imagenes.homeT = homeT
+
+        imagenes.save()
+
+        return mensaje(request, 'Imagenes Modificadas Exitosamente',reverse('editar_imagenes'))
+
+    context = {'imagenes': imagenes,}
+
+    return render(request, 'imagenes_home.html', context)

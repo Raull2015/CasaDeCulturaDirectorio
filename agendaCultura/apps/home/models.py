@@ -94,7 +94,7 @@ class Perfil(models.Model):
     class Meta:
         verbose_name = 'perfil'
         verbose_name_plural = 'perfiles'
-        ordering = ['-fechaRegistro']
+        ordering = ['nombreArtista']
 
     def __unicode__(self):
         return self.nombreReal
@@ -217,3 +217,9 @@ class Imagenes(models.Model):
     class Meta:
         verbose_name = 'imagen'
         verbose_name_plural = 'imagenes'
+
+class ImagenesHome(models.Model):
+    logo = models.ImageField(upload_to='imgHome/', default='imgHome/default.jpg')
+    homeU = models.ImageField(upload_to='imgHome/', default='imgHome/homeU.jpg')
+    homeD = models.ImageField(upload_to='imgHome/', default='imgHome/homeD.jpg')
+    homeT = models.ImageField(upload_to='imgHome/', default='imgHome/homeT.jpg')

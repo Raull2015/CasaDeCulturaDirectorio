@@ -4,6 +4,7 @@ from views import *
 
 urlpatterns = [
     url(r'^$', home, name='home'),
+    url(r'(?P<username>[-\w]+)/evento/(?P<id>[\d]+)/editar/$', anadir_imagen, name='anadir_imagen'),
     url(r'(?P<id>[\d]+)/comentar/$', comentarios, name='comentar'),
     url(r'confirmar_registro/$', confirmar_registro, name='confirmar_registro'),
     url(r'ayuda/$', ayuda, name='ayuda'),
@@ -21,5 +22,6 @@ urlpatterns = [
     url(r'(?P<username>[-\w]+)/editar/contrasenia/$', cambiar_contrasenia, name='cambiar_contrasenia'),
     url(r'(?P<username>[-\w]+)/editar/$', perfil_edit, name='editar_perfil'),
     url(r'(?P<username>[-\w]+)/crearEvento/$', actividad_create, name='crear_evento'),
+    url(r'(?P<username>[-\w]+)/evento/(?P<id>[\d]+)/editar/$', anadir_colaborador, name='anadir_colaborador'),
     url(r'(?P<username>[-\w]+)/$', perfil, name='perfil'),
 ]

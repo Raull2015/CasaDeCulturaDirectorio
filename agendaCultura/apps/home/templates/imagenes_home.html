@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Editar Imagenes
+  {% endblock %}
+
+  {% block main-section %}
+    <form action='{% url 'home:editar_imagenes' %}' enctype="multipart/form-data"  method="POST" role="form" id="editarImagenes">
+      <div class="panel panel-default checkoutInfo">
+        <div class="panel-heading bg-color-3 border-color-3">
+          <h3 class="panel-title">Imagenes</h3>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <div class="col-xs-12">
+              <label for="">Logo</label>
+              <input type="file" class="form-control border-color-6" id="logo" name="logo"><a href={{MEDIA_URL}}{{imagenes.logo}}>Imagen Actual</a>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12">
+              <label for="">Primera imagen</label>
+              <input type="file" class="form-control border-color-6" id="homeU" name="homeU"><a href={{MEDIA_URL}}{{imagenes.homeU}}>Imagen Actual</a>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12">
+              <label for="">Segunda imagen</label>
+              <input type="file" class="form-control border-color-6" id="homeD" name="homeD"><a href={{MEDIA_URL}}{{imagenes.homeD}}>Imagen Actual</a>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12">
+              <label for="">Tercera imagen</label>
+              <input type="file" class="form-control border-color-6" id="homeT" name="homeT"><a href={{MEDIA_URL}}{{imagenes.homeT}}>Imagen Actual</a>
+            </div>
+          </div>
+          <div class="continueBtnArea">
+            <ul class="list-inline">
+              <li class="pull-right"><input type="submit" value="Guardar" id="btnGuardar" class="btn btn-primary"></input></li>
+            </ul>
+          </div>
+          <div class="form-group formField" id="results_2">
+            <!--<p class="help-block">Allready have an account? <a href="#">Log in</a></p>-->
+          </div>
+        </div>
+      </div>
+    </form>
+  {% endblock %}

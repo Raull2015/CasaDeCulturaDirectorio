@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Editar actividad
+  {% endblock %}
+
+  {% block main-section %}
+    <!-- MAIN SECTION -->
+    <section class="mainContent full-width clearfix">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4 col-sm-push-8 col-xs-12">
+          </div>
+          <div class="col-sm-8  col-sm-pull-4 col-xs-12">
+            <form action='{% url 'home:anadir_imagen' username=actividad.perfil.all.get.user.username id=actividad.id %}' enctype="multipart/form-data" method="POST" role="form" id="anadirImg">
+              {% csrf_token %}
+              <div class="panel panel-default checkoutInfo">
+                <div class="panel-heading bg-color-3 border-color-3">
+                  <h3 class="panel-title">Editar evento</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Imagen</label>
+                      <input type="file" class="form-control border-color-6" id="imagen" name="imagen">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="continueBtnArea">
+                <ul class="list-inline">
+                  <li class="pull-right"><input type="submit" value="Añadir" id="btnGuardar" class="btn btn-primary"></input></li>
+                </ul>
+              </div>
+              <div class="form-group formField" id="results_3">
+                <!--<p class="help-block"><a href="#">Usuario o Contraseña Incorrecto</a></p>-->
+              </div>
+            </form>
+
+            <form action='{% url 'home:anadir_colaborador' username=actividad.perfil.all.get.user.username id=actividad.id %}' enctype="multipart/form-data" method="POST" role="form" id="anadirCol">
+              {% csrf_token %}
+              <div class="panel panel-default checkoutInfo">
+                <div class="panel-body">
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Colaboradores</label>
+                      {% csrf_token %}
+                      <input type="text" autocomplete="off" class="form-control border-color-2" id="buscar">
+                      <div id="search-text"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="continueBtnArea">
+                <ul class="list-inline">
+                  <li class="pull-right"><input type="submit" value="Añadir" id="btnGuardar" class="btn btn-primary"></input></li>
+                </ul>
+              </div>
+              <div class="form-group formField" id="results_3">
+                <!--<p class="help-block"><a href="#">Usuario o Contraseña Incorrecto</a></p>-->
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endblock %}
+
+  {% block script %}
+  <script>
+  $(function(){
+    $('#buscar').keyup(function(){
+      $.ajax({
+        type: 'POST',
+        url: '/buscar/artista/',
+        data: {
+          'search_text': $('#buscar').val(),
+          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+        },
+        success: function(data, textStatus, jqXHR) {
+          $('#search-text').html(data);
+        },
+        dataType: 'html'
+      });
+    });
+  });
+
+  $(document).ready( function() {
+    $('#artista').click( function() {
+      $.ajax({
+        type: 'POST',
+        url: '{% url 'home:anadir_colaborador' username=actividad.perfil.all.get.user.username id=actividad.id %}',
+        data: {
+          'colaborador': $('#artista').val(),
+        },
+        success: function(response) {
+
+        }
+      });
+    });
+  });
+  </script>
+  {% endblock %}

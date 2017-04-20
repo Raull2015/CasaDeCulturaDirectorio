@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^login/$', views.ingresar, name='iniciar_sesion'),
     url(r'^login_page/$', views.ingresar_pagina, name='ingresar_pagina'),
     url(r'^logout/$', views.cerrar_sesion, name='cerrar_sesion'),
+    url(r'administracion/imagenes/$', views.imagenes_home, name='editar_imagenes'),
     url(r'administracion/evento/aceptado/(?P<id>[\d]+)$', views.actividad_authorize, name='autorizar_evento'),
     url(r'administracion/evento/rechazado/(?P<id>[\d]+)$', views.actividad_reject, name='rechazar_evento'),
     url(r'administracion/artista/aceptado/(?P<id>[\d]+)$', views.artista_authorize, name='autorizar_artista'),
