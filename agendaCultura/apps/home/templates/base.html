@@ -72,7 +72,7 @@
                 {% if H_logeado == False %}
                 <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#loginModal' data-toggle="modal" >Iniciar Sesion</a><span>o</span><a href="{% url 'registrarse' %}" data-toggle="modal">Registrarse</a></li>
                 {% else %}
-                <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#' data-toggle="modal" >Bienvenido (a) {{ H_nombre_usuario }} </a><span></span><a href= {% url 'cerrar_sesion' %} data-toggle="modal">Cerrar sesión</a></li>
+                <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#' data-toggle="modal" >Bienvenido(a) {{ H_nombre_usuario }} </a><span></span><a href= {% url 'cerrar_sesion' %} data-toggle="modal">Cerrar sesión</a></li>
                 {% endif %}
                 <!--<li class="cart-dropdown">
                   <a href="#" class="bg-color-6 shop-cart" >

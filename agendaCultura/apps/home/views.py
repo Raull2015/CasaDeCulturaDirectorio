@@ -38,24 +38,32 @@ def home(request):
     }
     return render(request, 'index-v1.html', infoHome(request, context))
 
-def perfil_list(request):
+def perfil_list(request, pag='1'):
     limit = 10
-    aumento = 10
-    total = False
+    vacio = False
+    pag = int(pag)
+    maximo_pag = Actividad.public.all().count()/limit
+    if Perfil.public.all().count() > (limit*maximo_pag) :
+        maximo_pag = maximo_pag + 1
 
-    if request.GET:
-        limit=request.GET['limit']
-        limit = int(limit)
+    if maximo_pag == 0:
+        vacio = True
+    elif pag > maximo_pag:
+        return HttpResponseRedirect(reverse('error'))
 
-    perfil = Perfil.public.all()[:limit]
+    perfil = Perfil.public.all()[(limit*(pag-1)):(limit*pag)]
 
-    if len(perfil) != limit:
-        total = True
 
     context = {
         'perfiles': perfil,
-        'limit' : limit + aumento,
-        'total' : total,
+        'actual': int(pag),
+        'maximo_pag' : maximo_pag,
+        'pag1': (pag-2),
+        'pag2': (pag-1),
+        'pag3': (pag),
+        'pag4': (pag+1),
+        'pag5': (pag+2),
+        'vacio' : vacio,
         'autorizar' : False
     }
     return render(request, 'artistas.html', infoHome(request,context))

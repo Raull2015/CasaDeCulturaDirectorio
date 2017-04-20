@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^buscar/artista/$', buscar_artista, name='buscar_artista'),
     url(r'(?P<id>[\d]+)/categoria/$', categoria, name='categoria'),
     url(r'confirmar_actividad/$', confirmar_actividad, name='confirmar_actividad'),
+    url(r'artistas/(?P<pag>[\d]+)/$', perfil_list, name='artistas'),
     url(r'artistas/$', perfil_list, name='artistas'),
     url(r'categorias/$', categoria_list, name='categorias'),
     #url(r'registro/p2/$', perfil_create_p2, name='crear_perfil_p2'),
