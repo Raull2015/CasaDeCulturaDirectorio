@@ -31,12 +31,12 @@
                   <li><a href="{{perfil.otro}}" class="bg-color-4"><i class="fa fa-world" aria-hidden="true"></i></a></li>
                   {%endif%}
                 </ul>
-                <h3>Informacion</h3>
+                <h3>Información</h3>
                 {%if perfil.nombreArtista%}
                 <div class="teachersProfession bg-color-1">Nombre: </div>
                 <div class="professionDetails">{{perfil.nombreArtista}}</div>
                 {%endif%}
-                <div class="teachersProfession bg-color-2">E-Mail: </div>
+                <div class="teachersProfession bg-color-2">Correo electrónico: </div>
                 <div class="professionDetails">{{perfil.email}}</div>
                 <div class="teachersProfession bg-color-3">Edad: </div>
                 <div class="professionDetails">{{perfil.get_edad}}</div>
@@ -49,13 +49,12 @@
                 {%endif%}
                 <div class="teachersProfession bg-color-5">Categorias: </div>
                 <div class="professionDetails">{%if perfil.get_categorias%}{{perfil.get_categorias}}{%endif%}</div>
-
               </div>
             </div>
           </div>
           {%if es_propietario == True %}
           <div class="btnArea">
-            <a href={% url 'home:editar_perfil' username=perfil.user.username %} class="btn btn-primary">Editar Perfil</a>
+            <a href={% url 'home:editar_perfil' username=perfil.user.username %} class="btn btn-primary">Editar perfil</a>
           </div>
           {%endif%}
           {%if autorizado == False %}

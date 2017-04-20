@@ -56,30 +56,23 @@
       <div class="top-info-bar bg-color-10 hidden-xs">
         <div class="container">
           <div class="row">
-            <div class="col-sm-7">
+            <div class="col-sm-8">
               <ul class="list-inline topList">
                 <li><i class="fa fa-envelope bg-color-1" aria-hidden="true"></i> <a href="mailto:cultura@gmail.com">cultura@gmail.com</a></li>
                 <li><i class="fa fa-phone bg-color-2" aria-hidden="true"></i> +502 1234 5678 </li>
-                <li><i class="fa fa-clock-o bg-color-6" aria-hidden="true"></i> Abierto: 8AM - 5PM</li>
+                <li><i class="fa fa-clock-o bg-color-6" aria-hidden="true"></i> Horario: 8:00 am - 5:00 pm</li>
               </ul>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
               <ul class="list-inline functionList">
-                <li><i class="fa fa-globe bg-color-4" aria-hidden="true"></i></li>
-                <li class="LanguageList">
 
-                  <select name="guiest_id1" id="guiest_id1" class="select-drop">
-                    <option value="0"><i class="fa fa-globe bg-color-4" aria-hidden="true"></i> Lenguaje</option>
-                    <option value="1">Español</option>
-                  </select>
-                </li>
 
 
 
                 {% if H_logeado == False %}
                 <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#loginModal' data-toggle="modal" >Iniciar Sesion</a><span>o</span><a href="{% url 'registrarse' %}" data-toggle="modal">Registrarse</a></li>
                 {% else %}
-                <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#' data-toggle="modal" >Bienvenido {{ H_nombre_usuario }} </a><span></span><a href= {% url 'cerrar_sesion' %} data-toggle="modal">Cerrar Sesion</a></li>
+                <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href= '#' data-toggle="modal" >Bienvenido (a) {{ H_nombre_usuario }} </a><span></span><a href= {% url 'cerrar_sesion' %} data-toggle="modal">Cerrar sesión</a></li>
                 {% endif %}
                 <!--<li class="cart-dropdown">
                   <a href="#" class="bg-color-6 shop-cart" >
@@ -185,11 +178,6 @@
                 <li><a href='#loginModal' data-toggle="modal" >Iniciar Sesion</a><a href="{% url 'registrarse' %}" data-toggle="modal">Registrarse</a></li>
                 {%endif%}
                 </ul>
-                <!--
-                  <li class="active"><a href="index-v1.html">Kidz School</a></li>
-                  <li><a href="index-v2.html">Kidz Store</a></li>
-                  <li><a href="index-v3.html">Kidz Daycare</a></li>
-                -->
               </li>
 
               {%if H_logeado == True %}
@@ -209,7 +197,7 @@
                 <li class="dropdown singleDrop color-4">
                   <!-- data-toggle="dropdown" -->
                   <a href={% url 'home:perfil' username=H_user %} class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-file-text-o bg-color-4" aria-hidden="true"></i> <span>Mi Perfil</span>
+                    <i class="fa fa-file-text-o bg-color-4" aria-hidden="true"></i> <span>Mi perfil</span>
                   </a>
                   <!--<ul class="dropdown-menu dropdown-menu-left">
                     <li class="active"><a href="index-v1.html">Kidz School</a></li>
@@ -222,13 +210,13 @@
 
               <li class="dropdown singleDrop color-3">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-list-ul bg-color-3" aria-hidden="true"></i> <span>Categorias</span></a>
+                  <i class="fa fa-list-ul bg-color-3" aria-hidden="true"></i> <span>Categorías</span></a>
                 <ul class="dropdown-menu dropdown-menu-left">
 
                   {%for H_categoria in H_categorias%}
                   <li><a href={% url 'home:categoria' id=H_categoria.id %}>{{H_categoria.categoria}}</a></li>
                   {%endfor%}
-                  <li><a href="{% url 'home:categorias' %}">Ver Todas</a></li>
+                  <li><a href="{% url 'home:categorias' %}">Ver todas</a></li>
                   <!--<li class="dropdown dropdown-submenu">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Team<i class="fa fa-chevron-right" aria-hidden="true"></i>
                     </a>
@@ -511,7 +499,7 @@
                   </li>-->
                   <li>
                     <a href="{% url 'home:informacion' %}">
-                      <i class="fa fa-angle-double-right" aria-hidden="true"></i>Sobre Nosotros
+                      <i class="fa fa-angle-double-right" aria-hidden="true"></i>Sobre nosotros
                     </a>
                   </li>
                   <li>
@@ -522,7 +510,7 @@
                   <li>
                     <a href="https://www.google.es/maps/place/Casa+Noj/@14.8353485,-91.516509,16z/data=!4m5!3m4!1s0x858ebd5664666cc3:0xd8530f3ea3c7d7cb!8m2!3d14.8337254!4d-91.5189444" target="_blank">
                       <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                      Donde Encontrarnos
+                      Dónde encontrarnos
                     </a>
                   </li>
                 </ul>
@@ -589,12 +577,9 @@
                 <li><a href="http://www.linkedin.com" target="_blank" class="icon-button linkedin" title="Ir al sitio de Linkedin"><i class="icon-linkedin"></i><span></span></a></li>
               </ul>
             </div>
-
             <div class="col-sm-7 col-sm-pull-5 col-xs-12">
               <div class="copyRightText">
               <a href="http://www.url.edu.gt" target="_blank"><img src="http://2.bp.blogspot.com/-M76dyuMF898/Tc3Bvq2oI1I/AAAAAAAAAyA/T_FTywIhAU8/s170/Universidad-Rafael-Land%25C3%25ADvar-%2528Blanco-fondo-transaprente%2529.png" title= "Ir al sitio de la URL" id= "logl" class="logol"></a>
-
-
               </div>
               <p id= "tl" class ="tll">© 2017 Donado por Universidad Rafael Landivar.</p>
             </div>
@@ -615,7 +600,7 @@
       <div class="modal-content">
         <div class="panel panel-default formPanel">
           <div class="panel-heading bg-color-1 border-color-1">
-            <h3 class="panel-title">Inicio de Sesion</h3>
+            <h3 class="panel-title">Inicio de sesión</h3>
           </div>
           <div class="panel-body">
             <form action= {% url 'iniciar_sesion' %} method="POST" role="form" id="post-login">
@@ -648,7 +633,7 @@
       <div class="modal-content">
         <div class="panel panel-default formPanel">
           <div class="panel-heading bg-color-1 border-color-1">
-            <h3 class="panel-title">Creación de Cuenta</h3>
+            <h3 class="panel-title">Creación de cuenta</h3>
           </div>
           <div class="panel-body">
             <form action= {% url 'home:crear_perfil_p1' %} method="POST" role="form" id="post-crear-user">
@@ -701,7 +686,7 @@
               </div>
               </br>
               <div class="form-group formField">
-                Fecha de Nacimiento </br>
+                Fecha de nacimiento </br>
                 <input type="date" class="form-control" max="2000-12-31" id="id_nacimiento" name="nacimiento" required>
               </div>
               <div class="form-group formField">
