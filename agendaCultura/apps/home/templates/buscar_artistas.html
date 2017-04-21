@@ -1,9 +1,7 @@
 
   {% if perfil.count > 0 %}
     {% for perfil in perfil %}
-    <li>
-      <a class="lead" href="" id="artista" name="artista">{{perfil.nombreArtista}}</a>
-    </li>
+    <li onclick="set_item('{{perfil.username}}')">{{perfil.username}}</li>
     {% endfor %}
     {% else %}
   {% endif %}

@@ -23,7 +23,7 @@
 }
 .sbHolderDisabled .sbToggle {
 }
-.sbOptions { width:96px !important; position:absolute; right:-1px !important; top:32px; padding:0; list-style:none; z-index:1; overflow-y:auto; background:#ffffff; border:1px solid #9c9c9c;/*  -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; */ max-height:inherit !important; margin-top: -1px;
+.sbOptions { width:96px !important; position:absolute; right:-1px !important; top:32px; padding:0; list-style:none; z-index:1; overflow-y:scroll; background:#ffffff; border:1px solid #9c9c9c;/*  -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; */ max-height:200px !important; margin-top: -1px;
 }
 .sbOptions li { padding:0px 0px 0px 0px;
 }

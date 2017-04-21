@@ -17,7 +17,7 @@
           </div>
         </form>
         <div class="resultInfo">
-          <h3>{{perfiles.count}} resultados</h3>
+          <h3>{{perfiles.count}} Resultados</h3>
         </div>
 
         {%if perfiles%}
@@ -45,7 +45,7 @@
           {%endfor%}
           {%if total == False%}
           <div class="btnArea">
-            <a href="{% url 'home:artistas' %}?limit={{limit}}" class="btn btn-primary">Ver Mas</a>
+            <a href="{% url 'home:artistas' %}?limit={{limit}}" class="btn btn-primary">Ver más</a>
           </div>
           {%endif%}
         </div>
@@ -55,7 +55,7 @@
             <div class="sectionTitle text-center">
               <h2>
                 <span class="shape shape-left bg-color-2"></span>
-                <span>Ningún artista coincide con la búsqueda</span>
+                <span>Ningún artista coincide con la búsqueda.</span>
                 <span class="shape shape-right bg-color-2"></span>
               </h2>
             </div>

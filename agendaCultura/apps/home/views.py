@@ -38,46 +38,61 @@ def home(request):
     }
     return render(request, 'index-v1.html', infoHome(request, context))
 
-def perfil_list(request):
+def perfil_list(request, pag='1'):
     limit = 10
-    aumento = 10
-    total = False
+    vacio = False
+    pag = int(pag)
+    maximo_pag = Actividad.public.all().count()/limit
+    if Perfil.public.all().count() > (limit*maximo_pag) :
+        maximo_pag = maximo_pag + 1
 
-    if request.GET:
-        limit=request.GET['limit']
-        limit = int(limit)
+    if maximo_pag == 0:
+        vacio = True
+    elif pag > maximo_pag:
+        return HttpResponseRedirect(reverse('error'))
 
-    perfil = Perfil.public.all()[:limit]
+    perfil = Perfil.public.all()[(limit*(pag-1)):(limit*pag)]
 
-    if len(perfil) != limit:
-        total = True
 
     context = {
         'perfiles': perfil,
-        'limit' : limit + aumento,
-        'total' : total,
+        'actual': int(pag),
+        'maximo_pag' : maximo_pag,
+        'pag1': (pag-2),
+        'pag2': (pag-1),
+        'pag3': (pag),
+        'pag4': (pag+1),
+        'pag5': (pag+2),
+        'vacio' : vacio,
         'autorizar' : False
     }
     return render(request, 'artistas.html', infoHome(request,context))
 
-def actividad_list(request):
-    limit = 10
-    aumento = 10
-    total = False
+def actividad_list(request, pag='1'):
+    limit = 9
+    vacio = False
+    pag = int(pag)
+    maximo_pag = Actividad.public.all().count()/limit
+    if Actividad.public.all().count() > (limit*maximo_pag) :
+        maximo_pag = maximo_pag + 1
 
-    if request.GET:
-        limit=request.GET['limit']
-        limit = int(limit)
+    if maximo_pag == 0:
+        vacio = True
+    elif pag > maximo_pag:
+        return HttpResponseRedirect(reverse('error'))
 
-    actividad = Actividad.public.all()[:limit]
-
-    if len(actividad) != limit:
-        total = True
+    actividad = Actividad.public.all()[(limit*(pag-1)):(limit*pag)]
 
     context = {
         'actividad': actividad,
-        'limit' : limit + aumento,
-        'total' : total,
+        'actual': int(pag),
+        'maximo_pag' : maximo_pag,
+        'pag1': (pag-2),
+        'pag2': (pag-1),
+        'pag3': (pag),
+        'pag4': (pag+1),
+        'pag5': (pag+2),
+        'vacio' : vacio,
         'autorizar' : False
     }
     return render(request, 'actividades.html', infoHome(request,context) )
@@ -113,15 +128,35 @@ def categoria(request, id=''):
     return render(request, 'categoria.html', infoHome(request,context))
 
 @login_required
-def actividad_user(request, username=''):
+def actividad_user(request, username='', pag='1'):
     user = get_object_or_404(User, username=username)
     if request.user == user:
-        actividad = Actividad.public.filter(perfil=request.user.perfil)
+        limit = 9
+        vacio = False
+        pag = int(pag)
+        maximo_pag = Actividad.public.filter(perfil=request.user.perfil).count()/limit
+        if Actividad.public.filter(perfil=request.user.perfil).count() > (limit*maximo_pag) :
+            maximo_pag = maximo_pag + 1
+        if maximo_pag == 0:
+            vacio = True
+        elif pag > maximo_pag:
+            return HttpResponseRedirect(reverse('error'))
+        actividad = Actividad.public.filter(perfil=request.user.perfil)[(limit*(pag-1)):(limit*pag)]
+
+        context = {
+            'actividad': actividad,
+            'actual': int(pag),
+            'maximo_pag' : maximo_pag,
+            'pag1': (pag-2),
+            'pag2': (pag-1),
+            'pag3': (pag),
+            'pag4': (pag+1),
+            'pag5': (pag+2),
+            'vacio' : vacio,
+            'perfil': user}
+        return render(request, 'mis_actividades.html', infoHome(request,context))
     else:
         return HttpResponseRedirect(reverse('error'))
-
-    context = {'actividad': actividad, 'perfil': user}
-    return render(request, 'mis_actividades.html', context)
 
 @login_required
 def actividad_to_authorize(request):
@@ -192,12 +227,23 @@ def perfil_create_p1(request):
         nombre = request.POST['nombre']
         email = request.POST['email']
         telefono = request.POST['telefono']
+        publico = request.POST['publico']
         nacimiento = request.POST['nacimiento']
+        facebook = request.POST['facebook']
+        twitter = request.POST['twitter']
+        youtube = request.POST['youtube']
+        web = request.POST['web']
         genero = request.POST['sexo']
+        categoria = request.POST['categoria']
         if genero == 'True':
             genero = True
         else:
             genero = False
+        if publico == 'True':
+            publico = True
+        else:
+            publico = False
+
         try:
             User.objects.get(username=username)
             response_data['existe'] = 'true'
@@ -207,8 +253,10 @@ def perfil_create_p1(request):
 
             estado, mensaje = validar_password(username, password,password_confirm)
             if estado:
-                perfil = Perfil(nombreArtista = nombre, nombreReal = nombre, email=email, telefono=telefono,fechaNacimiento= nacimiento,sexo=genero)
+                perfil = Perfil(nombreArtista = nombre, nombreReal = nombre, email=email, telefono=telefono,fechaNacimiento= nacimiento,sexo=genero,
+                                publico_telefono=publico,facebook=facebook,twitter=twitter,youtube=youtube,otro=web)
                 perfil.rol = get_object_or_404(Rol, nombreRol='Artista')
+                perfil.categoria = Categoria.objects.filter(categoria=categoria)
                 nuevo_usuario = User.objects.create_user(username=username, email='xela@casacult.com', password=password)
                 perfil.user = nuevo_usuario
                 perfil.save()
@@ -268,7 +316,19 @@ def perfil_edit(request, username=''):
             genero = True
         else:
             genero = False
+
+        publico = request.POST['publico']
+        if publico == 'True':
+            publico = True
+        else:
+            publico = False
+
         nacimiento = request.POST['nacimiento']
+        facebook = request.POST['facebook']
+        twitter = request.POST['twitter']
+        youtube = request.POST['youtube']
+        web = request.POST['web']
+
         telefono = request.POST['telefono']
         email = request.POST['email']
         descripcion = request.POST['descripcion']
@@ -282,6 +342,11 @@ def perfil_edit(request, username=''):
         perfil.telefono = telefono
         perfil.email = email
         perfil.descripcion = descripcion
+        perfil.publico_telefono = publico
+        perfil.facebook = facebook
+        perfil.twitter = twitter
+        perfil.youtube = youtube
+        perfil.otro = web
 
         img = request.FILES.get('imagen', None)
         if img != None:
@@ -303,7 +368,8 @@ def actividad_create(request,username=''):
     user = get_object_or_404(User, username=username)
 
     if request.user != user or request.user.perfil.autorizado == False:
-        return HttpResponseRedirect(reverse('error'))
+        if request.user.perfil.rol.is_admin() != True:
+            return HttpResponseRedirect(reverse('error'))
 
     if request.method == 'POST':
         response_data = {}
@@ -334,17 +400,24 @@ def actividad_create(request,username=''):
     return render(request, 'crear_actividad.html', infoHome(request,{}))
 
 @login_required
-def anadir_colaborador(request, username='', id=''):
+def anadir_colaborador(request, id=''):
     actividad = get_object_or_404(Actividad, id=int(id))
 
     if request.method == 'POST':
-        colaborador = request.POST['colaborador']
+        colaborador = request.POST['buscar']
 
-        user = Perfil.objects.filter(nombreArtista=colaborador)
-        actividad.perfil.add(user)
+        user = get_object_or_404(User, username=colaborador)
+        perfil = user.perfil
+        actividad.save()
+        actividad.perfil.add(perfil)
+
+
+        return HttpResponseRedirect(reverse('home:anadir_imagen', kwargs={'id' : actividad.id,}))
+
+    act = Actividad.public.filter(id=int(id))
 
     context = {
-    'actividad' : actividad
+    'actividad' : act
     }
 
     return render(request, 'editar_actividad.html', context)
@@ -353,6 +426,7 @@ def anadir_colaborador(request, username='', id=''):
 def anadir_imagen(request, username='', id=''):
     user = get_object_or_404(User, username=username)
     actividad = get_object_or_404(Actividad, id=int(id))
+    imagenes = Imagenes.objects.filter(actividad=actividad.id)
 
     if actividad.perfil.get().user.username != username:
         return HttpResponseRedirect(reverse('error'))
@@ -368,9 +442,25 @@ def anadir_imagen(request, username='', id=''):
 
     context = {
         'actividad' : actividad,
+        'imagen' : imagenes,
     }
 
     return render(request, 'editar_actividad.html', context)
+
+@login_required
+def modificar_imagen(request, username='', id=''):
+    imagen = get_object_or_404(Imagenes, id=int(id))
+
+    if request.method == 'POST':
+        img = request.FILES.get('imagen')
+        if img != None:
+            img.name = renombrar_archivo(img.name,newName='actividad')
+            imagen.imagen = img
+            #actividad.imagen.add = img
+            imagen.save()
+            reescalar_imagen(imagen.imagen.path,imagen.imagen.path)
+
+        return HttpResponseRedirect(reverse('home:anadir_imagen', kwargs={'username' : username,'id' : imagen.actividad.id,}))
 
 @login_required
 def capsula_create(request):
@@ -386,7 +476,7 @@ def capsula_create(request):
 
 
     context = {'create': True}
-    return render(request, 'capsula_detalle.html', context)
+    return render(request, 'capsula_detalle.html', infoHome(request,context))
 
 @login_required
 def editar_capsula(request, pk = ''):
@@ -487,7 +577,7 @@ def actividad_detail(request, username='', id=''):
     user = get_object_or_404(User, username=username)
     actividad = Actividad.objects.get(id=int(id))
     actividades = Actividad.public.all()[:5]
-    categoria = Categoria.objects.all()
+    categoria = actividad.categoria.all()
     comentario = Comentarios.objects.filter(actividad=actividad)
 
     if actividad.perfil.get().user.username != username:
@@ -499,11 +589,10 @@ def actividad_detail(request, username='', id=''):
         if request.user.perfil.rol.is_admin() != True:
             return  HttpResponseRedirect(reverse('error'))
 
-    perfil = user.perfil
+    perfil = request.user.perfil
     is_owner = False
 
-    if actividad.perfil == perfil.id:
-        print 'true'
+    if actividad.perfil.get() == perfil:
         is_owner = True
 
     conteo = request.session.get('conteo' + id, False)
@@ -607,13 +696,15 @@ def search_artista(request):
     if search_text == '':
         search_text = ' '
 
-    perfil = Perfil.public.filter(nombreArtista__startswith= search_text)
+    user = User.objects.filter(username__startswith= search_text)
+
+    #perfil = Perfil.public.filter(nombreArtista__startswith= search_text)
 
     context = {
-        'perfil':perfil,
+        'perfil':user,
     }
 
-    return render(request, 'buscar_artistas.html', context)
+    return render(request, 'buscar_artistas.html', infoHome(request,context))
 
 def search_actividad(request):
     if request.method == 'POST':
@@ -630,7 +721,7 @@ def search_actividad(request):
         'actividad':actividad,
     }
 
-    return render(request, 'buscar_actividades.html', context)
+    return render(request, 'buscar_actividades.html', infoHome(request,context))
 
 @login_required
 def estadisticas(request):
@@ -648,7 +739,7 @@ def estadisticas(request):
     context={
         'grafico':grafico,
     }
-    return render(request, 'estadisticas.html', context)
+    return render(request, 'estadisticas.html', infoHome(request,context))
 
 def confirmar_registro(request):
     if request.user.is_authenticated:
@@ -811,7 +902,7 @@ def imagenes_home(request):
     if request.user.perfil.rol.is_admin() != True:
         return HttpResponseRedirect(reverse('error'))
 
-    imagenes = get_object_or_404(ImagenesHome, id=1)
+    imagen = get_object_or_404(ImagenesHome, id=1)
 
     if request.method == 'POST':
         logo = request.FILES.get('logo', None)
@@ -819,23 +910,100 @@ def imagenes_home(request):
         homeD = request.FILES.get('homeD', None)
         homeT = request.FILES.get('homeT', None)
 
+        imagen.save()
         if logo != None:
             logo.name = renombrar_archivo(logo.name,newName='logo')
-            imagenes.logo = logo
+            imagen.logo = logo
         if homeU != None:
             homeU.name = renombrar_archivo(homeU.name,newName='homeU')
-            imagenes.homeU = homeU
+            imagen.homeU = homeU
         if homeD != None:
             homeD.name = renombrar_archivo(homeD.name,newName='homeD')
-            imagenes.homeD = homeD
+            imagen.homeD = homeD
         if homeT != None:
             homeT.name = renombrar_archivo(homeT.name,newName='homeT')
-            imagenes.homeT = homeT
+            imagen.homeT = homeT
 
-        imagenes.save()
+        imagen.save()
 
         return mensaje(request, 'Imagenes Modificadas Exitosamente',reverse('editar_imagenes'))
 
-    context = {'imagenes': imagenes,}
+    context = {'imagen': imagen,}
 
-    return render(request, 'imagenes_home.html', context)
+    return render(request, 'imagenes_home.html', infoHome(request,context))
+
+def registrarse_pagina(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('home:home'))
+
+    return render(request, 'registrarse.html', infoHome(request,{}))
+
+@login_required
+def publicidad_list(request):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
+    limit = 10
+    aumento = 10
+    total = False
+
+    if request.GET:
+        limit=request.GET['limit']
+        limit = int(limit)
+
+    publicidad = Publicidad.objects.all()[:limit]
+
+    if len(publicidad) != limit:
+        total = True
+
+    context = {
+        "publicidad" : publicidad,
+        'limit' : limit + aumento,
+        'total' : total
+        }
+
+    return render(request, 'publicidad.html', infoHome(request,context))
+
+@login_required
+def publicidad_editar(request, id=""):
+    if request.user.perfil.rol.is_admin() != True:
+        return HttpResponseRedirect(reverse('error'))
+
+    entrada = get_object_or_404(Publicidad, id=int(id))
+
+    if request.method == 'POST':
+        entrada.empresa = request.POST['empresa']
+        entrada.telefono = request.POST['telefono']
+        entrada.direccion = request.POST['direccion']
+        entrada.web = request.POST['web']
+        if request.POST['visible'] == 'True':
+            entrada.visible = True
+        else:
+            entrada.visible = False
+        img = request.FILES.get('imagen', None)
+        if img != None:
+            img.name = renombrar_archivo(img.name,newName='pub')
+            entrada.imagen = img
+            entrada.save()
+            reescalar_imagen(entrada.imagen.path,entrada.imagen.path,height=65,width=99)
+
+        entrada.save()
+
+        return mensaje(request, 'Entrada publicitaria modificada exitosamente',reverse('publicidad'))
+
+    context = {
+        "entrada" : entrada
+        }
+
+    return render(request, 'editar_publicidad.html', infoHome(request,context))
+
+def galeria(request, id=''):
+    actividad = get_object_or_404(Actividad, id=int(id))
+    imagen = Imagenes.objects.filter(actividad=actividad.id)
+
+    context = {
+        'actividad': actividad,
+        'imagen': imagen,
+    }
+
+    return render(request, 'galeria.html', context)

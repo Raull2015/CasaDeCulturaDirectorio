@@ -9,8 +9,7 @@
     <div class="modal-content">
       <div class="panel panel-default formPanel">
         <div class="panel-heading bg-color-1 border-color-1">
-          <h3 class="panel-title">Informacion de Capsula</h3>
-
+          <h3 class="panel-title">Informacion de categoria</h3>
         </div>
         <div class="panel-body">
           {%if create %}
@@ -20,11 +19,11 @@
               <input type="text" required class="form-control" name="nombre" placeholder="Nombre de la categoria">
             </div>
             <div class="form-group formField">
-              Descripcion (no puede superar los 255 caracteres) </br>
+              Descripción (límite máximo: 255 caracteres) </br>
               <textarea class="form-control border-color-5" rows="5" name="descripcion" required></textarea>
             </div>
             <div class="form-group formField">
-              <label for="">Imagen de Perfil</label>
+              <label for="">Imagen de perfil</label>
               <input type="file" class="form-control border-color-5" name="imagen">
             </div>
             <div class="form-group formField">
@@ -39,12 +38,12 @@
               <input type="text" value="{{categoria.categoria}}" required class="form-control" name="nombre" placeholder="Nombre de la categoria">
             </div>
             <div class="form-group formField">
-              Descripcion (no puede superar los 255 caracteres) </br>
+              Descripción (límite máximo: 255 caracteres) </br>
               <textarea class="form-control border-color-5" rows="5" name="descripcion" required>{{categoria.descripcion}}</textarea>
             </div>
             <div class="form-group formField">
-              <label for="">Imagen de Perfil</label>
-              <a href={{MEDIA_URL}}{{categoria.imagen}}>Imagen Actual</a>
+              <label for="">Imagen de perfil</label>
+              <a href={{MEDIA_URL}}{{categoria.imagen}}>Imagen actual</a>
               <input type="file" class="form-control border-color-5" name="imagen">
             </div>
             <div class="form-group formField">

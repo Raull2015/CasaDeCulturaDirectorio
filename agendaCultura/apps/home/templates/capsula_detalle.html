@@ -9,7 +9,7 @@
     <div class="modal-content">
       <div class="panel panel-default formPanel">
         <div class="panel-heading bg-color-1 border-color-1">
-          <h3 class="panel-title">Informacion de Capsula</h3>
+          <h3 class="panel-title">Información de Cápsula</h3>
 
         </div>
         <div class="panel-body">
@@ -17,11 +17,11 @@
           <form action= "{% url 'crear_capsula' %}" method="POST" role="form">
             {% csrf_token %}
             <div class="form-group formField">
-              Fecha de Publicacion </br>
+              Fecha de publicación </br>
               <input type="date" class="form-control" id="id_nacimiento" name="publicacion" required>
             </div>
             <div class="form-group formField">
-              Texto (no puede superar los 255 caracteres) </br>
+              Texto (límite máximo: 255 caracteres) </br>
               <textarea class="form-control border-color-5" rows="2" name="texto" required></textarea>
             </div>
             <div class="form-group formField">
@@ -32,7 +32,7 @@
           <form action= "{% url 'editar_capsula' pk=capsula.id %}" method="POST" role="form">
             {% csrf_token %}
             <div class="form-group formField">
-              Fecha de Publicacion </br>
+              Fecha de publicación </br>
               <input type="date" value="{{capsula.fechaPublicacion|date:"Y-m-d"}}" class="form-control" name="publicacion" required>
             </div>
             <div class="form-group formField">

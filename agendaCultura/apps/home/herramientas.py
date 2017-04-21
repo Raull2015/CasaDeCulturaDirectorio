@@ -5,7 +5,7 @@ from datetime import date
 import numpy as np
 import plotly.offline as py
 import plotly.graph_objs as go
-from models import Perfil, Rol, Actividad, Capsulas, Categoria
+from models import Perfil, Rol, Actividad, Capsulas, Categoria, Publicidad
 
 def reescalar_imagen(img,output,height=260,width=370,ext='.png'):
     archivo_in, old_ext = os.path.splitext(img)
@@ -171,22 +171,20 @@ def infoHome(request, context):
         u = request.user.perfil.nombreArtista
         if request.user.perfil.rol.is_admin():
             admin = True
-    #capsula = None
-
-    #try:
-    #    capsula = Capsulas.objects.all().filter(fechaPublicacion__range=('2016-01-01',date.today())).order_by('-fechaPublicacion')[0]
-    #except IndexError:
-    #    pass
 
     categorias = Categoria.objects.all()[:5]
 
+    publicidadI = Publicidad.objects.filter(visible=True)[:2]
+    publicidadD = Publicidad.objects.filter(visible=True)[2:4]
+
     info = {
-        #'H_capsula' : capsula,
         'H_logeado' : logeado,
         'H_nombre_usuario' : u,
         'H_admin' : admin,
         'H_user' : request.user.username,
         'H_categorias' : categorias,
+        'H_publicidadD' : publicidadD,
+        'H_publicidadI' : publicidadI
     }
     info.update(context)
     return info

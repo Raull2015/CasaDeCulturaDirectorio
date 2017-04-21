@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Editar Publicidad
+  {% endblock %}
+
+  {% block main-section %}
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="panel panel-default formPanel">
+        <div class="panel-heading bg-color-1 border-color-1">
+          <h3 class="panel-title">Informacion de entrada</h3>
+
+        </div>
+        <div class="panel-body">
+          <form action= "{% url 'editar_publicidad' id=entrada.id %}" enctype="multipart/form-data" method="POST" role="form">
+            {% csrf_token %}
+            <div class="form-group formField">
+              <input type="text" value="{{entrada.empresa}}" required class="form-control" name="empresa" placeholder="Nombre de la empresa" required>
+            </div>
+            <div class="form-group formField">
+              <input type="text" value="{{entrada.direccion}}" required class="form-control" name="direccion" placeholder="Direccion" required>
+            </div>
+            <div class="form-group formField">
+              <input type="text" value="{{entrada.telefono}}" required class="form-control" name="telefono" placeholder="Telefono" required>
+            </div>
+            <div class="form-group formField">
+              <input type="url" value="{{entrada.web}}" required class="form-control" name="web" placeholder="Url de empresa" required>
+            </div>
+            <div class="form-group formField">
+              Visible </br>
+              <input type="radio" class=""  name="visible" value="True" {%if entrada.visible == True%} checked {%endif%}> Si <br>
+              <input type="radio" class=""  name="visible" value="False" {%if entrada.visible == False%} checked {%endif%}> No <br>
+            </div>
+            </br>
+            <div class="form-group formField">
+              <label for="">Imagen</label>
+              <a href={{MEDIA_URL}}{{entrada.imagen}}>Imagen Actual</a>
+              <input type="file" class="form-control border-color-5" name="imagen">
+            </div>
+            <div class="form-group formField">
+              <input type="submit" class="btn btn-primary btn-block bg-color-3 border-color-3" value="Modificar">
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

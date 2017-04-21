@@ -19,7 +19,6 @@
             </div>
           </div>
         </div>
-
         <form action={% url 'home:buscar_artista' %} enctype="multipart/form-data" method="POST" role="form">
           <div class="input-group searchArea">
             <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
@@ -29,7 +28,7 @@
           </div>
         </form>
 
-        {%if perfiles%}
+        {%if vacio == False%}
         <div class="row">
           {%for perfil in perfiles%}
           <div class="col-sm-6 col-xs-12">
@@ -40,89 +39,57 @@
               <div class="media-body">
                 <h4 class="media-heading"><a href="{% url 'home:perfil' username=perfil.user.username %}">{{perfil.nombreArtista}}</a></h4>
                 <p>{{perfil.get_descripcion}}</p>
-                <h5>{{perfil.get_categorias}}</h5>
+                <h5>{%if perfil.get_categorias%}{{perfil.get_categorias}}{%endif%}</h5>
                 <ul class="list-inline">
-                  <li><a href="#" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-3"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-4"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-5"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                  {%if perfil.facebook%}
+                  <li><a href="{{perfil.facebook}}" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  {%endif%}
+                  {%if perfil.twitter%}
+                  <li><a href="{{perfil.twitter}}" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  {%endif%}
+                  {%if perfil.youtube%}
+                  <li><a href="{{perfil.youtube}}" class="bg-color-3"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                  {%endif%}
+                  {%if perfil.otro%}
+                  <li><a href="{{perfil.otro}}" class="bg-color-4"><i class="fa fa-world" aria-hidden="true"></i></a></li>
+                  {%endif%}
                 </ul>
               </div>
             </div>
           </div>
           {%endfor%}
-          {%if total == False%}
-          <div class="btnArea">
-            <a href="{% url 'home:artistas' %}?limit={{limit}}" class="btn btn-primary">Ver Mas</a>
-          </div>
-          {%endif%}
-          <!--<div class="col-sm-6 col-xs-12">
-            <div class="media teamStyle">
-              <a class="media-left" href="#">
-                <img class="img-rounded img-responsive" src="img/home/team/team-2.jpg" alt="Image">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading"><a href="#">Amanda Stone</a></h4>
-                <h5>English Teacher</h5>
-                <p>They must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you.</p>
-                <ul class="list-inline">
-                  <li><a href="#" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-3"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-4"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-5"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-xs-12">
-            <div class="media teamStyle">
-              <a class="media-left" href="#">
-                <img class="img-rounded img-responsive" src="img/home/team/team-3.jpg" alt="Image">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading"><a href="#">Amanda Stone</a></h4>
-                <h5>English Teacher</h5>
-                <p>They must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you.</p>
-                <ul class="list-inline">
-                  <li><a href="#" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-3"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-4"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-5"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-xs-12">
-            <div class="media teamStyle">
-              <a class="media-left" href="#">
-                <img class="img-rounded img-responsive" src="img/home/team/team-4.jpg" alt="Image">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading"><a href="#">Amanda Stone</a></h4>
-                <h5>English Teacher</h5>
-                <p>They must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you.</p>
-                <ul class="list-inline">
-                  <li><a href="#" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-3"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-4"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                  <li><a href="#" class="bg-color-5"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>-->
+        </div>
+        <div class="tabCommon">
+          <ul class="nav nav-tabs">
+            {%if actual != 1%}
+            <li class=""><a href="{% url 'home:artistas' pag=1 %}" aria-expanded="true"><<</a></li>
+            <li class=""><a href="{% url 'home:artistas' pag=pag2 %}" aria-expanded="<"><</a></li>
+            {%else%}
+            <li class=""><a aria-expanded="<"><<</a></li>
+            <li class=""><a aria-expanded="<"><</a></li>
+            {%endif%}
+            {%if pag1 > 0 %}<li class=""><a href="{% url 'home:artistas' pag=pag1 %}" aria-expanded="false">{{pag1}}</a></li>{%endif%}
+            {%if pag2 > 0 %}<li class=""><a href="{% url 'home:artistas' pag=pag2 %}" aria-expanded="false">{{pag2}}</a></li>{%endif%}
+            <li class="active"><a aria-expanded="false">{{pag3}}</a></li>
+            {%if pag4 <= maximo_pag %}<li class=""><a href="{% url 'home:artistas' pag=pag4 %}" aria-expanded="false">{{pag4}}</a></li>{%endif%}
+            {%if pag5 <= maximo_pag %}<li class=""><a href="{% url 'home:artistas' pag=pag5 %}" aria-expanded="false">{{pag5}}</a></li>{%endif%}
+            {%if actual != maximo_pag%}
+            <li class=""><a href="{% url 'home:artistas' pag=pag4 %}" aria-expanded="true">></a></li>
+            <li class=""><a href="{% url 'home:artistas' pag=maximo_pag %}" aria-expanded="<">>></a></li>
+            {%else%}
+            <li class=""><a aria-expanded="true">></a></li>
+            <li class=""><a aria-expanded="<">>></a></li>
+            {%endif%}
+          </ul>
         </div>
         {%else%}
         <div class="row">
           <div class="col-xs-12">
             <div class="sectionTitle text-center">
               <h2>
-                <span class="shape shape-left bg-color-2"></span>
-                <span>Nadi Aqui por Ahora</span>
-                <span class="shape shape-right bg-color-2"></span>
+                <span class="shape shape-left bg-color-4"></span>
+                <span>Nada aqui por ahora</span>
+                <span class="shape shape-right bg-color-4"></span>
               </h2>
             </div>
           </div>

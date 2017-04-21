@@ -20,7 +20,7 @@
             </div>
           </div>
         </div>
-
+        {%if vacio == False%}
         <div class="row">
           {% for actividad in actividad %}
           <div class="col-sm-4 col-xs-12 block">
@@ -35,14 +35,49 @@
                 </ul>
                 <p>{{actividad.get_descripcion}}</p>
                 <ul class="list-inline btn-yellow">
-                  <li><a href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %} class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Leer mas</a></li>
+                  <li><a href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %} class="btn btn-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Leer más</a></li>
                 </ul>
               </div>
             </div>
           </div>
           {% endfor %}
           </div>
+          <div class="tabCommon">
+            <ul class="nav nav-tabs">
+              {%if actual != 1%}
+              <li class=""><a href="{% url 'home:actividad_user' username=request.user pag=1 %}" aria-expanded="true"><<</a></li>
+              <li class=""><a href="{% url 'home:actividad_user' username=request.user pag=pag2 %}" aria-expanded="<"><</a></li>
+              {%else%}
+              <li class=""><a aria-expanded="<"><<</a></li>
+              <li class=""><a aria-expanded="<"><</a></li>
+              {%endif%}
+              {%if pag1 > 0 %}<li class=""><a href="{% url 'home:actividad_user' username=request.user pag=pag1 %}" aria-expanded="false">{{pag1}}</a></li>{%endif%}
+              {%if pag2 > 0 %}<li class=""><a href="{% url 'home:actividad_user' username=request.user pag=pag2 %}" aria-expanded="false">{{pag2}}</a></li>{%endif%}
+              <li class="active"><a aria-expanded="false">{{pag3}}</a></li>
+              {%if pag4 <= maximo_pag %}<li class=""><a href="{% url 'home:actividad_user' username=request.user pag=pag4 %}" aria-expanded="false">{{pag4}}</a></li>{%endif%}
+              {%if pag5 <= maximo_pag %}<li class=""><a href="{% url 'home:actividad_user' username=request.user pag=pag5 %}" aria-expanded="false">{{pag5}}</a></li>{%endif%}
+              {%if actual != maximo_pag%}
+              <li class=""><a href="{% url 'home:actividad_user' username=request.user pag=pag4 %}" aria-expanded="true">></a></li>
+              <li class=""><a href="{% url 'home:actividad_user' username=request.user pag=maximo_pag %}" aria-expanded="<">>></a></li>
+              {%else%}
+              <li class=""><a aria-expanded="true">></a></li>
+              <li class=""><a aria-expanded="<">>></a></li>
+              {%endif%}
+            </ul>
+          </div>
+          {%else%}
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="sectionTitle text-center">
+                <h2>
+                  <span class="shape shape-left bg-color-4"></span>
+                  <span>No has publicado actividades</span>
+                  <span class="shape shape-right bg-color-4"></span>
+                </h2>
+              </div>
+            </div>
+          </div>
+          {%endif%}
         </div>
-      </div>
     </section>
     {% endblock %}

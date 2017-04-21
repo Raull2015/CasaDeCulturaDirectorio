@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Galeria
+  {% endblock %}
+
+    {% block main-section %}
+      <section class="mainContent full-width clearfix homeGallerySection">
+        <div class="container">
+          <div class="row isotopeContainer" id="container">
+            <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector nature">
+              <article class="">
+                <figure>
+                  <img src="{{MEDIA_URL}}{{actividad.imagen}}" alt="image" class="img-rounded">
+                  <div class="overlay-background">
+                    <div class="inner"></div>
+                  </div>
+                  <div class="overlay">
+                    <a class="fancybox-pop" rel="portfolio-1" href="{{MEDIA_URL}}{{actividad.imagen}}">
+                      <i class="fa fa-search-plus" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </figure>
+              </article>
+            </div>
+
+            {% for imagen in imagen %}
+              <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector">
+                <article class="">
+                  <figure>
+                    <img src="{{MEDIA_URL}}{{imagen.imagen}}" alt="image" class="img-rounded">
+                    <div class="overlay-background">
+                      <div class="inner"></div>
+                    </div>
+                    <div class="overlay">
+                      <a class="fancybox-pop" rel="portfolio-1" href="{{MEDIA_URL}}{{imagen.imagen}}">
+                        <i class="fa fa-search-plus" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </figure>
+                </article>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    {% endblock %}

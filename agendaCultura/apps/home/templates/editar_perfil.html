@@ -36,74 +36,106 @@
               {% csrf_token %}
               <div class="panel panel-default checkoutInfo">
                 <div class="panel-heading bg-color-3 border-color-3">
-                  <h3 class="panel-title">Tu Informacion</h3>
+                  <h3 class="panel-title">Su información</h3>
                 </div>
                 <div class="panel-body">
                   <div class="form-group">
                     <div class="col-xs-12">
-                      <label for="">Nombre Artistico</label>
+                      <label for="">Nombre artístico</label>
                       <input type="text" value="{{perfil.nombreArtista}}" class="form-control border-color-1" name="nombreArtista" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
-                      <label for="">Nombre Real (Opcional)</label>
+                      <label for="">Nombre real (opcional)</label>
                       <input type="text" value="{{perfil.nombreReal}}" class="form-control border-color-2" name="nombre">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
-                      <label for="">Genero</label><br>
+                      <label for="">Sexo</label><br>
                       <input type="radio" class="" id="id_genero" name="genero" value="True" {%if perfil.sexo == True%} checked {%endif%}> Hombre <br>
                       <input type="radio" class="" id="id_genero" name="genero" value="False" {%if perfil.sexo == False%} checked {%endif%}> Mujer <br>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
-                      <label for="">Fecha de Nacimiento</label>
+                      <label for="">Fecha de nacimiento</label>
                       <input type="date" max="2000-12-31" value="{{perfil.fechaNacimiento|date:"Y-m-d"}}" class="form-control border-color-4" name="nacimiento" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
-                      <label for="">Telefono</label>
+                      <label for="">Teléfono</label>
                       <input type="text" value="{{perfil.telefono}}" pattern="[0-9]+" class="form-control border-color-4" name="telefono" required>
                     </div>
                   </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      Telefono Publico </br>
+                      <input type="radio" class="" id="id_publico" name="publico" value="True" {%if perfil.publico_telefono == True%} checked {%endif%}> Si <br>
+                      <input type="radio" class="" id="id_publico" name="publico" value="False" {%if perfil.publico_telefono == False%} checked {%endif%}> No <br>
+                    </div>
+                  </div>
+                  <br/>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <label for="">Imagen de Perfil</label>
                       <input type="file" class="form-control border-color-6" id="imagen" name="imagen"><a href={{MEDIA_URL}}{{perfil.imagen}}>Imagen Actual</a>
                     </div>
                   </div>
-
+                  <br/>
                   <div class="form-group">
                     <div class="col-xs-12">
-                      <label for="">E-Mail</label>
+                      <label for="">Correo electrónico</label>
                       <input type="email" value="{{perfil.email}}" class="form-control" name="email" name="id_email" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
-                      <label for="">Descripcion</label>
-                      <textarea class="form-control border-color-5" rows="2" name="descripcion"> {{perfil.descripcion}}  </textarea>
+                      <label for="">Facebook</label>
+                      <input type="url" value="{{perfil.facebook}}" class="form-control" name="facebook" name="id_facebook" placeholder="Ej: http://www.facebook.com/casacultura">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
-                      <label for="">Categoria</label>
+                      <label for="">Twitter</label>
+                      <input type="url" value="{{perfil.twitter}}" class="form-control" name="twitter" name="id_twitter" placeholder="Ej: http://www.twitter.com/casacultura">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Youtube</label>
+                      <input type="url" value="{{perfil.youtube}}" class="form-control" name="youtube" name="id_youtube" placeholder="Ej: http://www.youtube.com/casacultura">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Web</label>
+                      <input type="url" value="{{perfil.otro}}" class="form-control" name="web" name="id_web" placeholder="Ej: http://www.google.com">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Descripcion</label>
+                      <textarea class="form-control border-color-5" rows="2" name="descripcion">{%if perfil.descripcion%}{{perfil.descripcion}}{%endif%}</textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Categoría</label>
                       <div class="bookingDrop">
                         <select name="categoria" id="id_categoria" class="select-drop">
-                          <option value="">Seleccione una categoria</option>
+                          <option value="">Seleccione una categoría</option>
                           <option value="Arquitectura" {%if perfil.get_categorias == 'Arquitectura'%} selected {%endif%}>Arquitectura</option>
                           <option value="Escultura" {%if perfil.get_categorias == 'Escultura'%} selected {%endif%}>Escultura</option>
                           <option value="Pintura" {%if perfil.get_categorias == 'Pintura'%} selected {%endif%}>Pintura</option>
                           <option value="Cine" {%if perfil.get_categorias == 'Cine'%} selected {%endif%}>Cine</option>
                           <option value="Teatro" {%if perfil.get_categorias == 'Teatro'%} selected {%endif%}>Teatro</option>
-                          <option value="Musica" {%if perfil.get_categorias == 'Musica'%} selected {%endif%}>Musica</option>
+                          <option value="Musica" {%if perfil.get_categorias == 'Musica'%} selected {%endif%}>Música</option>
                           <option value="Danza" {%if perfil.get_categorias == 'Danza'%} selected {%endif%}>Danza</option>
                           <option value="Literatura" {%if perfil.get_categorias == 'Literatura'%} selected {%endif%}>Literatura</option>
-                          <option value="Fotografia" {%if perfil.get_categorias == 'Fotografia'%} selected {%endif%}>Fotografia</option>
+                          <option value="Fotografia" {%if perfil.get_categorias == 'Fotografia'%} selected {%endif%}>Fotografía</option>
                           <option value="Pintura" {%if perfil.get_categorias == 'Pintura'%} selected {%endif%}>Pintura</option>
                         </select>
                       </div>
@@ -113,7 +145,7 @@
                   <div class="form-group">
                     <div class="col-xs-12">
                       <br>
-                      <a href="{% url 'home:cambiar_contrasenia' username=request.user.username %}" class="btn btn-primary" type="button">Cambiar Contraseña</a>
+                      <a href="{% url 'home:cambiar_contrasenia' username=request.user.username %}" class="btn btn-primary" type="button">Cambiar contraseña</a>
                     </div>
                   </div>
                 </div>

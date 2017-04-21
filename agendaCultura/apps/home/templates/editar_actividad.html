@@ -12,16 +12,18 @@
           <div class="col-sm-4 col-sm-push-8 col-xs-12">
           </div>
           <div class="col-sm-8  col-sm-pull-4 col-xs-12">
+            <div class="panel panel-default checkoutInfo">
+              <div class="panel-heading bg-color-3 border-color-3">
+                <h3 class="panel-title">Editar evento</h3>
+              </div>
+            </div>
             <form action='{% url 'home:anadir_imagen' username=actividad.perfil.all.get.user.username id=actividad.id %}' enctype="multipart/form-data" method="POST" role="form" id="anadirImg">
               {% csrf_token %}
               <div class="panel panel-default checkoutInfo">
-                <div class="panel-heading bg-color-3 border-color-3">
-                  <h3 class="panel-title">Editar evento</h3>
-                </div>
                 <div class="panel-body">
                   <div class="form-group">
                     <div class="col-xs-12">
-                      <label for="">Imagen</label>
+                      <label for="">Añadir una nueva imagen</label>
                       <input type="file" class="form-control border-color-6" id="imagen" name="imagen">
                     </div>
                   </div>
@@ -37,7 +39,31 @@
               </div>
             </form>
 
-            <form action='{% url 'home:anadir_colaborador' username=actividad.perfil.all.get.user.username id=actividad.id %}' enctype="multipart/form-data" method="POST" role="form" id="anadirCol">
+            {% for imagen in imagen %}
+            <form action='{% url 'home:modificar_imagen' username=actividad.perfil.all.get.user.username id=imagen.id %}' enctype="multipart/form-data" method="POST" role="form" id="anadirImg">
+              {% csrf_token %}
+              <div class="panel panel-default checkoutInfo">
+                <div class="panel-body">
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <label for="">Imagen</label>
+                      <input type="file" class="form-control border-color-6" id="imagen" name="imagen"><a href={{MEDIA_URL}}{{imagen.imagen}}>Imagen Actual</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="continueBtnArea">
+                <ul class="list-inline">
+                  <li class="pull-right"><input type="submit" value="Modificar" id="btnGuardar" class="btn btn-primary"></input></li>
+                </ul>
+              </div>
+              <div class="form-group formField" id="results_3">
+                <!--<p class="help-block"><a href="#">Usuario o Contraseña Incorrecto</a></p>-->
+              </div>
+            </form>
+            {% endfor %}
+
+            <!--<form action='{% url 'home:anadir_colaborador' username=actividad.perfil.all.get.user.username id=actividad.id %}' enctype="multipart/form-data" method="POST" role="form" id="anadirCol">
               {% csrf_token %}
               <div class="panel panel-default checkoutInfo">
                 <div class="panel-body">
@@ -45,8 +71,8 @@
                     <div class="col-xs-12">
                       <label for="">Colaboradores</label>
                       {% csrf_token %}
-                      <input type="text" autocomplete="off" class="form-control border-color-2" id="buscar">
-                      <div id="search-text"></div>
+                      <input type="text" autocomplete="off" class="form-control border-color-2" id="buscar" name="buscar" placeholder="Usuario" onkeyup="autocompletar()">
+                      <ul id="lista"></ul>
                     </div>
                   </div>
                 </div>
@@ -57,9 +83,9 @@
                 </ul>
               </div>
               <div class="form-group formField" id="results_3">
-                <!--<p class="help-block"><a href="#">Usuario o Contraseña Incorrecto</a></p>-->
+                <p class="help-block"><a href="#">Usuario o Contraseña Incorrecto</a></p>
               </div>
-            </form>
+            </form>-->
           </div>
         </div>
       </div>
@@ -68,6 +94,34 @@
 
   {% block script %}
   <script>
+  function autocompletar(){
+    var min_length = 0;
+    var nombre = $('#buscar').val();
+
+    if (nombre.length >= min_length) {
+      $.ajax({
+        type: 'POST',
+        url: '/buscar/artista/',
+        data: {
+          'search_text':nombre,
+        },
+        success: function(data){
+          $('#lista').show();
+          $('#lista').html(data);
+        }
+      });
+    }
+    else {
+      $('#lista').hide();
+    }
+  }
+
+  function set_item(item){
+    $('#buscar').val(item);
+
+    $('#lista').hide();
+  }
+
   $(function(){
     $('#buscar').keyup(function(){
       $.ajax({
@@ -78,6 +132,7 @@
           'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
         },
         success: function(data, textStatus, jqXHR) {
+          //$('#search-text').val(perfil.nombreArtista);
           $('#search-text').html(data);
         },
         dataType: 'html'

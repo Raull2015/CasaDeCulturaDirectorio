@@ -60,6 +60,7 @@ class Perfil(models.Model):
     sexo = models.SmallIntegerField(default=0)
     fechaNacimiento = models.DateField('Fecha de nacimiento')
     telefono = models.CharField(max_length=16)
+    publico_telefono = models.SmallIntegerField(default=0)
     email= models.EmailField('Correo')
     descripcion = models.CharField(max_length=200, null = True)
     fechaRegistro = models.DateField('Fecha de registro', auto_now_add=True)
@@ -69,6 +70,11 @@ class Perfil(models.Model):
 
     rol = models.ForeignKey(Rol)
     user =  models.OneToOneField(User, on_delete=models.CASCADE)
+
+    facebook = models.CharField(max_length=500, null=True)
+    twitter = models.CharField(max_length=500, null=True)
+    youtube = models.CharField(max_length=500, null=True)
+    otro = models.CharField(max_length=500, null=True)
 
     objects = models.Manager()
     public = PerfilManager()
@@ -110,7 +116,7 @@ class Actividad(models.Model):
     descripcion = models.TextField(max_length=800, null=True)
     imagen = models.ImageField(upload_to='imgActividad/', default='imgActividad/default.jpg')  #Temporal
     #imagenes = models.OneToManyField(Imagenes)                                                #Real
-    fechaPublicacion = models.DateField('Fecha de publicacion', null=True)
+    fechaPublicacion = models.DateField('Fecha de publicacion', auto_now_add=True)
     puntuacion = models.IntegerField(default=0)
     visitas = models.IntegerField(default=0)
     autorizado = models.SmallIntegerField(default=0)
@@ -218,8 +224,33 @@ class Imagenes(models.Model):
         verbose_name = 'imagen'
         verbose_name_plural = 'imagenes'
 
+
 class ImagenesHome(models.Model):
     logo = models.ImageField(upload_to='imgHome/', default='imgHome/default.jpg')
     homeU = models.ImageField(upload_to='imgHome/', default='imgHome/homeU.jpg')
     homeD = models.ImageField(upload_to='imgHome/', default='imgHome/homeD.jpg')
     homeT = models.ImageField(upload_to='imgHome/', default='imgHome/homeT.jpg')
+
+    class Meta:
+        verbose_name = 'Imagenhome'
+        verbose_name_plural = 'Imageneshome'
+
+class Publicidad(models.Model):
+    imagen = models.ImageField(upload_to='imgPublicidad/', default='imgPublicidad/default.jpg')
+    empresa = models.CharField(max_length=500)
+    telefono = models.CharField(max_length=16)
+    direccion = models.CharField(max_length=500)
+    visible = models.SmallIntegerField(default=0)
+    web = models.CharField(max_length=500)
+
+    objects = models.Manager()
+
+    def __unicode__(self):
+        return self.empresa
+
+    def __str__(self):
+        return self.empresa
+
+    class Meta:
+        verbose_name = 'Publicidad'
+        verbose_name_plural = 'Publicidad'

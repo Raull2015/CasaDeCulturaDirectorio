@@ -12,37 +12,42 @@
           <div class="col-md-9 col-sm-8 col-xs-12 block pull-right">
             <div class="thumbnail thumbnailContent">
               <img src= "{{MEDIA_URL}}{{actividad.imagen}}" alt="image" class="img-responsive">
+              <div class="btnArea">
+                <a href={% url 'home:galeria' id=actividad.id %} class="btn btn-primary">Ver galería</a>
+              </div>
               <div class="sticker-round bg-color-1">{{actividad.get_dia}}<br>{{actividad.get_mes}}<br>{{actividad.get_anio}}</div>
               <div class="caption border-color-1 singleBlog">
                 <h3 class="color-1">{{actividad.nombre}}</h3>
                 <ul class="list-inline blogInfo">
-                  <li><i class="fa fa-user" aria-hidden="true"></i>{{actividad.perfil.all.get.nombreArtista}}</li>
+                  <li><a href={% url 'home:perfil' username=actividad.perfil.all.get.user.username %} ><i class="fa fa-user" aria-hidden="true"></i>{{actividad.perfil.all.get.nombreArtista}}</a></li>
                   <li><i class="fa fa-comments-o" aria-hidden="true"></i>{{actividad.get_numero_comentarios}} Comentarios </li>
                 </ul>
                 {{actividad.descripcion}}
-                <ul class="list-inline socailLink">
+                <!--<ul class="list-inline socailLink">
                   <li><a href="#" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                   <li><a href="#" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                   <li><a href="#" class="bg-color-3"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                   <li><a href="#" class="bg-color-4"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
                   <li><a href="#" class="bg-color-5"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
-                </ul>
+                </ul>-->
               </div>
             </div>
 
-
+            {% if es_propietario == True %}
             <div class="btnArea">
               <a href={% url 'home:anadir_imagen' username=actividad.perfil.all.get.user.username id=actividad.id %} class="btn btn-primary">Editar Actividad</a>
             </div>
+            {% endif %}
 
             {%if autorizado == False %}
-            <ul class="list-inline btn-yellow btnPart">
+            <ul class="list-inline btn-red btnPart">
               <li><a href="{% url 'autorizar_evento' id=actividad.id %}" class="btn btn-primary ">Autorizar</a></li>
               <li><a href="{% url 'rechazar_evento' id=actividad.id %}" class="btn btn-primary " >Denegar</a></li>
             </ul>
             {%endif%}
 
-
+            {%if autorizado == False %}
+            {%else%}
             <div class="blogComments">
               <h3>{{actividad.get_numero_comentarios}} Comentarios</h3>
               <ul class="media-list commentsList">
@@ -59,7 +64,7 @@
               </ul>
             </div>
             <div class="blogComments">
-              <h3>Dinos que opinas</h3>
+              <h3>Denos su opinión</h3>
               <div class="homeContactContent">
                 <form action={% url 'home:comentar' id=actividad.id %} method="POST" role="form">
                   <div class="row">
@@ -84,6 +89,7 @@
                 </form>
               </div>
             </div>
+            {%endif%}
           </div>
           <div class="col-md-3 col-sm-4 col-xs-12 pull-left">
             <aside>
@@ -103,12 +109,12 @@
               </div>
               <div class="panel panel-default courseSidebar">
                 <div class="panel-heading bg-color-2 border-color-2">
-                  <h3 class="panel-title">Categorias</h3>
+                  <h3 class="panel-title">Categorías</h3>
                 </div>
                 <div class="panel-body">
                   <ul class="list-unstyled categoryItem">
                     {% for categoria in categoria %}
-                    <li><a href="category.html">{{categoria.categoria}}</a></li>
+                    <li><a href="{% url 'home:categoria' id=categoria.id %}">{{categoria.categoria}}</a></li>
                     {% endfor %}
                   </ul>
                 </div>
