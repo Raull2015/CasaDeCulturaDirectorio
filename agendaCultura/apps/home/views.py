@@ -42,7 +42,7 @@ def perfil_list(request, pag='1'):
     limit = 10
     vacio = False
     pag = int(pag)
-    maximo_pag = Actividad.public.all().count()/limit
+    maximo_pag = Perfil.public.all().count()/limit
     if Perfil.public.all().count() > (limit*maximo_pag) :
         maximo_pag = maximo_pag + 1
 
@@ -589,10 +589,8 @@ def actividad_detail(request, username='', id=''):
         if request.user.perfil.rol.is_admin() != True:
             return  HttpResponseRedirect(reverse('error'))
 
-    perfil = request.user.perfil
     is_owner = False
-
-    if actividad.perfil.get() == perfil:
+    if actividad.perfil.get().user == request.user:
         is_owner = True
 
     conteo = request.session.get('conteo' + id, False)
@@ -869,33 +867,42 @@ def categoria_editar(request, id=''):
 
     return render(request, 'crear_categoria.html', infoHome(request,context))
 
-def buscar_artista(request):
+def buscar_artista(request, pag='1'):
     if request.method == 'POST':
         search_text = request.POST['buscar']
+    elif request.method == 'GET':
+        search_text = request.GET.get('search', '')
 
     limit = 10
-    aumento = 10
-    total = False
+    vacio = False
+    pag = int(pag)
+    maximo_pag = Perfil.public.filter(nombreArtista__startswith= search_text).count()/limit
+    if Perfil.public.filter(nombreArtista__startswith= search_text).count() > (limit*maximo_pag) :
+        maximo_pag = maximo_pag + 1
 
-    perfil = Perfil.public.filter(nombreArtista__startswith= search_text)[:limit]
-    perfil = Perfil.public.filter(nombreReal__startswith= search_text)[:limit]
+    if maximo_pag == 0:
+        vacio = True
+    elif pag > maximo_pag:
+        return HttpResponseRedirect(reverse('error'))
 
-    if request.GET:
-        limit=request.GET['limit']
-        limit = int(limit)
-
-
-    if len(perfil) != limit:
-        total = True
+    perfil = Perfil.public.filter(nombreArtista__startswith= search_text)[(limit*(pag-1)):(limit*pag)]
+    #perfil = Perfil.public.filter(nombreReal__startswith= search_text)[:limit]
 
     context = {
         'perfiles': perfil,
-        'limit' : limit + aumento,
-        'total' : total,
+        'actual': int(pag),
+        'busqueda' : search_text,
+        'maximo_pag' : maximo_pag,
+        'pag1': (pag-2),
+        'pag2': (pag-1),
+        'pag3': (pag),
+        'pag4': (pag+1),
+        'pag5': (pag+2),
+        'vacio' : vacio,
         'autorizar' : False
     }
 
-    return render(request, 'resultados_busqueda.html', context)
+    return render(request, 'resultados_busqueda.html', infoHome(request, context))
 
 @login_required
 def imagenes_home(request):
@@ -957,7 +964,7 @@ def publicidad_list(request):
         total = True
 
     context = {
-        "publicidad" : publicidad,
+        'publicidad' : publicidad,
         'limit' : limit + aumento,
         'total' : total
         }

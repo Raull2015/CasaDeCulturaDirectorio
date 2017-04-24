@@ -346,7 +346,7 @@
                 <a href={% url 'home:detalle_evento' username=evento.perfil.all.get.user.username id=evento.id %}><img src="{{MEDIA_URL}}{{evento.imagen}}" alt="image" class="img-responsive"></a>
                 <div class="sticker-round bg-color-1">{{evento.get_dia}}<br>{{evento.get_mes}}<br>{{evento.get_anio}}</div>
                 <div class="caption border-color-1">
-                  <h3><a class="color-1">{{evento.nombre}}.</a></h3>
+                  <h3><a href={% url 'home:detalle_evento' username=evento.perfil.all.get.user.username id=evento.id %} class="color-1">{{evento.nombre}}</a></h3>
                   <ul class="list-inline">
                     <li><a href={% url 'home:perfil' username=evento.perfil.all.get.user.username %} ><i class="fa fa-user" aria-hidden="true"></i>{{evento.perfil.all.get.nombreArtista}}</a></li>
                     <li><a ><i class="fa fa-comments-o" aria-hidden="true"></i>{{evento.get_numero_comentarios}} Comentarios</a></li>
