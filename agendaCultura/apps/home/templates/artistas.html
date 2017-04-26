@@ -19,7 +19,40 @@
             </div>
           </div>
         </div>
+
+        <div class="tabCommon">
+          <ul class="nav nav-tabs">
+            <li {%if busqueda == "A" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=A" aria-expanded="true">A</a></li>
+            <li {%if busqueda == "B"%}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=B" aria-expanded="true">B</a></li>
+            <li {%if busqueda == "C" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=C" aria-expanded="true">C</a></li>
+            <li {%if busqueda == "D" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=D" aria-expanded="true">D</a></li>
+            <li {%if busqueda == "E" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=E" aria-expanded="true">E</a></li>
+            <li {%if busqueda == "F" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=F" aria-expanded="true">F</a></li>
+            <li {%if busqueda == "G" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=G" aria-expanded="true">G</a></li>
+            <li {%if busqueda == "H" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=H" aria-expanded="true">H</a></li>
+            <li {%if busqueda == "I" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=I" aria-expanded="true">I</a></li>
+            <li {%if busqueda == "J" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=J" aria-expanded="true">J</a></li>
+            <li {%if busqueda == "K" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=K" aria-expanded="true">K</a></li>
+            <li {%if busqueda == "L" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=L" aria-expanded="true">L</a></li>
+            <li {%if busqueda == "M" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=M" aria-expanded="true">M</a></li>
+            <li {%if busqueda == "N" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=N" aria-expanded="true">N</a></li>
+            <li {%if busqueda == "O" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=O" aria-expanded="true">O</a></li>
+            <li {%if busqueda == "P" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=P" aria-expanded="true">P</a></li>
+            <li {%if busqueda == "Q" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=Q" aria-expanded="true">Q</a></li>
+            <li {%if busqueda == "R" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=R" aria-expanded="true">R</a></li>
+            <li {%if busqueda == "S" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=S" aria-expanded="true">S</a></li>
+            <li {%if busqueda == "T" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=T" aria-expanded="true">T</a></li>
+            <li {%if busqueda == "U" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=U" aria-expanded="true">U</a></li>
+            <li {%if busqueda == "V" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=V" aria-expanded="true">V</a></li>
+            <li {%if busqueda == "W" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=W" aria-expanded="true">W</a></li>
+            <li {%if busqueda == "X" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=X" aria-expanded="true">X</a></li>
+            <li {%if busqueda == "Y" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=Y" aria-expanded="true">Y</a></li>
+            <li {%if busqueda == "Z" %}class="active"{%else%}class=""{%endif%}><a href="{% url 'home:buscar_artista' pag=1 %}?search=Z" aria-expanded="true">Z</a></li>
+          </ul>
+        </div>
+
         <form action={% url 'home:buscar_artista' %} enctype="multipart/form-data" method="POST" role="form">
+            </br>
           <div class="input-group searchArea">
             <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
             {% csrf_token %}
@@ -62,20 +95,20 @@
         <div class="tabCommon">
           <ul class="nav nav-tabs">
             {%if actual != 1%}
-            <li class=""><a href="{% url 'home:artistas' pag=1 %}" aria-expanded="true"><<</a></li>
-            <li class=""><a href="{% url 'home:artistas' pag=pag2 %}" aria-expanded="<"><</a></li>
+            <li class=""><a href="{% url 'home:eventos' pag=1 %}" aria-expanded="true"><<</a></li>
+            <li class=""><a href="{% url 'home:eventos' pag=pag2 %}" aria-expanded="<"><</a></li>
             {%else%}
             <li class=""><a aria-expanded="<"><<</a></li>
             <li class=""><a aria-expanded="<"><</a></li>
             {%endif%}
-            {%if pag1 > 0 %}<li class=""><a href="{% url 'home:artistas' pag=pag1 %}" aria-expanded="false">{{pag1}}</a></li>{%endif%}
-            {%if pag2 > 0 %}<li class=""><a href="{% url 'home:artistas' pag=pag2 %}" aria-expanded="false">{{pag2}}</a></li>{%endif%}
+            {%if pag1 > 0 %}<li class=""><a href="{% url 'home:eventos' pag=pag1 %}" aria-expanded="false">{{pag1}}</a></li>{%endif%}
+            {%if pag2 > 0 %}<li class=""><a href="{% url 'home:eventos' pag=pag2 %}" aria-expanded="false">{{pag2}}</a></li>{%endif%}
             <li class="active"><a aria-expanded="false">{{pag3}}</a></li>
-            {%if pag4 <= maximo_pag %}<li class=""><a href="{% url 'home:artistas' pag=pag4 %}" aria-expanded="false">{{pag4}}</a></li>{%endif%}
-            {%if pag5 <= maximo_pag %}<li class=""><a href="{% url 'home:artistas' pag=pag5 %}" aria-expanded="false">{{pag5}}</a></li>{%endif%}
+            {%if pag4 <= maximo_pag %}<li class=""><a href="{% url 'home:eventos' pag=pag4 %}" aria-expanded="false">{{pag4}}</a></li>{%endif%}
+            {%if pag5 <= maximo_pag %}<li class=""><a href="{% url 'home:eventos' pag=pag5 %}" aria-expanded="false">{{pag5}}</a></li>{%endif%}
             {%if actual != maximo_pag%}
-            <li class=""><a href="{% url 'home:artistas' pag=pag4 %}" aria-expanded="true">></a></li>
-            <li class=""><a href="{% url 'home:artistas' pag=maximo_pag %}" aria-expanded="<">>></a></li>
+            <li class=""><a href="{% url 'home:eventos' pag=pag4 %}" aria-expanded="true">></a></li>
+            <li class=""><a href="{% url 'home:eventos' pag=maximo_pag %}" aria-expanded="<">>></a></li>
             {%else%}
             <li class=""><a aria-expanded="true">></a></li>
             <li class=""><a aria-expanded="<">>></a></li>
