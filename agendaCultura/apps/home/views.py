@@ -25,6 +25,7 @@ def home(request):
 
     artistas = Perfil.public.all().order_by('visitas')[:4]
     eventos = Actividad.public.all().order_by('-fechaRealizacion')[:3]
+
     capsula = None
     try:
         capsula = Capsulas.objects.all().filter(fechaPublicacion__range=('2016-01-01',date.today())).order_by('-fechaPublicacion')[0]
@@ -420,7 +421,7 @@ def anadir_colaborador(request, id=''):
     'actividad' : act
     }
 
-    return render(request, 'editar_actividad.html', context)
+    return render(request, 'editar_actividad.html', infoHome(request, context))
 
 @login_required
 def anadir_imagen(request, username='', id=''):
@@ -445,7 +446,7 @@ def anadir_imagen(request, username='', id=''):
         'imagen' : imagenes,
     }
 
-    return render(request, 'editar_actividad.html', context)
+    return render(request, 'editar_actividad.html', infoHome(request, context))
 
 @login_required
 def modificar_imagen(request, username='', id=''):
@@ -895,7 +896,7 @@ def buscar_artista(request):
         'autorizar' : False
     }
 
-    return render(request, 'resultados_busqueda.html', context)
+    return render(request, 'resultados_busqueda.html', infoHome(request, context))
 
 @login_required
 def imagenes_home(request):
@@ -1006,4 +1007,4 @@ def galeria(request, id=''):
         'imagen': imagen,
     }
 
-    return render(request, 'galeria.html', context)
+    return render(request, 'galeria.html', infoHome(request, context))
