@@ -169,18 +169,7 @@
                           <img src= "{{MEDIA_URL}}{{artista.imagen}}" alt="img" class="img-circle">
                           <div class="maskingContent">
                             <ul class="list-inline">
-                              {%if artista.facebook%}
-                              <li><a href="{{artista.facebook}}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                              {%endif%}
-                              {%if artista.twitter%}
-                              <li><a href="{{artista.twitter}}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                              {%endif%}
-                              {%if artista.youtube%}
-                              <li><a href="{{artista.youtube}}"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                              {%endif%}
-                              {%if artista.otro%}
-                              <li><a href="{{artista.otro}}"><i class="fa fa-world" aria-hidden="true"></i></a></li>
-                              {%endif%}
+                              <li><a href={% url 'home:perfil' username=artista.user.username %}>detalles</a></li>
                             </ul>
                           </div>
                         </div>
