@@ -40,8 +40,15 @@
                   </figure>
                 </article>
               </div>
-            {% endfor %}
+            {% endfor %}          
           </div>
+
+          {% if es_propietario == True %}
+          <div class="btnArea">
+            <a href={% url 'home:anadir_imagen' username=actividad.perfil.all.get.user.username id=actividad.id %} class="btn btn-primary">Editar Imagenes</a>
+          </div>
+          {% endif %}
+
         </div>
       </section>
     {% endblock %}

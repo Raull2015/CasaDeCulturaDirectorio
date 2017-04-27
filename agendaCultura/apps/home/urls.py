@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'(?P<username>[-\w]+)/imagen/(?P<id>[\d]+)/editar/$', modificar_imagen, name='modificar_imagen'),
     url(r'(?P<username>[-\w]+)/evento/(?P<id>[\d]+)/editar/$', anadir_imagen, name='anadir_imagen'),
+    url(r'(?P<username>[-\w]+)/imagen/(?P<id>[\d]+)/eliminar/$', eliminar_imagen, name='eliminar_imagen'),
     url(r'(?P<id>[\d]+)/comentar/$', comentarios, name='comentar'),
     url(r'confirmar_registro/$', confirmar_registro, name='confirmar_registro'),
     url(r'ayuda/$', ayuda, name='ayuda'),

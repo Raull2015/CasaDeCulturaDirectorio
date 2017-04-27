@@ -461,7 +461,19 @@ def modificar_imagen(request, username='', id=''):
             imagen.save()
             reescalar_imagen(imagen.imagen.path,imagen.imagen.path)
 
-        return HttpResponseRedirect(reverse('home:anadir_imagen', kwargs={'username' : username,'id' : imagen.actividad.id,}))
+        return mensaje(request, 'Imagen modificada', reverse('home:anadir_imagen', kwargs={'username' : username,'id' : imagen.actividad.id,}))
+
+@login_required
+def eliminar_imagen(request, username='', id=''):
+    user = get_object_or_404(User, username=username)
+
+    if request.user != user:
+        return HttpResponseRedirect(reverse('error'))
+
+    imagen = get_object_or_404(Imagenes, id=int(id))
+    imagen.delete()
+
+    return mensaje(request, 'Imagen eliminada', reverse('home:anadir_imagen', kwargs={'username' : username,'id' : imagen.actividad.id,}))
 
 @login_required
 def capsula_create(request):
@@ -1009,9 +1021,14 @@ def galeria(request, id=''):
     actividad = get_object_or_404(Actividad, id=int(id))
     imagen = Imagenes.objects.filter(actividad=actividad.id)
 
+    is_owner = False
+    if actividad.perfil.get().user == request.user:
+        is_owner = True
+
     context = {
         'actividad': actividad,
         'imagen': imagen,
+        'es_propietario': is_owner,
     }
 
     return render(request, 'galeria.html', infoHome(request, context))
