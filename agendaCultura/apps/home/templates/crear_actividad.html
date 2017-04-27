@@ -69,15 +69,9 @@
                       <div class="bookingDrop">
                         <select onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();"name="categoria" id="categoria" class="select-drop"required>
                           <option value="">Seleccione una categoría</option>
-                          <option value="Arquitectura">Arquitectura</option>
-                          <option value="Escultura">Escultura</option>
-                          <option value="Pintura">Pintura</option>
-                          <option value="Cine">Cine</option>
-                          <option value="Teatro">Teatro</option>
-                          <option value="Musica">Música</option>
-                          <option value="Danza">Danza</option>
-                          <option value="Literatura">Literatura</option>
-                          <option value="Fotografia">Fotografía</option>
+                          {%for H_categoria in H_categorias%}
+                          <option value="{{H_categoria.categoria}}" >{{H_categoria.categoria}}</option>
+                          {% endfor%}
                         </select>
                       </div>
                     </div>
