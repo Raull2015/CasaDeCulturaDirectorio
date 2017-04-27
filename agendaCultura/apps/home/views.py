@@ -235,7 +235,7 @@ def perfil_create_p1(request):
         youtube = request.POST['youtube']
         web = request.POST['web']
         genero = request.POST['sexo']
-        categoria = request.POST['categoria']
+        #categoria = request.POST['categoria']
         if genero == 'True':
             genero = True
         else:
@@ -257,7 +257,7 @@ def perfil_create_p1(request):
                 perfil = Perfil(nombreArtista = nombre, nombreReal = nombre, email=email, telefono=telefono,fechaNacimiento= nacimiento,sexo=genero,
                                 publico_telefono=publico,facebook=facebook,twitter=twitter,youtube=youtube,otro=web)
                 perfil.rol = get_object_or_404(Rol, nombreRol='Artista')
-                perfil.categoria = Categoria.objects.filter(categoria=categoria)
+                #perfil.categoria = Categoria.objects.filter(categoria=categoria)
                 nuevo_usuario = User.objects.create_user(username=username, email='xela@casacult.com', password=password)
                 perfil.user = nuevo_usuario
                 perfil.save()
