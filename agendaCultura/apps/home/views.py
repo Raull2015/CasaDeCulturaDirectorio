@@ -446,7 +446,7 @@ def anadir_imagen(request, username='', id=''):
         'imagen' : imagenes,
     }
 
-    return render(request, 'editar_actividad.html', infoHome(request, context))
+    return mensaje(request, 'Imagen agregada', reverse('home:galeria', kwargs={'id' : imagen.actividad.id,}))
 
 @login_required
 def modificar_imagen(request, username='', id=''):
@@ -461,7 +461,7 @@ def modificar_imagen(request, username='', id=''):
             imagen.save()
             reescalar_imagen(imagen.imagen.path,imagen.imagen.path)
 
-        return mensaje(request, 'Imagen modificada', reverse('home:anadir_imagen', kwargs={'username' : username,'id' : imagen.actividad.id,}))
+        return mensaje(request, 'Imagen modificada', reverse('home:galeria', kwargs={'id' : imagen.actividad.id,}))
 
 @login_required
 def eliminar_imagen(request, username='', id=''):
@@ -473,7 +473,7 @@ def eliminar_imagen(request, username='', id=''):
     imagen = get_object_or_404(Imagenes, id=int(id))
     imagen.delete()
 
-    return mensaje(request, 'Imagen eliminada', reverse('home:anadir_imagen', kwargs={'username' : username,'id' : imagen.actividad.id,}))
+    return mensaje(request, 'Imagen eliminada', reverse('home:galeria', kwargs={'id' : imagen.actividad.id,}))
 
 @login_required
 def capsula_create(request):

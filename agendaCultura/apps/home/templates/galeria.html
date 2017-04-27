@@ -6,8 +6,34 @@
 
     {% block main-section %}
       <section class="mainContent full-width clearfix homeGallerySection">
+
         <div class="container">
           <div class="row isotopeContainer" id="container">
+            {% if es_propietario == True %}
+            <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector">
+              <article class="">
+                <form action='{% url 'home:anadir_imagen' username=actividad.perfil.all.get.user.username id=actividad.id %}' enctype="multipart/form-data" method="POST" role="form" id="anadirImg">
+                  {% csrf_token %}
+                  <div class="panel panel-default checkoutInfo">
+                    <div class="panel-body">
+                      <div class="form-group">
+                        <div class="col-xs-12">
+                          <label for="">Añadir una nueva imagen</label>
+                          <input type="file" class="form-control border-color-6" id="imagen" name="imagen" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="continueBtnArea">
+                    <ul class="list-inline">
+                      <li class="pull-right"><input type="submit" value="Añadir" id="btnGuardar" class="btn btn-primary"></input></li>
+                    </ul>
+                  </div>
+                </form>
+              </article>
+            </div>
+            {% endif %}
+
             <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector nature">
               <article class="">
                 <figure>
@@ -21,6 +47,13 @@
                     </a>
                   </div>
                 </figure>
+                {% if es_propietario == True %}
+                <div class="continueBtnArea" id="oculto">
+                  <ul class="list-inline">
+                    <li class="pull-right"><a class="btn btn-primary"></a></li>
+                  </ul>
+                </div>
+                {% endif %}
               </article>
             </div>
 
@@ -38,17 +71,17 @@
                       </a>
                     </div>
                   </figure>
+                  {% if es_propietario == True %}
+                  <div class="continueBtnArea">
+                    <ul class="list-inline">
+                      <li class="pull-right"><a href="{% url 'home:eliminar_imagen' username=actividad.perfil.all.get.user.username id=imagen.id %}" class="btn btn-primary">Eliminar</a></li>
+                    </ul>
+                  </div>
+                  {% endif %}
                 </article>
               </div>
-            {% endfor %}          
+            {% endfor %}
           </div>
-
-          {% if es_propietario == True %}
-          <div class="btnArea">
-            <a href={% url 'home:anadir_imagen' username=actividad.perfil.all.get.user.username id=actividad.id %} class="btn btn-primary">Editar Imagenes</a>
-          </div>
-          {% endif %}
-
         </div>
       </section>
     {% endblock %}
