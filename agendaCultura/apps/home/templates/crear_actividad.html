@@ -69,8 +69,8 @@
                       <div class="bookingDrop">
                         <select onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();"name="categoria" id="categoria" class="select-drop"required>
                           <option value="">Seleccione una categoría</option>
-                          {%for H_categoria in H_categorias%}
-                          <option value="{{H_categoria.categoria}}" >{{H_categoria.categoria}}</option>
+                          {%for categoria in categorias%}
+                          <option value="{{categoria.categoria}}" >{{categoria.categoria}}</option>
                           {% endfor%}
                         </select>
                       </div>

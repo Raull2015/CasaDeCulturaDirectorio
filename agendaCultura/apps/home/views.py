@@ -367,6 +367,12 @@ def perfil_edit(request, username=''):
 @login_required
 def actividad_create(request,username=''):
     user = get_object_or_404(User, username=username)
+    categoria = Categoria.objects.all()
+
+    context = {
+        "categorias" : categoria,
+
+    }
 
     if request.user != user or request.user.perfil.autorizado == False:
         if request.user.perfil.rol.is_admin() != True:
@@ -398,7 +404,7 @@ def actividad_create(request,username=''):
         return HttpResponseRedirect(reverse('home:confirmar_actividad'))
 
 
-    return render(request, 'crear_actividad.html', infoHome(request,{}))
+    return render(request, 'crear_actividad.html', infoHome(request,context))
 
 @login_required
 def anadir_colaborador(request, id=''):
