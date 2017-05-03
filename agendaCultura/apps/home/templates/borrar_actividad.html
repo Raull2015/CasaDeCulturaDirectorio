@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    Borrar actividad
+  {% endblock %}
+
+  {% block main-section %}
+  <section class="mainContent full-width clearfix">
+    <div class="container">
+      <!--
+      <div class="row progress-wizard" style="border-bottom:0;">
+
+        <div class="col-sm-4 col-xs-12 progress-wizard-step complete">
+          <div class="progress"><div class="progress-bar"></div></div>
+          <a href="checkout-step-1.html" class="progress-wizard-dot">
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </a>
+          <div class="progressInfo">1. Informacion del evento</div>
+        </div>
+
+        <div class="col-sm-4 col-xs-12 progress-wizard-step active">
+          <div class="progress"><div class="progress-bar"></div></div>
+          <a href="checkout-step-3.html" class="progress-wizard-dot">
+            <i class="fa fa-check" aria-hidden="true"></i>
+          </a>
+          <div class="progressInfo">3. Confirmacion</div>
+        </div>
+      </div>
+    -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="row">
+          <div class="col-xs-12">
+            <div class="sectionTitle text-center">
+              <h2>
+                <span>¿Desea eliminar el siguiente evento?</span>
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+        <div class="col-sm-4 col-xs-12 block">
+        </div>
+          <div class="col-sm-4 col-xs-12 block">
+            <div class="thumbnail thumbnailContent">
+              <a ><img src= "{{MEDIA_URL}}{{actividad.imagen}}" alt="image" class="img-responsive"></a>
+              <div class="sticker-round bg-color-1">{{actividad.get_dia}}<br>{{actividad.get_mes}}<br>{{actividad.get_anio}}</div>
+              <div class="caption border-color-1">
+                <h3><a class="color-1">{{actividad.nombre}}</a></h3>
+                <ul class="list-inline">
+                  <li><a ><i class="fa fa-user" aria-hidden="true"></i>{{actividad.perfil.all.get.nombreArtista}}</a></li>
+                  <li><i class="fa fa-comments-o" aria-hidden="true"></i>{{actividad.get_numero_comentarios}} </li>
+                </ul>
+                <p>{{actividad.get_descripcion}}</p>
+              </div>
+            </div>
+          </div>
+          </div>
+
+
+          <div class="formBtnArea text-center">
+          <a href={% url 'home:actividad_delete_p2' username=actividad.perfil.all.get.user.username id=actividad.id %} class="btn btn-primary"> Si</a>
+          <a href={% url 'home:detalle_evento' username=actividad.perfil.all.get.user.username id=actividad.id %} class="btn btn-primary"> No</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}

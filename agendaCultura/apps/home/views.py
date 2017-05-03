@@ -694,15 +694,64 @@ def artista_reject(request, id=''):
     return  mensaje(request, 'Artista rechazado', reverse('artista_pendiente'))
 
 @login_required
-def actividad_delete(request):
-    id = request.POST.get('id')
-    print id
-    actividad = Actividad.objects.get(pk=id)
+def actividad_delete_p1(request, username='', id=''):
+    user = get_object_or_404(User, username=username)
+    
+    if request.user != user:
+        return HttpResponseRedirect(reverse('error'))
+
+    actividad = Actividad.objects.get(id=int(id))
+    actividades = Actividad.public.all()[:5]
+    categoria = actividad.categoria.all()
+    comentario = Comentarios.objects.filter(actividad=actividad)
+
+    if actividad.perfil.get().user.username != username:
+        return HttpResponseRedirect(reverse('error'))
+
+    if actividad.autorizado == False:
+        if request.user.is_authenticated == False:
+            return  HttpResponseRedirect(reverse('error'))
+        if request.user.perfil.rol.is_admin() != True:
+            return  HttpResponseRedirect(reverse('error'))
+
+    is_owner = False
+    if actividad.perfil.get().user == request.user:
+        is_owner = True
+
+    conteo = request.session.get('conteo' + id, False)
+    if conteo == False and actividad.autorizado == True:
+        visita = VisitasActividad(actividad = actividad)
+        visita.save()
+        actividad.visitas = actividad.visitas + 1
+        actividad.save()
+        request.session['conteo' + id] = True
+        print False
+
+    context = {
+        'actividad': actividad,
+        'actividades': actividades,
+        'categoria': categoria,
+        'comentario' : comentario,
+        'es_propietario': is_owner,
+        'autorizado' : actividad.autorizado,
+    }
+    #actividad.delete()
+
+    
+
+    return render(request, "borrar_actividad.html", context)
+
+def actividad_delete_p2(request, username="",id=""):
+    user = get_object_or_404(User, username=username)
+
+    if request.user != user:
+        return HttpResponseRedirect(reverse('error'))
+
+    actividad = get_object_or_404(Actividad, id=int(id))
     actividad.delete()
 
-    response = {}
+    return actividad_user(request,username,1)
 
-    return JsonResponse(response)
 
 def search_artista(request):
     if request.method == 'POST':

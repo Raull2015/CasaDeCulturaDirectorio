@@ -137,6 +137,9 @@
                     </ul>
                   </div>
                 </div>
+                {% if es_propietario == True %}
+                <a href={% url 'home:actividad_delete_p1' username=actividad.perfil.all.get.user.username id=actividad.id %} id="" class="" style="margin: 3px 0;text-decoration: underline !important; float: left; clear: left;">Eliminar evento</a>
+                {% endif%}
               </div>
             </aside>
           </div>
