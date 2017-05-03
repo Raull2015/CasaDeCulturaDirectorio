@@ -175,7 +175,9 @@
                         </div>
                         <div class="teamInfo">
                           <h3><a href={% url 'home:perfil' username=artista.user.username %}>{{artista.nombreArtista}}</a></h3>
-                          <p>{{artista.get_categorias}}</p>
+                          {% if artista.get_categorias %}
+                            <p>{{artista.get_categorias}}</p>
+                          {% endif %}
                         </div>
                       </div>
                     </div>

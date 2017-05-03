@@ -228,11 +228,8 @@ def perfil_create_p1(request):
         nombre = request.POST['nombre']
         email = request.POST['email']
         telefono = request.POST['telefono']
-        publico = request.POST['publico']
         nacimiento = request.POST['nacimiento']
         facebook = request.POST['facebook']
-        twitter = request.POST['twitter']
-        youtube = request.POST['youtube']
         web = request.POST['web']
         genero = request.POST['sexo']
         #categoria = request.POST['categoria']
@@ -240,6 +237,8 @@ def perfil_create_p1(request):
             genero = True
         else:
             genero = False
+
+        publico = request.POST['publico']
         if publico == 'True':
             publico = True
         else:
@@ -255,7 +254,7 @@ def perfil_create_p1(request):
             estado, mensaje = validar_password(username, password,password_confirm)
             if estado:
                 perfil = Perfil(nombreArtista = nombre, nombreReal = nombre, email=email, telefono=telefono,fechaNacimiento= nacimiento,sexo=genero,
-                                publico_telefono=publico,facebook=facebook,twitter=twitter,youtube=youtube,otro=web)
+                                publico_telefono=publico,facebook=facebook,otro=web)
                 perfil.rol = get_object_or_404(Rol, nombreRol='Artista')
                 #perfil.categoria = Categoria.objects.filter(categoria=categoria)
                 nuevo_usuario = User.objects.create_user(username=username, email='xela@casacult.com', password=password)
