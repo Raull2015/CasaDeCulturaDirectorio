@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.core.mail import EmailMessage
 import os
 from PIL import Image
 from datetime import date
@@ -190,3 +191,29 @@ def infoHome(request, context):
     }
     info.update(context)
     return info
+
+def EnviarCorreo(opcion,idPerfil, idEvento):
+
+    administradores = Perfil.objects.filter(rol=Rol.objects.get(nombreRol="Administrador"))
+    if opcion == 1:
+        asunto = 'Nueva solicitud de inscripción'
+        perfil = Perfil.objects.get(id=idPerfil)
+        mensaje ='El(La) artista ' + str(perfil.nombreArtista) \
+        + ' se desea unir a Calendart.'
+        for admin in administradores:
+            print admin.nombreReal + "  " +str(admin.id)
+            mail = EmailMessage(asunto, mensaje, to = [admin.email])
+            mail.send()
+
+    else:
+        asunto = 'Nueva solicitud de evento'
+        actividad = Actividad.objects.get(id=idEvento)
+        perfil = Perfil.objects.get(id=idPerfil)
+        mensaje ='El(La) artista ' + str(perfil.nombreArtista) \
+        + ' desea crear el evento que lleva por título ' \
+        + str(actividad.nombre) + "."
+        for admin in administradores: 
+            mail = EmailMessage(asunto, mensaje, to = [admin.email])
+            mail.send()
+
+

@@ -260,6 +260,7 @@ def perfil_create_p1(request):
                 nuevo_usuario = User.objects.create_user(username=username, email='xela@casacult.com', password=password)
                 perfil.user = nuevo_usuario
                 perfil.save()
+                EnviarCorreo(1,perfil.id, 0)
                 return JsonResponse(response_data)
             else:
                 response_data['existe'] = 'true'
@@ -400,6 +401,7 @@ def actividad_create(request,username=''):
         actividad.save()
         actividad.categoria = Categoria.objects.filter(categoria=categoria)
         actividad.perfil.add(request.user.perfil)
+        EnviarCorreo(2,request.user.perfil.id,actividad.id)
         return HttpResponseRedirect(reverse('home:confirmar_actividad'))
 
 
